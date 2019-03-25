@@ -8,14 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441ABF02248B6ED0018A293 /* AppDelegate.swift */; };
-		5441ABF32248B6ED0018A293 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441ABF22248B6ED0018A293 /* ViewController.swift */; };
-		5441ABF62248B6ED0018A293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF42248B6ED0018A293 /* Main.storyboard */; };
 		5441ABF82248B6EF0018A293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF72248B6EF0018A293 /* Assets.xcassets */; };
 		5441ABFB2248B6EF0018A293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF92248B6EF0018A293 /* LaunchScreen.storyboard */; };
 		5441AC062248B6EF0018A293 /* NAMETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC052248B6EF0018A293 /* NAMETests.swift */; };
 		5441AC112248B6EF0018A293 /* NAMEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC102248B6EF0018A293 /* NAMEUITests.swift */; };
-		5441AC1F2248B8F40018A293 /* Splash in Resources */ = {isa = PBXBuildFile; fileRef = 5441AC1E2248B8F40018A293 /* Splash */; };
-		5441AC262248BCF90018A293 /* CustomerRoot in Resources */ = {isa = PBXBuildFile; fileRef = 5441AC252248BCF90018A293 /* CustomerRoot */; };
+		5441AC3A2248C4480018A293 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC2D2248C4480018A293 /* SplashViewModel.swift */; };
+		5441AC3B2248C4480018A293 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC2F2248C4480018A293 /* SplashPresenter.swift */; };
+		5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC312248C4480018A293 /* SplashViewController.swift */; };
+		5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC332248C4480018A293 /* SplashConfigurator.swift */; };
+		5441AC3E2248C4480018A293 /* SplashWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC352248C4480018A293 /* SplashWorker.swift */; };
+		5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC372248C4480018A293 /* SplashInteractor.swift */; };
+		5441AC402248C4480018A293 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC392248C4480018A293 /* SplashRouter.swift */; };
+		5441AC502248C4590018A293 /* CustomerRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC432248C4590018A293 /* CustomerRootViewModel.swift */; };
+		5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC452248C4590018A293 /* CustomerRootPresenter.swift */; };
+		5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC472248C4590018A293 /* CustomerRootViewController.swift */; };
+		5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC492248C4590018A293 /* CustomerRootConfigurator.swift */; };
+		5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */; };
+		5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */; };
+		5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */; };
 		CAFCCC38685A268BB99E0A14 /* Pods_NAMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */; };
 		E560E33EA363C8723761CF94 /* Pods_NAME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
@@ -46,8 +56,6 @@
 		4E1D1D84429E810A94851115 /* Pods-NAME.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.release.xcconfig"; sourceTree = "<group>"; };
 		5441ABED2248B6ED0018A293 /* NAME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NAME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5441ABF02248B6ED0018A293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5441ABF22248B6ED0018A293 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5441ABF52248B6ED0018A293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5441ABF72248B6EF0018A293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5441ABFA2248B6EF0018A293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5441ABFC2248B6EF0018A293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,8 +65,20 @@
 		5441AC0C2248B6EF0018A293 /* NAMEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NAMEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5441AC102248B6EF0018A293 /* NAMEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMEUITests.swift; sourceTree = "<group>"; };
 		5441AC122248B6EF0018A293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5441AC1E2248B8F40018A293 /* Splash */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Splash; sourceTree = "<group>"; };
-		5441AC252248BCF90018A293 /* CustomerRoot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CustomerRoot; sourceTree = "<group>"; };
+		5441AC2D2248C4480018A293 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		5441AC2F2248C4480018A293 /* SplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		5441AC312248C4480018A293 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		5441AC332248C4480018A293 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
+		5441AC352248C4480018A293 /* SplashWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashWorker.swift; sourceTree = "<group>"; };
+		5441AC372248C4480018A293 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		5441AC392248C4480018A293 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		5441AC432248C4590018A293 /* CustomerRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootViewModel.swift; sourceTree = "<group>"; };
+		5441AC452248C4590018A293 /* CustomerRootPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootPresenter.swift; sourceTree = "<group>"; };
+		5441AC472248C4590018A293 /* CustomerRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootViewController.swift; sourceTree = "<group>"; };
+		5441AC492248C4590018A293 /* CustomerRootConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootConfigurator.swift; sourceTree = "<group>"; };
+		5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootWorker.swift; sourceTree = "<group>"; };
+		5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootInteractor.swift; sourceTree = "<group>"; };
+		5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootRouter.swift; sourceTree = "<group>"; };
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,8 +140,6 @@
 			children = (
 				5441AC272248BD7C0018A293 /* Scenes */,
 				5441ABF02248B6ED0018A293 /* AppDelegate.swift */,
-				5441ABF22248B6ED0018A293 /* ViewController.swift */,
-				5441ABF42248B6ED0018A293 /* Main.storyboard */,
 				5441ABF72248B6EF0018A293 /* Assets.xcassets */,
 				5441ABF92248B6EF0018A293 /* LaunchScreen.storyboard */,
 				5441ABFC2248B6EF0018A293 /* Info.plist */,
@@ -157,7 +175,7 @@
 		5441AC212248B9080018A293 /* AdminCommon */ = {
 			isa = PBXGroup;
 			children = (
-				5441AC1E2248B8F40018A293 /* Splash */,
+				5441AC2B2248C4480018A293 /* Splash */,
 			);
 			path = AdminCommon;
 			sourceTree = "<group>";
@@ -165,7 +183,7 @@
 		5441AC222248B90C0018A293 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
-				5441AC252248BCF90018A293 /* CustomerRoot */,
+				5441AC412248C4590018A293 /* CustomerRoot */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -194,6 +212,146 @@
 				5441AC222248B90C0018A293 /* Customer */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5441AC2B2248C4480018A293 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC2C2248C4480018A293 /* ViewModel */,
+				5441AC2E2248C4480018A293 /* Presenter */,
+				5441AC302248C4480018A293 /* View */,
+				5441AC322248C4480018A293 /* Configurator */,
+				5441AC342248C4480018A293 /* Worker */,
+				5441AC362248C4480018A293 /* Interactor */,
+				5441AC382248C4480018A293 /* Router */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		5441AC2C2248C4480018A293 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC2D2248C4480018A293 /* SplashViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5441AC2E2248C4480018A293 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC2F2248C4480018A293 /* SplashPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5441AC302248C4480018A293 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC312248C4480018A293 /* SplashViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5441AC322248C4480018A293 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC332248C4480018A293 /* SplashConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		5441AC342248C4480018A293 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC352248C4480018A293 /* SplashWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		5441AC362248C4480018A293 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC372248C4480018A293 /* SplashInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		5441AC382248C4480018A293 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC392248C4480018A293 /* SplashRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5441AC412248C4590018A293 /* CustomerRoot */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC422248C4590018A293 /* ViewModel */,
+				5441AC442248C4590018A293 /* Presenter */,
+				5441AC462248C4590018A293 /* View */,
+				5441AC482248C4590018A293 /* Configurator */,
+				5441AC4A2248C4590018A293 /* Worker */,
+				5441AC4C2248C4590018A293 /* Interactor */,
+				5441AC4E2248C4590018A293 /* Router */,
+			);
+			path = CustomerRoot;
+			sourceTree = "<group>";
+		};
+		5441AC422248C4590018A293 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC432248C4590018A293 /* CustomerRootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5441AC442248C4590018A293 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC452248C4590018A293 /* CustomerRootPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5441AC462248C4590018A293 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC472248C4590018A293 /* CustomerRootViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5441AC482248C4590018A293 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC492248C4590018A293 /* CustomerRootConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		5441AC4A2248C4590018A293 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		5441AC4C2248C4590018A293 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		5441AC4E2248C4590018A293 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		7F7C5E2A67DF499434CEB560 /* Frameworks */ = {
@@ -328,10 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5441ABFB2248B6EF0018A293 /* LaunchScreen.storyboard in Resources */,
-				5441AC262248BCF90018A293 /* CustomerRoot in Resources */,
-				5441AC1F2248B8F40018A293 /* Splash in Resources */,
 				5441ABF82248B6EF0018A293 /* Assets.xcassets in Resources */,
-				5441ABF62248B6ED0018A293 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +584,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -436,6 +592,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -449,8 +606,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5441ABF32248B6ED0018A293 /* ViewController.swift in Sources */,
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
+				5441AC402248C4480018A293 /* SplashRouter.swift in Sources */,
+				5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */,
+				5441AC502248C4590018A293 /* CustomerRootViewModel.swift in Sources */,
+				5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */,
+				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
+				5441AC3A2248C4480018A293 /* SplashViewModel.swift in Sources */,
+				5441AC3E2248C4480018A293 /* SplashWorker.swift in Sources */,
+				5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */,
+				5441AC3B2248C4480018A293 /* SplashPresenter.swift in Sources */,
+				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
+				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
+				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
+				5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */,
+				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,14 +656,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5441ABF42248B6ED0018A293 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5441ABF52248B6ED0018A293 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5441ABF92248B6EF0018A293 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -7,6 +7,7 @@ target 'NAME' do
 
   # Pods for NAME
   pod 'RealmSwift'
+  pod 'SnapKit'
 
   target 'NAMETests' do
     inherit! :search_paths
