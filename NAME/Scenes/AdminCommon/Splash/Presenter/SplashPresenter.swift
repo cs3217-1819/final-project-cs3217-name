@@ -9,23 +9,19 @@
 import UIKit
 
 protocol SplashPresenterInput: SplashInteractorOutput {
-
 }
 
 protocol SplashPresenterOutput: class {
-
-    func displaySomething(viewModel: SplashViewModel)
+    func reloadDisplay(viewModel: SplashViewModel)
 }
 
 final class SplashPresenter {
 
     private(set) weak var output: SplashPresenterOutput!
 
-
     // MARK: - Initializers
 
     init(output: SplashPresenterOutput) {
-
         self.output = output
     }
 }
@@ -35,14 +31,10 @@ final class SplashPresenter {
 
 extension SplashPresenter: SplashPresenterInput {
 
-
     // MARK: - Presentation logic
 
-    func presentSomething() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-
+    func presentInit() {
         let viewModel = SplashViewModel()
-        output.displaySomething(viewModel: viewModel)
+        output.reloadDisplay(viewModel: viewModel)
     }
 }

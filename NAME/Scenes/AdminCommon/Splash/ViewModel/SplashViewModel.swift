@@ -9,5 +9,5 @@
 import UIKit
 
 struct SplashViewModel {
-
+    let startButtonTitle = "TOUCH TO BEGIN"
 }

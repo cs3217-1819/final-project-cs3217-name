@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol SplashViewControllerInput: SplashPresenterOutput {
-
 }
 
 protocol SplashViewControllerOutput {
-
-    func doSomething()
+    func initializeScreen()
 }
 
 final class SplashViewController: UIViewController {
@@ -22,28 +21,27 @@ final class SplashViewController: UIViewController {
     var output: SplashViewControllerOutput!
     var router: SplashRouterProtocol!
 
+    lazy var startButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(handleStartPress(sender:)), for: .touchUpInside)
+        return button
+    }()
 
     // MARK: - Initializers
 
     init(configurator: SplashConfigurator = SplashConfigurator.sharedInstance) {
-
         super.init(nibName: nil, bundle: nil)
-
         configure()
     }
 
     required init?(coder aDecoder: NSCoder) {
-
         super.init(coder: aDecoder)
-
         configure()
     }
-
 
     // MARK: - Configurator
 
     private func configure(configurator: SplashConfigurator = SplashConfigurator.sharedInstance) {
-
         configurator.configure(viewController: self)
     }
 
@@ -51,33 +49,35 @@ final class SplashViewController: UIViewController {
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
+        view.addSubview(startButton)
+        startButton.snp.makeConstraints { [unowned self] make in
+            make.size.equalTo(self.view)
+        }
         doSomethingOnLoad()
     }
-
 
     // MARK: - Load data
 
     func doSomethingOnLoad() {
+        // Ask the Interactor to do some work
+        output?.initializeScreen()
+    }
 
-        // TODO: Ask the Interactor to do some work
+    // MARK: -
 
-        output.doSomething()
+    @objc func handleStartPress(sender: Any) {
+        router.navigateToCustomerMenu()
     }
 }
-
 
 // MARK: - SplashPresenterOutput
 
 extension SplashViewController: SplashViewControllerInput {
-
-
     // MARK: - Display logic
 
-    func displaySomething(viewModel: SplashViewModel) {
-
-        // TODO: Update UI
+    func reloadDisplay(viewModel: SplashViewModel) {
+        startButton.setTitle(viewModel.startButtonTitle, for: .normal)
     }
 }
