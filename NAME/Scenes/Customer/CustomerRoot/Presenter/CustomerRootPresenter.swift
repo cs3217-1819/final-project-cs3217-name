@@ -21,7 +21,6 @@ final class CustomerRootPresenter {
 
     private(set) weak var output: CustomerRootPresenterOutput!
 
-
     // MARK: - Initializers
 
     init(output: CustomerRootPresenterOutput) {
@@ -30,11 +29,9 @@ final class CustomerRootPresenter {
     }
 }
 
-
 // MARK: - CustomerRootPresenterInput
 
 extension CustomerRootPresenter: CustomerRootPresenterInput {
-
 
     // MARK: - Presentation logic
 

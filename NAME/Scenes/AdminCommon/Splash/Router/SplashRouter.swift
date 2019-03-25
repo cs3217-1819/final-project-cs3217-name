@@ -26,7 +26,6 @@ final class SplashRouter {
     }
 }
 
-
 // MARK: - SplashRouterProtocol
 
 extension SplashRouter: SplashRouterProtocol {

@@ -45,7 +45,6 @@ final class SplashViewController: UIViewController {
         configurator.configure(viewController: self)
     }
 
-
     // MARK: - View lifecycle
 
     override func viewDidLoad() {

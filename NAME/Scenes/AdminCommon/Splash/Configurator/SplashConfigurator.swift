@@ -10,11 +10,9 @@ import UIKit
 
 final class SplashConfigurator {
 
-
     // MARK: - Singleton
 
     static let sharedInstance: SplashConfigurator = SplashConfigurator()
-
 
     // MARK: - Configuration
 

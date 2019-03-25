@@ -10,7 +10,6 @@ import UIKit
 
 class CustomerRootWorker {
 
-
     // MARK: - Business Logic
 
     func doSomeWork() {

@@ -19,7 +19,6 @@ final class CustomerRootRouter {
 
     weak var viewController: CustomerRootViewController?
 
-
     // MARK: - Initializers
 
     init(viewController: CustomerRootViewController?) {
@@ -28,11 +27,9 @@ final class CustomerRootRouter {
     }
 }
 
-
 // MARK: - CustomerRootRouterProtocol
 
 extension CustomerRootRouter: CustomerRootRouterProtocol {
-
 
     // MARK: - Navigation
 

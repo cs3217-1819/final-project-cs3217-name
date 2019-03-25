@@ -10,11 +10,9 @@ import UIKit
 
 final class CustomerRootConfigurator {
 
-
     // MARK: - Singleton
 
     static let sharedInstance: CustomerRootConfigurator = CustomerRootConfigurator()
-
 
     // MARK: - Configuration
 

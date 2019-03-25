@@ -22,7 +22,6 @@ final class CustomerRootViewController: UIViewController {
     var output: CustomerRootViewControllerOutput!
     var router: CustomerRootRouterProtocol!
 
-
     // MARK: - Initializers
 
     init(configurator: CustomerRootConfigurator = CustomerRootConfigurator.sharedInstance) {
@@ -39,14 +38,12 @@ final class CustomerRootViewController: UIViewController {
         configure()
     }
 
-
     // MARK: - Configurator
 
     private func configure(configurator: CustomerRootConfigurator = CustomerRootConfigurator.sharedInstance) {
 
         configurator.configure(viewController: self)
     }
-
 
     // MARK: - View lifecycle
 
@@ -56,7 +53,6 @@ final class CustomerRootViewController: UIViewController {
 
         doSomethingOnLoad()
     }
-
 
     // MARK: - Load data
 
@@ -68,11 +64,9 @@ final class CustomerRootViewController: UIViewController {
     }
 }
 
-
 // MARK: - CustomerRootPresenterOutput
 
 extension CustomerRootViewController: CustomerRootViewControllerInput {
-
 
     // MARK: - Display logic
 

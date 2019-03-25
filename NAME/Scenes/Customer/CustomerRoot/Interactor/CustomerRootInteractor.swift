@@ -22,7 +22,6 @@ final class CustomerRootInteractor {
     let output: CustomerRootInteractorOutput
     let worker: CustomerRootWorker
 
-
     // MARK: - Initializers
 
     init(output: CustomerRootInteractorOutput, worker: CustomerRootWorker = CustomerRootWorker()) {
@@ -32,11 +31,9 @@ final class CustomerRootInteractor {
     }
 }
 
-
 // MARK: - CustomerRootInteractorInput
 
 extension CustomerRootInteractor: CustomerRootViewControllerOutput {
-
 
     // MARK: - Business logic
 

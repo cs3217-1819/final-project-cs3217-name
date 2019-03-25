@@ -26,7 +26,6 @@ final class SplashPresenter {
     }
 }
 
-
 // MARK: - SplashPresenterInput
 
 extension SplashPresenter: SplashPresenterInput {

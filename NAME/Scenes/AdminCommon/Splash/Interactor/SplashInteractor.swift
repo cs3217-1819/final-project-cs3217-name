@@ -25,7 +25,6 @@ final class SplashInteractor {
     }
 }
 
-
 // MARK: - SplashInteractorInput
 
 extension SplashInteractor: SplashViewControllerOutput {
