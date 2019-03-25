@@ -168,14 +168,7 @@
 		1FB257ED224928550035399F /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1FB2582A2249293F0035399F /* PriceModifiables */,
-				1FB258292249292F0035399F /* Order */,
-				1FB25828224929200035399F /* Menu */,
-				1FB25808224929170035399F /* Customer.swift */,
-				1FB2580C224929180035399F /* Establishment.swift */,
-				1FB25800224929170035399F /* Stall.swift */,
-				1FB25809224929170035399F /* Price.swift */,
-				1FB2580B224929180035399F /* Priceable.swift */,
+				1FB2582B22492FCE0035399F /* Models */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -216,6 +209,21 @@
 				1FB257FC224929160035399F /* Surcharge.swift */,
 			);
 			path = PriceModifiables;
+			sourceTree = "<group>";
+		};
+		1FB2582B22492FCE0035399F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FB2582A2249293F0035399F /* PriceModifiables */,
+				1FB258292249292F0035399F /* Order */,
+				1FB25828224929200035399F /* Menu */,
+				1FB25808224929170035399F /* Customer.swift */,
+				1FB2580C224929180035399F /* Establishment.swift */,
+				1FB25800224929170035399F /* Stall.swift */,
+				1FB25809224929170035399F /* Price.swift */,
+				1FB2580B224929180035399F /* Priceable.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5441ABE42248B6ED0018A293 = {
