@@ -11,6 +11,8 @@ class Stall: Object {
     @objc dynamic var details: String?
     @objc dynamic var menu: Menu?
 
+    let discounts = List<Discount>()
+
     // MARK: - Initialisers
 
     convenience init(name: String,
@@ -26,5 +28,15 @@ class Stall: Object {
         self.location = location
         self.details = details
         self.menu = menu
+
+        
+    }
+
+    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
+        let discount = Discount(name: name,
+                                priceModifier: priceModifier,
+                                stackable: stackable,
+                                coverage: .stall)
+        discounts.append(discount)
     }
 }
