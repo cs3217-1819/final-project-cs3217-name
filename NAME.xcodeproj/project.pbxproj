@@ -181,11 +181,11 @@
 		1FB25828224929200035399F /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				1FB25807224929170035399F /* IndividualMenuItem.swift */,
-				1FB25804224929170035399F /* SetMenuItem.swift */,
 				1FB2580D224929180035399F /* Menu.swift */,
 				1FB2580F224929180035399F /* MenuCategory.swift */,
 				1FB257FF224929160035399F /* MenuDisplayable.swift */,
+				1FB25807224929170035399F /* IndividualMenuItem.swift */,
+				1FB25804224929170035399F /* SetMenuItem.swift */,
 				1FB2580A224929180035399F /* MenuItemOption.swift */,
 				1FB25805224929170035399F /* MenuItemOptionType.swift */,
 			);

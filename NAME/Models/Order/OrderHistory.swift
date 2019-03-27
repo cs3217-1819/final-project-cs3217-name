@@ -3,21 +3,25 @@ import RealmSwift
 
 class OrderHistory: Object {
 
-    @objc dynamic private var _state: Int = -1
-    @objc dynamic var timestamp: Date?
+    @objc dynamic private var _state: Int = 0
+    @objc dynamic var timestamp = Date()
 
-    var state: OrderLifecycle? {
+    var state: OrderLifecycle {
         get {
-            return OrderLifecycle(rawValue: _state)
-        }
-        set(newState) {
-
-            guard let newSt = newState else {
-                _state = -1
-                return
+            guard let state = OrderLifecycle(rawValue: _state) else {
+                fatalError("Inconsistent internal representation of state")
             }
-
-            _state = newSt.rawValue
+            return state
         }
+        set {
+            _state = newValue.rawValue
+        }
+    }
+
+    convenience init(state: OrderLifecycle, timestamp: Date) {
+        self.init()
+
+        self.state = state
+        self.timestamp = timestamp
     }
 }

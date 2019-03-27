@@ -4,11 +4,9 @@ import RealmSwift
 class Order: Object {
 
     // MARK: - Properties
-    let items = List<OrderItem>()
-    let history = List<OrderHistory>()
-    @objc dynamic var queueNumber: Int = -1
+    @objc dynamic var queueNumber: Int = 0
 
-    // Relationship
+    // MARK: - Relationship
     @objc dynamic var customer: Customer?
     let orderItems = LinkingObjects(fromType: OrderItem.self, property: "order")
 

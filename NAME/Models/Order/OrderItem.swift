@@ -8,11 +8,9 @@ class OrderItem: Object {
     }
 
     // MARK: - Properties
-    @objc dynamic var menuItem: IndividualMenuItem?
     @objc dynamic var quantity: Int = 0
     @objc dynamic var comment: String = ""
     @objc private dynamic var _diningOption: Int = 0
-    let addons = List<OrderItem>()
 
     var diningOption: DiningOption {
         get {
@@ -26,17 +24,25 @@ class OrderItem: Object {
         }
     }
 
-    // Relationship
+    // MARK: - Relationships
     @objc dynamic var order: Order?
+    @objc dynamic var menuItem: IndividualMenuItem?
+    let addons = List<OrderItem>()
+    let orderHistories = List<OrderHistory>()
+    let options = List<OrderItemOption>()
 
     // MARK: - Initialisers
-    convenience init(menuItem: IndividualMenuItem,
+    convenience init(order: Order,
+                     menuItem: IndividualMenuItem,
                      quantity: Int = 1,
-                     comment: String = "") {
+                     comment: String = "",
+                     diningOption: DiningOption) {
         self.init()
 
+        self.order = order
         self.menuItem = menuItem
         self.quantity = quantity
         self.comment = comment
+        self.diningOption = diningOption
     }
 }

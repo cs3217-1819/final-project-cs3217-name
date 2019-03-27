@@ -9,6 +9,23 @@ class MenuItemOption: Object, Priceable {
     @objc dynamic var imageURL: String?
     @objc dynamic var price: Int = 0
     @objc dynamic private var optionsEncoded = Data()
+    @objc dynamic private var defaultValueEncoded = Data()
+
+    private var _defaultValue: OrderItemOptionValue?
+    var defaultValue: OrderItemOptionValue {
+        get {
+            if let defaultValue = _defaultValue {
+                return defaultValue
+            }
+            let defaultValue = ModelHelper.decodeAsJson(OrderItemOptionValue.self, from: defaultValueEncoded)
+            _defaultValue = defaultValue
+            return defaultValue
+        }
+        set {
+            defaultValueEncoded = ModelHelper.encodeAsJson(newValue)
+            _defaultValue = newValue
+        }
+    }
 
     private var _options: MenuItemOptionType?
     var options: MenuItemOptionType {
@@ -31,12 +48,14 @@ class MenuItemOption: Object, Priceable {
     convenience init(name: String,
                      imageURL: String = "",
                      options: MenuItemOptionType,
+                     defaultValue: OrderItemOptionValue,
                      price: Int = 0) {
         self.init()
 
         self.name = name
         self.imageURL = imageURL
         self.options = options
+        self.defaultValue = defaultValue
         self.price = price
     }
 

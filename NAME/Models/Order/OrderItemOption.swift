@@ -22,4 +22,11 @@ class OrderItemOption: Object {
         }
     }
 
+    convenience init(menuItemOption: MenuItemOption, value: OrderItemOptionValue) {
+        self.init()
+
+        self.menuItemOption = menuItemOption
+        self.value = value
+    }
+
 }
