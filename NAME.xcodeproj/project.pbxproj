@@ -168,7 +168,6 @@
 		1FB257ED224928550035399F /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1FB2582B22492FCE0035399F /* Models */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -251,6 +250,7 @@
 		5441ABEF2248B6ED0018A293 /* NAME */ = {
 			isa = PBXGroup;
 			children = (
+				1FB2582B22492FCE0035399F /* Models */,
 				1F21BA02224923030089A1AD /* Utilities */,
 				5441AC272248BD7C0018A293 /* Scenes */,
 				5441ABF02248B6ED0018A293 /* AppDelegate.swift */,
