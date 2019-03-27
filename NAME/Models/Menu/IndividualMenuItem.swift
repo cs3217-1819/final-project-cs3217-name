@@ -34,7 +34,7 @@ class IndividualMenuItem: Object, MenuDisplayable {
     let options = List<MenuItemOption>()
 
     // MARK: - Initialisers
-    
+
     convenience init(name: String,
          imageURL: String? = nil,
          price: Int,

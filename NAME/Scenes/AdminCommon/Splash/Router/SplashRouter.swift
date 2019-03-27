@@ -10,7 +10,7 @@ import UIKit
 
 protocol SplashRouterProtocol {
 
-    weak var viewController: SplashViewController? { get }
+    var viewController: SplashViewController? { get }
 
     func navigateToCustomerMenu()
 }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol CustomerRootRouterProtocol {
 
-    weak var viewController: CustomerRootViewController? { get }
+    var viewController: CustomerRootViewController? { get }
 
     func navigateToSomewhere()
 }

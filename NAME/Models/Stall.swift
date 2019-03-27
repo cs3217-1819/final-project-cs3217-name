@@ -31,7 +31,7 @@ class Stall: Object {
         self.details = details
         self.menu = menu
         self.establishment = establishment
-        
+
     }
 
     func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
