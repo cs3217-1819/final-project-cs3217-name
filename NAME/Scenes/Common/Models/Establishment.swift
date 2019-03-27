@@ -11,6 +11,7 @@ class Establishment: Object {
     @objc dynamic var details: String?
 
     let stalls = List<Stall>()
+    let discounts = List<Discount>()
 
     // MARK: - Initialisers
 
@@ -27,5 +28,13 @@ class Establishment: Object {
         self.location = location
         self.details = description
         self.stalls.append(objectsIn: stalls)
+    }
+
+    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
+        let discount = Discount(name: name,
+                                priceModifier: priceModifier,
+                                stackable: stackable,
+                                coverage: .establishment)
+        discounts.append(discount)
     }
 }
