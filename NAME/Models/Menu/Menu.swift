@@ -13,7 +13,9 @@ class Menu: Object {
 
     var allItems: [MenuDisplayable] {
         get {
-            return Array(individualMenuItems) + Array(setMenuItems)
+            let indivItems = Array(individualMenuItems).map { $0 as MenuDisplayable }
+            let menuItems = Array(setMenuItems).map { $0 as MenuDisplayable }
+            return indivItems + menuItems
         }
     }
 
