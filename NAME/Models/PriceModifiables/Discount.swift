@@ -10,18 +10,18 @@ class Discount: Object, PriceModifiable {
 
     @objc dynamic var name = ""
     var priceModifier: Price = .multiplier(factor: 1)
-    @objc dynamic private var _discountCoverage: Int = -1
-    @objc dynamic var stackable = false
+    @objc dynamic private var discountCoverage: Int = -1
+    @objc dynamic var stackable: Bool = false
 
     var coverage: Coverage {
         get {
-            guard let dCoverage = Coverage(rawValue: _discountCoverage) else {
+            guard let coverage = Coverage(rawValue: discountCoverage) else {
                 fatalError("Inconsistent internal representation of coverage")
             }
-            return dCoverage
+            return coverage
         }
         set(newCoverage) {
-            _discountCoverage = newCoverage.rawValue
+            discountCoverage = newCoverage.rawValue
         }
     }
 

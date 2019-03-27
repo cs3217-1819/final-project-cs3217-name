@@ -4,11 +4,13 @@ import RealmSwift
 class Order: Object {
 
     // MARK: - Properties
-
-    @objc dynamic var customer: Customer?
     let items = List<OrderItem>()
     let history = List<OrderHistory>()
     @objc dynamic var queueNumber: Int = -1
+
+    // Relationship
+    @objc dynamic var customer: Customer?
+    let orderItems = LinkingObjects(fromType: OrderItem.self, property: "order")
 
     // MARK: - Initialisers
 
