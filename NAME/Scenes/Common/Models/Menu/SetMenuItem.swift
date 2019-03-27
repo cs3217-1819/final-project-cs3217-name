@@ -9,7 +9,7 @@ class SetMenuItem: Object, MenuDisplayable {
     @objc dynamic var imageURL: String?
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var quantity: Int = 0
-    @objc dynamic var _price: Int = 0 // For Realm requirement to save property
+    @objc dynamic private var _price: Int = 0 // For Realm requirement to save property
 
     public private(set) var priceModifier: Price = .absolute(amount: 0)
 
