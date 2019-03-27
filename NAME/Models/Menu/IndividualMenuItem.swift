@@ -11,25 +11,14 @@ class IndividualMenuItem: Object, MenuDisplayable {
     @objc dynamic var quantity: Int = 0
     @objc dynamic private var _price: Int = 0
 
-    public private(set) var priceModifier: Price = .absolute(amount: 0)
+    @objc dynamic var price: Int = 0
 
     let discounts = List<Discount>()
 
-    @objc dynamic var price: Int {
-        get {
-            if case let Price.absolute(amount) = priceModifier {
-                return amount
-            } else {
-                fatalError("Price of a menu item should be an absolute amount")
-            }
-        }
-        set(newAmount) {
-            self.priceModifier = Price.absolute(amount: newAmount)
-            self._price = newAmount
-        }
-    }
+    // MARK: - Relationships
+    @objc dynamic var menu: Menu?
+    let categories = List<MenuCategory>()
 
-    @objc dynamic var stall: Stall?
     let addOns = List<IndividualMenuItem>()
     let options = List<MenuItemOption>()
 
@@ -40,7 +29,6 @@ class IndividualMenuItem: Object, MenuDisplayable {
          price: Int,
          isHidden: Bool = false,
          quantity: Int = 1,
-         stall: Stall,
          addOns: [IndividualMenuItem] = [],
          options: [MenuItemOption] = []) {
 
@@ -52,19 +40,14 @@ class IndividualMenuItem: Object, MenuDisplayable {
         self.isHidden = isHidden
         self.quantity = quantity
 
-        self.stall = stall
-
         self.addOns.append(objectsIn: addOns)
         self.options.append(objectsIn: options)
     }
 
     // MARK: - Methods
 
-    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
-        let discount = Discount(name: name,
-                                priceModifier: priceModifier,
-                                stackable: stackable,
-                                coverage: .item)
+    func addDiscount(_ discount: Discount) {
+        assert(discount.coverage == .item)
         discounts.append(discount)
     }
 }

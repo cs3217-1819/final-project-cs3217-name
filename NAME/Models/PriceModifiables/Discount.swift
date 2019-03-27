@@ -9,7 +9,7 @@ class Discount: Object, PriceModifiable {
     }
 
     @objc dynamic var name = ""
-    var priceModifier: Price = .multiplier(factor: 1)
+    var priceModifier: PriceModifier = .multiplier(factor: 1)
     @objc dynamic private var discountCoverage: Int = -1
     @objc dynamic var stackable: Bool = false
 
@@ -26,7 +26,7 @@ class Discount: Object, PriceModifiable {
     }
 
     convenience init(name: String,
-                     priceModifier: Price,
+                     priceModifier: PriceModifier,
                      stackable: Bool,
                      coverage: Coverage) {
 

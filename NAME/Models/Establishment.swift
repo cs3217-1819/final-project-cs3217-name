@@ -10,7 +10,7 @@ class Establishment: Object {
     @objc dynamic var location: String?
     @objc dynamic var details: String?
 
-    let stalls = List<Stall>()
+    let stalls = LinkingObjects(fromType: Stall.self, property: "establishment")
     let discounts = List<Discount>()
 
     // MARK: - Initialisers
@@ -18,8 +18,7 @@ class Establishment: Object {
     convenience init(name: String,
          imageURL: String? = nil,
          location: String? = nil,
-         description: String? = nil,
-         stalls: [Stall] = []) {
+         description: String? = nil) {
 
         self.init()
 
@@ -27,14 +26,5 @@ class Establishment: Object {
         self.imageURL = imageURL
         self.location = location
         self.details = description
-        self.stalls.append(objectsIn: stalls)
-    }
-
-    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
-        let discount = Discount(name: name,
-                                priceModifier: priceModifier,
-                                stackable: stackable,
-                                coverage: .establishment)
-        discounts.append(discount)
     }
 }

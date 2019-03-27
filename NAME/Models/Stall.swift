@@ -9,11 +9,10 @@ class Stall: Object {
     @objc dynamic var imageURL: String?
     @objc dynamic var location: String?
     @objc dynamic var details: String?
+
+    // MARK: - Relationships
     @objc dynamic var menu: Menu?
-    private let establishments = LinkingObjects(fromType: Establishment.self, property: "stalls")
-    var establishment: Establishment? {
-        return establishments.first
-    }
+    @objc dynamic var establishment: Establishment?
 
     let discounts = List<Discount>()
 
@@ -32,13 +31,5 @@ class Stall: Object {
         self.location = location
         self.details = details
         self.menu = menu
-    }
-
-    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
-        let discount = Discount(name: name,
-                                priceModifier: priceModifier,
-                                stackable: stackable,
-                                coverage: .stall)
-        discounts.append(discount)
     }
 }

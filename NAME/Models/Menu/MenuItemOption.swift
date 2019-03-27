@@ -7,59 +7,22 @@ class MenuItemOption: Object, Priceable {
 
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
-    @objc dynamic private var _type: Int = -1
-    @objc dynamic private var _price: Int = 0
+    @objc dynamic var price: Int = 0
+    @objc dynamic private var optionsEncoded = Data()
 
-    // To store the different types of option values
-    @objc dynamic private var _type_boolean: Bool = false
-    @objc dynamic private var _type_multipleChoice: String = ""
-    @objc dynamic private var _type_quantity: Int = 0
-
-    // Deliminator for the storage of multiple choice options as a string
-    let delimForMultipleChoiceStore = "###multiplechoicestore###"
-
-    var type: MenuItemOptionType {
+    private var _options: MenuItemOptionType?
+    var options: MenuItemOptionType {
         get {
-            switch _type {
-            case 0:
-                return MenuItemOptionType.boolean(_type_boolean)
-            case 1:
-                let choices = _type_multipleChoice.components(separatedBy: delimForMultipleChoiceStore)
-                return MenuItemOptionType.multipleChoice(choices)
-            case 2:
-                return MenuItemOptionType.quantity(_type_quantity)
-            default:
-                fatalError("Inconsistent internal representation of menu item option type")
+            if let options = _options {
+                return options
             }
+            let options = ModelHelper.decodeAsJson(MenuItemOptionType.self, from: optionsEncoded)
+            _options = options
+            return options
         }
-        set(newType) {
-            switch newType {
-            case .boolean(let val):
-                _type = 0
-                _type_boolean = val
-            case .multipleChoice(let choices):
-                _type = 1
-                _type_multipleChoice = choices.joined(separator: delimForMultipleChoiceStore)
-            case .quantity(let amount):
-                _type = 2
-                _type_quantity = amount
-            }
-        }
-    }
-
-    public private(set) var priceModifier: Price = .absolute(amount: 0)
-
-    var price: Int {
-        get {
-            if case let Price.absolute(amount) = priceModifier {
-                return amount
-            } else {
-                fatalError("Price of a menu item option should be an absolute amount")
-            }
-        }
-        set(newAmount) {
-            self.priceModifier = Price.absolute(amount: newAmount)
-            self._price = newAmount
+        set {
+            optionsEncoded = ModelHelper.encodeAsJson(newValue)
+            _options = newValue
         }
     }
 
@@ -67,13 +30,13 @@ class MenuItemOption: Object, Priceable {
 
     convenience init(name: String,
                      imageURL: String = "",
-                     type: MenuItemOptionType,
+                     options: MenuItemOptionType,
                      price: Int = 0) {
         self.init()
 
         self.name = name
         self.imageURL = imageURL
-        self.type = type
+        self.options = options
         self.price = price
     }
 

@@ -6,19 +6,16 @@ class MenuCategory: Object {
     // MARK: - Properties
 
     @objc dynamic var name = ""
-    let items = List<IndividualMenuItem>()
+
+    // MARK: - Relationships
+    @objc dynamic var menu: Menu?
+    let items = LinkingObjects(fromType: IndividualMenuItem.self, property: "categories")
 
     // MARK: - Initialisers
 
-    convenience init(name: String, menuItems: [IndividualMenuItem] = []) {
+    convenience init(name: String, menu: Menu) {
         self.init()
         self.name = name
-        self.items.append(objectsIn: menuItems)
-    }
-
-    // MARK: - Methods
-
-    func addItem(_ item: IndividualMenuItem) {
-        items.append(item)
+        self.menu = menu
     }
 }

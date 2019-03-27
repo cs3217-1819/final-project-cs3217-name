@@ -1,6 +1,6 @@
 // Price and price modifiers
 
-enum Price {
+enum PriceModifier {
     case absolute(amount: Int)
     case multiplier(factor: Double)
 }

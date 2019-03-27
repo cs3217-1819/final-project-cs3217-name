@@ -21,7 +21,7 @@
 		1FB2581C224929180035399F /* TimeCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25806224929170035399F /* TimeCondition.swift */; };
 		1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25807224929170035399F /* IndividualMenuItem.swift */; };
 		1FB2581E224929180035399F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25808224929170035399F /* Customer.swift */; };
-		1FB2581F224929180035399F /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25809224929170035399F /* Price.swift */; };
+		1FB2581F224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25809224929170035399F /* PriceModifier.swift */; };
 		1FB25820224929180035399F /* MenuItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580A224929180035399F /* MenuItemOption.swift */; };
 		1FB25821224929180035399F /* Priceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580B224929180035399F /* Priceable.swift */; };
 		1FB25822224929180035399F /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580C224929180035399F /* Establishment.swift */; };
@@ -48,6 +48,9 @@
 		5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */; };
 		5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */; };
 		5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */; };
+		C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E5224B8A20003E4547 /* ModelError.swift */; };
+		C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E9224B9060003E4547 /* ModelHelper.swift */; };
+		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
 		CAFCCC38685A268BB99E0A14 /* Pods_NAMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */; };
 		E560E33EA363C8723761CF94 /* Pods_NAME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
@@ -86,7 +89,7 @@
 		1FB25806224929170035399F /* TimeCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCondition.swift; sourceTree = "<group>"; };
 		1FB25807224929170035399F /* IndividualMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualMenuItem.swift; sourceTree = "<group>"; };
 		1FB25808224929170035399F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
-		1FB25809224929170035399F /* Price.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		1FB25809224929170035399F /* PriceModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifier.swift; sourceTree = "<group>"; };
 		1FB2580A224929180035399F /* MenuItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemOption.swift; sourceTree = "<group>"; };
 		1FB2580B224929180035399F /* Priceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priceable.swift; sourceTree = "<group>"; };
 		1FB2580C224929180035399F /* Establishment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
@@ -126,6 +129,9 @@
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
+		C6EC63E5224B8A20003E4547 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
+		C6EC63E9224B9060003E4547 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
+		C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionValue.swift; sourceTree = "<group>"; };
 		E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -194,6 +200,7 @@
 				1FB257FD224929160035399F /* OrderItem.swift */,
 				1FB25810224929180035399F /* OrderItemOption.swift */,
 				1FB2580E224929180035399F /* OrderLifecycle.swift */,
+				C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB25811224929180035399F /* PriceModifiable.swift */,
+				1FB25809224929170035399F /* PriceModifier.swift */,
 				1FB257FE224929160035399F /* Rounder.swift */,
 				1FB25801224929170035399F /* Discount.swift */,
 				1FB25806224929170035399F /* TimeCondition.swift */,
@@ -219,8 +227,9 @@
 				1FB25808224929170035399F /* Customer.swift */,
 				1FB2580C224929180035399F /* Establishment.swift */,
 				1FB25800224929170035399F /* Stall.swift */,
-				1FB25809224929170035399F /* Price.swift */,
 				1FB2580B224929180035399F /* Priceable.swift */,
+				C6EC63E5224B8A20003E4547 /* ModelError.swift */,
+				C6EC63E9224B9060003E4547 /* ModelHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -721,6 +730,7 @@
 				1FB2581A224929180035399F /* SetMenuItem.swift in Sources */,
 				1FB25818224929180035399F /* Order.swift in Sources */,
 				5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */,
+				C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */,
 				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
 				1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */,
 				5441AC3A2248C4480018A293 /* SplashViewModel.swift in Sources */,
@@ -730,8 +740,10 @@
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
 				5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */,
 				1FB25821224929180035399F /* Priceable.swift in Sources */,
+				C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */,
 				1FB2581E224929180035399F /* Customer.swift in Sources */,
 				1FB25816224929180035399F /* Stall.swift in Sources */,
+				C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */,
 				5441AC3B2248C4480018A293 /* SplashPresenter.swift in Sources */,
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
@@ -746,7 +758,7 @@
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifiable.swift in Sources */,
-				1FB2581F224929180035399F /* Price.swift in Sources */,
+				1FB2581F224929180035399F /* PriceModifier.swift in Sources */,
 				1FB25819224929180035399F /* OrderHistory.swift in Sources */,
 				1FB25813224929180035399F /* OrderItem.swift in Sources */,
 			);
@@ -956,7 +968,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6A2TRW47J;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMETests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -978,7 +990,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6A2TRW47J;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMETests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -999,7 +1011,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6A2TRW47J;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1020,7 +1032,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6A2TRW47J;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMEUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

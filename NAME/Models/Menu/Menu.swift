@@ -5,14 +5,15 @@ class Menu: Object {
 
     // MARK: - Properties
 
-    let menuCategories = List<MenuCategory>()
-    let items = List<IndividualMenuItem>()
+    // MARK: - Relationships
+    @objc dynamic var stall: Stall?
+    let items = LinkingObjects(fromType: IndividualMenuItem.self, property: "menu")
+    let categories = LinkingObjects(fromType: MenuCategory.self, property: "menu")
 
     // MARK: - Initialisers
 
-    convenience init(categories: [MenuCategory] = [], items: [IndividualMenuItem] = []) {
+    convenience init(stall: Stall) {
         self.init()
-        self.menuCategories.append(objectsIn: categories)
-        self.items.append(objectsIn: items)
+        self.stall = stall
     }
 }
