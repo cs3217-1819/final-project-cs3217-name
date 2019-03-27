@@ -46,7 +46,6 @@ class IndividualMenuItem: Object, MenuDisplayable {
     // MARK: - Methods
 
     func addDiscount(_ discount: Discount) {
-        assert(discount.coverage == .item)
         discounts.append(discount)
     }
 }
