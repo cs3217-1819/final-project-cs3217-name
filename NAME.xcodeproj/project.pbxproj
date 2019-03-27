@@ -212,7 +212,6 @@
 				1FB25809224929170035399F /* PriceModifier.swift */,
 				1FB257FE224929160035399F /* Rounder.swift */,
 				1FB25801224929170035399F /* Discount.swift */,
-				1FB25806224929170035399F /* TimeCondition.swift */,
 				1FB257FC224929160035399F /* Surcharge.swift */,
 			);
 			path = PriceModifiables;
@@ -221,6 +220,7 @@
 		1FB2582B22492FCE0035399F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C6EC63ED224BA2D3003E4547 /* TimeCondition */,
 				1FB2582A2249293F0035399F /* PriceModifiables */,
 				1FB258292249292F0035399F /* Order */,
 				1FB25828224929200035399F /* Menu */,
@@ -490,6 +490,14 @@
 				26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C6EC63ED224BA2D3003E4547 /* TimeCondition */ = {
+			isa = PBXGroup;
+			children = (
+				1FB25806224929170035399F /* TimeCondition.swift */,
+			);
+			path = TimeCondition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
