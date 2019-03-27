@@ -13,11 +13,10 @@ class IndividualMenuItem: Object, MenuDisplayable {
 
     @objc dynamic var price: Int = 0
 
-    let discounts = List<Discount>()
-
     // MARK: - Relationships
     @objc dynamic var menu: Menu?
     let categories = List<MenuCategory>()
+    let discounts = List<Discount>()
 
     let addOns = List<IndividualMenuItem>()
     let options = List<MenuItemOption>()
