@@ -13,6 +13,8 @@ class IndividualMenuItem: Object, MenuDisplayable {
 
     public private(set) var priceModifier: Price = .absolute(amount: 0)
 
+    let discounts = List<Discount>()
+
     @objc dynamic var price: Int {
         get {
             if case let Price.absolute(amount) = priceModifier {
@@ -31,6 +33,8 @@ class IndividualMenuItem: Object, MenuDisplayable {
     let addOns = List<IndividualMenuItem>()
     let options = List<MenuItemOption>()
 
+    // MARK: - Initialisers
+    
     convenience init(name: String,
          imageURL: String? = nil,
          price: Int,
@@ -52,5 +56,15 @@ class IndividualMenuItem: Object, MenuDisplayable {
 
         self.addOns.append(objectsIn: addOns)
         self.options.append(objectsIn: options)
+    }
+
+    // MARK: - Methods
+
+    func addDiscount(name: String, priceModifier: Price, stackable: Bool) {
+        let discount = Discount(name: name,
+                                priceModifier: priceModifier,
+                                stackable: stackable,
+                                coverage: .item)
+        discounts.append(discount)
     }
 }
