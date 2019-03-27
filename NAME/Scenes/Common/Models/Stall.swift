@@ -10,6 +10,7 @@ class Stall: Object {
     @objc dynamic var location: String?
     @objc dynamic var details: String?
     @objc dynamic var menu: Menu?
+    @objc dynamic var establishment: Establishment?
 
     let discounts = List<Discount>()
 
@@ -19,7 +20,8 @@ class Stall: Object {
          imageURL: String? = nil,
          location: String? = nil,
          details: String? = nil,
-         menu: Menu? = nil) {
+         menu: Menu? = nil,
+         establishment: Establishment? = nil) {
 
         self.init()
 
@@ -28,7 +30,7 @@ class Stall: Object {
         self.location = location
         self.details = details
         self.menu = menu
-
+        self.establishment = establishment
         
     }
 
