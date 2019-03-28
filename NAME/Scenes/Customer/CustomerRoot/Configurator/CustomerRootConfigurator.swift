@@ -12,7 +12,7 @@ final class CustomerRootConfigurator {
 
     // MARK: - Singleton
 
-    static let sharedInstance: CustomerRootConfigurator = CustomerRootConfigurator()
+    static let shared: CustomerRootConfigurator = CustomerRootConfigurator()
 
     // MARK: - Configuration
 

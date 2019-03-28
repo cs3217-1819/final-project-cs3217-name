@@ -12,7 +12,7 @@ final class SplashConfigurator {
 
     // MARK: - Singleton
 
-    static let sharedInstance: SplashConfigurator = SplashConfigurator()
+    static let shared: SplashConfigurator = SplashConfigurator()
 
     // MARK: - Configuration
 

@@ -24,7 +24,7 @@ final class CustomerRootViewController: UIViewController {
 
     // MARK: - Initializers
 
-    init(configurator: CustomerRootConfigurator = CustomerRootConfigurator.sharedInstance) {
+    init(configurator: CustomerRootConfigurator = CustomerRootConfigurator.shared) {
 
         super.init(nibName: nil, bundle: nil)
 
@@ -40,7 +40,7 @@ final class CustomerRootViewController: UIViewController {
 
     // MARK: - Configurator
 
-    private func configure(configurator: CustomerRootConfigurator = CustomerRootConfigurator.sharedInstance) {
+    private func configure(configurator: CustomerRootConfigurator = CustomerRootConfigurator.shared) {
 
         configurator.configure(viewController: self)
     }

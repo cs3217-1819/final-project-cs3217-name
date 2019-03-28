@@ -29,7 +29,7 @@ final class SplashViewController: UIViewController {
 
     // MARK: - Initializers
 
-    init(configurator: SplashConfigurator = SplashConfigurator.sharedInstance) {
+    init(configurator: SplashConfigurator = SplashConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
         configure()
     }
@@ -41,7 +41,7 @@ final class SplashViewController: UIViewController {
 
     // MARK: - Configurator
 
-    private func configure(configurator: SplashConfigurator = SplashConfigurator.sharedInstance) {
+    private func configure(configurator: SplashConfigurator = SplashConfigurator.shared) {
         configurator.configure(viewController: self)
     }
 
