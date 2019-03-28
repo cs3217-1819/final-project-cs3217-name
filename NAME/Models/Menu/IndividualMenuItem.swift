@@ -24,12 +24,12 @@ class IndividualMenuItem: Object, MenuDisplayable {
     // MARK: - Initialisers
 
     convenience init(name: String,
-         imageURL: String? = nil,
-         price: Int,
-         isHidden: Bool = false,
-         quantity: Int = 1,
-         addOns: [IndividualMenuItem] = [],
-         options: [MenuItemOption] = []) {
+                     imageURL: String? = nil,
+                     price: Int,
+                     isHidden: Bool = false,
+                     quantity: Int = 1,
+                     addOns: [IndividualMenuItem] = [],
+                     options: [MenuItemOption] = []) {
 
         self.init()
 

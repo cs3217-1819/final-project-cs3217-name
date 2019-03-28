@@ -18,8 +18,8 @@ protocol SplashViewControllerOutput {
 
 final class SplashViewController: UIViewController {
 
-    var output: SplashViewControllerOutput!
-    var router: SplashRouterProtocol!
+    var output: SplashViewControllerOutput?
+    var router: SplashRouterProtocol?
 
     lazy var startButton: UIButton = {
         let button = UIButton()
@@ -66,8 +66,9 @@ final class SplashViewController: UIViewController {
 
     // MARK: -
 
-    @objc func handleStartPress(sender: Any) {
-        router.navigateToCustomerMenu()
+    @objc
+    func handleStartPress(sender: Any) {
+        router?.navigateToCustomerMenu()
     }
 }
 

@@ -19,7 +19,7 @@ protocol CustomerRootPresenterOutput: class {
 
 final class CustomerRootPresenter {
 
-    private(set) weak var output: CustomerRootPresenterOutput!
+    private(set) unowned var output: CustomerRootPresenterOutput
 
     // MARK: - Initializers
 

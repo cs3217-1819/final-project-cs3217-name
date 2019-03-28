@@ -767,6 +767,7 @@
 				5441ABEA2248B6ED0018A293 /* Frameworks */,
 				5441ABEB2248B6ED0018A293 /* Resources */,
 				C7B3BC85AE857DAD964E09F0 /* [CP] Embed Pods Frameworks */,
+				C6B5E26D224CAC6100BBDDE9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -804,6 +805,7 @@
 				5441AC082248B6EF0018A293 /* Sources */,
 				5441AC092248B6EF0018A293 /* Frameworks */,
 				5441AC0A2248B6EF0018A293 /* Resources */,
+				E6DFCBAB8F6C055EE897489B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -827,16 +829,13 @@
 				TargetAttributes = {
 					5441ABEC2248B6ED0018A293 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1020;
 					};
 					5441AC002248B6EF0018A293 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1020;
 						TestTargetID = 5441ABEC2248B6ED0018A293;
 					};
 					5441AC0B2248B6EF0018A293 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1020;
 						TestTargetID = 5441ABEC2248B6ED0018A293;
 					};
 				};
@@ -954,6 +953,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C6B5E26D224CAC6100BBDDE9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		C7B3BC85AE857DAD964E09F0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -962,7 +978,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -977,7 +993,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6DFCBAB8F6C055EE897489B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1224,7 +1266,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3216.iMeetU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1243,7 +1285,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3216.iMeetU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1264,7 +1306,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NAME.app/NAME";
 			};
@@ -1286,7 +1328,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NAME.app/NAME";
 			};
@@ -1296,7 +1338,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03671C37A0F8EF90D64F7BCE /* Pods-NAMEUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMEUITests/Info.plist;
@@ -1304,10 +1345,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NAME;
 			};
@@ -1317,7 +1359,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAMEUITests/Info.plist;
@@ -1325,10 +1366,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NAME;
 			};

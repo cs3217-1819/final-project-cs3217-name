@@ -17,7 +17,7 @@ protocol SplashPresenterOutput: class {
 
 final class SplashPresenter {
 
-    private(set) weak var output: SplashPresenterOutput!
+    private(set) unowned var output: SplashPresenterOutput
 
     // MARK: - Initializers
 

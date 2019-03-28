@@ -19,10 +19,10 @@ class Stall: Object {
     // MARK: - Initialisers
 
     convenience init(name: String,
-         imageURL: String? = nil,
-         location: String? = nil,
-         details: String? = nil,
-         menu: Menu? = nil) {
+                     imageURL: String? = nil,
+                     location: String? = nil,
+                     details: String? = nil,
+                     menu: Menu? = nil) {
 
         self.init()
 

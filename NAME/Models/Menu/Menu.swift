@@ -12,11 +12,9 @@ class Menu: Object {
     private let menuCategories = LinkingObjects(fromType: MenuCategory.self, property: "menu")
 
     var allItems: [MenuDisplayable] {
-        get {
-            let indivItems = Array(individualMenuItems).map { $0 as MenuDisplayable }
-            let menuItems = Array(setMenuItems).map { $0 as MenuDisplayable }
-            return indivItems + menuItems
-        }
+        let indivItems = Array(individualMenuItems).map { $0 as MenuDisplayable }
+        let menuItems = Array(setMenuItems).map { $0 as MenuDisplayable }
+        return indivItems + menuItems
     }
 
     // MARK: - Initialisers

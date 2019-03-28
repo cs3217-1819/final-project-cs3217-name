@@ -11,10 +11,10 @@ import RealmSwift
 
 enum FixtureGenerator {
 
-    static func create(deleteRealmIfMigrationNeeded: Bool = true, append: Bool = false) {
+    static func create(deleteRealmIfMigrationNeeded: Bool = true, append: Bool = false) throws {
 
         let realmConfig = Realm.Configuration(deleteRealmIfMigrationNeeded: deleteRealmIfMigrationNeeded)
-        let realm = try! Realm(configuration: realmConfig)
+        let realm = try Realm(configuration: realmConfig)
 
         let establishments = self.createEstablishments(realm)
         let stalls = self.createStalls(realm)
@@ -23,22 +23,22 @@ enum FixtureGenerator {
 
         // Create menu items
 
-        let item1a1 = IndividualMenuItem(name: "Wonton Mee", price: 3000)
-        let item1a2 = IndividualMenuItem(name: "Kolok Mee", price: 3500)
-        let item1b1 = IndividualMenuItem(name: "Wonton Mee", price: 3000)
-        let item1b2 = IndividualMenuItem(name: "Kolok Mee", price: 3500)
+        let item1a1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000)
+        let item1a2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500)
+        let item1b1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000)
+        let item1b2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500)
 
-        let item2a1 = IndividualMenuItem(name: "Item A", price: 3000)
-        let item2a2 = IndividualMenuItem(name: "Item B", price: 3500)
-        let item2b1 = IndividualMenuItem(name: "Item C", price: 4000)
-        let item2b2 = IndividualMenuItem(name: "Item D", price: 4500)
-        let item2c1 = IndividualMenuItem(name: "Item E", price: 3000)
-        let item2c2 = IndividualMenuItem(name: "Item F", price: 3500)
-        let item2d1 = IndividualMenuItem(name: "Item G", price: 4000)
-        let item2d2 = IndividualMenuItem(name: "Item H", price: 4500)
+        let item2a1 = IndividualMenuItem(name: "Item A", price: 3_000)
+        let item2a2 = IndividualMenuItem(name: "Item B", price: 3_500)
+        let item2b1 = IndividualMenuItem(name: "Item C", price: 4_000)
+        let item2b2 = IndividualMenuItem(name: "Item D", price: 4_500)
+        let item2c1 = IndividualMenuItem(name: "Item E", price: 3_000)
+        let item2c2 = IndividualMenuItem(name: "Item F", price: 3_500)
+        let item2d1 = IndividualMenuItem(name: "Item G", price: 4_000)
+        let item2d2 = IndividualMenuItem(name: "Item H", price: 4_500)
 
-        let item3a1 = IndividualMenuItem(name: "Fried Fish Rice", price: 5000)
-        let item3a2 = IndividualMenuItem(name: "Fried Chicken Noodles", price: 4800)
+        let item3a1 = IndividualMenuItem(name: "Fried Fish Rice", price: 5_000)
+        let item3a2 = IndividualMenuItem(name: "Fried Chicken Noodles", price: 4_800)
 
         //Connect different entities together
 
@@ -48,8 +48,8 @@ enum FixtureGenerator {
         stalls[2].establishment = establishments[0]
 
         // Add menu to each store
-        for i in 0..<menus.count {
-            stalls[i].menu = menus[i]
+        for (stall, menu) in zip(stalls, menus) {
+            stall.menu = menu
         }
 
         // Add food items to each category
@@ -71,7 +71,7 @@ enum FixtureGenerator {
         item3a2.categories.append(categories[6])
 
         // Save
-        try! realm.write {
+        try realm.write {
             if !append {
                 realm.deleteAll()
             }

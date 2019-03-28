@@ -19,8 +19,8 @@ protocol CustomerRootViewControllerOutput {
 
 final class CustomerRootViewController: UISplitViewController {
 
-    var output: CustomerRootViewControllerOutput!
-    var router: CustomerRootRouterProtocol!
+    var output: CustomerRootViewControllerOutput?
+    var router: CustomerRootRouterProtocol?
 
     // MARK: - Initializers
 

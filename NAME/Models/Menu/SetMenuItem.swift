@@ -14,7 +14,7 @@ class SetMenuItem: Object, MenuDisplayable {
     let discounts = List<Discount>()
 
     var price: Int {
-        get { return items.reduce(0) { $0 + $1.price } }
+        return items.reduce(0) { $0 + $1.price }
     }
 
     let items = List<IndividualMenuItem>()
