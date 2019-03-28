@@ -9,7 +9,7 @@
 
 import RealmSwift
 
-class FixtureGenerator {
+enum FixtureGenerator {
 
     static func create(deleteRealmIfMigrationNeeded: Bool = true, append: Bool = false) {
 

@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
+        FixtureGenerator.create()
+
 //        window.backgroundColor = .white
         window.rootViewController = SplashViewController()
         window.makeKeyAndVisible()
