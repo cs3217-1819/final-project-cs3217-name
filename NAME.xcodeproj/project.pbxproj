@@ -572,13 +572,16 @@
 				TargetAttributes = {
 					5441ABEC2248B6ED0018A293 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					5441AC002248B6EF0018A293 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 5441ABEC2248B6ED0018A293;
 					};
 					5441AC0B2248B6EF0018A293 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 5441ABEC2248B6ED0018A293;
 					};
 				};
@@ -945,7 +948,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3216.iMeetU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -964,7 +967,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3216.iMeetU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -985,7 +988,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NAME.app/NAME";
 			};
@@ -1007,7 +1010,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NAME.app/NAME";
 			};
@@ -1028,7 +1031,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NAME;
 			};
@@ -1049,7 +1052,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217.a0169022w.NAMEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NAME;
 			};
