@@ -12,7 +12,9 @@ protocol CustomerRootRouterProtocol {
 
     var viewController: CustomerRootViewController? { get }
 
-    func navigateToSomewhere()
+    func navigateBack()
+    func browseViewController() -> UIViewController
+    func cartViewController() -> UIViewController
 }
 
 final class CustomerRootRouter {
@@ -33,7 +35,16 @@ extension CustomerRootRouter: CustomerRootRouterProtocol {
 
     // MARK: - Navigation
 
-    func navigateToSomewhere() {
+    func navigateBack() {
+        viewController?.dismiss(animated: true)
+    }
 
+    func browseViewController() -> UIViewController {
+        return BrowseViewController()
+    }
+
+    func cartViewController() -> UIViewController {
+        // TODO: Caryn to implement cart controller
+        return UINavigationController(rootViewController: UITableViewController(style: .plain))
     }
 }

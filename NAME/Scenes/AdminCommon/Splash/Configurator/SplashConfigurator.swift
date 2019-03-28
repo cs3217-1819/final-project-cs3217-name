@@ -24,5 +24,7 @@ final class SplashConfigurator {
 
         viewController.output = interactor
         viewController.router = router
+
+        viewController.restorationIdentifier = String(describing: type(of: self))
     }
 }

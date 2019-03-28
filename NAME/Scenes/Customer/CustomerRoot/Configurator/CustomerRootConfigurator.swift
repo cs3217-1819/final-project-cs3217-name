@@ -24,5 +24,13 @@ final class CustomerRootConfigurator {
 
         viewController.output = interactor
         viewController.router = router
+
+        viewController.viewControllers = [
+            router.cartViewController(), // Right pane
+            router.browseViewController() // Left pane
+        ]
+
+        viewController.restorationIdentifier = String(describing: type(of: self))
+        viewController.primaryEdge = .trailing // Cart in thinner column on right
     }
 }

@@ -17,7 +17,7 @@ protocol CustomerRootViewControllerOutput {
     func doSomething()
 }
 
-final class CustomerRootViewController: UIViewController {
+final class CustomerRootViewController: UISplitViewController {
 
     var output: CustomerRootViewControllerOutput!
     var router: CustomerRootRouterProtocol!
@@ -41,26 +41,13 @@ final class CustomerRootViewController: UIViewController {
     // MARK: - Configurator
 
     private func configure(configurator: CustomerRootConfigurator = CustomerRootConfigurator.shared) {
-
         configurator.configure(viewController: self)
     }
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
-        doSomethingOnLoad()
-    }
-
-    // MARK: - Load data
-
-    func doSomethingOnLoad() {
-
-        // TODO: Ask the Interactor to do some work
-
-        output.doSomething()
     }
 }
 
