@@ -1,4 +1,4 @@
-protocol PriceModifiable {
+protocol PriceModifier {
     var name: String { get set }
-    var priceModifier: PriceModifier { get set }
+    var priceModification: PriceModification { get set }
 }

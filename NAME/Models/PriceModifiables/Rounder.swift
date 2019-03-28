@@ -1,12 +1,12 @@
-class Rounder: PriceModifiable {
+class Rounder: PriceModifier {
 
     var name: String = ""
-    var priceModifier: PriceModifier = .absolute(amount: 0)
+    var priceModification: PriceModification = .absolute(amount: 0)
 
-    convenience init(name: String, priceModifier: PriceModifier) {
+    convenience init(name: String, priceModification: PriceModification) {
         self.init()
 
         self.name = name
-        self.priceModifier = priceModifier
+        self.priceModification = priceModification
     }
 }

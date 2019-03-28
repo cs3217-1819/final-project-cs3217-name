@@ -1,12 +1,12 @@
-class Surcharge: PriceModifiable {
+class Surcharge: PriceModifier {
 
     var name: String = ""
-    var priceModifier: PriceModifier = .multiplier(factor: 1.07)
+    var priceModification: PriceModification = .multiplier(factor: 1.07)
 
-    convenience init(name: String, priceModifier: PriceModifier) {
+    convenience init(name: String, priceModification: PriceModification) {
         self.init()
 
         self.name = name
-        self.priceModifier = priceModifier
+        self.priceModification = priceModification
     }
 }

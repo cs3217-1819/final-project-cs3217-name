@@ -1,10 +1,10 @@
 import Foundation
 import RealmSwift
 
-class Discount: Object, PriceModifiable {
+class Discount: Object, PriceModifier {
 
     @objc dynamic var name = ""
-    var priceModifier: PriceModifier = .multiplier(factor: 1)
+    var priceModification: PriceModification = .multiplier(factor: 1)
     @objc dynamic private var discountCoverage: Int = -1
     @objc dynamic var stackable: Bool = false
 
@@ -26,14 +26,14 @@ class Discount: Object, PriceModifiable {
     }
 
     convenience init(name: String,
-                     priceModifier: PriceModifier,
+                     priceModification: PriceModification,
                      stackable: Bool,
                      timeCondition: TimeCondition) {
 
         self.init()
 
         self.name = name
-        self.priceModifier = priceModifier
+        self.priceModification = priceModification
         self.stackable = stackable
         self.timeCondition = timeCondition
     }
