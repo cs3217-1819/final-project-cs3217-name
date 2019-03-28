@@ -3,7 +3,7 @@
 ## Instructions
 
 * Run `pod install` before opening `NAME.xcworkspace`.
-* Generate VIP components by using https://github.com/JubrilO/vip-templates-swift/tree/master. When you add a new scene, you must remove the folder and drag it back in in order to build it https://github.com/JubrilO/vip-templates-swift/blob/master/documentation/demo/demo1.gif.
+* Generate VIP components by using https://github.com/indocomsoft/vip-templates-swift/tree/master. When you add a new scene, you must remove the folder and drag it back in in order to build it https://github.com/JubrilO/vip-templates-swift/blob/master/documentation/demo/demo1.gif.
 
 ### Realm
 To observe data in Realm data store,
