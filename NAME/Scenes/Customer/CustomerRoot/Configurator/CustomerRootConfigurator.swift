@@ -30,7 +30,6 @@ final class CustomerRootConfigurator {
             router.browseViewController() // Left pane
         ]
 
-        viewController.restorationIdentifier = String(describing: type(of: self))
         viewController.primaryEdge = .trailing // Cart in thinner column on right
     }
 }

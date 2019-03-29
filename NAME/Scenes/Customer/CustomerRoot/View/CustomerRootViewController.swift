@@ -42,6 +42,8 @@ final class CustomerRootViewController: UISplitViewController {
 
     private func configure(configurator: CustomerRootConfigurator = CustomerRootConfigurator.shared) {
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -60,5 +62,13 @@ extension CustomerRootViewController: CustomerRootViewControllerInput {
     func displaySomething(viewModel: CustomerRootViewModel) {
 
         // TODO: Update UI
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension CustomerRootViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return self.init()
     }
 }

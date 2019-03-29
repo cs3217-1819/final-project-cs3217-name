@@ -11,24 +11,27 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    let window = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        self.window = window
-
+                     willFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         do {
             try FixtureGenerator.create()
         } catch {
             fatalError("You suck!")
         }
 
-//        window.backgroundColor = .white
         window.rootViewController = SplashViewController()
         window.makeKeyAndVisible()
 
+        return true
+    }
+
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
     }
 

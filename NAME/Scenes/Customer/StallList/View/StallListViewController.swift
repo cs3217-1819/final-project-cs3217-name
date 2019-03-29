@@ -41,8 +41,9 @@ final class StallListViewController: UITableViewController {
     // MARK: - Configurator
 
     private func configure(configurator: StallListConfigurator = StallListConfigurator.shared) {
-
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -73,5 +74,13 @@ extension StallListViewController: StallListViewControllerInput {
     func displaySomething(viewModel: StallListViewModel) {
 
         // TODO: Update UI
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension StallListViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return self.init()
     }
 }

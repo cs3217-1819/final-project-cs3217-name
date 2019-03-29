@@ -43,6 +43,8 @@ final class SplashViewController: UIViewController {
 
     private func configure(configurator: SplashConfigurator = SplashConfigurator.shared) {
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -79,5 +81,13 @@ extension SplashViewController: SplashViewControllerInput {
 
     func reloadDisplay(viewModel: SplashViewModel) {
         startButton.setTitle(viewModel.startButtonTitle, for: .normal)
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension SplashViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController
     }
 }

@@ -17,14 +17,11 @@ final class SplashConfigurator {
     // MARK: - Configuration
 
     func configure(viewController: SplashViewController) {
-
         let router = SplashRouter(viewController: viewController)
         let presenter = SplashPresenter(output: viewController)
         let interactor = SplashInteractor(output: presenter)
 
         viewController.output = interactor
         viewController.router = router
-
-        viewController.restorationIdentifier = String(describing: type(of: self))
     }
 }

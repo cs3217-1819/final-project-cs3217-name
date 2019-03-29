@@ -34,6 +34,8 @@ final class OrderConfirmationViewController: UISplitViewController {
 
     private func configure(configurator: OrderConfirmationConfigurator = OrderConfirmationConfigurator.shared) {
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -49,5 +51,13 @@ extension OrderConfirmationViewController: OrderConfirmationViewControllerInput 
 
     func reloadDisplay(viewModel: OrderConfirmationViewModel) {
         // Reload display
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension OrderConfirmationViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return self.init()
     }
 }

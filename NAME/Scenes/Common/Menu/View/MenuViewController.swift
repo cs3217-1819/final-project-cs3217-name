@@ -41,8 +41,9 @@ final class MenuViewController: UICollectionViewController {
     // MARK: - Configurator
 
     private func configure(configurator: MenuConfigurator = MenuConfigurator.shared) {
-
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -73,5 +74,13 @@ extension MenuViewController: MenuViewControllerInput {
     func displaySomething(viewModel: MenuViewModel) {
 
         // TODO: Update UI
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension MenuViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController
     }
 }

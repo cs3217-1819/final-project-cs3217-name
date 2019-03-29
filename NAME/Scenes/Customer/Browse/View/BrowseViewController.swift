@@ -38,6 +38,8 @@ final class BrowseViewController: UISplitViewController {
 
     private func configure(configurator: BrowseConfigurator = BrowseConfigurator.shared) {
         configurator.configure(viewController: self)
+        restorationIdentifier = String(describing: type(of: self))
+        restorationClass = type(of: self)
     }
 
     // MARK: - View lifecycle
@@ -54,5 +56,13 @@ extension BrowseViewController: BrowseViewControllerInput {
 
     func displaySomething(viewModel: BrowseViewModel) {
         // TODO: Update UI
+    }
+}
+
+// MARK: - UIViewControllerRestoration
+
+extension BrowseViewController: UIViewControllerRestoration {
+    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
+        return self.init()
     }
 }
