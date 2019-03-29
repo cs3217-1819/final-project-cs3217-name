@@ -11,22 +11,134 @@ import RealmSwift
 
 enum FixtureGenerator {
 
-    static func create(deleteRealmIfMigrationNeeded: Bool = true, append: Bool = false) throws {
+    static func create(
+        deleteRealmIfMigrationNeeded: Bool = true,
+        append: Bool = false) throws {
+
+        // MARK: Realm
 
         let realmConfig = Realm.Configuration(deleteRealmIfMigrationNeeded: deleteRealmIfMigrationNeeded)
         let realm = try Realm(configuration: realmConfig)
 
-        let establishments = self.createEstablishments(realm)
-        let stalls = self.createStalls(realm)
-        let menus = self.createMenus(realm, stalls: stalls)
-        let categories = self.createMenuCategories(realm, menus: menus)
+        // MARK: Models
 
-        // Create menu items
+        let establishments = self.createEstablishments()
+        let stalls = self.createStalls()
 
-        let item1a1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000)
-        let item1a2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500)
-        let item1b1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000)
-        let item1b2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500)
+        let menus = self.createMenus(stalls: stalls)
+        let categories = self.createMenuCategories(menus: menus)
+        let menuItemOptions = self.createMenuItemOptions()
+        let menuItems = self.createIndividualMenuItems(categories: categories,
+                                                       options: menuItemOptions)
+
+        let customers = self.createCustomers()
+
+        let orders = self.createOrders(customers: customers)
+        let orderItems = self.createOrderItems(menuItems: menuItems, orders: orders)
+
+        // MARK: Relationships
+
+        //Add establishment to stalls
+        stalls[0].establishment = establishments[0]
+        stalls[1].establishment = establishments[0]
+        stalls[2].establishment = establishments[0]
+
+        // Add menu to each store
+        for (stall, menu) in zip(stalls, menus) {
+            stall.menu = menu
+        }
+
+        // MARK: Save to Realm
+
+        try realm.write {
+            if !append {
+                realm.deleteAll()
+            }
+
+            establishments.forEach { realm.add($0) }
+            stalls.forEach { realm.add($0) }
+            menus.forEach { realm.add($0) }
+            categories.forEach { realm.add($0) }
+            customers.forEach { realm.add($0) }
+            menuItems.forEach { realm.add($0) }
+            orders.forEach { realm.add($0) }
+            orderItems.forEach { realm.add($0) }
+        }
+
+    }
+
+    static func createEstablishments() -> [Establishment] {
+
+        let est1 = Establishment(name: "Tony's Food Paradise")
+
+        return [est1]
+    }
+    static func createStalls() -> [Stall] {
+
+        let stall1 = Stall(name: "Dijkstra's Wonton Mee",
+                           location: "Unit 1",
+                           details: "Algorithmic pleasure for your taste buds")
+        let stall2 = Stall(name: "Knuth's Carrot Cake",
+                           location: "Unit 2",
+                           details: "Carrot cake for all")
+        let stall3 = Stall(name: "Ada's Fried Noodles",
+                           location: "Unit 3",
+                           details: "Everything stir fried")
+
+        return [stall1, stall2, stall3]
+    }
+
+    static func createMenus(stalls: [Stall]) -> [Menu] {
+
+        let menu1 = Menu(stall: stalls[0])
+        let menu2 = Menu(stall: stalls[1])
+        let menu3 = Menu(stall: stalls[2])
+
+        return [menu1, menu2, menu3]
+    }
+
+    static func createMenuCategories(menus: [Menu]) -> [MenuCategory] {
+
+        assert(menus.count >= 3)
+
+        let cat1a = MenuCategory(name: "Dry Noodles", menu: menus[0])
+        let cat1b = MenuCategory(name: "Wet Noodles", menu: menus[0])
+
+        let cat2a = MenuCategory(name: "Roasted Pork", menu: menus[1])
+        let cat2b = MenuCategory(name: "Roasted Chicken", menu: menus[1])
+        let cat2c = MenuCategory(name: "Roasted Duck", menu: menus[1])
+        let cat2d = MenuCategory(name: "Roasted Beef", menu: menus[1])
+
+        let cat3a = MenuCategory(name: "General", menu: menus[2])
+
+        return [cat1a, cat1b,
+                cat2a, cat2b, cat2c, cat2d,
+                cat3a]
+    }
+
+    static func createMenuItemOptions() -> [MenuItemOption] {
+
+        let itemOption1 = MenuItemOption(name: "Vegetables", options: .boolean, defaultValue: .boolean(false))
+        let itemOption2 = MenuItemOption(name: "Golden Mushroom",
+                                         options: .quantity,
+                                         defaultValue: .quantity(1),
+                                         price: 500)
+        let itemOption3 = MenuItemOption(name: "Broth",
+                                         options: .multipleChoice(["Chicken", "Seafood"]),
+                                         defaultValue: .multipleChoice(["Chicken"]))
+
+        return [itemOption1, itemOption2, itemOption3]
+    }
+
+    static func createIndividualMenuItems(categories: [MenuCategory],
+                                          options: [MenuItemOption]) -> [IndividualMenuItem] {
+
+        assert(options.count >= 3)
+
+        let item1a1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000, options: [options[0]])
+        let item1a2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500, options: [options[1]])
+        let item1b1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000, options: [options[2]])
+        let item1b2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500, options: [options[2]])
 
         let item2a1 = IndividualMenuItem(name: "Item A", price: 3_000)
         let item2a2 = IndividualMenuItem(name: "Item B", price: 3_500)
@@ -40,19 +152,8 @@ enum FixtureGenerator {
         let item3a1 = IndividualMenuItem(name: "Fried Fish Rice", price: 5_000)
         let item3a2 = IndividualMenuItem(name: "Fried Chicken Noodles", price: 4_800)
 
-        //Connect different entities together
+        assert(categories.count >= 7)
 
-        //Add establishment to stalls
-        stalls[0].establishment = establishments[0]
-        stalls[1].establishment = establishments[0]
-        stalls[2].establishment = establishments[0]
-
-        // Add menu to each store
-        for (stall, menu) in zip(stalls, menus) {
-            stall.menu = menu
-        }
-
-        // Add food items to each category
         item1a1.categories.append(categories[0])
         item1a2.categories.append(categories[0])
         item1b1.categories.append(categories[1])
@@ -70,67 +171,54 @@ enum FixtureGenerator {
         item3a1.categories.append(categories[6])
         item3a2.categories.append(categories[6])
 
-        // Save
-        try realm.write {
-            if !append {
-                realm.deleteAll()
-            }
-            establishments.forEach { realm.add($0) }
-            stalls.forEach { realm.add($0) }
-            menus.forEach { realm.add($0) }
-            categories.forEach { realm.add($0) }
-
-            [item1a1, item1a2, item1b1, item1b2].forEach { realm.add($0) }
-            [item2a1, item2a2, item2b1, item2b2].forEach { realm.add($0) }
-            [item2c1, item2c2, item2d1, item2d2].forEach { realm.add($0) }
-            [item3a1, item1a2].forEach { realm.add($0) }
-        }
-
+        return [item1a1, item1a2, item1b1, item1b2,
+                item2a1, item2a2, item2b1, item2b2, item2c1, item2c2, item2d1, item2d2,
+                item3a1, item3a2]
     }
 
-    static func createEstablishments(_ realm: Realm) -> [Establishment] {
+    static func createCustomers() -> [Customer] {
+        let customer1 = Customer(id: "customer1")
+        let customer2 = Customer(id: "customer2")
+        let customer3 = Customer(id: "customer3")
 
-        let est1 = Establishment(name: "Tony's Food Paradise")
-
-        return [est1]
-    }
-    static func createStalls(_ realm: Realm) -> [Stall] {
-
-        let stall1 = Stall(name: "Dijkstra's Wonton Mee",
-                           location: "Unit 1",
-                           details: "Algorithmic pleasure for your taste buds")
-        let stall2 = Stall(name: "Knuth's Carrot Cake",
-                           location: "Unit 2",
-                           details: "Carrot cake for all")
-        let stall3 = Stall(name: "Ada's Fried Noodles",
-                           location: "Unit 3",
-                           details: "Everything stir fried")
-
-        return [stall1, stall2, stall3]
+        return [customer1, customer2, customer3]
     }
 
-    static func createMenus(_ realm: Realm, stalls: [Stall]) -> [Menu] {
+    static func createOrders(customers: [Customer]) -> [Order] {
 
-        let menu1 = Menu(stall: stalls[0])
-        let menu2 = Menu(stall: stalls[1])
-        let menu3 = Menu(stall: stalls[2])
+        assert(customers.count >= 3)
 
-        return [menu1, menu2, menu3]
+        let order1 = Order(queueNumber: 123, customer: customers[0])
+        let order2 = Order(queueNumber: 456, customer: customers[1])
+        let order3 = Order(queueNumber: 789, customer: customers[2])
+
+        return [order1, order2, order3]
     }
-    static func createMenuCategories(_ realm: Realm, menus: [Menu]) -> [MenuCategory] {
 
-        let cat1a = MenuCategory(name: "Dry Noodles", menu: menus[0])
-        let cat1b = MenuCategory(name: "Wet Noodles", menu: menus[0])
+    static func createOrderItems(menuItems: [IndividualMenuItem],
+                                 orders: [Order]) -> [OrderItem] {
 
-        let cat2a = MenuCategory(name: "Roasted Pork", menu: menus[1])
-        let cat2b = MenuCategory(name: "Roasted Chicken", menu: menus[1])
-        let cat2c = MenuCategory(name: "Roasted Duck", menu: menus[1])
-        let cat2d = MenuCategory(name: "Roasted Beef", menu: menus[1])
+        assert(menuItems.count >= 13)
+        assert(orders.count >= 3)
 
-        let cat3a = MenuCategory(name: "General", menu: menus[2])
+        let orderItem1 = OrderItem(order: orders[0],
+                                   menuItem: menuItems[0],
+                                   quantity: 1,
+                                   comment: "Cut the noodles please",
+                                   diningOption: .eatin)
 
-        return [cat1a, cat1b,
-                cat2a, cat2b, cat2c, cat2d,
-                cat3a]
+        let orderItem2 = OrderItem(order: orders[0],
+                                   menuItem: menuItems[12], // Fried Fish Rice
+                                   quantity: 2,
+                                   comment: "",
+                                   diningOption: .eatin)
+
+        let orderItem3 = OrderItem(order: orders[0],
+                                   menuItem: menuItems[13], // Fried Chicken Noodles
+                                   quantity: 1,
+                                   comment: "Don't spill my soup please",
+                                   diningOption: .takeaway)
+
+        return [orderItem1, orderItem2, orderItem3]
     }
 }
