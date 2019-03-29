@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1F21BA04224923230089A1AD /* FixtureGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21BA03224923230089A1AD /* FixtureGenerator.swift */; };
+		1F76301C224D8B6D001E8E5C /* OrderConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F76301B224D8B6D001E8E5C /* OrderConfirmationViewModel.swift */; };
+		1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */; };
+		1F763026224D8C00001E8E5C /* OrderConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763025224D8C00001E8E5C /* OrderConfirmationWorker.swift */; };
+		1F763028224D8C11001E8E5C /* OrderConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763027224D8C11001E8E5C /* OrderConfirmationPresenter.swift */; };
+		1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763029224D8C23001E8E5C /* OrderConfirmationRouter.swift */; };
+		1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F76302B224D8C3C001E8E5C /* OrderConfirmationViewController.swift */; };
+		1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F76302D224D8C65001E8E5C /* OrderConfirmationConfigurator.swift */; };
 		1FB25812224929180035399F /* Surcharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB257FC224929160035399F /* Surcharge.swift */; };
 		1FB25813224929180035399F /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB257FD224929160035399F /* OrderItem.swift */; };
 		1FB25814224929180035399F /* Rounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB257FE224929160035399F /* Rounder.swift */; };
@@ -97,6 +104,13 @@
 /* Begin PBXFileReference section */
 		03671C37A0F8EF90D64F7BCE /* Pods-NAMEUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMEUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F21BA03224923230089A1AD /* FixtureGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureGenerator.swift; sourceTree = "<group>"; };
+		1F76301B224D8B6D001E8E5C /* OrderConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewModel.swift; sourceTree = "<group>"; };
+		1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationInteractor.swift; sourceTree = "<group>"; };
+		1F763025224D8C00001E8E5C /* OrderConfirmationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationWorker.swift; sourceTree = "<group>"; };
+		1F763027224D8C11001E8E5C /* OrderConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationPresenter.swift; sourceTree = "<group>"; };
+		1F763029224D8C23001E8E5C /* OrderConfirmationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationRouter.swift; sourceTree = "<group>"; };
+		1F76302B224D8C3C001E8E5C /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		1F76302D224D8C65001E8E5C /* OrderConfirmationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationConfigurator.swift; sourceTree = "<group>"; };
 		1FB257FC224929160035399F /* Surcharge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Surcharge.swift; sourceTree = "<group>"; };
 		1FB257FD224929160035399F /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		1FB257FE224929160035399F /* Rounder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rounder.swift; sourceTree = "<group>"; };
@@ -211,6 +225,76 @@
 				1F21BA03224923230089A1AD /* FixtureGenerator.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1F763019224D8B2F001E8E5C /* OrderConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				1F76301A224D8B50001E8E5C /* ViewModel */,
+				1F76301D224D8B80001E8E5C /* Presenter */,
+				1F76301E224D8B88001E8E5C /* View */,
+				1F76301F224D8B8C001E8E5C /* Configurator */,
+				1F763020224D8B91001E8E5C /* Worker */,
+				1F763021224D8B95001E8E5C /* Interactor */,
+				1F763022224D8B9A001E8E5C /* Router */,
+			);
+			path = OrderConfirmation;
+			sourceTree = "<group>";
+		};
+		1F76301A224D8B50001E8E5C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F76301B224D8B6D001E8E5C /* OrderConfirmationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1F76301D224D8B80001E8E5C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F763027224D8C11001E8E5C /* OrderConfirmationPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1F76301E224D8B88001E8E5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F76302B224D8C3C001E8E5C /* OrderConfirmationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F76301F224D8B8C001E8E5C /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				1F76302D224D8C65001E8E5C /* OrderConfirmationConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		1F763020224D8B91001E8E5C /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				1F763025224D8C00001E8E5C /* OrderConfirmationWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		1F763021224D8B95001E8E5C /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		1F763022224D8B9A001E8E5C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				1F763029224D8C23001E8E5C /* OrderConfirmationRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		1FB257ED224928550035399F /* Common */ = {
@@ -342,6 +426,7 @@
 		5441AC222248B90C0018A293 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				1F763019224D8B2F001E8E5C /* OrderConfirmation */,
 				5441AC412248C4590018A293 /* CustomerRoot */,
 				54D25297224CB637007BF235 /* Browse */,
 				54D252B1224CBD25007BF235 /* StallList */,
@@ -978,7 +1063,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -993,7 +1078,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NAME/Pods-NAME-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6DFCBAB8F6C055EE897489B /* [CP] Embed Pods Frameworks */ = {
@@ -1004,7 +1089,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -1019,7 +1104,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1045,11 +1130,13 @@
 				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
 				1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */,
 				54D252DB224CBD2F007BF235 /* MenuInteractor.swift in Sources */,
+				1F76301C224D8B6D001E8E5C /* OrderConfirmationViewModel.swift in Sources */,
 				5441AC3A2248C4480018A293 /* SplashViewModel.swift in Sources */,
 				1FB25815224929180035399F /* MenuDisplayable.swift in Sources */,
 				1FB2581B224929180035399F /* MenuItemOptionType.swift in Sources */,
 				1FB25817224929180035399F /* Discount.swift in Sources */,
 				54D252AA224CB637007BF235 /* BrowseWorker.swift in Sources */,
+				1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */,
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
 				5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */,
 				1FB25821224929180035399F /* Priceable.swift in Sources */,
@@ -1066,6 +1153,7 @@
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
 				54D252DC224CBD2F007BF235 /* MenuRouter.swift in Sources */,
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
+				1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */,
 				1FB25824224929180035399F /* OrderLifecycle.swift in Sources */,
 				54D252AB224CB637007BF235 /* BrowseInteractor.swift in Sources */,
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
@@ -1080,9 +1168,13 @@
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
 				1FB2581C224929180035399F /* TimeCondition.swift in Sources */,
 				1FB25826224929180035399F /* OrderItemOption.swift in Sources */,
+				1F763026224D8C00001E8E5C /* OrderConfirmationWorker.swift in Sources */,
 				5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */,
+				1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */,
+				1F763028224D8C11001E8E5C /* OrderConfirmationPresenter.swift in Sources */,
 				1FB25823224929180035399F /* Menu.swift in Sources */,
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
+				1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */,
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifiable.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
