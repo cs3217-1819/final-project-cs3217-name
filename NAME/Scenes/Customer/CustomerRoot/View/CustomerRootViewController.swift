@@ -28,7 +28,7 @@ final class CustomerRootViewController: UISplitViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        configure()
+        configure(configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {

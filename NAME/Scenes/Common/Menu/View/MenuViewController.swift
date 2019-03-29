@@ -28,7 +28,7 @@ final class MenuViewController: UICollectionViewController {
 
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
 
-        configure()
+        configure(configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {

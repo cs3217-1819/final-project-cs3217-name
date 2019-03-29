@@ -31,7 +31,7 @@ final class SplashViewController: UIViewController {
 
     init(configurator: SplashConfigurator = SplashConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure()
+        configure(configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
