@@ -10,3 +10,6 @@ cache:
 before_install:
   - gem install cocoapods
   - pod repo update
+branches:
+  only:
+    - master
