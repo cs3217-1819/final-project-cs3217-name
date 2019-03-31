@@ -5,6 +5,7 @@ protocol OrderConfirmationInteractorInput: OrderConfirmationViewControllerOutput
 
 protocol OrderConfirmationInteractorOutput {
     func presentInit()
+    func renderBill(bill: Bill)
 }
 
 final class OrderConfirmationInteractor {
@@ -27,8 +28,14 @@ extension OrderConfirmationInteractor: OrderConfirmationViewControllerOutput {
         output.presentInit()
     }
 
-    func doSomething() {
-        // Do something
+    /// Calculate final payment breakdown
+    func generateBill(order: Order) {
+
+        guard let finalBill = OrderToBillProcessor.process(order: order) else {
+            // TODO: Display error message to client
+            return
+        }
+        output.renderBill(bill: finalBill)
     }
 
 }

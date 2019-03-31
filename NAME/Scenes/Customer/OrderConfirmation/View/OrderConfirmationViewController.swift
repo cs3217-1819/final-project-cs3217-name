@@ -6,7 +6,7 @@ protocol OrderConfirmationViewControllerInput: OrderConfirmationPresenterOutput 
 
 protocol OrderConfirmationViewControllerOutput {
 
-    func doSomething()
+    func generateBill(order: Order)
 }
 
 final class OrderConfirmationViewController: UISplitViewController {

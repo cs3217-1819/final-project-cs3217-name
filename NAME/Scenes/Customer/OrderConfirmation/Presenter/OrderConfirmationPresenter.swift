@@ -28,4 +28,8 @@ extension OrderConfirmationPresenter: OrderConfirmationPresenterInput {
         let viewModel = OrderConfirmationViewModel()
         output.reloadDisplay(viewModel: viewModel)
     }
+
+    func renderBill(bill: Bill) {
+        // render view
+    }
 }
