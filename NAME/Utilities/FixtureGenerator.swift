@@ -7,18 +7,9 @@
 ///      - po Realm.Configuration.defaultConfiguration.fileURL if no fileURL was specified
 /// 3) Copy path into console, open [path] to view output
 
-import RealmSwift
-
 enum FixtureGenerator {
 
-    static func create(
-        deleteRealmIfMigrationNeeded: Bool = true,
-        append: Bool = false) throws {
-
-        // MARK: Realm
-
-        let realmConfig = Realm.Configuration(deleteRealmIfMigrationNeeded: deleteRealmIfMigrationNeeded)
-        let realm = try Realm(configuration: realmConfig)
+    static func create(append: Bool = false) throws {
 
         // MARK: Models
 
@@ -50,19 +41,19 @@ enum FixtureGenerator {
 
         // MARK: Save to Realm
 
-        try realm.write {
+        try RealmStorageManager.shared.writeTransaction { manager in
             if !append {
-                realm.deleteAll()
+                manager.clearData()
             }
 
-            establishments.forEach { realm.add($0) }
-            stalls.forEach { realm.add($0) }
-            menus.forEach { realm.add($0) }
-            categories.forEach { realm.add($0) }
-            customers.forEach { realm.add($0) }
-            menuItems.forEach { realm.add($0) }
-            orders.forEach { realm.add($0) }
-            orderItems.forEach { realm.add($0) }
+            manager.add(objects: establishments, update: false)
+            manager.add(objects: stalls, update: false)
+            manager.add(objects: menus, update: false)
+            manager.add(objects: categories, update: false)
+            manager.add(objects: customers, update: false)
+            manager.add(objects: menuItems, update: false)
+            manager.add(objects: orders, update: false)
+            manager.add(objects: orderItems, update: false)
         }
 
     }

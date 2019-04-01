@@ -83,6 +83,9 @@
 		54D252DA224CBD2F007BF235 /* MenuWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252D1224CBD2F007BF235 /* MenuWorker.swift */; };
 		54D252DB224CBD2F007BF235 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252D3224CBD2F007BF235 /* MenuInteractor.swift */; };
 		54D252DC224CBD2F007BF235 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252D5224CBD2F007BF235 /* MenuRouter.swift */; };
+		54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252DD224E10DD007BF235 /* StorageManager.swift */; };
+		54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E0224E1D56007BF235 /* RealmStorageManager.swift */; };
+		54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E2224F5C44007BF235 /* DependencyInjector.swift */; };
 		C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E5224B8A20003E4547 /* ModelError.swift */; };
 		C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E9224B9060003E4547 /* ModelHelper.swift */; };
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
@@ -196,6 +199,9 @@
 		54D252D1224CBD2F007BF235 /* MenuWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuWorker.swift; sourceTree = "<group>"; };
 		54D252D3224CBD2F007BF235 /* MenuInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		54D252D5224CBD2F007BF235 /* MenuRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
+		54D252DD224E10DD007BF235 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		54D252E0224E1D56007BF235 /* RealmStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorageManager.swift; sourceTree = "<group>"; };
+		54D252E2224F5C44007BF235 /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +243,9 @@
 			isa = PBXGroup;
 			children = (
 				1F21BA03224923230089A1AD /* FixtureGenerator.swift */,
+				54D252DD224E10DD007BF235 /* StorageManager.swift */,
+				54D252E0224E1D56007BF235 /* RealmStorageManager.swift */,
+				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1172,6 +1181,7 @@
 				1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */,
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
 				5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */,
+				54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */,
 				1FB25821224929180035399F /* Priceable.swift in Sources */,
 				C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */,
 				54D252A9224CB637007BF235 /* BrowseConfigurator.swift in Sources */,
@@ -1193,6 +1203,7 @@
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
 				54D252C6224CBD25007BF235 /* StallListRouter.swift in Sources */,
 				54D252C5224CBD25007BF235 /* StallListInteractor.swift in Sources */,
+				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
 				54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */,
@@ -1215,6 +1226,7 @@
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,
 				1FB2581F224929180035399F /* PriceModifier.swift in Sources */,
+				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,
 				54D252C1224CBD25007BF235 /* StallListPresenter.swift in Sources */,
 				1FB25819224929180035399F /* OrderHistory.swift in Sources */,
 				1FB25813224929180035399F /* OrderItem.swift in Sources */,
