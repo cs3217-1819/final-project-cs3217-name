@@ -16,11 +16,12 @@ final class StallListConfigurator {
 
     // MARK: - Configuration
 
-    func configure(viewController: StallListViewController) {
+    func configure(viewController: StallListViewController,
+                   injector: DependencyInjector = appDefaultInjector) {
 
         let router = StallListRouter(viewController: viewController)
         let presenter = StallListPresenter(output: viewController)
-        let interactor = StallListInteractor(output: presenter)
+        let interactor = StallListInteractor(output: presenter, injector: injector)
 
         viewController.output = interactor
         viewController.router = router

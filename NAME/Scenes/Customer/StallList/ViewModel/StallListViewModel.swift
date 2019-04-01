@@ -9,5 +9,10 @@
 import UIKit
 
 struct StallListViewModel {
+    struct StallViewModel {
+        let name: String
+        let location: String?
+    }
 
+    let stalls: [StallViewModel]
 }

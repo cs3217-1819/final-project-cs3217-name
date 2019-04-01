@@ -9,11 +9,5 @@
 import UIKit
 
 class StallListWorker {
-
     // MARK: - Business Logic
-
-    func doSomeWork() {
-
-        // TODO: Do the work
-    }
 }

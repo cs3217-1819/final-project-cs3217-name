@@ -9,22 +9,18 @@
 import UIKit
 
 protocol StallListPresenterInput: StallListInteractorOutput {
-
 }
 
 protocol StallListPresenterOutput: class {
-
     func displaySomething(viewModel: StallListViewModel)
 }
 
 final class StallListPresenter {
-
     private(set) unowned var output: StallListPresenterOutput
 
     // MARK: - Initializers
 
     init(output: StallListPresenterOutput) {
-
         self.output = output
     }
 }
@@ -35,11 +31,9 @@ extension StallListPresenter: StallListPresenterInput {
 
     // MARK: - Presentation logic
 
-    func presentSomething() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-
-        let viewModel = StallListViewModel()
+    func presentStalls(stalls: [Stall]) {
+        let stallViewModels = stalls.map { StallListViewModel.StallViewModel(name: $0.name, location: $0.location) }
+        let viewModel = StallListViewModel(stalls: stallViewModels)
         output.displaySomething(viewModel: viewModel)
     }
 }

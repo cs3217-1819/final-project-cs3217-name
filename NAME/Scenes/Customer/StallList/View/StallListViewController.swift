@@ -13,11 +13,41 @@ protocol StallListViewControllerInput: StallListPresenterOutput {
 }
 
 protocol StallListViewControllerOutput {
-
-    func doSomething()
+    func reloadStalls()
 }
 
 final class StallListViewController: UITableViewController {
+    private static let stallCellIdentifier = "stallCellIdentifier"
+
+    private class StallListDataSource: NSObject, UITableViewDataSource {
+        private let cellViewModels: [StallListViewModel.StallViewModel]
+
+        init(stalls: [StallListViewModel.StallViewModel]) {
+            self.cellViewModels = stalls
+            super.init()
+        }
+
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return cellViewModels.count
+        }
+
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: stallCellIdentifier, for: indexPath)
+
+            let model = cellViewModels[indexPath.row]
+            cell.textLabel?.text = model.name
+            cell.detailTextLabel?.text = model.location
+
+            return cell
+        }
+    }
+
+    private var tableViewDataSource: StallListDataSource? {
+        didSet {
+            tableView.dataSource = tableViewDataSource
+            tableView.reloadData()
+        }
+    }
 
     var output: StallListViewControllerOutput?
     var router: StallListRouterProtocol?
@@ -25,16 +55,12 @@ final class StallListViewController: UITableViewController {
     // MARK: - Initializers
 
     init(configurator: StallListConfigurator = StallListConfigurator.shared) {
-
-        super.init(nibName: nil, bundle: nil)
-
+        super.init(style: .plain)
         configure(configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-
         super.init(coder: aDecoder)
-
         configure()
     }
 
@@ -44,36 +70,24 @@ final class StallListViewController: UITableViewController {
         configurator.configure(viewController: self)
         restorationIdentifier = String(describing: type(of: self))
         restorationClass = type(of: self)
+
+        tableView.register(StallListTableViewCell.self,
+                           forCellReuseIdentifier: StallListViewController.stallCellIdentifier)
     }
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
-        doSomethingOnLoad()
-    }
-
-    // MARK: - Load data
-
-    func doSomethingOnLoad() {
-
-        // TODO: Ask the Interactor to do some work
-
-        output?.doSomething()
+        output?.reloadStalls()
     }
 }
 
 // MARK: - StallListPresenterOutput
 
 extension StallListViewController: StallListViewControllerInput {
-
-    // MARK: - Display logic
-
     func displaySomething(viewModel: StallListViewModel) {
-
-        // TODO: Update UI
+        tableViewDataSource = StallListDataSource(stalls: viewModel.stalls)
     }
 }
 
