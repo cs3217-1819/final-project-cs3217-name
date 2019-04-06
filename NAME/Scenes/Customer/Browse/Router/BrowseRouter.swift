@@ -17,11 +17,14 @@ protocol BrowseRouterProtocol {
 
 final class BrowseRouter {
     weak var viewController: BrowseViewController?
+    unowned var mediator: BrowseIntersceneMediator
 
     // MARK: - Initializers
 
-    init(viewController: BrowseViewController?) {
+    init(viewController: BrowseViewController?,
+         mediator: BrowseIntersceneMediator) {
         self.viewController = viewController
+        self.mediator = mediator
     }
 }
 
@@ -29,10 +32,10 @@ final class BrowseRouter {
 
 extension BrowseRouter: BrowseRouterProtocol {
     func stallListViewController() -> UIViewController {
-        return UINavigationController(rootViewController: StallListViewController())
+        return UINavigationController(rootViewController: StallListViewController(mediator: mediator))
     }
 
     func menuViewController() -> UIViewController {
-        return UINavigationController(rootViewController: MenuViewController())
+        return UINavigationController(rootViewController: MenuViewController(mediator: mediator))
     }
 }

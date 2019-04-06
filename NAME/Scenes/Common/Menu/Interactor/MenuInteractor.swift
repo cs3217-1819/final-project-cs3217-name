@@ -8,26 +8,44 @@
 
 import UIKit
 
-protocol MenuInteractorInput: MenuViewControllerOutput {
+// MARK: Interscene interactor IO
 
+protocol MenuFromParentInput: class {
+    var stall: Stall? { get set }
+}
+
+protocol MenuToParentOutput: class {
+    var menuInteractor: MenuFromParentInput? { get set }
+}
+
+// MARK: Intrascene interactor IO
+
+protocol MenuInteractorInput: MenuViewControllerOutput {
 }
 
 protocol MenuInteractorOutput {
-
     func presentSomething()
 }
 
-final class MenuInteractor {
+final class MenuInteractor: MenuFromParentInput {
+    private let output: MenuInteractorOutput
+    private let worker: MenuWorker
+    private unowned var toParentMediator: MenuToParentOutput
 
-    let output: MenuInteractorOutput
-    let worker: MenuWorker
+    var stall: Stall? {
+        didSet {
+            self.doSomething()
+        }
+    }
 
     // MARK: - Initializers
 
-    init(output: MenuInteractorOutput, worker: MenuWorker = MenuWorker()) {
-
+    init(output: MenuInteractorOutput,
+         toParentMediator: MenuToParentOutput,
+         worker: MenuWorker = MenuWorker()) {
         self.output = output
         self.worker = worker
+        self.toParentMediator = toParentMediator
     }
 }
 
@@ -38,6 +56,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     // MARK: - Business logic
 
     func doSomething() {
+        print("Set stall on menu", stall)
 
         // TODO: Create some Worker to do the work
 

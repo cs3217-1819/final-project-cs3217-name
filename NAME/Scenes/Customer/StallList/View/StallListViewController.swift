@@ -14,6 +14,7 @@ protocol StallListViewControllerInput: StallListPresenterOutput {
 
 protocol StallListViewControllerOutput {
     func reloadStalls()
+    func handleStallSelect(at index: Int)
 }
 
 final class StallListViewController: UITableViewController {
@@ -54,22 +55,21 @@ final class StallListViewController: UITableViewController {
 
     // MARK: - Initializers
 
-    init(configurator: StallListConfigurator = StallListConfigurator.shared) {
+    init(mediator: StallListToParentOutput,
+         configurator: StallListConfigurator = StallListConfigurator.shared) {
         super.init(style: .plain)
-        configure(configurator: configurator)
+        configure(mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Configurator
 
-    private func configure(configurator: StallListConfigurator = StallListConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
+    private func configure(mediator: StallListToParentOutput,
+                           configurator: StallListConfigurator = StallListConfigurator.shared) {
+        configurator.configure(viewController: self, toParentMediator: mediator)
 
         tableView.register(StallListTableViewCell.self,
                            forCellReuseIdentifier: StallListViewController.stallCellIdentifier)
@@ -83,18 +83,18 @@ final class StallListViewController: UITableViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
+extension StallListViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.handleStallSelect(at: indexPath.row)
+    }
+}
+
 // MARK: - StallListPresenterOutput
 
 extension StallListViewController: StallListViewControllerInput {
     func displaySomething(viewModel: StallListViewModel) {
         tableViewDataSource = StallListDataSource(stalls: viewModel.stalls)
-    }
-}
-
-// MARK: - UIViewControllerRestoration
-
-extension StallListViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return self.init()
     }
 }

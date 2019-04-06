@@ -17,10 +17,12 @@ final class BrowseConfigurator {
     // MARK: - Configuration
 
     func configure(viewController: BrowseViewController) {
-
-        let router = BrowseRouter(viewController: viewController)
+        let toChildrenMediator = BrowseIntersceneMediator()
+        let router = BrowseRouter(viewController: viewController,
+                                  mediator: toChildrenMediator)
         let presenter = BrowsePresenter(output: viewController)
-        let interactor = BrowseInteractor(output: presenter)
+        let interactor = BrowseInteractor(output: presenter,
+                                          toChildrenMediator: toChildrenMediator)
 
         viewController.output = interactor
         viewController.router = router

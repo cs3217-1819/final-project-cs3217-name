@@ -8,6 +8,18 @@
 
 import UIKit
 
+// MARK: Interscene interactor IO
+
+protocol StallListFromParentInput: class {
+}
+
+protocol StallListToParentOutput: class {
+    var stallListInteractor: StallListFromParentInput? { get set }
+    var selectedStall: Stall? { get set }
+}
+
+// MARK: Intrascene interactor IO
+
 protocol StallListInteractorInput: StallListViewControllerOutput {
 }
 
@@ -15,14 +27,15 @@ protocol StallListInteractorOutput {
     func presentStalls(stalls: [Stall])
 }
 
-final class StallListInteractor {
+final class StallListInteractor: StallListFromParentInput {
     fileprivate struct Dependencies {
         let storageManager: StorageManager
     }
     private let deps: Dependencies
 
-    let output: StallListInteractorOutput
-    let worker: StallListWorker
+    private let output: StallListInteractorOutput
+    private let worker: StallListWorker
+    private unowned var toParentMediator: StallListToParentOutput
 
     private var loadedStalls: [Stall] = []
 
@@ -30,10 +43,12 @@ final class StallListInteractor {
 
     init(output: StallListInteractorOutput,
          injector: DependencyInjector,
+         toParentMediator: StallListToParentOutput,
          worker: StallListWorker = StallListWorker()) {
         self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
+        self.toParentMediator = toParentMediator
     }
 }
 
@@ -49,8 +64,12 @@ extension StallListInteractor: StallListViewControllerOutput {
             print("Could not get stalls")
             return
         }
-        let stalls = Array(currentEstablishment.stalls)
-        output.presentStalls(stalls: stalls)
+        loadedStalls = Array(currentEstablishment.stalls)
+        output.presentStalls(stalls: loadedStalls)
+    }
+
+    func handleStallSelect(at index: Int) {
+        toParentMediator.selectedStall = loadedStalls[index]
     }
 }
 

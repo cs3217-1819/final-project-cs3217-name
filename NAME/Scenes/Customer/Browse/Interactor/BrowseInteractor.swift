@@ -21,12 +21,16 @@ final class BrowseInteractor {
 
     let output: BrowseInteractorOutput
     let worker: BrowseWorker
+    private let toChildrenMediator: BrowseIntersceneMediator
 
     // MARK: - Initializers
 
-    init(output: BrowseInteractorOutput, worker: BrowseWorker = BrowseWorker()) {
+    init(output: BrowseInteractorOutput,
+         toChildrenMediator: BrowseIntersceneMediator,
+         worker: BrowseWorker = BrowseWorker()) {
 
         self.output = output
+        self.toChildrenMediator = toChildrenMediator
         self.worker = worker
     }
 }

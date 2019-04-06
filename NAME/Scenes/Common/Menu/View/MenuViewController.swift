@@ -24,26 +24,23 @@ final class MenuViewController: UICollectionViewController {
 
     // MARK: - Initializers
 
-    init(configurator: MenuConfigurator = MenuConfigurator.shared) {
+    init(mediator: MenuToParentOutput,
+         configurator: MenuConfigurator = MenuConfigurator.shared) {
 
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
 
-        configure(configurator: configurator)
+        configure(mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-
-        super.init(coder: aDecoder)
-
-        configure()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Configurator
 
-    private func configure(configurator: MenuConfigurator = MenuConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
+    private func configure(mediator: MenuToParentOutput,
+                           configurator: MenuConfigurator = MenuConfigurator.shared) {
+        configurator.configure(viewController: self, toParentMediator: mediator)
     }
 
     // MARK: - View lifecycle
@@ -74,13 +71,5 @@ extension MenuViewController: MenuViewControllerInput {
     func displaySomething(viewModel: MenuViewModel) {
 
         // TODO: Update UI
-    }
-}
-
-// MARK: - UIViewControllerRestoration
-
-extension MenuViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return UIApplication.shared.keyWindow?.rootViewController
     }
 }
