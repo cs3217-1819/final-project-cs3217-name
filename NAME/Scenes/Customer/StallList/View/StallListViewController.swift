@@ -55,7 +55,7 @@ final class StallListViewController: UITableViewController {
 
     // MARK: - Initializers
 
-    init(mediator: StallListToParentOutput,
+    init(mediator: StallListToParentOutput?,
          configurator: StallListConfigurator = StallListConfigurator.shared) {
         super.init(style: .plain)
         configure(mediator: mediator, configurator: configurator)
@@ -67,7 +67,7 @@ final class StallListViewController: UITableViewController {
 
     // MARK: - Configurator
 
-    private func configure(mediator: StallListToParentOutput,
+    private func configure(mediator: StallListToParentOutput?,
                            configurator: StallListConfigurator = StallListConfigurator.shared) {
         configurator.configure(viewController: self, toParentMediator: mediator)
 

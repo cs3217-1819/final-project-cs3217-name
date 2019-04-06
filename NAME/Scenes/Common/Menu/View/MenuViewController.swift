@@ -38,7 +38,7 @@ final class MenuViewController: UICollectionViewController {
 
     // MARK: - Configurator
 
-    private func configure(mediator: MenuToParentOutput,
+    private func configure(mediator: MenuToParentOutput?,
                            configurator: MenuConfigurator = MenuConfigurator.shared) {
         configurator.configure(viewController: self, toParentMediator: mediator)
     }

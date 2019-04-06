@@ -35,7 +35,7 @@ final class StallListInteractor: StallListFromParentInput {
 
     private let output: StallListInteractorOutput
     private let worker: StallListWorker
-    private unowned var toParentMediator: StallListToParentOutput
+    private weak var toParentMediator: StallListToParentOutput?
 
     private var loadedStalls: [Stall] = []
 
@@ -43,7 +43,7 @@ final class StallListInteractor: StallListFromParentInput {
 
     init(output: StallListInteractorOutput,
          injector: DependencyInjector,
-         toParentMediator: StallListToParentOutput,
+         toParentMediator: StallListToParentOutput?,
          worker: StallListWorker = StallListWorker()) {
         self.deps = injector.dependencies()
         self.output = output
@@ -69,7 +69,7 @@ extension StallListInteractor: StallListViewControllerOutput {
     }
 
     func handleStallSelect(at index: Int) {
-        toParentMediator.selectedStall = loadedStalls[index]
+        toParentMediator?.selectedStall = loadedStalls[index]
     }
 }
 

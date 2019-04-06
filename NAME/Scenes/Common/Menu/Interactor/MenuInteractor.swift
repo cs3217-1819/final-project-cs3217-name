@@ -30,7 +30,7 @@ protocol MenuInteractorOutput {
 final class MenuInteractor: MenuFromParentInput {
     private let output: MenuInteractorOutput
     private let worker: MenuWorker
-    private unowned var toParentMediator: MenuToParentOutput
+    private weak var toParentMediator: MenuToParentOutput?
 
     var stall: Stall? {
         didSet {
@@ -41,7 +41,7 @@ final class MenuInteractor: MenuFromParentInput {
     // MARK: - Initializers
 
     init(output: MenuInteractorOutput,
-         toParentMediator: MenuToParentOutput,
+         toParentMediator: MenuToParentOutput?,
          worker: MenuWorker = MenuWorker()) {
         self.output = output
         self.worker = worker

@@ -17,14 +17,14 @@ final class MenuConfigurator {
     // MARK: - Configuration
 
     func configure(viewController: MenuViewController,
-                   toParentMediator: MenuToParentOutput) {
+                   toParentMediator: MenuToParentOutput?) {
 
         let router = MenuRouter(viewController: viewController)
         let presenter = MenuPresenter(output: viewController)
 
         let interactor = MenuInteractor(output: presenter,
                                         toParentMediator: toParentMediator)
-        toParentMediator.menuInteractor = interactor
+        toParentMediator?.menuInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router
