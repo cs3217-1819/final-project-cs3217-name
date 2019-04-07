@@ -1,6 +1,4 @@
-// Price and price modifiers
-
-enum PriceModification {
-    case absolute(amount: Int)
-    case multiplier(factor: Double)
+protocol PriceModifier {
+    var name: String { get set }
+    var priceModification: PriceModification { get set }
 }

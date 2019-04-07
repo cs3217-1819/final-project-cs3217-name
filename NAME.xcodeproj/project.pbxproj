@@ -35,7 +35,7 @@
 		1FB2581C224929180035399F /* TimeCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25806224929170035399F /* TimeCondition.swift */; };
 		1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25807224929170035399F /* IndividualMenuItem.swift */; };
 		1FB2581E224929180035399F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25808224929170035399F /* Customer.swift */; };
-		1FB2581F224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25809224929170035399F /* PriceModifier.swift */; };
+		1FB2581F224929180035399F /* PriceModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25809224929170035399F /* PriceModification.swift */; };
 		1FB25820224929180035399F /* MenuItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580A224929180035399F /* MenuItemOption.swift */; };
 		1FB25821224929180035399F /* Priceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580B224929180035399F /* Priceable.swift */; };
 		1FB25822224929180035399F /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580C224929180035399F /* Establishment.swift */; };
@@ -43,7 +43,7 @@
 		1FB25824224929180035399F /* OrderLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580E224929180035399F /* OrderLifecycle.swift */; };
 		1FB25825224929180035399F /* MenuCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580F224929180035399F /* MenuCategory.swift */; };
 		1FB25826224929180035399F /* OrderItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25810224929180035399F /* OrderItemOption.swift */; };
-		1FB25827224929180035399F /* PriceModifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25811224929180035399F /* PriceModifiable.swift */; };
+		1FB25827224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25811224929180035399F /* PriceModifier.swift */; };
 		540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E692251E0DE000F2131 /* BrowseInteractorMediator.swift */; };
 		5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441ABF02248B6ED0018A293 /* AppDelegate.swift */; };
 		5441ABF82248B6EF0018A293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF72248B6EF0018A293 /* Assets.xcassets */; };
@@ -185,7 +185,7 @@
 		1FB25806224929170035399F /* TimeCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCondition.swift; sourceTree = "<group>"; };
 		1FB25807224929170035399F /* IndividualMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualMenuItem.swift; sourceTree = "<group>"; };
 		1FB25808224929170035399F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
-		1FB25809224929170035399F /* PriceModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifier.swift; sourceTree = "<group>"; };
+		1FB25809224929170035399F /* PriceModification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModification.swift; sourceTree = "<group>"; };
 		1FB2580A224929180035399F /* MenuItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemOption.swift; sourceTree = "<group>"; };
 		1FB2580B224929180035399F /* Priceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priceable.swift; sourceTree = "<group>"; };
 		1FB2580C224929180035399F /* Establishment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		1FB2580E224929180035399F /* OrderLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderLifecycle.swift; sourceTree = "<group>"; };
 		1FB2580F224929180035399F /* MenuCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCategory.swift; sourceTree = "<group>"; };
 		1FB25810224929180035399F /* OrderItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItemOption.swift; sourceTree = "<group>"; };
-		1FB25811224929180035399F /* PriceModifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifiable.swift; sourceTree = "<group>"; };
+		1FB25811224929180035399F /* PriceModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifier.swift; sourceTree = "<group>"; };
 		26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMEUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests.release.xcconfig"; sourceTree = "<group>"; };
 		48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAME.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF07BBB677C695984C7A3BB /* Pods-NAMETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.release.xcconfig"; sourceTree = "<group>"; };
@@ -461,8 +461,8 @@
 		1FB2582A2249293F0035399F /* PriceModifiables */ = {
 			isa = PBXGroup;
 			children = (
-				1FB25811224929180035399F /* PriceModifiable.swift */,
-				1FB25809224929170035399F /* PriceModifier.swift */,
+				1FB25811224929180035399F /* PriceModifier.swift */,
+				1FB25809224929170035399F /* PriceModification.swift */,
 				1FB257FE224929160035399F /* Rounder.swift */,
 				1FB25801224929170035399F /* Discount.swift */,
 				1FB257FC224929160035399F /* Surcharge.swift */,
@@ -1720,11 +1720,11 @@
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
 				1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */,
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
-				1FB25827224929180035399F /* PriceModifiable.swift in Sources */,
+				1FB25827224929180035399F /* PriceModifier.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
 				FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,
-				1FB2581F224929180035399F /* PriceModifier.swift in Sources */,
+				1FB2581F224929180035399F /* PriceModification.swift in Sources */,
 				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,
 				54D252C1224CBD25007BF235 /* StallListPresenter.swift in Sources */,
 				1FB25819224929180035399F /* OrderHistory.swift in Sources */,

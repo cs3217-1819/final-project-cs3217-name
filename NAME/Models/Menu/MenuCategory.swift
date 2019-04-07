@@ -9,7 +9,11 @@ class MenuCategory: Object {
 
     // MARK: - Relationships
     @objc dynamic var menu: Menu?
-    let items = LinkingObjects(fromType: IndividualMenuItem.self, property: "categories")
+    private let individualItems = LinkingObjects(fromType: IndividualMenuItem.self, property: "categories")
+    private let setItems = LinkingObjects(fromType: SetMenuItem.self, property: "categories")
+    var items: [MenuDisplayable] {
+        return Array(individualItems) + Array(setItems)
+    }
 
     // MARK: - Initialisers
 
