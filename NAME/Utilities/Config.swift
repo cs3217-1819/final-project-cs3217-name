@@ -69,3 +69,8 @@ enum EstablishmentRootConstants {
     static let stallListTabBarTitle = "STALLS"
     static let settingsTabBarTitle = "SETTINGS"
 }
+
+// MARK: - Customer Common
+enum CustomerCommonConstants {
+    static let primaryWidth: CGFloat = 250
+}

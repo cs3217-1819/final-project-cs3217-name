@@ -24,7 +24,7 @@ protocol MenuInteractorInput: MenuViewControllerOutput {
 }
 
 protocol MenuInteractorOutput {
-    func presentSomething()
+    func present(stall: Stall?)
 }
 
 final class MenuInteractor: MenuFromParentInput {
@@ -34,7 +34,7 @@ final class MenuInteractor: MenuFromParentInput {
 
     var stall: Stall? {
         didSet {
-            self.doSomething()
+            output.present(stall: stall)
         }
     }
 
@@ -52,18 +52,5 @@ final class MenuInteractor: MenuFromParentInput {
 // MARK: - MenuInteractorInput
 
 extension MenuInteractor: MenuViewControllerOutput {
-
     // MARK: - Business logic
-
-    func doSomething() {
-        print("Set stall on menu", stall)
-
-        // TODO: Create some Worker to do the work
-
-        worker.doSomeWork()
-
-        // TODO: Pass the result to the Presenter
-
-        output.presentSomething()
-    }
 }

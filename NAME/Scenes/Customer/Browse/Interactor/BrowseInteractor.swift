@@ -6,10 +6,7 @@
 //  Copyright (c) 2019 NAME. All rights reserved.
 //
 
-import UIKit
-
 protocol BrowseInteractorInput: BrowseViewControllerOutput {
-
 }
 
 protocol BrowseInteractorOutput {

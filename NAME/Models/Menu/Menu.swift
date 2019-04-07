@@ -7,14 +7,10 @@ class Menu: Object {
 
     // MARK: - Relationships
     @objc dynamic var stall: Stall?
-    private let individualMenuItems = LinkingObjects(fromType: IndividualMenuItem.self, property: "menu")
-    private let setMenuItems = LinkingObjects(fromType: SetMenuItem.self, property: "menu")
     private let menuCategories = LinkingObjects(fromType: MenuCategory.self, property: "menu")
 
-    var allItems: [MenuDisplayable] {
-        let indivItems = Array(individualMenuItems).map { $0 as MenuDisplayable }
-        let menuItems = Array(setMenuItems).map { $0 as MenuDisplayable }
-        return indivItems + menuItems
+    var categories: [MenuCategory] {
+        return Array(menuCategories)
     }
 
     // MARK: - Initialisers

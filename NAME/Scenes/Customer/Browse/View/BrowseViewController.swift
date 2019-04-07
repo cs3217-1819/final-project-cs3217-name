@@ -40,6 +40,7 @@ final class BrowseViewController: UISplitViewController {
         configurator.configure(viewController: self)
         restorationIdentifier = String(describing: type(of: self))
         restorationClass = type(of: self)
+        maximumPrimaryColumnWidth = CustomerCommonConstants.primaryWidth
     }
 
     // MARK: - View lifecycle

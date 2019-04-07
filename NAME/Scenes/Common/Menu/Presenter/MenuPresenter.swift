@@ -6,25 +6,17 @@
 //  Copyright (c) 2019 NAME. All rights reserved.
 //
 
-import UIKit
-
 protocol MenuPresenterInput: MenuInteractorOutput {
-
 }
 
 protocol MenuPresenterOutput: class {
-
-    func displaySomething(viewModel: MenuViewModel)
+    func displayMenu(viewModel: MenuViewModel)
 }
 
 final class MenuPresenter {
-
     private(set) unowned var output: MenuPresenterOutput
 
-    // MARK: - Initializers
-
     init(output: MenuPresenterOutput) {
-
         self.output = output
     }
 }
@@ -32,14 +24,35 @@ final class MenuPresenter {
 // MARK: - MenuPresenterInput
 
 extension MenuPresenter: MenuPresenterInput {
+    private func viewModel(forCategory category: MenuCategory) -> MenuViewModel.MenuCategoryViewModel {
+        let itemVMs = category.items.map { item in
+            MenuViewModel.MenuItemViewModel(name: item.name,
+                                            imageURL: item.imageURL,
+                                            price: item.price,
+                                            discounts: []) // TODO: Add discounts
+        }
+        return MenuViewModel.MenuCategoryViewModel(name: category.name, items: itemVMs)
+    }
 
-    // MARK: - Presentation logic
+    private func viewModel(forMenu menu: Menu?) -> [MenuViewModel.MenuCategoryViewModel] {
+        guard let menu = menu else {
+            return []
+        }
+        let categoryVMs = menu.categories.map { viewModel(forCategory: $0) }
+        return categoryVMs
+    }
 
-    func presentSomething() {
+    private func viewModel(forStall stall: Stall?) -> MenuViewModel {
+        guard let stall = stall else {
+            return MenuViewModel(stall: MenuViewModel.MenuStallViewModel(name: ""),
+                                 categories: [])
+        }
+        let stallVM = MenuViewModel.MenuStallViewModel(name: stall.name)
+        let categoryVMs = viewModel(forMenu: stall.menu)
+        return MenuViewModel(stall: stallVM, categories: categoryVMs)
+    }
 
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-
-        let viewModel = MenuViewModel()
-        output.displaySomething(viewModel: viewModel)
+    func present(stall: Stall?) {
+        output.displayMenu(viewModel: viewModel(forStall: stall))
     }
 }

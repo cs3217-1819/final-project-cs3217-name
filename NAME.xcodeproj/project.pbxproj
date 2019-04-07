@@ -45,6 +45,8 @@
 		1FB25826224929180035399F /* OrderItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25810224929180035399F /* OrderItemOption.swift */; };
 		1FB25827224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25811224929180035399F /* PriceModifier.swift */; };
 		540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E692251E0DE000F2131 /* BrowseInteractorMediator.swift */; };
+		540A3E6C2259C722000F2131 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */; };
+		540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */; };
 		5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441ABF02248B6ED0018A293 /* AppDelegate.swift */; };
 		5441ABF82248B6EF0018A293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF72248B6EF0018A293 /* Assets.xcassets */; };
 		5441ABFB2248B6EF0018A293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5441ABF92248B6EF0018A293 /* LaunchScreen.storyboard */; };
@@ -199,6 +201,8 @@
 		4DF07BBB677C695984C7A3BB /* Pods-NAMETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D1D84429E810A94851115 /* Pods-NAME.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.release.xcconfig"; sourceTree = "<group>"; };
 		540A3E692251E0DE000F2131 /* BrowseInteractorMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseInteractorMediator.swift; sourceTree = "<group>"; };
+		540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryHeaderView.swift; sourceTree = "<group>"; };
 		5441ABED2248B6ED0018A293 /* NAME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NAME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5441ABF02248B6ED0018A293 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5441ABF72248B6EF0018A293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -890,6 +894,8 @@
 			isa = PBXGroup;
 			children = (
 				54D252CD224CBD2F007BF235 /* MenuViewController.swift */,
+				540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */,
+				540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1617,6 +1623,7 @@
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
 				1F2A95E2224EE95F006703DE /* BillDiscount.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
+				540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */,
 				1F2A95E0224EE94D006703DE /* BillItem.swift in Sources */,
 				5441AC402248C4480018A293 /* SplashRouter.swift in Sources */,
 				1FB25820224929180035399F /* MenuItemOption.swift in Sources */,
@@ -1705,6 +1712,7 @@
 				1F2A95E4224EE972006703DE /* BillSurcharge.swift in Sources */,
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
 				FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */,
+				540A3E6C2259C722000F2131 /* MenuItemCollectionViewCell.swift in Sources */,
 				1FB2581C224929180035399F /* TimeCondition.swift in Sources */,
 				FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */,
 				FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */,
