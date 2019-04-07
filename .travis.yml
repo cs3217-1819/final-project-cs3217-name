@@ -1,14 +1,13 @@
 language: swift
 osx_image: xcode10.2
-xcode_destination: platform=iOS Simulator,OS=12.2,name=iPad Pro (9.7-inch)
 podfile: Podfile
-xcode_workspace: NAME.xcworkspace
-xcode_scheme: NAME
 cache:
   - bundler
 before_install:
   - gem install cocoapods
   - pod repo update
+script:
+  - set -o pipefail && xcodebuild -workspace NAME.xcworkspace -scheme NAME -destination 'platform=iOS Simulator,OS=12.2,name=iPad Pro (9.7-inch)' build test | xcpretty -c | sed -e '/cs3217-name\/Pods/{N;N;N;N;d;}' -e '/^$/d'
 branches:
   only:
     - master
