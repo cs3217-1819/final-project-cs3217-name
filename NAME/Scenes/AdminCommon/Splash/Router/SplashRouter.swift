@@ -13,6 +13,7 @@ protocol SplashRouterProtocol {
     var viewController: SplashViewController? { get }
 
     func navigateToCustomerMenu()
+    func navigateToLoginScreen()
 }
 
 final class SplashRouter {
@@ -35,5 +36,11 @@ extension SplashRouter: SplashRouterProtocol {
         let customerRootVC = CustomerRootViewController()
         customerRootVC.modalTransitionStyle = .crossDissolve
         viewController?.present(customerRootVC, animated: true)
+    }
+
+    func navigateToLoginScreen() {
+        let loginVC = UINavigationController(rootViewController: LoginViewController())
+        loginVC.modalTransitionStyle = .flipHorizontal
+        viewController?.present(loginVC, animated: true)
     }
 }

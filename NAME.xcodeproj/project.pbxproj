@@ -93,6 +93,48 @@
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
 		CAFCCC38685A268BB99E0A14 /* Pods_NAMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */; };
 		E560E33EA363C8723761CF94 /* Pods_NAME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */; };
+		FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */; };
+		FB519D6D224D4F4300BB5DE8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */; };
+		FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */; };
+		FB519D6F224D4F4300BB5DE8 /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D65224D4F4200BB5DE8 /* LoginConfigurator.swift */; };
+		FB519D70224D4F4300BB5DE8 /* LoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D67224D4F4200BB5DE8 /* LoginWorker.swift */; };
+		FB519D71224D4F4300BB5DE8 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D69224D4F4200BB5DE8 /* LoginInteractor.swift */; };
+		FB519D72224D4F4300BB5DE8 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D6B224D4F4200BB5DE8 /* LoginRouter.swift */; };
+		FB519D74224E25DD00BB5DE8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D73224E25DD00BB5DE8 /* Config.swift */; };
+		FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D7A224E3A3200BB5DE8 /* StallRootViewModel.swift */; };
+		FB519D88224E3A3200BB5DE8 /* StallRootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D7C224E3A3200BB5DE8 /* StallRootPresenter.swift */; };
+		FB519D89224E3A3200BB5DE8 /* StallRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D7E224E3A3200BB5DE8 /* StallRootViewController.swift */; };
+		FB519D8A224E3A3200BB5DE8 /* StallRootConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D80224E3A3200BB5DE8 /* StallRootConfigurator.swift */; };
+		FB519D8B224E3A3200BB5DE8 /* StallRootWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D82224E3A3200BB5DE8 /* StallRootWorker.swift */; };
+		FB519D8C224E3A3200BB5DE8 /* StallRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D84224E3A3200BB5DE8 /* StallRootInteractor.swift */; };
+		FB519D8D224E3A3200BB5DE8 /* StallRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D86224E3A3200BB5DE8 /* StallRootRouter.swift */; };
+		FB519DA1224F43FC00BB5DE8 /* KitchenBacklogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D94224F43FB00BB5DE8 /* KitchenBacklogViewModel.swift */; };
+		FB519DA4224F43FC00BB5DE8 /* KitchenBacklogConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D9A224F43FB00BB5DE8 /* KitchenBacklogConfigurator.swift */; };
+		FB519DA6224F43FC00BB5DE8 /* KitchenBacklogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D9E224F43FB00BB5DE8 /* KitchenBacklogInteractor.swift */; };
+		FB519DA7224F43FC00BB5DE8 /* KitchenBacklogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DA0224F43FB00BB5DE8 /* KitchenBacklogRouter.swift */; };
+		FB519DB7224F440700BB5DE8 /* AdminSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DAA224F440700BB5DE8 /* AdminSettingsViewModel.swift */; };
+		FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DAC224F440700BB5DE8 /* AdminSettingsPresenter.swift */; };
+		FB519DB9224F440700BB5DE8 /* AdminSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DAE224F440700BB5DE8 /* AdminSettingsViewController.swift */; };
+		FB519DBA224F440700BB5DE8 /* AdminSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DB0224F440700BB5DE8 /* AdminSettingsConfigurator.swift */; };
+		FB519DBB224F440700BB5DE8 /* AdminSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DB2224F440700BB5DE8 /* AdminSettingsWorker.swift */; };
+		FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DB4224F440700BB5DE8 /* AdminSettingsInteractor.swift */; };
+		FB519DBD224F440700BB5DE8 /* AdminSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DB6224F440700BB5DE8 /* AdminSettingsRouter.swift */; };
+		FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DC4224F514800BB5DE8 /* KitchenBacklogPresenter.swift */; };
+		FB519DD1224F514800BB5DE8 /* KitchenBacklogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */; };
+		FB519DD3224F514800BB5DE8 /* KitchenBacklogWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DCA224F514800BB5DE8 /* KitchenBacklogWorker.swift */; };
+		FB519DD9224F5A9100BB5DE8 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */; };
+		FB519DF3224FCAB600BB5DE8 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DF2224FCAB600BB5DE8 /* OrderView.swift */; };
+		FB519DF7224FF8B300BB5DE8 /* OrderItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */; };
+		FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E132250A61100BB5DE8 /* EstablishmentRootViewModel.swift */; };
+		FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E152250A61100BB5DE8 /* EstablishmentRootPresenter.swift */; };
+		FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E172250A61100BB5DE8 /* EstablishmentRootViewController.swift */; };
+		FB519E232250A61300BB5DE8 /* EstablishmentRootConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E192250A61100BB5DE8 /* EstablishmentRootConfigurator.swift */; };
+		FB519E242250A61300BB5DE8 /* EstablishmentRootWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E1B2250A61100BB5DE8 /* EstablishmentRootWorker.swift */; };
+		FB519E252250A61300BB5DE8 /* EstablishmentRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E1D2250A61100BB5DE8 /* EstablishmentRootInteractor.swift */; };
+		FB519E262250A61300BB5DE8 /* EstablishmentRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E1F2250A61100BB5DE8 /* EstablishmentRootRouter.swift */; };
+		FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */; };
+		FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */; };
+		FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -213,6 +255,48 @@
 		C6EC63E9224B9060003E4547 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
 		C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionValue.swift; sourceTree = "<group>"; };
 		E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FB519D65224D4F4200BB5DE8 /* LoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
+		FB519D67224D4F4200BB5DE8 /* LoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWorker.swift; sourceTree = "<group>"; };
+		FB519D69224D4F4200BB5DE8 /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		FB519D6B224D4F4200BB5DE8 /* LoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		FB519D73224E25DD00BB5DE8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FB519D7A224E3A3200BB5DE8 /* StallRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootViewModel.swift; sourceTree = "<group>"; };
+		FB519D7C224E3A3200BB5DE8 /* StallRootPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootPresenter.swift; sourceTree = "<group>"; };
+		FB519D7E224E3A3200BB5DE8 /* StallRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootViewController.swift; sourceTree = "<group>"; };
+		FB519D80224E3A3200BB5DE8 /* StallRootConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootConfigurator.swift; sourceTree = "<group>"; };
+		FB519D82224E3A3200BB5DE8 /* StallRootWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootWorker.swift; sourceTree = "<group>"; };
+		FB519D84224E3A3200BB5DE8 /* StallRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootInteractor.swift; sourceTree = "<group>"; };
+		FB519D86224E3A3200BB5DE8 /* StallRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StallRootRouter.swift; sourceTree = "<group>"; };
+		FB519D94224F43FB00BB5DE8 /* KitchenBacklogViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogViewModel.swift; sourceTree = "<group>"; };
+		FB519D9A224F43FB00BB5DE8 /* KitchenBacklogConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogConfigurator.swift; sourceTree = "<group>"; };
+		FB519D9E224F43FB00BB5DE8 /* KitchenBacklogInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogInteractor.swift; sourceTree = "<group>"; };
+		FB519DA0224F43FB00BB5DE8 /* KitchenBacklogRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogRouter.swift; sourceTree = "<group>"; };
+		FB519DAA224F440700BB5DE8 /* AdminSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewModel.swift; sourceTree = "<group>"; };
+		FB519DAC224F440700BB5DE8 /* AdminSettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsPresenter.swift; sourceTree = "<group>"; };
+		FB519DAE224F440700BB5DE8 /* AdminSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsViewController.swift; sourceTree = "<group>"; };
+		FB519DB0224F440700BB5DE8 /* AdminSettingsConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsConfigurator.swift; sourceTree = "<group>"; };
+		FB519DB2224F440700BB5DE8 /* AdminSettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsWorker.swift; sourceTree = "<group>"; };
+		FB519DB4224F440700BB5DE8 /* AdminSettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsInteractor.swift; sourceTree = "<group>"; };
+		FB519DB6224F440700BB5DE8 /* AdminSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminSettingsRouter.swift; sourceTree = "<group>"; };
+		FB519DC4224F514800BB5DE8 /* KitchenBacklogPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogPresenter.swift; sourceTree = "<group>"; };
+		FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogViewController.swift; sourceTree = "<group>"; };
+		FB519DCA224F514800BB5DE8 /* KitchenBacklogWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogWorker.swift; sourceTree = "<group>"; };
+		FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
+		FB519DF2224FCAB600BB5DE8 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewCell.swift; sourceTree = "<group>"; };
+		FB519E132250A61100BB5DE8 /* EstablishmentRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootViewModel.swift; sourceTree = "<group>"; };
+		FB519E152250A61100BB5DE8 /* EstablishmentRootPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootPresenter.swift; sourceTree = "<group>"; };
+		FB519E172250A61100BB5DE8 /* EstablishmentRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootViewController.swift; sourceTree = "<group>"; };
+		FB519E192250A61100BB5DE8 /* EstablishmentRootConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootConfigurator.swift; sourceTree = "<group>"; };
+		FB519E1B2250A61100BB5DE8 /* EstablishmentRootWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootWorker.swift; sourceTree = "<group>"; };
+		FB519E1D2250A61100BB5DE8 /* EstablishmentRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootInteractor.swift; sourceTree = "<group>"; };
+		FB519E1F2250A61100BB5DE8 /* EstablishmentRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootRouter.swift; sourceTree = "<group>"; };
+		FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContainerView.swift; sourceTree = "<group>"; };
+		FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewDataSource.swift; sourceTree = "<group>"; };
+		FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				1F21BA03224923230089A1AD /* FixtureGenerator.swift */,
+				FB519D73224E25DD00BB5DE8 /* Config.swift */,
 				54D252DD224E10DD007BF235 /* StorageManager.swift */,
 				54D252E0224E1D56007BF235 /* RealmStorageManager.swift */,
 				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
@@ -461,6 +546,8 @@
 			isa = PBXGroup;
 			children = (
 				5441AC2B2248C4480018A293 /* Splash */,
+				FB519D5D224D4F4200BB5DE8 /* Login */,
+				FB519DA8224F440700BB5DE8 /* AdminSettings */,
 			);
 			path = AdminCommon;
 			sourceTree = "<group>";
@@ -476,27 +563,13 @@
 			path = Customer;
 			sourceTree = "<group>";
 		};
-		5441AC232248B9200018A293 /* AdminEstablishment */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AdminEstablishment;
-			sourceTree = "<group>";
-		};
-		5441AC242248B9350018A293 /* AdminStall */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AdminStall;
-			sourceTree = "<group>";
-		};
 		5441AC272248BD7C0018A293 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				1FB257ED224928550035399F /* Common */,
 				5441AC212248B9080018A293 /* AdminCommon */,
-				5441AC242248B9350018A293 /* AdminStall */,
-				5441AC232248B9200018A293 /* AdminEstablishment */,
+				FB519D77224E3A3200BB5DE8 /* AdminStall */,
+				FB519E102250A61100BB5DE8 /* AdminEstablishment */,
 				5441AC222248B90C0018A293 /* Customer */,
 			);
 			path = Scenes;
@@ -884,6 +957,380 @@
 			path = TimeCondition;
 			sourceTree = "<group>";
 		};
+		FB519D5D224D4F4200BB5DE8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D5E224D4F4200BB5DE8 /* ViewModel */,
+				FB519D60224D4F4200BB5DE8 /* Presenter */,
+				FB519D62224D4F4200BB5DE8 /* View */,
+				FB519D64224D4F4200BB5DE8 /* Configurator */,
+				FB519D66224D4F4200BB5DE8 /* Worker */,
+				FB519D68224D4F4200BB5DE8 /* Interactor */,
+				FB519D6A224D4F4200BB5DE8 /* Router */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FB519D5E224D4F4200BB5DE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB519D60224D4F4200BB5DE8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB519D62224D4F4200BB5DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */,
+				FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB519D64224D4F4200BB5DE8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D65224D4F4200BB5DE8 /* LoginConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB519D66224D4F4200BB5DE8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D67224D4F4200BB5DE8 /* LoginWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB519D68224D4F4200BB5DE8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D69224D4F4200BB5DE8 /* LoginInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB519D6A224D4F4200BB5DE8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D6B224D4F4200BB5DE8 /* LoginRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FB519D77224E3A3200BB5DE8 /* AdminStall */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D78224E3A3200BB5DE8 /* StallRoot */,
+				FB519D92224F43FB00BB5DE8 /* KitchenBacklog */,
+			);
+			path = AdminStall;
+			sourceTree = "<group>";
+		};
+		FB519D78224E3A3200BB5DE8 /* StallRoot */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D79224E3A3200BB5DE8 /* ViewModel */,
+				FB519D7B224E3A3200BB5DE8 /* Presenter */,
+				FB519D7D224E3A3200BB5DE8 /* View */,
+				FB519D7F224E3A3200BB5DE8 /* Configurator */,
+				FB519D81224E3A3200BB5DE8 /* Worker */,
+				FB519D83224E3A3200BB5DE8 /* Interactor */,
+				FB519D85224E3A3200BB5DE8 /* Router */,
+			);
+			path = StallRoot;
+			sourceTree = "<group>";
+		};
+		FB519D79224E3A3200BB5DE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D7A224E3A3200BB5DE8 /* StallRootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB519D7B224E3A3200BB5DE8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D7C224E3A3200BB5DE8 /* StallRootPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB519D7D224E3A3200BB5DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D7E224E3A3200BB5DE8 /* StallRootViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB519D7F224E3A3200BB5DE8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D80224E3A3200BB5DE8 /* StallRootConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB519D81224E3A3200BB5DE8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D82224E3A3200BB5DE8 /* StallRootWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB519D83224E3A3200BB5DE8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D84224E3A3200BB5DE8 /* StallRootInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB519D85224E3A3200BB5DE8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D86224E3A3200BB5DE8 /* StallRootRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FB519D92224F43FB00BB5DE8 /* KitchenBacklog */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D93224F43FB00BB5DE8 /* ViewModel */,
+				FB519D95224F43FB00BB5DE8 /* Presenter */,
+				FB519D97224F43FB00BB5DE8 /* View */,
+				FB519D99224F43FB00BB5DE8 /* Configurator */,
+				FB519D9B224F43FB00BB5DE8 /* Worker */,
+				FB519D9D224F43FB00BB5DE8 /* Interactor */,
+				FB519D9F224F43FB00BB5DE8 /* Router */,
+			);
+			path = KitchenBacklog;
+			sourceTree = "<group>";
+		};
+		FB519D93224F43FB00BB5DE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D94224F43FB00BB5DE8 /* KitchenBacklogViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB519D95224F43FB00BB5DE8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DC4224F514800BB5DE8 /* KitchenBacklogPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB519D97224F43FB00BB5DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */,
+				FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */,
+				FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */,
+				FB519DF2224FCAB600BB5DE8 /* OrderView.swift */,
+				FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */,
+				FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB519D99224F43FB00BB5DE8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D9A224F43FB00BB5DE8 /* KitchenBacklogConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB519D9B224F43FB00BB5DE8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DCA224F514800BB5DE8 /* KitchenBacklogWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB519D9D224F43FB00BB5DE8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB519D9E224F43FB00BB5DE8 /* KitchenBacklogInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB519D9F224F43FB00BB5DE8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DA0224F43FB00BB5DE8 /* KitchenBacklogRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FB519DA8224F440700BB5DE8 /* AdminSettings */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DA9224F440700BB5DE8 /* ViewModel */,
+				FB519DAB224F440700BB5DE8 /* Presenter */,
+				FB519DAD224F440700BB5DE8 /* View */,
+				FB519DAF224F440700BB5DE8 /* Configurator */,
+				FB519DB1224F440700BB5DE8 /* Worker */,
+				FB519DB3224F440700BB5DE8 /* Interactor */,
+				FB519DB5224F440700BB5DE8 /* Router */,
+			);
+			name = AdminSettings;
+			path = NAME/Scenes/AdminCommon/AdminSettings;
+			sourceTree = SOURCE_ROOT;
+		};
+		FB519DA9224F440700BB5DE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DAA224F440700BB5DE8 /* AdminSettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB519DAB224F440700BB5DE8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DAC224F440700BB5DE8 /* AdminSettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB519DAD224F440700BB5DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DAE224F440700BB5DE8 /* AdminSettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB519DAF224F440700BB5DE8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DB0224F440700BB5DE8 /* AdminSettingsConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB519DB1224F440700BB5DE8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DB2224F440700BB5DE8 /* AdminSettingsWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB519DB3224F440700BB5DE8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DB4224F440700BB5DE8 /* AdminSettingsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB519DB5224F440700BB5DE8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB519DB6224F440700BB5DE8 /* AdminSettingsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FB519E102250A61100BB5DE8 /* AdminEstablishment */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E112250A61100BB5DE8 /* EstablishmentRoot */,
+			);
+			path = AdminEstablishment;
+			sourceTree = "<group>";
+		};
+		FB519E112250A61100BB5DE8 /* EstablishmentRoot */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E122250A61100BB5DE8 /* ViewModel */,
+				FB519E142250A61100BB5DE8 /* Presenter */,
+				FB519E162250A61100BB5DE8 /* View */,
+				FB519E182250A61100BB5DE8 /* Configurator */,
+				FB519E1A2250A61100BB5DE8 /* Worker */,
+				FB519E1C2250A61100BB5DE8 /* Interactor */,
+				FB519E1E2250A61100BB5DE8 /* Router */,
+			);
+			path = EstablishmentRoot;
+			sourceTree = "<group>";
+		};
+		FB519E122250A61100BB5DE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E132250A61100BB5DE8 /* EstablishmentRootViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB519E142250A61100BB5DE8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E152250A61100BB5DE8 /* EstablishmentRootPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB519E162250A61100BB5DE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E172250A61100BB5DE8 /* EstablishmentRootViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB519E182250A61100BB5DE8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E192250A61100BB5DE8 /* EstablishmentRootConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB519E1A2250A61100BB5DE8 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E1B2250A61100BB5DE8 /* EstablishmentRootWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB519E1C2250A61100BB5DE8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E1D2250A61100BB5DE8 /* EstablishmentRootInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB519E1E2250A61100BB5DE8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB519E1F2250A61100BB5DE8 /* EstablishmentRootRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1160,7 +1607,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB519DB7224F440700BB5DE8 /* AdminSettingsViewModel.swift in Sources */,
+				FB519D88224E3A3200BB5DE8 /* StallRootPresenter.swift in Sources */,
+				FB519E242250A61300BB5DE8 /* EstablishmentRootWorker.swift in Sources */,
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
+				FB519DF3224FCAB600BB5DE8 /* OrderView.swift in Sources */,
+				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
+				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
 				1F2A95E2224EE95F006703DE /* BillDiscount.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
@@ -1168,12 +1621,18 @@
 				5441AC402248C4480018A293 /* SplashRouter.swift in Sources */,
 				1FB25820224929180035399F /* MenuItemOption.swift in Sources */,
 				54D252C3224CBD25007BF235 /* StallListConfigurator.swift in Sources */,
+				FB519D72224D4F4300BB5DE8 /* LoginRouter.swift in Sources */,
 				5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */,
 				5441AC502248C4590018A293 /* CustomerRootViewModel.swift in Sources */,
+				FB519DD3224F514800BB5DE8 /* KitchenBacklogWorker.swift in Sources */,
 				1FB2581A224929180035399F /* SetMenuItem.swift in Sources */,
 				1FB25818224929180035399F /* Order.swift in Sources */,
+				FB519DA6224F43FC00BB5DE8 /* KitchenBacklogInteractor.swift in Sources */,
 				1F2A95EA224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift in Sources */,
 				5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */,
+				FB519D70224D4F4300BB5DE8 /* LoginWorker.swift in Sources */,
+				FB519DD9224F5A9100BB5DE8 /* OrderViewCell.swift in Sources */,
+				FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */,
 				54D252DA224CBD2F007BF235 /* MenuWorker.swift in Sources */,
 				C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */,
 				1F2A95E8224EEB1E006703DE /* BillOptimizable.swift in Sources */,
@@ -1183,11 +1642,18 @@
 				1F76301C224D8B6D001E8E5C /* OrderConfirmationViewModel.swift in Sources */,
 				5441AC3A2248C4480018A293 /* SplashViewModel.swift in Sources */,
 				1FB25815224929180035399F /* MenuDisplayable.swift in Sources */,
+				FB519D71224D4F4300BB5DE8 /* LoginInteractor.swift in Sources */,
+				FB519D6F224D4F4300BB5DE8 /* LoginConfigurator.swift in Sources */,
 				1FB2581B224929180035399F /* MenuItemOptionType.swift in Sources */,
 				1FB25817224929180035399F /* Discount.swift in Sources */,
+				FB519DBB224F440700BB5DE8 /* AdminSettingsWorker.swift in Sources */,
 				54D252AA224CB637007BF235 /* BrowseWorker.swift in Sources */,
+				FB519DA1224F43FC00BB5DE8 /* KitchenBacklogViewModel.swift in Sources */,
 				1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */,
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
+				FB519DA4224F43FC00BB5DE8 /* KitchenBacklogConfigurator.swift in Sources */,
+				FB519E252250A61300BB5DE8 /* EstablishmentRootInteractor.swift in Sources */,
+				FB519D8C224E3A3200BB5DE8 /* StallRootInteractor.swift in Sources */,
 				5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */,
 				54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */,
 				1FB25821224929180035399F /* Priceable.swift in Sources */,
@@ -1198,12 +1664,21 @@
 				C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */,
 				1F2A95E6224EEA55006703DE /* OrderToBillProcessor.swift in Sources */,
 				54D252D7224CBD2F007BF235 /* MenuPresenter.swift in Sources */,
+				FB519D6D224D4F4300BB5DE8 /* LoginPresenter.swift in Sources */,
+				FB519DA7224F43FC00BB5DE8 /* KitchenBacklogRouter.swift in Sources */,
 				5441AC3B2248C4480018A293 /* SplashPresenter.swift in Sources */,
+				FB519DD1224F514800BB5DE8 /* KitchenBacklogViewController.swift in Sources */,
 				54D252A8224CB637007BF235 /* BrowseViewController.swift in Sources */,
 				54D252C0224CBD25007BF235 /* StallListViewModel.swift in Sources */,
 				54D252D9224CBD2F007BF235 /* MenuConfigurator.swift in Sources */,
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
+				FB519DBD224F440700BB5DE8 /* AdminSettingsRouter.swift in Sources */,
 				54D252DC224CBD2F007BF235 /* MenuRouter.swift in Sources */,
+				FB519D8A224E3A3200BB5DE8 /* StallRootConfigurator.swift in Sources */,
+				FB519D89224E3A3200BB5DE8 /* StallRootViewController.swift in Sources */,
+				FB519D74224E25DD00BB5DE8 /* Config.swift in Sources */,
+				FB519D8B224E3A3200BB5DE8 /* StallRootWorker.swift in Sources */,
+				FB519DF7224FF8B300BB5DE8 /* OrderItemViewCell.swift in Sources */,
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
 				1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */,
 				1FB25824224929180035399F /* OrderLifecycle.swift in Sources */,
@@ -1214,16 +1689,29 @@
 				54D252E5224F6D79007BF235 /* StallListTableViewCell.swift in Sources */,
 				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
+				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
+				FB519D8D224E3A3200BB5DE8 /* StallRootRouter.swift in Sources */,
+				FB519DBA224F440700BB5DE8 /* AdminSettingsConfigurator.swift in Sources */,
 				54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */,
+				FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */,
 				1FB25825224929180035399F /* MenuCategory.swift in Sources */,
+				FB519DB9224F440700BB5DE8 /* AdminSettingsViewController.swift in Sources */,
+				FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */,
 				1F21BA04224923230089A1AD /* FixtureGenerator.swift in Sources */,
 				54D252A7224CB637007BF235 /* BrowsePresenter.swift in Sources */,
+				FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */,
 				540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */,
 				1F2A95E4224EE972006703DE /* BillSurcharge.swift in Sources */,
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
+				FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */,
 				1FB2581C224929180035399F /* TimeCondition.swift in Sources */,
+				FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */,
+				FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */,
 				1FB25826224929180035399F /* OrderItemOption.swift in Sources */,
+				FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */,
+				FB519E262250A61300BB5DE8 /* EstablishmentRootRouter.swift in Sources */,
+				FB519E232250A61300BB5DE8 /* EstablishmentRootConfigurator.swift in Sources */,
 				1F763026224D8C00001E8E5C /* OrderConfirmationWorker.swift in Sources */,
 				5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */,
 				1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */,
@@ -1234,6 +1722,7 @@
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifiable.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
+				FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,
 				1FB2581F224929180035399F /* PriceModifier.swift in Sources */,
 				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,

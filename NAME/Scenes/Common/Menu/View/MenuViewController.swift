@@ -24,7 +24,7 @@ final class MenuViewController: UICollectionViewController {
 
     // MARK: - Initializers
 
-    init(mediator: MenuToParentOutput,
+    init(mediator: MenuToParentOutput?,
          configurator: MenuConfigurator = MenuConfigurator.shared) {
 
         super.init(collectionViewLayout: UICollectionViewFlowLayout())

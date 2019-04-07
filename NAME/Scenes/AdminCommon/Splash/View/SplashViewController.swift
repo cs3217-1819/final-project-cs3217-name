@@ -27,6 +27,15 @@ final class SplashViewController: UIViewController {
         return button
     }()
 
+    lazy var tapToLoginArea: UIView = {
+        let tapArea = UIView()
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapToLogin(sender:)))
+        tapRecognizer.numberOfTapsRequired = SplashConstants.numTapsToLoginScreen
+        tapArea.addGestureRecognizer(tapRecognizer)
+        tapArea.backgroundColor = .white
+        return tapArea
+    }()
+
     // MARK: - Initializers
 
     init(configurator: SplashConfigurator = SplashConfigurator.shared) {
@@ -56,6 +65,15 @@ final class SplashViewController: UIViewController {
         startButton.snp.makeConstraints { [unowned self] make in
             make.size.equalTo(self.view)
         }
+
+        view.addSubview(tapToLoginArea)
+        tapToLoginArea.snp.makeConstraints { [unowned self] make in
+            make.size.equalTo(CGSize(width: SplashConstants.tapAreaWidth,
+                                     height: SplashConstants.tapAreaHeight))
+            make.top.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+
         doSomethingOnLoad()
     }
 
@@ -71,6 +89,11 @@ final class SplashViewController: UIViewController {
     @objc
     func handleStartPress(sender: Any) {
         router?.navigateToCustomerMenu()
+    }
+
+    @objc
+    func handleTapToLogin(sender: Any) {
+        router?.navigateToLoginScreen()
     }
 }
 
