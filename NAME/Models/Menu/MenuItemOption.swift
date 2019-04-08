@@ -4,7 +4,7 @@ import RealmSwift
 class MenuItemOption: Object, Priceable {
 
     // MARK: - Properties
-
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
     @objc dynamic var price: Int = 0
@@ -57,6 +57,10 @@ class MenuItemOption: Object, Priceable {
         self.options = options
         self.defaultValue = defaultValue
         self.price = price
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 
 }

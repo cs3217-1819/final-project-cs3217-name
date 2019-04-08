@@ -4,7 +4,7 @@ import RealmSwift
 class IndividualMenuItem: Object, MenuDisplayable {
 
     // MARK: - Properties
-
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
     @objc dynamic var isHidden: Bool = false
@@ -47,5 +47,9 @@ class IndividualMenuItem: Object, MenuDisplayable {
 
     func addDiscount(_ discount: Discount) {
         discounts.append(discount)
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

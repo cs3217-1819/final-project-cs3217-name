@@ -4,7 +4,7 @@ import RealmSwift
 class MenuCategory: Object {
 
     // MARK: - Properties
-
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name = ""
 
     // MARK: - Relationships
@@ -21,5 +21,9 @@ class MenuCategory: Object {
         self.init()
         self.name = name
         self.menu = menu
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

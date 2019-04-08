@@ -8,6 +8,7 @@ class OrderItem: Object {
     }
 
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var quantity: Int = 0
     @objc dynamic var comment: String = ""
     @objc private dynamic var _diningOption: Int = 0
@@ -44,5 +45,9 @@ class OrderItem: Object {
         self.quantity = quantity
         self.comment = comment
         self.diningOption = diningOption
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

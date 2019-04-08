@@ -4,6 +4,7 @@ import RealmSwift
 class Establishment: Object {
 
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
 
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
@@ -26,5 +27,9 @@ class Establishment: Object {
         self.imageURL = imageURL
         self.location = location
         self.details = description
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

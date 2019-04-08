@@ -4,6 +4,7 @@ import RealmSwift
 class Menu: Object {
 
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
 
     // MARK: - Relationships
     @objc dynamic var stall: Stall?
@@ -14,9 +15,12 @@ class Menu: Object {
     }
 
     // MARK: - Initialisers
-
     convenience init(stall: Stall) {
         self.init()
         self.stall = stall
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

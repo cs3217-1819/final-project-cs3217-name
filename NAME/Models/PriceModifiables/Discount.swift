@@ -2,6 +2,8 @@ import Foundation
 import RealmSwift
 
 class Discount: Object, PriceModifier {
+    // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
 
     @objc dynamic var name = ""
     var priceModification: PriceModification = .multiplier(factor: 1)
@@ -25,6 +27,7 @@ class Discount: Object, PriceModifier {
         }
     }
 
+    // MARK: - Initialisers
     convenience init(name: String,
                      priceModification: PriceModification,
                      stackable: Bool,
@@ -36,5 +39,9 @@ class Discount: Object, PriceModifier {
         self.priceModification = priceModification
         self.stackable = stackable
         self.timeCondition = timeCondition
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

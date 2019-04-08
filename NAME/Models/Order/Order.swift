@@ -4,6 +4,7 @@ import RealmSwift
 class Order: Object {
 
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var queueNumber: Int = 0
 
     // MARK: - Relationship
@@ -17,5 +18,9 @@ class Order: Object {
 
         self.customer = customer
         self.queueNumber = queueNumber
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

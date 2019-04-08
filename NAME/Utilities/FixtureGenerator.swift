@@ -168,9 +168,9 @@ enum FixtureGenerator {
     }
 
     static func createCustomers() -> [Customer] {
-        let customer1 = Customer(id: "customer1")
-        let customer2 = Customer(id: "customer2")
-        let customer3 = Customer(id: "customer3")
+        let customer1 = Customer()
+        let customer2 = Customer()
+        let customer3 = Customer()
 
         return [customer1, customer2, customer3]
     }

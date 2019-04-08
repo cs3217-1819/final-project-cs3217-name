@@ -3,6 +3,7 @@ import RealmSwift
 
 class SetMenuItem: Object, MenuDisplayable {
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
     @objc dynamic var isHidden: Bool = false
@@ -30,5 +31,9 @@ class SetMenuItem: Object, MenuDisplayable {
         self.imageURL = imageURL
         self.isHidden = isHidden
         self.quantity = quantity
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

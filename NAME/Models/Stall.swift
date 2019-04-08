@@ -4,6 +4,7 @@ import RealmSwift
 class Stall: Object {
 
     // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
 
     @objc dynamic var name = ""
     @objc dynamic var imageURL: String?
@@ -31,5 +32,9 @@ class Stall: Object {
         self.location = location
         self.details = details
         self.menu = menu
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

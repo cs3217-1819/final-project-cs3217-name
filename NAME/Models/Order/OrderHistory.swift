@@ -2,7 +2,8 @@ import Foundation
 import RealmSwift
 
 class OrderHistory: Object {
-
+    // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic private var _state: Int = 0
     @objc dynamic var timestamp = Date()
 
@@ -23,5 +24,9 @@ class OrderHistory: Object {
 
         self.state = state
         self.timestamp = timestamp
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

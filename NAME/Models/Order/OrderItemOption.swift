@@ -2,7 +2,8 @@ import Foundation
 import RealmSwift
 
 class OrderItemOption: Object {
-
+    // MARK: - Properties
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var menuItemOption: MenuItemOption?
     @objc dynamic private var valueEncoded = Data()
 
@@ -27,6 +28,10 @@ class OrderItemOption: Object {
 
         self.menuItemOption = menuItemOption
         self.value = value
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 
 }
