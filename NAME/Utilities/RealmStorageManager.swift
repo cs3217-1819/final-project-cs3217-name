@@ -44,6 +44,10 @@ class RealmStorageManager: StorageManager {
         realm.add(objects, update: update)
     }
 
+    func delete<T: Storable>(_ object: T) {
+        realm.delete(object)
+    }
+
     func allEstablishments() -> [Establishment] {
         return Array(realm.objects(Establishment.self))
     }

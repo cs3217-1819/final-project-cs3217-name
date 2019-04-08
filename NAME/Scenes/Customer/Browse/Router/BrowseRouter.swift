@@ -32,7 +32,8 @@ final class BrowseRouter {
 
 extension BrowseRouter: BrowseRouterProtocol {
     func stallListViewController() -> UIViewController {
-        return UINavigationController(rootViewController: StallListViewController(mediator: mediator))
+        return UINavigationController(rootViewController: StallListViewController(isEstablishmentView: false,
+                                                                                  mediator: mediator))
     }
 
     func menuViewController() -> UIViewController {

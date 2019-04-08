@@ -13,6 +13,7 @@ protocol StallListPresenterInput: StallListInteractorOutput {
 
 protocol StallListPresenterOutput: class {
     func displaySomething(viewModel: StallListViewModel)
+    func displayStallDeleteError()
 }
 
 final class StallListPresenter {
@@ -35,5 +36,9 @@ extension StallListPresenter: StallListPresenterInput {
         let stallViewModels = stalls.map { StallListViewModel.StallViewModel(name: $0.name, location: $0.location) }
         let viewModel = StallListViewModel(stalls: stallViewModels)
         output.displaySomething(viewModel: viewModel)
+    }
+
+    func presentStallDeleteError() {
+        output.displayStallDeleteError()
     }
 }

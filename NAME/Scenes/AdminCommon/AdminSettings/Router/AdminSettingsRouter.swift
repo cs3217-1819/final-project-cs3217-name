@@ -11,7 +11,7 @@ import UIKit
 protocol AdminSettingsRouterProtocol {
     var viewController: AdminSettingsViewController? { get }
 
-    func navigateToSomewhere()
+    func navigateBack()
 }
 
 final class AdminSettingsRouter {
@@ -26,7 +26,7 @@ final class AdminSettingsRouter {
 // MARK: - AdminSettingsRouterProtocol
 
 extension AdminSettingsRouter: AdminSettingsRouterProtocol {
-    func navigateToSomewhere() {
-
+    func navigateBack() {
+        viewController?.dismiss(animated: true)
     }
 }

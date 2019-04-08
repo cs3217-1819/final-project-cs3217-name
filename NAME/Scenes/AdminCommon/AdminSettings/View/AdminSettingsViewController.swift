@@ -20,6 +20,13 @@ final class AdminSettingsViewController: UIViewController {
     var output: AdminSettingsViewControllerOutput?
     var router: AdminSettingsRouterProtocol?
 
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(handleCancelPress(sender:)), for: .touchUpInside)
+        button.setTitle("Click to dismiss", for: .normal)
+        return button
+    }()
+
     // MARK: - Initializers
     init(configurator: AdminSettingsConfigurator = AdminSettingsConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
@@ -40,12 +47,22 @@ final class AdminSettingsViewController: UIViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomethingOnLoad()
+
+        view.addSubview(cancelButton)
+        configureConstraints()
     }
 
-    func doSomethingOnLoad() {
-        // TODO: Ask the Interactor to do some work
-        output?.doSomething()
+    private func configureConstraints() {
+        cancelButton.snp.makeConstraints { make in
+            make.size.equalToSuperview()
+        }
+    }
+
+    // MARK: -
+
+    @objc
+    func handleCancelPress(sender: Any) {
+        router?.navigateBack()
     }
 }
 

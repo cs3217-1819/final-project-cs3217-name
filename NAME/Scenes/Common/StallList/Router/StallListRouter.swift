@@ -12,7 +12,7 @@ protocol StallListRouterProtocol {
 
     var viewController: StallListViewController? { get }
 
-    func navigateToSomewhere()
+    func navigateToStallSettings()
 }
 
 final class StallListRouter {
@@ -33,7 +33,9 @@ extension StallListRouter: StallListRouterProtocol {
 
     // MARK: - Navigation
 
-    func navigateToSomewhere() {
-
+    func navigateToStallSettings() {
+        let settingsVC = AdminSettingsViewController()
+        settingsVC.modalPresentationStyle = .formSheet
+        viewController?.present(settingsVC, animated: true)
     }
 }

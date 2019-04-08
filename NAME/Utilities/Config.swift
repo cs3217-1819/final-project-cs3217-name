@@ -70,6 +70,19 @@ enum EstablishmentRootConstants {
     static let settingsTabBarTitle = "SETTINGS"
 }
 
+// MARK: - Stall List
+enum StallListConstants {
+    // MARK: Stall Cell
+    static let customerCellHeight: CGFloat = 70.0
+    static let establishmentCellHeight: CGFloat = 300.0
+    static let establishmentCellWidth: CGFloat = 300.0
+    static let buttonHeight: CGFloat = 50.0
+    static let editButtonTitle = "EDIT"
+    static let deleteButtonTitle = "DELETE"
+    static let titleFontSize: CGFloat = 22.0
+    static let cellPadding: CGFloat = 8.0
+}
+
 // MARK: - Customer Common
 enum CustomerCommonConstants {
     static let primaryWidth: CGFloat = 250

@@ -25,6 +25,7 @@ protocol StallListInteractorInput: StallListViewControllerOutput {
 
 protocol StallListInteractorOutput {
     func presentStalls(stalls: [Stall])
+    func presentStallDeleteError()
 }
 
 final class StallListInteractor: StallListFromParentInput {
@@ -71,6 +72,16 @@ extension StallListInteractor: StallListViewControllerOutput {
     func handleStallSelect(at index: Int) {
         toParentMediator?.selectedStall = loadedStalls[index]
     }
+
+    func handleStallDelete(at index: Int) {
+        do {
+            try deps.storageManager.writeTransaction { $0.delete(loadedStalls[index]) }
+            reloadStalls()
+        } catch {
+            output.presentStallDeleteError()
+        }
+    }
+
 }
 
 // MARK: - Dependency injection

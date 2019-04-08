@@ -89,7 +89,7 @@
 		54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252DD224E10DD007BF235 /* StorageManager.swift */; };
 		54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E0224E1D56007BF235 /* RealmStorageManager.swift */; };
 		54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E2224F5C44007BF235 /* DependencyInjector.swift */; };
-		54D252E5224F6D79007BF235 /* StallListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E4224F6D78007BF235 /* StallListTableViewCell.swift */; };
+		54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E4224F6D78007BF235 /* StallListCustomerCell.swift */; };
 		C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E5224B8A20003E4547 /* ModelError.swift */; };
 		C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E9224B9060003E4547 /* ModelHelper.swift */; };
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
@@ -137,6 +137,7 @@
 		FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */; };
 		FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */; };
 		FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */; };
+		FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -251,7 +252,7 @@
 		54D252DD224E10DD007BF235 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		54D252E0224E1D56007BF235 /* RealmStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorageManager.swift; sourceTree = "<group>"; };
 		54D252E2224F5C44007BF235 /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
-		54D252E4224F6D78007BF235 /* StallListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListTableViewCell.swift; sourceTree = "<group>"; };
+		54D252E4224F6D78007BF235 /* StallListCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListCustomerCell.swift; sourceTree = "<group>"; };
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 		FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContainerView.swift; sourceTree = "<group>"; };
 		FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewDataSource.swift; sourceTree = "<group>"; };
 		FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderView.swift; sourceTree = "<group>"; };
+		FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListEstablishmentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +432,7 @@
 		1FB257ED224928550035399F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				54D252B1224CBD25007BF235 /* StallList */,
 				54D252C7224CBD2F007BF235 /* Menu */,
 			);
 			path = Common;
@@ -562,7 +565,6 @@
 				1F763019224D8B2F001E8E5C /* OrderConfirmation */,
 				5441AC412248C4590018A293 /* CustomerRoot */,
 				54D25297224CB637007BF235 /* Browse */,
-				54D252B1224CBD25007BF235 /* StallList */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -822,8 +824,9 @@
 		54D252B6224CBD25007BF235 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				54D252E4224F6D78007BF235 /* StallListTableViewCell.swift */,
 				54D252B7224CBD25007BF235 /* StallListViewController.swift */,
+				54D252E4224F6D78007BF235 /* StallListCustomerCell.swift */,
+				FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1652,6 +1655,7 @@
 				FB519D71224D4F4300BB5DE8 /* LoginInteractor.swift in Sources */,
 				FB519D6F224D4F4300BB5DE8 /* LoginConfigurator.swift in Sources */,
 				1FB2581B224929180035399F /* MenuItemOptionType.swift in Sources */,
+				FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */,
 				1FB25817224929180035399F /* Discount.swift in Sources */,
 				FB519DBB224F440700BB5DE8 /* AdminSettingsWorker.swift in Sources */,
 				54D252AA224CB637007BF235 /* BrowseWorker.swift in Sources */,
@@ -1693,7 +1697,7 @@
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
 				54D252C6224CBD25007BF235 /* StallListRouter.swift in Sources */,
 				54D252C5224CBD25007BF235 /* StallListInteractor.swift in Sources */,
-				54D252E5224F6D79007BF235 /* StallListTableViewCell.swift in Sources */,
+				54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */,
 				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,
@@ -1906,6 +1910,7 @@
 			baseConfigurationReference = AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAME/Info.plist;
@@ -1915,6 +1920,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1925,6 +1931,7 @@
 			baseConfigurationReference = 4E1D1D84429E810A94851115 /* Pods-NAME.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = NAME/Info.plist;
@@ -1934,6 +1941,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = nus.cs3217;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

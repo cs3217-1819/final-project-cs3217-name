@@ -18,5 +18,7 @@ protocol StorageManager {
     func add<T: Storable>(_ object: T, update: Bool)
     func add<S: Sequence>(objects: S, update: Bool) where S.Element: Storable
 
+    func delete<T: Storable>(_ object: T)
+
     func allEstablishments() -> [Establishment]
 }

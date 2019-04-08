@@ -33,7 +33,8 @@ extension EstablishmentRootRouter: EstablishmentRootRouterProtocol {
     }
 
     func stallListViewController() -> UIViewController {
-        let viewController = UINavigationController(rootViewController: StallListViewController(mediator: nil))
+        let viewController = UINavigationController(rootViewController: StallListViewController(isEstablishmentView: true,
+                                                                                                mediator: nil))
         viewController.tabBarItem = UITabBarItem(title: EstablishmentRootConstants.stallListTabBarTitle,
                                                  image: nil,
                                                  tag: 0)
