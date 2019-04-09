@@ -4,14 +4,37 @@
 
 class Bill {
     var items: [BillItem] = []
-    var establishmentDiscounts: [BillDiscount] = []
-    var establishmentSurcharges: [BillSurcharge] = []
+    var establishmentDiscounts: [Discount] = []
+    var establishmentSurcharges: [Surcharge] = []
 
     init(items: [BillItem] = [],
-         establishmentDiscounts: [BillDiscount] = [],
-         establishmentSurcharges: [BillSurcharge] = []) {
+         establishmentDiscounts: [Discount] = [],
+         establishmentSurcharges: [Surcharge] = []) {
         self.items = items
         self.establishmentDiscounts = establishmentDiscounts
         self.establishmentSurcharges = establishmentSurcharges
+    }
+
+    var subtotal: Int {
+        return items.reduce(0) { subtotal, item in subtotal + item.discountedPrice }
+    }
+
+    var grandTotal: Int {
+
+        let subtotal = self.subtotal
+
+        var subtotalAfterDiscount = subtotal
+        for discount in establishmentDiscounts {
+            subtotalAfterDiscount -= discount.toAbsolute(fromAmount: subtotal)
+        }
+        subtotalAfterDiscount = max(subtotalAfterDiscount, 0)
+
+        var total = subtotalAfterDiscount
+
+        for surcharge in establishmentSurcharges {
+            total += surcharge.toAbsolute(fromAmount: subtotalAfterDiscount)
+        }
+
+        return max(total, 0)
     }
 }

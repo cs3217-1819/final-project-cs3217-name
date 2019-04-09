@@ -41,6 +41,16 @@ class Discount: Object, PriceModifier {
         self.timeCondition = timeCondition
     }
 
+    func toAbsolute(fromAmount: Int) -> Int {
+
+        switch(priceModification) {
+        case .absolute(amount: let amount):
+            return Rounder.round(amount)
+        case .multiplier(factor: let factor):
+            return Rounder.round(Double(fromAmount) * factor)
+        }
+    }
+
     override static func primaryKey() -> String? {
         return "id"
     }

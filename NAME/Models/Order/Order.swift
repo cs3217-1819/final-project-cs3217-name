@@ -11,6 +11,10 @@ class Order: Object {
     @objc dynamic var customer: Customer?
     let orderItems = LinkingObjects(fromType: OrderItem.self, property: "order")
 
+    var establishment: Establishment? {
+        return orderItems.first?.menuItem?.menu?.stall?.establishment
+    }
+
     // MARK: - Initialisers
 
     convenience init(queueNumber: Int, customer: Customer) {

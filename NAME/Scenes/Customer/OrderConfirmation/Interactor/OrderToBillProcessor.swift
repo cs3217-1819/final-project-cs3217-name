@@ -2,66 +2,90 @@ class OrderToBillProcessor {
 
     static func process(order: Order) -> Bill? {
 
-        let billPossibilities = transformOrderToBill(order: order)
+        let bill = Bill()
+        bill.items = order.orderItems.compactMap { processOrderItem($0) }
 
-        return computeLowestBill(billPossibilities: billPossibilities)
-    }
+        if let establishmentDiscounts = order.establishment?.discounts {
 
-    static private func transformOrderToBill(order: Order) -> Bill {
-
-        let orderItems = Array(order.orderItems)
-
-        // TODO: make sure empty order is handled before this view controller
-        assert(!orderItems.isEmpty)
-
-        let billItems = orderItems.map { return self.transformOrderItemToBillItem(orderItem: $0) }
-
-        // Process discounts at the establishment level
-        guard let establishment = order.orderItems.first?.menuItem?.menu?.stall?.establishment else {
-            fatalError("Unable to access establishment from order item")
-        }
-        let establishmentDiscounts = Array(establishment.discounts)
-        let establishmentBillDiscounts = createBillDiscounts(price: 0, discounts: establishmentDiscounts)
-
-        return Bill(items: billItems, establishmentDiscounts: establishmentBillDiscounts)
-    }
-
-    static private func transformOrderItemToBillItem(orderItem: OrderItem) -> BillItem {
-
-        guard
-            let price = orderItem.menuItem?.price,
-            let discounts = orderItem.menuItem?.discounts else {
-
-                fatalError("Failed to retrieve price and discounts of corresponding menu item")
+            bill.establishmentDiscounts = computeEstablishmentDiscounts(from: Array(establishmentDiscounts),
+                                                                        subtotal: bill.subtotal)
         }
 
-        let billDiscounts = createBillDiscounts(price: price, discounts: Array(discounts))
-
-        return BillItem(source: orderItem, discounts: billDiscounts)
+        return bill
     }
 
-    static private func createBillDiscounts(price: Int, discounts: [Discount]) -> [BillDiscount] {
+    static private func processOrderItem(_ orderItem: OrderItem) -> BillItem? {
 
-        let billSavings = discounts.map { self.computeDiscountedAmount(originalPrice: price, discount: $0) }
-        let createBillDiscount = { discount, saving in BillDiscount(source: discount, amountReduced: saving) }
+        let possibleBillItems = generatePossibleBillItems(from: orderItem)
 
-        return zip(discounts, billSavings).map(createBillDiscount)
+        return pickBestBillItem(from: possibleBillItems)
     }
 
-    static private func computeDiscountedAmount(originalPrice: Int, discount: Discount) -> Int {
-        switch discount.priceModification {
-        case .absolute(amount: let decreaseAmount):
-            return decreaseAmount
-        case .multiplier(factor: let factor):
-            // TODO: Add rounding
-            return Int((Double(originalPrice) * factor))
+    static private func generatePossibleBillItems(from orderItem: OrderItem) -> [BillItem] {
+
+        guard let discounts = orderItem.menuItem?.discounts else {
+            return [BillItem(source: orderItem, discounts: [])]
+        }
+
+        let stackableDiscounts = Array(discounts.filter { $0.stackable })
+        let nonStackableDiscounts = Array(discounts.filter { !$0.stackable })
+
+        var discountGroups: [[Discount]] = []
+        discountGroups.append(stackableDiscounts)
+        discountGroups.append(contentsOf: nonStackableDiscounts.map { [$0] })
+
+        return discountGroups.map { BillItem(source: orderItem, discounts: $0) }
+    }
+
+    static private func pickBestBillItem(from billItems: [BillItem]) -> BillItem? {
+
+        guard let firstBill = billItems.first else {
+            return nil
+        }
+
+        return billItems.reduce(firstBill) { bestItem, item in
+            if item.discountedPrice < bestItem.discountedPrice {
+                return item
+            }
+            return bestItem
         }
     }
 
-    // Permutates through the different bill possibilities to calculate the
-    // best deal for the user
-    static private func computeLowestBill(billPossibilities: Bill) -> Bill {
+    static private func computeEstablishmentDiscounts(from discounts: [Discount], subtotal: Int) -> [Discount] {
 
-        return Bill()
+        let stackableDiscounts = discounts.filter { $0.stackable }
+        let totalDiscountStackable = stackableDiscounts.reduce(0) { total, discount in
+            total + discount.toAbsolute(fromAmount: subtotal)
+        }
+
+        let nonStackableDiscounts = discounts.filter { !$0.stackable }
+        guard let bestNSDiscount = maxDiscount(nonStackableDiscounts, from: subtotal) else {
+            return stackableDiscounts
+        }
+        let bestNSDiscountAmount = bestNSDiscount.toAbsolute(fromAmount: subtotal)
+
+        if totalDiscountStackable > bestNSDiscountAmount {
+            return stackableDiscounts
+        }
+
+        return [bestNSDiscount]
+    }
+
+    static private func maxDiscount(_ discounts: [Discount], from amount: Int) -> Discount? {
+
+        var maxAmount = 0
+        var maxDiscount: Discount?
+
+        for discount in discounts {
+
+            let amountReduced = discount.toAbsolute(fromAmount: amount)
+
+            if amountReduced > maxAmount {
+                maxAmount = amountReduced
+                maxDiscount = discount
+            }
+        }
+
+        return maxDiscount
     }
 }

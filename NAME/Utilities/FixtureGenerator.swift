@@ -7,6 +7,8 @@
 ///      - po Realm.Configuration.defaultConfiguration.fileURL if no fileURL was specified
 /// 3) Copy path into console, open [path] to view output
 
+import Foundation
+
 enum FixtureGenerator {
 
     static func create(append: Bool = false) throws {
@@ -144,6 +146,26 @@ enum FixtureGenerator {
         let item3a2 = IndividualMenuItem(name: "Fried Chicken Noodles", price: 4_800)
 
         assert(categories.count >= 7)
+
+        let now = DateInterval(start: Date(timeIntervalSinceNow: 0),
+                               end: Date(timeIntervalSinceNow: 10))
+
+        let discount1 = Discount(name: "Special Promo",
+                             priceModification: .absolute(amount: 500),
+                             stackable: true,
+                             timeCondition: .dayRange(now))
+
+        let discount2 = Discount(name: "Item Special",
+                             priceModification: .multiplier(factor: 0.05),
+                             stackable: false,
+                             timeCondition: .dayRange(now))
+
+        item1a1.addDiscount(discount1)
+        item1a1.addDiscount(discount2)
+
+        item1a2.addDiscount(discount1)
+        item2a1.addDiscount(discount1)
+        item2a2.addDiscount(discount1)
 
         item1a1.categories.append(categories[0])
         item1a2.categories.append(categories[0])

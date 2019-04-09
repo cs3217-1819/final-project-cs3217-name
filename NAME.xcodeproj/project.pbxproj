@@ -10,11 +10,7 @@
 		1F21BA04224923230089A1AD /* FixtureGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F21BA03224923230089A1AD /* FixtureGenerator.swift */; };
 		1F2A95DE224EE92D006703DE /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95DD224EE92D006703DE /* Bill.swift */; };
 		1F2A95E0224EE94D006703DE /* BillItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95DF224EE94D006703DE /* BillItem.swift */; };
-		1F2A95E2224EE95F006703DE /* BillDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95E1224EE95F006703DE /* BillDiscount.swift */; };
-		1F2A95E4224EE972006703DE /* BillSurcharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95E3224EE972006703DE /* BillSurcharge.swift */; };
 		1F2A95E6224EEA55006703DE /* OrderToBillProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95E5224EEA55006703DE /* OrderToBillProcessor.swift */; };
-		1F2A95E8224EEB1E006703DE /* BillOptimizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95E7224EEB1E006703DE /* BillOptimizable.swift */; };
-		1F2A95EA224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2A95E9224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift */; };
 		1F76301C224D8B6D001E8E5C /* OrderConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F76301B224D8B6D001E8E5C /* OrderConfirmationViewModel.swift */; };
 		1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */; };
 		1F763026224D8C00001E8E5C /* OrderConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F763025224D8C00001E8E5C /* OrderConfirmationWorker.swift */; };
@@ -163,11 +159,7 @@
 		1F21BA03224923230089A1AD /* FixtureGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureGenerator.swift; sourceTree = "<group>"; };
 		1F2A95DD224EE92D006703DE /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		1F2A95DF224EE94D006703DE /* BillItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItem.swift; sourceTree = "<group>"; };
-		1F2A95E1224EE95F006703DE /* BillDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDiscount.swift; sourceTree = "<group>"; };
-		1F2A95E3224EE972006703DE /* BillSurcharge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillSurcharge.swift; sourceTree = "<group>"; };
 		1F2A95E5224EEA55006703DE /* OrderToBillProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderToBillProcessor.swift; sourceTree = "<group>"; };
-		1F2A95E7224EEB1E006703DE /* BillOptimizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillOptimizable.swift; sourceTree = "<group>"; };
-		1F2A95E9224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillLowestTotalPriceOptimizer.swift; sourceTree = "<group>"; };
 		1F76301B224D8B6D001E8E5C /* OrderConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewModel.swift; sourceTree = "<group>"; };
 		1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationInteractor.swift; sourceTree = "<group>"; };
 		1F763025224D8C00001E8E5C /* OrderConfirmationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationWorker.swift; sourceTree = "<group>"; };
@@ -350,8 +342,6 @@
 			children = (
 				1F2A95DD224EE92D006703DE /* Bill.swift */,
 				1F2A95DF224EE94D006703DE /* BillItem.swift */,
-				1F2A95E1224EE95F006703DE /* BillDiscount.swift */,
-				1F2A95E3224EE972006703DE /* BillSurcharge.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -415,8 +405,6 @@
 			children = (
 				1F763023224D8BE9001E8E5C /* OrderConfirmationInteractor.swift */,
 				1F2A95E5224EEA55006703DE /* OrderToBillProcessor.swift */,
-				1F2A95E7224EEB1E006703DE /* BillOptimizable.swift */,
-				1F2A95E9224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1624,7 +1612,6 @@
 				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
 				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
-				1F2A95E2224EE95F006703DE /* BillDiscount.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
 				540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */,
 				1F2A95E0224EE94D006703DE /* BillItem.swift in Sources */,
@@ -1645,7 +1632,6 @@
 				FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */,
 				54D252DA224CBD2F007BF235 /* MenuWorker.swift in Sources */,
 				C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */,
-				1F2A95E8224EEB1E006703DE /* BillOptimizable.swift in Sources */,
 				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
 				1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */,
 				54D252DB224CBD2F007BF235 /* MenuInteractor.swift in Sources */,
