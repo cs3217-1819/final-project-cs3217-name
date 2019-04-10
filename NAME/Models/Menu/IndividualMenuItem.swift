@@ -6,6 +6,7 @@ class IndividualMenuItem: Object, MenuDisplayable {
     // MARK: - Properties
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
+    @objc dynamic var details: String = ""
     @objc dynamic var imageURL: String?
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var quantity: Int = 0
@@ -24,6 +25,7 @@ class IndividualMenuItem: Object, MenuDisplayable {
     // MARK: - Initialisers
 
     convenience init(name: String,
+                     details: String = "Lorem ipsum dolor sit amet", // TODO remove default value
                      imageURL: String? = nil,
                      price: Int,
                      isHidden: Bool = false,
@@ -34,6 +36,7 @@ class IndividualMenuItem: Object, MenuDisplayable {
         self.init()
 
         self.name = name
+        self.details = details
         self.imageURL = imageURL
         self.price = price
         self.isHidden = isHidden

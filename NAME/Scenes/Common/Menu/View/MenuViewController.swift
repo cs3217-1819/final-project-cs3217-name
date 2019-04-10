@@ -12,13 +12,14 @@ protocol MenuViewControllerInput: MenuPresenterOutput {
 }
 
 protocol MenuViewControllerOutput {
+
 }
 
 private class MenuDataSource: NSObject, UICollectionViewDataSource {
     private let cellIdentifier: String
     private let headerIdentifier: String
 
-    private let categoryViewModels: [MenuViewModel.MenuCategoryViewModel]
+    fileprivate let categoryViewModels: [MenuViewModel.MenuCategoryViewModel]
 
     init(categories: [MenuViewModel.MenuCategoryViewModel], cellIdentifier: String, headerIdentifier: String) {
         self.categoryViewModels = categories
@@ -115,6 +116,16 @@ final class MenuViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension MenuViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let categories = collectionViewDataSource?.categoryViewModels else {
+            return
+        }
+        router?.navigateToMenuDetail(menuId: categories[indexPath.section].items[indexPath.item].id)
     }
 }
 

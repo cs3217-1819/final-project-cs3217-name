@@ -86,6 +86,28 @@
 		54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E0224E1D56007BF235 /* RealmStorageManager.swift */; };
 		54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E2224F5C44007BF235 /* DependencyInjector.swift */; };
 		54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E4224F6D78007BF235 /* StallListCustomerCell.swift */; };
+		C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */; };
+		C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */; };
+		C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */; };
+		C691A5AA225BB6310061CE97 /* MenuDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5A0225BB6310061CE97 /* MenuDetailConfigurator.swift */; };
+		C691A5AB225BB6310061CE97 /* MenuDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5A2225BB6310061CE97 /* MenuDetailWorker.swift */; };
+		C691A5AC225BB6310061CE97 /* MenuDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5A4225BB6310061CE97 /* MenuDetailInteractor.swift */; };
+		C691A5AD225BB6310061CE97 /* MenuDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5A6225BB6310061CE97 /* MenuDetailRouter.swift */; };
+		C691A5BD225BB6480061CE97 /* MenuAddonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5B0225BB6470061CE97 /* MenuAddonsViewModel.swift */; };
+		C691A5BE225BB6480061CE97 /* MenuAddonsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5B2225BB6470061CE97 /* MenuAddonsPresenter.swift */; };
+		C691A5BF225BB6480061CE97 /* MenuAddonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5B4225BB6470061CE97 /* MenuAddonsViewController.swift */; };
+		C691A5C0225BB6480061CE97 /* MenuAddonsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5B6225BB6470061CE97 /* MenuAddonsConfigurator.swift */; };
+		C691A5C1225BB6480061CE97 /* MenuAddonsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5B8225BB6470061CE97 /* MenuAddonsWorker.swift */; };
+		C691A5C2225BB6480061CE97 /* MenuAddonsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5BA225BB6470061CE97 /* MenuAddonsInteractor.swift */; };
+		C691A5C3225BB6480061CE97 /* MenuAddonsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5BC225BB6470061CE97 /* MenuAddonsRouter.swift */; };
+		C691A5D5225BB7F20061CE97 /* MenuInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5C8225BB7F20061CE97 /* MenuInfoViewModel.swift */; };
+		C691A5D6225BB7F20061CE97 /* MenuInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5CA225BB7F20061CE97 /* MenuInfoPresenter.swift */; };
+		C691A5D7225BB7F20061CE97 /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5CC225BB7F20061CE97 /* MenuInfoViewController.swift */; };
+		C691A5D8225BB7F20061CE97 /* MenuInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5CE225BB7F20061CE97 /* MenuInfoConfigurator.swift */; };
+		C691A5D9225BB7F20061CE97 /* MenuInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5D0225BB7F20061CE97 /* MenuInfoWorker.swift */; };
+		C691A5DA225BB7F20061CE97 /* MenuInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5D2225BB7F20061CE97 /* MenuInfoInteractor.swift */; };
+		C691A5DB225BB7F20061CE97 /* MenuInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A5D4225BB7F20061CE97 /* MenuInfoRouter.swift */; };
+		C6BA5902225D0988002011A2 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BA5901225D0987002011A2 /* Int+Extensions.swift */; };
 		C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E5224B8A20003E4547 /* ModelError.swift */; };
 		C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E9224B9060003E4547 /* ModelHelper.swift */; };
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
@@ -248,6 +270,28 @@
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
+		C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
+		C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailPresenter.swift; sourceTree = "<group>"; };
+		C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
+		C691A5A0225BB6310061CE97 /* MenuDetailConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailConfigurator.swift; sourceTree = "<group>"; };
+		C691A5A2225BB6310061CE97 /* MenuDetailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailWorker.swift; sourceTree = "<group>"; };
+		C691A5A4225BB6310061CE97 /* MenuDetailInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailInteractor.swift; sourceTree = "<group>"; };
+		C691A5A6225BB6310061CE97 /* MenuDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailRouter.swift; sourceTree = "<group>"; };
+		C691A5B0225BB6470061CE97 /* MenuAddonsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsViewModel.swift; sourceTree = "<group>"; };
+		C691A5B2225BB6470061CE97 /* MenuAddonsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsPresenter.swift; sourceTree = "<group>"; };
+		C691A5B4225BB6470061CE97 /* MenuAddonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsViewController.swift; sourceTree = "<group>"; };
+		C691A5B6225BB6470061CE97 /* MenuAddonsConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsConfigurator.swift; sourceTree = "<group>"; };
+		C691A5B8225BB6470061CE97 /* MenuAddonsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsWorker.swift; sourceTree = "<group>"; };
+		C691A5BA225BB6470061CE97 /* MenuAddonsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsInteractor.swift; sourceTree = "<group>"; };
+		C691A5BC225BB6470061CE97 /* MenuAddonsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuAddonsRouter.swift; sourceTree = "<group>"; };
+		C691A5C8225BB7F20061CE97 /* MenuInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewModel.swift; sourceTree = "<group>"; };
+		C691A5CA225BB7F20061CE97 /* MenuInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoPresenter.swift; sourceTree = "<group>"; };
+		C691A5CC225BB7F20061CE97 /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
+		C691A5CE225BB7F20061CE97 /* MenuInfoConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoConfigurator.swift; sourceTree = "<group>"; };
+		C691A5D0225BB7F20061CE97 /* MenuInfoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoWorker.swift; sourceTree = "<group>"; };
+		C691A5D2225BB7F20061CE97 /* MenuInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoInteractor.swift; sourceTree = "<group>"; };
+		C691A5D4225BB7F20061CE97 /* MenuInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoRouter.swift; sourceTree = "<group>"; };
+		C6BA5901225D0987002011A2 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		C6EC63E5224B8A20003E4547 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
 		C6EC63E9224B9060003E4547 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
 		C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionValue.swift; sourceTree = "<group>"; };
@@ -333,6 +377,7 @@
 				54D252DD224E10DD007BF235 /* StorageManager.swift */,
 				54D252E0224E1D56007BF235 /* RealmStorageManager.swift */,
 				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
+				C6BA5901225D0987002011A2 /* Int+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -422,6 +467,9 @@
 			children = (
 				54D252B1224CBD25007BF235 /* StallList */,
 				54D252C7224CBD2F007BF235 /* Menu */,
+				C691A598225BB6310061CE97 /* MenuDetail */,
+				C691A5AE225BB6470061CE97 /* MenuAddons */,
+				C691A5C6225BB7F20061CE97 /* MenuInfo */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -944,6 +992,216 @@
 				26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C691A598225BB6310061CE97 /* MenuDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C691A599225BB6310061CE97 /* ViewModel */,
+				C691A59B225BB6310061CE97 /* Presenter */,
+				C691A59D225BB6310061CE97 /* View */,
+				C691A59F225BB6310061CE97 /* Configurator */,
+				C691A5A1225BB6310061CE97 /* Worker */,
+				C691A5A3225BB6310061CE97 /* Interactor */,
+				C691A5A5225BB6310061CE97 /* Router */,
+			);
+			path = MenuDetail;
+			sourceTree = "<group>";
+		};
+		C691A599225BB6310061CE97 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C691A59B225BB6310061CE97 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C691A59D225BB6310061CE97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C691A59F225BB6310061CE97 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5A0225BB6310061CE97 /* MenuDetailConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		C691A5A1225BB6310061CE97 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5A2225BB6310061CE97 /* MenuDetailWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		C691A5A3225BB6310061CE97 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5A4225BB6310061CE97 /* MenuDetailInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C691A5A5225BB6310061CE97 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5A6225BB6310061CE97 /* MenuDetailRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		C691A5AE225BB6470061CE97 /* MenuAddons */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5AF225BB6470061CE97 /* ViewModel */,
+				C691A5B1225BB6470061CE97 /* Presenter */,
+				C691A5B3225BB6470061CE97 /* View */,
+				C691A5B5225BB6470061CE97 /* Configurator */,
+				C691A5B7225BB6470061CE97 /* Worker */,
+				C691A5B9225BB6470061CE97 /* Interactor */,
+				C691A5BB225BB6470061CE97 /* Router */,
+			);
+			path = MenuAddons;
+			sourceTree = "<group>";
+		};
+		C691A5AF225BB6470061CE97 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5B0225BB6470061CE97 /* MenuAddonsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C691A5B1225BB6470061CE97 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5B2225BB6470061CE97 /* MenuAddonsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C691A5B3225BB6470061CE97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5B4225BB6470061CE97 /* MenuAddonsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C691A5B5225BB6470061CE97 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5B6225BB6470061CE97 /* MenuAddonsConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		C691A5B7225BB6470061CE97 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5B8225BB6470061CE97 /* MenuAddonsWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		C691A5B9225BB6470061CE97 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5BA225BB6470061CE97 /* MenuAddonsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C691A5BB225BB6470061CE97 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5BC225BB6470061CE97 /* MenuAddonsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		C691A5C6225BB7F20061CE97 /* MenuInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5C7225BB7F20061CE97 /* ViewModel */,
+				C691A5C9225BB7F20061CE97 /* Presenter */,
+				C691A5CB225BB7F20061CE97 /* View */,
+				C691A5CD225BB7F20061CE97 /* Configurator */,
+				C691A5CF225BB7F20061CE97 /* Worker */,
+				C691A5D1225BB7F20061CE97 /* Interactor */,
+				C691A5D3225BB7F20061CE97 /* Router */,
+			);
+			path = MenuInfo;
+			sourceTree = "<group>";
+		};
+		C691A5C7225BB7F20061CE97 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5C8225BB7F20061CE97 /* MenuInfoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C691A5C9225BB7F20061CE97 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5CA225BB7F20061CE97 /* MenuInfoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C691A5CB225BB7F20061CE97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5CC225BB7F20061CE97 /* MenuInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C691A5CD225BB7F20061CE97 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5CE225BB7F20061CE97 /* MenuInfoConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		C691A5CF225BB7F20061CE97 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5D0225BB7F20061CE97 /* MenuInfoWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		C691A5D1225BB7F20061CE97 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5D2225BB7F20061CE97 /* MenuInfoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C691A5D3225BB7F20061CE97 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C691A5D4225BB7F20061CE97 /* MenuInfoRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		C6EC63ED224BA2D3003E4547 /* TimeCondition */ = {
@@ -1604,18 +1862,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C691A5BF225BB6480061CE97 /* MenuAddonsViewController.swift in Sources */,
+				C691A5D5225BB7F20061CE97 /* MenuInfoViewModel.swift in Sources */,
 				FB519DB7224F440700BB5DE8 /* AdminSettingsViewModel.swift in Sources */,
 				FB519D88224E3A3200BB5DE8 /* StallRootPresenter.swift in Sources */,
 				FB519E242250A61300BB5DE8 /* EstablishmentRootWorker.swift in Sources */,
+				C691A5C2225BB6480061CE97 /* MenuAddonsInteractor.swift in Sources */,
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
 				FB519DF3224FCAB600BB5DE8 /* OrderView.swift in Sources */,
 				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
 				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
+				C691A5BD225BB6480061CE97 /* MenuAddonsViewModel.swift in Sources */,
 				540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */,
 				1F2A95E0224EE94D006703DE /* BillItem.swift in Sources */,
 				5441AC402248C4480018A293 /* SplashRouter.swift in Sources */,
+				C691A5AC225BB6310061CE97 /* MenuDetailInteractor.swift in Sources */,
+				C691A5BE225BB6480061CE97 /* MenuAddonsPresenter.swift in Sources */,
+				C6BA5902225D0988002011A2 /* Int+Extensions.swift in Sources */,
 				1FB25820224929180035399F /* MenuItemOption.swift in Sources */,
 				54D252C3224CBD25007BF235 /* StallListConfigurator.swift in Sources */,
 				FB519D72224D4F4300BB5DE8 /* LoginRouter.swift in Sources */,
@@ -1625,13 +1890,15 @@
 				1FB2581A224929180035399F /* SetMenuItem.swift in Sources */,
 				1FB25818224929180035399F /* Order.swift in Sources */,
 				FB519DA6224F43FC00BB5DE8 /* KitchenBacklogInteractor.swift in Sources */,
-				1F2A95EA224EEB3F006703DE /* BillLowestTotalPriceOptimizer.swift in Sources */,
 				5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */,
 				FB519D70224D4F4300BB5DE8 /* LoginWorker.swift in Sources */,
 				FB519DD9224F5A9100BB5DE8 /* OrderViewCell.swift in Sources */,
+				C691A5AD225BB6310061CE97 /* MenuDetailRouter.swift in Sources */,
+				C691A5D8225BB7F20061CE97 /* MenuInfoConfigurator.swift in Sources */,
 				FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */,
 				54D252DA224CBD2F007BF235 /* MenuWorker.swift in Sources */,
 				C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */,
+				C691A5C3225BB6480061CE97 /* MenuAddonsRouter.swift in Sources */,
 				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
 				1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */,
 				54D252DB224CBD2F007BF235 /* MenuInteractor.swift in Sources */,
@@ -1644,7 +1911,11 @@
 				FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */,
 				1FB25817224929180035399F /* Discount.swift in Sources */,
 				FB519DBB224F440700BB5DE8 /* AdminSettingsWorker.swift in Sources */,
+				C691A5C0225BB6480061CE97 /* MenuAddonsConfigurator.swift in Sources */,
 				54D252AA224CB637007BF235 /* BrowseWorker.swift in Sources */,
+				C691A5DB225BB7F20061CE97 /* MenuInfoRouter.swift in Sources */,
+				C691A5D7225BB7F20061CE97 /* MenuInfoViewController.swift in Sources */,
+				C691A5D6225BB7F20061CE97 /* MenuInfoPresenter.swift in Sources */,
 				FB519DA1224F43FC00BB5DE8 /* KitchenBacklogViewModel.swift in Sources */,
 				1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */,
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
@@ -1670,6 +1941,7 @@
 				54D252D9224CBD2F007BF235 /* MenuConfigurator.swift in Sources */,
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
 				FB519DBD224F440700BB5DE8 /* AdminSettingsRouter.swift in Sources */,
+				C691A5DA225BB7F20061CE97 /* MenuInfoInteractor.swift in Sources */,
 				54D252DC224CBD2F007BF235 /* MenuRouter.swift in Sources */,
 				FB519D8A224E3A3200BB5DE8 /* StallRootConfigurator.swift in Sources */,
 				FB519D89224E3A3200BB5DE8 /* StallRootViewController.swift in Sources */,
@@ -1678,6 +1950,7 @@
 				FB519DF7224FF8B300BB5DE8 /* OrderItemViewCell.swift in Sources */,
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
 				1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */,
+				C691A5C1225BB6480061CE97 /* MenuAddonsWorker.swift in Sources */,
 				1FB25824224929180035399F /* OrderLifecycle.swift in Sources */,
 				54D252AB224CB637007BF235 /* BrowseInteractor.swift in Sources */,
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
@@ -1688,10 +1961,12 @@
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
+				C691A5AA225BB6310061CE97 /* MenuDetailConfigurator.swift in Sources */,
 				FB519D8D224E3A3200BB5DE8 /* StallRootRouter.swift in Sources */,
 				FB519DBA224F440700BB5DE8 /* AdminSettingsConfigurator.swift in Sources */,
 				54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */,
 				FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */,
+				C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */,
 				1FB25825224929180035399F /* MenuCategory.swift in Sources */,
 				FB519DB9224F440700BB5DE8 /* AdminSettingsViewController.swift in Sources */,
 				FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */,
@@ -1699,12 +1974,13 @@
 				54D252A7224CB637007BF235 /* BrowsePresenter.swift in Sources */,
 				FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */,
 				540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */,
-				1F2A95E4224EE972006703DE /* BillSurcharge.swift in Sources */,
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
 				FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */,
+				C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */,
 				540A3E6C2259C722000F2131 /* MenuItemCollectionViewCell.swift in Sources */,
 				1FB2581C224929180035399F /* TimeCondition.swift in Sources */,
 				FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */,
+				C691A5D9225BB7F20061CE97 /* MenuInfoWorker.swift in Sources */,
 				FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */,
 				1FB25826224929180035399F /* OrderItemOption.swift in Sources */,
 				FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */,
@@ -1720,9 +1996,11 @@
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifier.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
+				C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */,
 				FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,
 				1FB2581F224929180035399F /* PriceModification.swift in Sources */,
+				C691A5AB225BB6310061CE97 /* MenuDetailWorker.swift in Sources */,
 				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,
 				54D252C1224CBD25007BF235 /* StallListPresenter.swift in Sources */,
 				1FB25819224929180035399F /* OrderHistory.swift in Sources */,

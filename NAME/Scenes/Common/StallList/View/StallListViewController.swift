@@ -131,6 +131,7 @@ final class StallListViewController: UICollectionViewController {
 
     private func setupCollectionView() {
         collectionView.backgroundColor = .white
+        clearsSelectionOnViewWillAppear = false
     }
 }
 

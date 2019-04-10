@@ -26,7 +26,8 @@ final class MenuPresenter {
 extension MenuPresenter: MenuPresenterInput {
     private func viewModel(forCategory category: MenuCategory) -> MenuViewModel.MenuCategoryViewModel {
         let itemVMs = category.items.map { item in
-            MenuViewModel.MenuItemViewModel(name: item.name,
+            MenuViewModel.MenuItemViewModel(id: item.id,
+                                            name: item.name,
                                             imageURL: item.imageURL,
                                             price: item.price,
                                             discounts: []) // TODO: Add discounts

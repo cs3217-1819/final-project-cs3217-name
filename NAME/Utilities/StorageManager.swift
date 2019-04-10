@@ -21,4 +21,6 @@ protocol StorageManager {
     func delete<T: Storable>(_ object: T)
 
     func allEstablishments() -> [Establishment]
+
+    func getMenuDisplayable(id: String) -> MenuDisplayable?
 }

@@ -12,7 +12,7 @@ protocol MenuRouterProtocol {
 
     var viewController: MenuViewController? { get }
 
-    func navigateToSomewhere()
+    func navigateToMenuDetail(menuId: String)
 }
 
 final class MenuRouter {
@@ -20,9 +20,7 @@ final class MenuRouter {
     weak var viewController: MenuViewController?
 
     // MARK: - Initializers
-
     init(viewController: MenuViewController?) {
-
         self.viewController = viewController
     }
 }
@@ -30,10 +28,9 @@ final class MenuRouter {
 // MARK: - MenuRouterProtocol
 
 extension MenuRouter: MenuRouterProtocol {
-
     // MARK: - Navigation
-
-    func navigateToSomewhere() {
-
+    func navigateToMenuDetail(menuId: String) {
+        let menuDetailViewController = MenuDetailViewController(menuId: menuId)
+        viewController?.present(menuDetailViewController, animated: true)
     }
 }

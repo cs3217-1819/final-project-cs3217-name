@@ -87,3 +87,8 @@ enum StallListConstants {
 enum CustomerCommonConstants {
     static let primaryWidth: CGFloat = 250
 }
+
+// MARK: - Constraints
+enum ConstraintConstants {
+    static let standardValue: CGFloat = 8.0
+}

@@ -5,6 +5,7 @@ class SetMenuItem: Object, MenuDisplayable {
     // MARK: - Properties
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
+    @objc dynamic var details: String = ""
     @objc dynamic var imageURL: String?
     @objc dynamic var isHidden: Bool = false
     @objc dynamic var quantity: Int = 0

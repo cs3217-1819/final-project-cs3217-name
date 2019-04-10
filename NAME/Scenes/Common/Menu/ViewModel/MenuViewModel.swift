@@ -17,6 +17,7 @@ struct MenuViewModel {
     }
 
     struct MenuItemViewModel {
+        let id: String
         let name: String
         let imageURL: String?
         let price: Int
