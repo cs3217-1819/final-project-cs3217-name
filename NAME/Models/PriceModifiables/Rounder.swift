@@ -7,7 +7,7 @@ class Rounder: Object {
     @objc dynamic var id: String = UUID().uuidString
     var name: String = ""
     var priceModification: PriceModification = .absolute(amount: 0)
-  
+
     private static let roundingResolution: Int = 50
 
     static func round(_ amount: Int) -> Int {

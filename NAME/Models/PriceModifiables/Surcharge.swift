@@ -16,7 +16,7 @@ class Surcharge: Object, PriceModifier {
 
     func toAbsolute(fromAmount: Int) -> Int {
 
-        switch(priceModification) {
+        switch priceModification {
         case .absolute(amount: let amount):
             return Rounder.round(amount)
         case .multiplier(factor: let factor):
