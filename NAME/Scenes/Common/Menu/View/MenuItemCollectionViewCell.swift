@@ -11,18 +11,23 @@ import UIKit
 class MenuItemCollectionViewCell: UICollectionViewCell {
     private let nameLabel = UILabel()
 
-    func set(name: String) {
-        nameLabel.text = name
-    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
-    override func layoutSubviews() {
         backgroundColor = .gray
 
         addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        snp.makeConstraints { make in
-            make.size.equalTo(nameLabel)
+        nameLabel.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
         }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func set(name: String) {
+        nameLabel.text = name
     }
 }

@@ -17,20 +17,17 @@ class MenuCategoryHeaderView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    override func layoutSubviews() {
         backgroundColor = .white
         addSubview(label)
 
         label.snp.makeConstraints { make in
-            make.size.equalTo(self)
-            make.center.equalTo(self)
+            make.edges.equalTo(safeAreaLayoutGuide)
         }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     var text: String? {
