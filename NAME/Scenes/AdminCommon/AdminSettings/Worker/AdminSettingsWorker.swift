@@ -9,7 +9,4 @@
 import UIKit
 
 class AdminSettingsWorker {
-    func doSomeWork() {
-        // TODO: Do the work
-    }
 }

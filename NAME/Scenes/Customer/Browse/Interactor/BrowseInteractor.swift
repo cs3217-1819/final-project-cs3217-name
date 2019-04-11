@@ -10,17 +10,12 @@ protocol BrowseInteractorInput: BrowseViewControllerOutput {
 }
 
 protocol BrowseInteractorOutput {
-
-    func presentSomething()
 }
 
 final class BrowseInteractor {
-
     let output: BrowseInteractorOutput
     let worker: BrowseWorker
     private let toChildrenMediator: BrowseIntersceneMediator
-
-    // MARK: - Initializers
 
     init(output: BrowseInteractorOutput,
          toChildrenMediator: BrowseIntersceneMediator,
@@ -35,17 +30,4 @@ final class BrowseInteractor {
 // MARK: - BrowseInteractorInput
 
 extension BrowseInteractor: BrowseViewControllerOutput {
-
-    // MARK: - Business logic
-
-    func doSomething() {
-
-        // TODO: Create some Worker to do the work
-
-        worker.doSomeWork()
-
-        // TODO: Pass the result to the Presenter
-
-        output.presentSomething()
-    }
 }

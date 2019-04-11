@@ -16,10 +16,7 @@ protocol SplashPresenterOutput: class {
 }
 
 final class SplashPresenter {
-
     private(set) unowned var output: SplashPresenterOutput
-
-    // MARK: - Initializers
 
     init(output: SplashPresenterOutput) {
         self.output = output
@@ -29,9 +26,6 @@ final class SplashPresenter {
 // MARK: - SplashPresenterInput
 
 extension SplashPresenter: SplashPresenterInput {
-
-    // MARK: - Presentation logic
-
     func presentInit() {
         let viewModel = SplashViewModel()
         output.reloadDisplay(viewModel: viewModel)

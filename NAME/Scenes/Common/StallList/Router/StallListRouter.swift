@@ -9,20 +9,16 @@
 import UIKit
 
 protocol StallListRouterProtocol {
-
     var viewController: StallListViewController? { get }
 
     func navigateToStallSettings()
 }
 
 final class StallListRouter {
-
     weak var viewController: StallListViewController?
 
     // MARK: - Initializers
-
     init(viewController: StallListViewController?) {
-
         self.viewController = viewController
     }
 }
@@ -30,9 +26,6 @@ final class StallListRouter {
 // MARK: - StallListRouterProtocol
 
 extension StallListRouter: StallListRouterProtocol {
-
-    // MARK: - Navigation
-
     func navigateToStallSettings() {
         let settingsVC = AdminSettingsViewController()
         settingsVC.modalPresentationStyle = .formSheet

@@ -13,7 +13,6 @@ protocol StallRootViewControllerInput: StallRootPresenterOutput {
 }
 
 protocol StallRootViewControllerOutput {
-    func doSomething()
 }
 
 final class StallRootViewController: UITabBarController {
@@ -40,20 +39,11 @@ final class StallRootViewController: UITabBarController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomethingOnLoad()
-    }
-
-    func doSomethingOnLoad() {
-        // TODO: Ask the Interactor to do some work
-        output?.doSomething()
     }
 }
 
 // MARK: - StallRootPresenterOutput
 extension StallRootViewController: StallRootViewControllerInput {
-    func displaySomething(viewModel: StallRootViewModel) {
-        // TODO: Update UI
-    }
 }
 
 extension StallRootViewController: UIViewControllerRestoration {

@@ -9,12 +9,7 @@
 import UIKit
 
 final class SplashConfigurator {
-
-    // MARK: - Singleton
-
     static let shared: SplashConfigurator = SplashConfigurator()
-
-    // MARK: - Configuration
 
     func configure(viewController: SplashViewController) {
         let router = SplashRouter(viewController: viewController)

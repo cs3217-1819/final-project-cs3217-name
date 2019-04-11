@@ -14,7 +14,7 @@ protocol LoginInteractorInput: LoginViewControllerOutput {
 
 protocol LoginInteractorOutput {
 
-    func presentSomething()
+    func presentDefaultScreen()
 }
 
 final class LoginInteractor {
@@ -34,17 +34,7 @@ final class LoginInteractor {
 // MARK: - LoginInteractorInput
 
 extension LoginInteractor: LoginViewControllerOutput {
-
-    // MARK: - Business logic
-
-    func doSomething() {
-
-        // TODO: Create some Worker to do the work
-
-        worker.doSomeWork()
-
-        // TODO: Pass the result to the Presenter
-
-        output.presentSomething()
+    func initializeScreen() {
+        output.presentDefaultScreen()
     }
 }

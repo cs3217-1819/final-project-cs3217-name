@@ -12,7 +12,6 @@ protocol EstablishmentRootInteractorInput: EstablishmentRootViewControllerOutput
 }
 
 protocol EstablishmentRootInteractorOutput {
-    func presentSomething()
 }
 
 final class EstablishmentRootInteractor {
@@ -28,10 +27,4 @@ final class EstablishmentRootInteractor {
 
 // MARK: - EstablishmentRootInteractorInput
 extension EstablishmentRootInteractor: EstablishmentRootViewControllerOutput {
-    func doSomething() {
-        // TODO: Create some Worker to do the work
-        worker.doSomeWork()
-        // TODO: Pass the result to the Presenter
-        output.presentSomething()
-    }
 }

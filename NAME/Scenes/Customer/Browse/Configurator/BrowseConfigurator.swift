@@ -9,12 +9,7 @@
 import UIKit
 
 final class BrowseConfigurator {
-
-    // MARK: - Singleton
-
     static let shared: BrowseConfigurator = BrowseConfigurator()
-
-    // MARK: - Configuration
 
     func configure(viewController: BrowseViewController) {
         let toChildrenMediator = BrowseIntersceneMediator()

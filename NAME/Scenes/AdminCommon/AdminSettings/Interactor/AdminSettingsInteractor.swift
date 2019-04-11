@@ -13,7 +13,6 @@ protocol AdminSettingsInteractorInput: AdminSettingsViewControllerOutput {
 }
 
 protocol AdminSettingsInteractorOutput {
-    func presentSomething()
 }
 
 final class AdminSettingsInteractor {
@@ -29,10 +28,4 @@ final class AdminSettingsInteractor {
 
 // MARK: - AdminSettingsInteractorInput
 extension AdminSettingsInteractor: AdminSettingsViewControllerOutput {
-    func doSomething() {
-        // TODO: Create some Worker to do the work
-        worker.doSomeWork()
-        // TODO: Pass the result to the Presenter
-        output.presentSomething()
-    }
 }

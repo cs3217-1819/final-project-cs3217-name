@@ -176,7 +176,7 @@ extension StallListViewController: StallListTableViewCellDelegate {
 // MARK: - StallListPresenterOutput
 
 extension StallListViewController: StallListViewControllerInput {
-    func displaySomething(viewModel: StallListViewModel) {
+    func display(viewModel: StallListViewModel) {
         collectionViewDataSource = StallListDataSource(isEstablishmentView: isEstablishmentView,
                                                        stalls: viewModel.stalls)
     }

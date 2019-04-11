@@ -13,7 +13,6 @@ protocol AdminSettingsViewControllerInput: AdminSettingsPresenterOutput {
 }
 
 protocol AdminSettingsViewControllerOutput {
-    func doSomething()
 }
 
 final class AdminSettingsViewController: UIViewController {
@@ -58,8 +57,6 @@ final class AdminSettingsViewController: UIViewController {
         }
     }
 
-    // MARK: -
-
     @objc
     func handleCancelPress(sender: Any) {
         router?.navigateBack()
@@ -68,9 +65,6 @@ final class AdminSettingsViewController: UIViewController {
 
 // MARK: - AdminSettingsPresenterOutput
 extension AdminSettingsViewController: AdminSettingsViewControllerInput {
-    func displaySomething(viewModel: AdminSettingsViewModel) {
-        // TODO: Update UI
-    }
 }
 
 extension AdminSettingsViewController: UIViewControllerRestoration {

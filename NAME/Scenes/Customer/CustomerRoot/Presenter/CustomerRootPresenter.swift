@@ -9,22 +9,16 @@
 import UIKit
 
 protocol CustomerRootPresenterInput: CustomerRootInteractorOutput {
-
 }
 
 protocol CustomerRootPresenterOutput: class {
-
-    func displaySomething(viewModel: CustomerRootViewModel)
 }
 
 final class CustomerRootPresenter {
 
     private(set) unowned var output: CustomerRootPresenterOutput
 
-    // MARK: - Initializers
-
     init(output: CustomerRootPresenterOutput) {
-
         self.output = output
     }
 }
@@ -32,14 +26,4 @@ final class CustomerRootPresenter {
 // MARK: - CustomerRootPresenterInput
 
 extension CustomerRootPresenter: CustomerRootPresenterInput {
-
-    // MARK: - Presentation logic
-
-    func presentSomething() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-
-        let viewModel = CustomerRootViewModel()
-        output.displaySomething(viewModel: viewModel)
-    }
 }

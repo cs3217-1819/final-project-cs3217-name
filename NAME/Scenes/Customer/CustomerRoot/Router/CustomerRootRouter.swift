@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CustomerRootRouterProtocol {
-
     var viewController: CustomerRootViewController? { get }
 
     func navigateBack()
@@ -18,13 +17,9 @@ protocol CustomerRootRouterProtocol {
 }
 
 final class CustomerRootRouter {
-
     weak var viewController: CustomerRootViewController?
 
-    // MARK: - Initializers
-
     init(viewController: CustomerRootViewController?) {
-
         self.viewController = viewController
     }
 }
@@ -32,9 +27,6 @@ final class CustomerRootRouter {
 // MARK: - CustomerRootRouterProtocol
 
 extension CustomerRootRouter: CustomerRootRouterProtocol {
-
-    // MARK: - Navigation
-
     func navigateBack() {
         viewController?.dismiss(animated: true)
     }

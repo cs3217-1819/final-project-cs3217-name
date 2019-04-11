@@ -9,16 +9,12 @@
 import UIKit
 
 protocol BrowseViewControllerInput: BrowsePresenterOutput {
-
 }
 
 protocol BrowseViewControllerOutput {
-
-    func doSomething()
 }
 
 final class BrowseViewController: UISplitViewController {
-
     var output: BrowseViewControllerOutput?
     var router: BrowseRouterProtocol?
 
@@ -53,11 +49,6 @@ final class BrowseViewController: UISplitViewController {
 // MARK: - BrowsePresenterOutput
 
 extension BrowseViewController: BrowseViewControllerInput {
-    // MARK: - Display logic
-
-    func displaySomething(viewModel: BrowseViewModel) {
-        // TODO: Update UI
-    }
 }
 
 // MARK: - UIViewControllerRestoration

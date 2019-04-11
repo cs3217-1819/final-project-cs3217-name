@@ -9,12 +9,7 @@
 import UIKit
 
 final class MenuConfigurator {
-
-    // MARK: - Singleton
-
     static let shared: MenuConfigurator = MenuConfigurator()
-
-    // MARK: - Configuration
 
     func configure(viewController: MenuViewController,
                    toParentMediator: MenuToParentOutput?) {

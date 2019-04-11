@@ -74,13 +74,6 @@ final class SplashViewController: UIViewController {
             make.right.equalTo(self.view)
         }
 
-        doSomethingOnLoad()
-    }
-
-    // MARK: - Load data
-
-    func doSomethingOnLoad() {
-        // Ask the Interactor to do some work
         output?.initializeScreen()
     }
 
@@ -100,8 +93,6 @@ final class SplashViewController: UIViewController {
 // MARK: - SplashPresenterOutput
 
 extension SplashViewController: SplashViewControllerInput {
-    // MARK: - Display logic
-
     func reloadDisplay(viewModel: SplashViewModel) {
         startButton.setTitle(viewModel.startButtonTitle, for: .normal)
     }

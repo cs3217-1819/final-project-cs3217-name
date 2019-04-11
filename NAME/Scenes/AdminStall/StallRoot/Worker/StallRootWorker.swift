@@ -9,7 +9,4 @@
 import UIKit
 
 class StallRootWorker {
-    func doSomeWork() {
-        // TODO: Do the work
-    }
 }

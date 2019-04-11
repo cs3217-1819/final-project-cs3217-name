@@ -9,7 +9,6 @@
 import UIKit
 
 protocol SplashRouterProtocol {
-
     var viewController: SplashViewController? { get }
 
     func navigateToCustomerMenu()
@@ -17,10 +16,7 @@ protocol SplashRouterProtocol {
 }
 
 final class SplashRouter {
-
     weak var viewController: SplashViewController?
-
-    // MARK: - Initializers
 
     init(viewController: SplashViewController?) {
         self.viewController = viewController
@@ -30,8 +26,6 @@ final class SplashRouter {
 // MARK: - SplashRouterProtocol
 
 extension SplashRouter: SplashRouterProtocol {
-    // MARK: - Navigation
-
     func navigateToCustomerMenu() {
         let customerRootVC = CustomerRootViewController()
         customerRootVC.modalTransitionStyle = .crossDissolve

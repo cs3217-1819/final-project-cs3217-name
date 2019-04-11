@@ -12,7 +12,7 @@ protocol EstablishmentRootViewControllerInput: EstablishmentRootPresenterOutput 
 }
 
 protocol EstablishmentRootViewControllerOutput {
-    func doSomething()
+
 }
 
 final class EstablishmentRootViewController: UITabBarController {
@@ -39,20 +39,12 @@ final class EstablishmentRootViewController: UITabBarController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomethingOnLoad()
-    }
-
-    func doSomethingOnLoad() {
-        // TODO: Ask the Interactor to do some work
-        output?.doSomething()
     }
 }
 
 // MARK: - EstablishmentRootPresenterOutput
 extension EstablishmentRootViewController: EstablishmentRootViewControllerInput {
-    func displaySomething(viewModel: EstablishmentRootViewModel) {
-        // TODO: Update UI
-    }
+
 }
 
 extension EstablishmentRootViewController: UIViewControllerRestoration {

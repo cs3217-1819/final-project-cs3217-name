@@ -13,7 +13,6 @@ protocol AdminSettingsPresenterInput: AdminSettingsInteractorOutput {
 }
 
 protocol AdminSettingsPresenterOutput: class {
-    func displaySomething(viewModel: AdminSettingsViewModel)
 }
 
 final class AdminSettingsPresenter {
@@ -27,9 +26,4 @@ final class AdminSettingsPresenter {
 
 // MARK: - AdminSettingsPresenterInput
 extension AdminSettingsPresenter: AdminSettingsPresenterInput {
-    func presentSomething() {
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-        let viewModel = AdminSettingsViewModel()
-        output.displaySomething(viewModel: viewModel)
-    }
 }

@@ -52,5 +52,4 @@ final class MenuInteractor: MenuFromParentInput {
 // MARK: - MenuInteractorInput
 
 extension MenuInteractor: MenuViewControllerOutput {
-    // MARK: - Business logic
 }

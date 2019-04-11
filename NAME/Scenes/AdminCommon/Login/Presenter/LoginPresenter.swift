@@ -31,13 +31,7 @@ final class LoginPresenter {
 // MARK: - LoginPresenterInput
 
 extension LoginPresenter: LoginPresenterInput {
-
-    // MARK: - Presentation logic
-
-    func presentSomething() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-
+    func presentDefaultScreen() {
         let viewModel = LoginViewModel()
         output.displayLoginContainer(viewModel: viewModel)
     }

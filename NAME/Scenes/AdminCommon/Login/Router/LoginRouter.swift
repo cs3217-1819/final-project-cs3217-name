@@ -9,7 +9,6 @@
 import UIKit
 
 protocol LoginRouterProtocol {
-
     var viewController: LoginViewController? { get }
 
     func navigateBack()
@@ -18,13 +17,9 @@ protocol LoginRouterProtocol {
 }
 
 final class LoginRouter {
-
     weak var viewController: LoginViewController?
 
-    // MARK: - Initializers
-
     init(viewController: LoginViewController?) {
-
         self.viewController = viewController
     }
 }
@@ -32,7 +27,6 @@ final class LoginRouter {
 // MARK: - LoginRouterProtocol
 
 extension LoginRouter: LoginRouterProtocol {
-
     func navigateBack() {
         viewController?.dismiss(animated: true)
     }

@@ -9,11 +9,4 @@
 import UIKit
 
 class LoginWorker {
-
-    // MARK: - Business Logic
-
-    func doSomeWork() {
-
-        // TODO: Do the work
-    }
 }

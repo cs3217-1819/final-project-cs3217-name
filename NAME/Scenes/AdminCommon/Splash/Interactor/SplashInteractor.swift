@@ -18,8 +18,6 @@ protocol SplashInteractorOutput {
 final class SplashInteractor {
     let output: SplashInteractorOutput
 
-    // MARK: - Initializers
-
     init(output: SplashInteractorOutput) {
         self.output = output
     }
@@ -28,7 +26,6 @@ final class SplashInteractor {
 // MARK: - SplashInteractorInput
 
 extension SplashInteractor: SplashViewControllerOutput {
-    // MARK: - Business logic
     func initializeScreen() {
         output.presentInit()
     }

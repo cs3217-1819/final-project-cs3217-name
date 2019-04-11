@@ -9,23 +9,16 @@
 import UIKit
 
 protocol CustomerRootInteractorInput: CustomerRootViewControllerOutput {
-
 }
 
 protocol CustomerRootInteractorOutput {
-
-    func presentSomething()
 }
 
 final class CustomerRootInteractor {
-
     let output: CustomerRootInteractorOutput
     let worker: CustomerRootWorker
 
-    // MARK: - Initializers
-
     init(output: CustomerRootInteractorOutput, worker: CustomerRootWorker = CustomerRootWorker()) {
-
         self.output = output
         self.worker = worker
     }
@@ -34,17 +27,4 @@ final class CustomerRootInteractor {
 // MARK: - CustomerRootInteractorInput
 
 extension CustomerRootInteractor: CustomerRootViewControllerOutput {
-
-    // MARK: - Business logic
-
-    func doSomething() {
-
-        // TODO: Create some Worker to do the work
-
-        worker.doSomeWork()
-
-        // TODO: Pass the result to the Presenter
-
-        output.presentSomething()
-    }
 }

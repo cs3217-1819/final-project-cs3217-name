@@ -13,8 +13,6 @@ protocol CustomerRootViewControllerInput: CustomerRootPresenterOutput {
 }
 
 protocol CustomerRootViewControllerOutput {
-
-    func doSomething()
 }
 
 final class CustomerRootViewController: UISplitViewController {
@@ -25,16 +23,12 @@ final class CustomerRootViewController: UISplitViewController {
     // MARK: - Initializers
 
     init(configurator: CustomerRootConfigurator = CustomerRootConfigurator.shared) {
-
         super.init(nibName: nil, bundle: nil)
-
         configure(configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-
         super.init(coder: aDecoder)
-
         configure()
     }
 
@@ -57,13 +51,6 @@ final class CustomerRootViewController: UISplitViewController {
 // MARK: - CustomerRootPresenterOutput
 
 extension CustomerRootViewController: CustomerRootViewControllerInput {
-
-    // MARK: - Display logic
-
-    func displaySomething(viewModel: CustomerRootViewModel) {
-
-        // TODO: Update UI
-    }
 }
 
 // MARK: - UIViewControllerRestoration

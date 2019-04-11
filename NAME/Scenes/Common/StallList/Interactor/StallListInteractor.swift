@@ -56,9 +56,6 @@ final class StallListInteractor: StallListFromParentInput {
 // MARK: - StallListInteractorInput
 
 extension StallListInteractor: StallListViewControllerOutput {
-
-    // MARK: - Business logic
-
     func reloadStalls() {
         // TODO: Filter stalls by actual current establishment
         guard let currentEstablishment = deps.storageManager.allEstablishments().first else {
@@ -81,7 +78,6 @@ extension StallListInteractor: StallListViewControllerOutput {
             output.presentStallDeleteError()
         }
     }
-
 }
 
 // MARK: - Dependency injection

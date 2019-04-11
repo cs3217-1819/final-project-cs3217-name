@@ -13,7 +13,6 @@ protocol StallRootInteractorInput: StallRootViewControllerOutput {
 }
 
 protocol StallRootInteractorOutput {
-    func presentSomething()
 }
 
 final class StallRootInteractor {
@@ -29,10 +28,4 @@ final class StallRootInteractor {
 
 // MARK: - StallRootInteractorInput
 extension StallRootInteractor: StallRootViewControllerOutput {
-    func doSomething() {
-        // TODO: Create some Worker to do the work
-        worker.doSomeWork()
-        // TODO: Pass the result to the Presenter
-        output.presentSomething()
-    }
 }

@@ -9,12 +9,7 @@
 import UIKit
 
 final class StallListConfigurator {
-
-    // MARK: - Singleton
-
     static let shared: StallListConfigurator = StallListConfigurator()
-
-    // MARK: - Configuration
 
     func configure(viewController: StallListViewController,
                    toParentMediator: StallListToParentOutput?,

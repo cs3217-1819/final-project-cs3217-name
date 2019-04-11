@@ -9,7 +9,4 @@
 import UIKit
 
 class EstablishmentRootWorker {
-    func doSomeWork() {
-        // TODO: Do the work
-    }
 }

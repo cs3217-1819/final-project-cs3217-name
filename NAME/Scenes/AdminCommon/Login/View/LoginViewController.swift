@@ -13,7 +13,7 @@ protocol LoginViewControllerInput: LoginPresenterOutput {
 }
 
 protocol LoginViewControllerOutput {
-    func doSomething()
+    func initializeScreen()
 }
 
 final class LoginViewController: UIViewController {
@@ -56,9 +56,7 @@ final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpLoginContainer()
-        doSomethingOnLoad()
     }
 
     func setUpLoginContainer() {
@@ -75,13 +73,8 @@ final class LoginViewController: UIViewController {
         loginContainerView.backgroundColor = LoginConstants.containerColor
         loginContainerView.layer.cornerRadius = LoginConstants.containerCornerRadius
         loginContainerView.clipsToBounds = true
-    }
 
-    // MARK: - Load data
-
-    func doSomethingOnLoad() {
-        // TODO: Ask the Interactor to do some work
-        output?.doSomething()
+        output?.initializeScreen()
     }
 
 }
@@ -103,7 +96,6 @@ extension LoginViewController: LoginContainerViewDelegate {
 
 // MARK: - LoginPresenterOutput
 extension LoginViewController: LoginViewControllerInput {
-
     func displayLoginContainer(viewModel: LoginViewModel) {
         loginContainerView.viewModel = viewModel
     }

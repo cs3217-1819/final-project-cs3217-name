@@ -13,7 +13,6 @@ protocol StallRootPresenterInput: StallRootInteractorOutput {
 }
 
 protocol StallRootPresenterOutput: class {
-    func displaySomething(viewModel: StallRootViewModel)
 }
 
 final class StallRootPresenter {
@@ -27,9 +26,4 @@ final class StallRootPresenter {
 
 // MARK: - StallRootPresenterInput
 extension StallRootPresenter: StallRootPresenterInput {
-    func presentSomething() {
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-        let viewModel = StallRootViewModel()
-        output.displaySomething(viewModel: viewModel)
-    }
 }

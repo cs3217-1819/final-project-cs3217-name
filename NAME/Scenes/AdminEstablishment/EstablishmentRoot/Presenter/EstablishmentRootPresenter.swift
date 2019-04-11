@@ -12,7 +12,7 @@ protocol EstablishmentRootPresenterInput: EstablishmentRootInteractorOutput {
 }
 
 protocol EstablishmentRootPresenterOutput: class {
-    func displaySomething(viewModel: EstablishmentRootViewModel)
+
 }
 
 final class EstablishmentRootPresenter {
@@ -26,9 +26,5 @@ final class EstablishmentRootPresenter {
 
 // MARK: - EstablishmentRootPresenterInput
 extension EstablishmentRootPresenter: EstablishmentRootPresenterInput {
-    func presentSomething() {
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-        let viewModel = EstablishmentRootViewModel()
-        output.displaySomething(viewModel: viewModel)
-    }
+
 }

@@ -9,11 +9,4 @@
 import UIKit
 
 class CustomerRootWorker {
-
-    // MARK: - Business Logic
-
-    func doSomeWork() {
-
-        // TODO: Do the work
-    }
 }
