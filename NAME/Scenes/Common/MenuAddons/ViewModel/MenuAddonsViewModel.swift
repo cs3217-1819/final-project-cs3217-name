@@ -9,5 +9,19 @@
 import UIKit
 
 struct MenuAddonsViewModel {
-
+    struct MenuOptionViewModel {
+        let name: String
+        let type: MenuOptionTypeViewModel
+        let value: MenuOptionValueViewModel
+    }
+    enum MenuOptionValueViewModel {
+        case quantity(Int)
+        case choice(String)
+    }
+    enum MenuOptionTypeViewModel {
+        case quantity(price: String)
+        case choices([(name: String, price: String)])
+    }
+    let options: [MenuOptionViewModel]
+    let totalPrice: String
 }

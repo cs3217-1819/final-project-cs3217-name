@@ -13,7 +13,7 @@ protocol MenuAddonsPresenterInput: MenuAddonsInteractorOutput {
 }
 
 protocol MenuAddonsPresenterOutput: class {
-    func displaySomething(viewModel: MenuAddonsViewModel)
+    func display(viewModel: MenuAddonsViewModel)
 }
 
 final class MenuAddonsPresenter {
@@ -27,9 +27,43 @@ final class MenuAddonsPresenter {
 
 // MARK: - MenuAddonsPresenterInput
 extension MenuAddonsPresenter: MenuAddonsPresenterInput {
-    func presentSomething() {
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-        let viewModel = MenuAddonsViewModel()
-        output.displaySomething(viewModel: viewModel)
+    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int) {
+        let options = optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionTypeViewModel in
+            switch optionValue.option.options {
+            case .boolean(let price):
+                let choices: [(name: String, price: String)] =
+                    MenuAddonsConstants.booleanChoices.map { arg in
+                        let (key, value) = arg
+                        return (name: value, price: (key ? price : 0).formattedAsPrice())
+                    }
+                return .choices(choices)
+            case .multipleChoice(let choices):
+                return .choices(choices.map { (name: $0.name, price: $0.price.formattedAsPrice()) })
+            case .quantity(let price):
+                return .quantity(price: price.formattedAsPrice())
+            }
+        }
+        let values = optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionValueViewModel in
+            switch optionValue.value {
+            case let .boolean(value):
+                guard let choice = MenuAddonsConstants.booleanChoices[value] else {
+                    fatalError("You dumbo! Check MenuAddonsConstants.booleanChoices that it maps all boolean!")
+                }
+                return .choice(choice)
+            case let .multipleChoice(value):
+                return .choice(value)
+            case let .quantity(quantity):
+                return .quantity(quantity)
+            }
+        }
+        let optionsViewModel = zip(optionValues, zip(options, values))
+            .map { optionValue, arg -> MenuAddonsViewModel.MenuOptionViewModel in
+                let (option, value) = arg
+                return MenuAddonsViewModel.MenuOptionViewModel(name: optionValue.option.name,
+                                                               type: option,
+                                                               value: value)
+            }
+        let viewModel = MenuAddonsViewModel(options: optionsViewModel, totalPrice: totalPrice.formattedAsPrice())
+        output.display(viewModel: viewModel)
     }
 }

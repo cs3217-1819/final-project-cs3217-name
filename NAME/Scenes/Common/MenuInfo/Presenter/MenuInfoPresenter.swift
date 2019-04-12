@@ -28,14 +28,9 @@ final class MenuInfoPresenter {
 // MARK: - MenuInfoPresenterInput
 extension MenuInfoPresenter: MenuInfoPresenterInput {
     func presentMenuDisplayable(_ menuDisplayable: MenuDisplayable) {
-        // TODO: Format the response from the Interactor and pass the result back to the View Controller
-        guard let price = menuDisplayable.price.formattedAsPrice() else {
-            assertionFailure("Unable to format price")
-            return
-        }
         let viewModel = MenuInfoViewModel(name: menuDisplayable.name,
                                           details: menuDisplayable.details,
-                                          price: price)
+                                          price: menuDisplayable.price.formattedAsPrice())
         output.display(viewModel: viewModel)
     }
 }

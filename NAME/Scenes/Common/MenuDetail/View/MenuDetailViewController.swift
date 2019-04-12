@@ -13,7 +13,6 @@ protocol MenuDetailViewControllerInput: MenuDetailPresenterOutput {
 }
 
 protocol MenuDetailViewControllerOutput {
-    func doSomething()
 }
 
 final class MenuDetailViewController: UISplitViewController {
@@ -46,7 +45,4 @@ final class MenuDetailViewController: UISplitViewController {
 
 // MARK: - MenuDetailPresenterOutput
 extension MenuDetailViewController: MenuDetailViewControllerInput {
-    func displaySomething(viewModel: MenuDetailViewModel) {
-        // TODO: Update UI
-    }
 }

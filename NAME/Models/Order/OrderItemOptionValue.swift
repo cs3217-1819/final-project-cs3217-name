@@ -11,7 +11,7 @@ import Foundation
 enum OrderItemOptionValue {
     case boolean(Bool)
     case quantity(Int)
-    case multipleChoice([String])
+    case multipleChoice(String)
 }
 
 extension OrderItemOptionValue: Codable {
@@ -25,7 +25,7 @@ extension OrderItemOptionValue: Codable {
             self = .boolean(boolean)
         } else if let quantity = try? container.decode(Int.self, forKey: .choices) {
             self = .quantity(quantity)
-        } else if let multipleChoice = try? container.decode([String].self, forKey: .choices) {
+        } else if let multipleChoice = try? container.decode(String.self, forKey: .choices) {
             self = .multipleChoice(multipleChoice)
         } else {
             throw ModelError.deserialization

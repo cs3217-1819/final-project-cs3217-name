@@ -9,7 +9,4 @@
 import UIKit
 
 class MenuDetailWorker {
-    func doSomeWork() {
-        // TODO: Do the work
-    }
 }

@@ -20,6 +20,7 @@ class SetMenuItem: Object, MenuDisplayable {
     }
 
     let items = List<IndividualMenuItem>()
+    let options = List<MenuItemOption>()
 
     convenience init(name: String,
                      imageURL: String? = nil,

@@ -13,10 +13,10 @@ final class MenuAddonsConfigurator {
     static let shared: MenuAddonsConfigurator = MenuAddonsConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: MenuAddonsViewController) {
+    func configure(viewController: MenuAddonsViewController, menuId: String) {
         let router = MenuAddonsRouter(viewController: viewController)
         let presenter = MenuAddonsPresenter(output: viewController)
-        let interactor = MenuAddonsInteractor(output: presenter)
+        let interactor = MenuAddonsInteractor(output: presenter, menuId: menuId)
 
         viewController.output = interactor
         viewController.router = router

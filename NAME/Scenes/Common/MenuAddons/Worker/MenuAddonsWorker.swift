@@ -9,7 +9,4 @@
 import UIKit
 
 class MenuAddonsWorker {
-    func doSomeWork() {
-        // TODO: Do the work
-    }
 }

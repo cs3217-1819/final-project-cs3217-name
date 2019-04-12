@@ -13,7 +13,6 @@ protocol MenuDetailInteractorInput: MenuDetailViewControllerOutput {
 }
 
 protocol MenuDetailInteractorOutput {
-    func presentSomething()
 }
 
 final class MenuDetailInteractor {
@@ -29,10 +28,4 @@ final class MenuDetailInteractor {
 
 // MARK: - MenuDetailInteractorInput
 extension MenuDetailInteractor: MenuDetailViewControllerOutput {
-    func doSomething() {
-        // TODO: Create some Worker to do the work
-        worker.doSomeWork()
-        // TODO: Pass the result to the Presenter
-        output.presentSomething()
-    }
 }

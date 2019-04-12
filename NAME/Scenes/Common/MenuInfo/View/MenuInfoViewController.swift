@@ -20,6 +20,7 @@ final class MenuInfoViewController: UIViewController {
     var output: MenuInfoViewControllerOutput?
     var router: MenuInfoRouterProtocol?
 
+    // TODO use real image
     private let imageView: UIImageView = {
         let result = UIImageView(frame: .zero)
         result.backgroundColor = .gray

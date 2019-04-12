@@ -1,13 +1,12 @@
 import Foundation
 import RealmSwift
 
-class MenuItemOption: Object, Priceable {
+class MenuItemOption: Object {
 
     // MARK: - Properties
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var imageURL: String?
-    @objc dynamic var price: Int = 0
     @objc dynamic private var optionsEncoded = Data()
     @objc dynamic private var defaultValueEncoded = Data()
 
@@ -48,15 +47,13 @@ class MenuItemOption: Object, Priceable {
     convenience init(name: String,
                      imageURL: String = "",
                      options: MenuItemOptionType,
-                     defaultValue: OrderItemOptionValue,
-                     price: Int = 0) {
+                     defaultValue: OrderItemOptionValue) {
         self.init()
 
         self.name = name
         self.imageURL = imageURL
         self.options = options
         self.defaultValue = defaultValue
-        self.price = price
     }
 
     override static func primaryKey() -> String? {

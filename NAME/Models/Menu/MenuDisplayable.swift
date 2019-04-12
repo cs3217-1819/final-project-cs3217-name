@@ -10,4 +10,5 @@ protocol MenuDisplayable: Priceable {
 
     var categories: List<MenuCategory> { get }
     var discounts: List<Discount> { get }
+    var options: List<MenuItemOption> { get }
 }

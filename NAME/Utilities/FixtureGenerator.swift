@@ -111,16 +111,43 @@ enum FixtureGenerator {
 
     static func createMenuItemOptions() -> [MenuItemOption] {
 
-        let itemOption1 = MenuItemOption(name: "Vegetables", options: .boolean, defaultValue: .boolean(false))
+        let itemOption1 = MenuItemOption(name: "Vegetables",
+                                         options: .boolean(price: 500),
+                                         defaultValue: .boolean(false))
         let itemOption2 = MenuItemOption(name: "Golden Mushroom",
-                                         options: .quantity,
-                                         defaultValue: .quantity(1),
-                                         price: 500)
+                                         options: .quantity(price: 50),
+                                         defaultValue: .quantity(1))
         let itemOption3 = MenuItemOption(name: "Broth",
-                                         options: .multipleChoice(["Chicken", "Seafood"]),
-                                         defaultValue: .multipleChoice(["Chicken"]))
+                                         options: .multipleChoice([
+                                            ("Chicken", 500), ("Seafood", 400), ("Never", 300),
+                                            ("Gonna", 200), ("Give", 100), ("You", 0), ("Up", -100)]),
+                                         defaultValue: .multipleChoice("Give"))
 
-        return [itemOption1, itemOption2, itemOption3]
+        let itemOption4 = MenuItemOption(name: "NDP Songs",
+                                         options: .multipleChoice([
+                                            ("Count on Me", 100), ("Five stars", 200), ("Litle Things", 300),
+                                            ("Stand up", 400),
+                                            ("Will You", 500),
+                                            ("Home", 600)]),
+                                         defaultValue: .multipleChoice("Home"))
+
+        let itemOption5 = MenuItemOption(name: "Best 3217 TA",
+                                         options: .multipleChoice([
+                                            ("Herbert", 0), ("Xien Dong", 0), ("Yunpeng", 0),
+                                            ("Yanhao", 0), ("Wai Kay", 0)]),
+                                         defaultValue: .multipleChoice("Wai Kay"))
+
+        let itemOption6 = MenuItemOption(name: "2019 General Election Ballot",
+                                         options: .multipleChoice([("PAP", 1_000_000), ("PPAP", 0)]),
+                                         defaultValue: .multipleChoice("PAP"))
+
+        let itemOption7 = MenuItemOption(name: "Best Language",
+                                         options: .multipleChoice([
+                                            ("Swift", 0), ("Objective-C", 0), ("C", 0),
+                                            ("JavaScript", 0), ("Python", 0), ("Ruby", 0)]),
+                                         defaultValue: .multipleChoice("Ruby"))
+
+        return [itemOption1, itemOption2, itemOption3, itemOption4, itemOption5, itemOption6, itemOption7]
     }
 
     static func createIndividualMenuItems(categories: [MenuCategory],
@@ -133,7 +160,7 @@ enum FixtureGenerator {
         let item1b1 = IndividualMenuItem(name: "Wonton Mee", price: 3_000, options: [options[2]])
         let item1b2 = IndividualMenuItem(name: "Kolok Mee", price: 3_500, options: [options[2]])
 
-        let item2a1 = IndividualMenuItem(name: "Item A", price: 3_000)
+        let item2a1 = IndividualMenuItem(name: "Item A", price: 3_000, options: options)
         let item2a2 = IndividualMenuItem(name: "Item B", price: 3_500)
         let item2b1 = IndividualMenuItem(name: "Item C", price: 4_000)
         let item2b2 = IndividualMenuItem(name: "Item D", price: 4_500)

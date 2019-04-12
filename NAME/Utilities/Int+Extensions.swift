@@ -9,9 +9,12 @@
 import Foundation
 
 extension Int {
-    func formattedAsPrice() -> String? {
+    func formattedAsPrice() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        return formatter.string(from: (self / 1_000) as NSNumber)
+        guard let result = formatter.string(from: (Double(self) / 1_000) as NSNumber) else {
+            fatalError("Apple u wot m8")
+        }
+        return result
     }
 }

@@ -91,4 +91,14 @@ enum CustomerCommonConstants {
 // MARK: - Constraints
 enum ConstraintConstants {
     static let standardValue: CGFloat = 8.0
+    static let dividerWidth: CGFloat = 1.0
+}
+
+// MARK: - MenuAddons
+enum MenuAddonsConstants {
+    static let resetButtonTitle = "RESET"
+    static let addButtonTitle = "ADD"
+    static let booleanChoices = [true: "YES", false: "NO"]
+    static let addonsSize = CGSize(width: 100, height: 120)
+    static let footerViewHeight: CGFloat = 100.0
 }
