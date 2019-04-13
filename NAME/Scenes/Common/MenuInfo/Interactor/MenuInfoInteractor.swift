@@ -14,6 +14,7 @@ protocol MenuInfoInteractorInput: MenuInfoViewControllerOutput {
 
 protocol MenuInfoInteractorOutput {
     func presentMenuDisplayable(_ menuDisplayable: MenuDisplayable)
+    func presentComment(_ comment: String)
 }
 
 final class MenuInfoInteractor {
@@ -24,6 +25,8 @@ final class MenuInfoInteractor {
 
     let output: MenuInfoInteractorOutput
     let worker: MenuInfoWorker
+
+    private var comment: String = ""
 
     private let menuDisplayable: MenuDisplayable
 
@@ -45,6 +48,11 @@ final class MenuInfoInteractor {
 
 // MARK: - MenuInfoInteractorInput
 extension MenuInfoInteractor: MenuInfoViewControllerOutput {
+    func changeComment(_ comment: String) {
+        self.comment = comment
+        output.presentComment(comment)
+    }
+
     func loadMenuDisplayable() {
         output.presentMenuDisplayable(menuDisplayable)
     }

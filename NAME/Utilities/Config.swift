@@ -96,6 +96,10 @@ enum ConstraintConstants {
 
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
+    static let maximumNumberOfLines = 4
+    static let extraCommentAlertTitle = "Extra Comment"
+    static let commentLabelText = "EXTRA COMMENT"
+    static let deleteCommentButtonTitle = "DELETE EXTRA COMMENT"
     static let resetButtonTitle = "RESET ALL"
     static let sectionResetButtonTitle = "RESET"
     static let addButtonTitle = "ADD"
@@ -103,4 +107,9 @@ enum MenuAddonsConstants {
     static let addonsSize = CGSize(width: 100, height: 120)
     static let footerViewHeight: CGFloat = 100.0
     static let sectionHeaderHeight: CGFloat = 50.0
+}
+
+enum AlertConstants {
+    static let okTitle = "OK"
+    static let cancelTitle = "Cancel"
 }

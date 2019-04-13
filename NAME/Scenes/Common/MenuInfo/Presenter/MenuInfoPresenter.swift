@@ -14,6 +14,7 @@ protocol MenuInfoPresenterInput: MenuInfoInteractorOutput {
 
 protocol MenuInfoPresenterOutput: class {
     func display(viewModel: MenuInfoViewModel)
+    func display(comment: String)
 }
 
 final class MenuInfoPresenter {
@@ -27,6 +28,10 @@ final class MenuInfoPresenter {
 
 // MARK: - MenuInfoPresenterInput
 extension MenuInfoPresenter: MenuInfoPresenterInput {
+    func presentComment(_ comment: String) {
+        output.display(comment: comment)
+    }
+
     func presentMenuDisplayable(_ menuDisplayable: MenuDisplayable) {
         let viewModel = MenuInfoViewModel(name: menuDisplayable.name,
                                           details: menuDisplayable.details,
