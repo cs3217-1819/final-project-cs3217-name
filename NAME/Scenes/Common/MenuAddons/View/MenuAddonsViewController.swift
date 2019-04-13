@@ -15,6 +15,7 @@ protocol MenuAddonsViewControllerInput: MenuAddonsPresenterOutput {
 protocol MenuAddonsViewControllerOutput {
     func loadOptions()
     func reset()
+    func reset(section: Int)
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
 }
 
@@ -60,6 +61,7 @@ private final class MenuAddonsDataSource: NSObject, UITableViewDataSource {
 
 final class MenuAddonsViewController: UIViewController {
     private static let cellIdentifier = "cellIdentifier"
+    private let headerIdentifier = "headerIdentifier"
 
     var output: MenuAddonsViewControllerOutput?
     var router: MenuAddonsRouterProtocol?
@@ -72,8 +74,11 @@ final class MenuAddonsViewController: UIViewController {
         result.allowsSelection = false
         result.rowHeight = MenuAddonsConstants.addonsSize.height
         result.estimatedRowHeight = result.rowHeight
+        result.sectionHeaderHeight = MenuAddonsConstants.sectionHeaderHeight
         result.register(MenuAddonsTableViewCell.self,
                         forCellReuseIdentifier: MenuAddonsViewController.cellIdentifier)
+        result.register(MenuAddonsTableViewHeaderView.self,
+                        forHeaderFooterViewReuseIdentifier: headerIdentifier)
         return result
     }()
 
@@ -165,7 +170,23 @@ final class MenuAddonsViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension MenuAddonsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let reusableView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier)
+        guard let headerView = reusableView as? MenuAddonsTableViewHeaderView,
+            let title = tableViewDataSource?.tableView(tableView, titleForHeaderInSection: section) else {
+            return nil
+        }
+        headerView.set(section: section, title: title)
+        headerView.delegate = self
+        return headerView
+    }
+}
 
+// MARK: - MenuAddonsTableViewHeaderViewDelegate
+extension MenuAddonsViewController: MenuAddonsTableViewHeaderViewDelegate {
+    func resetButtonDidTap(section: Int) {
+        output?.reset(section: section)
+    }
 }
 
 // MARK: - MenuAddonsFooterViewDelegate

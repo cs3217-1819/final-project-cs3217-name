@@ -70,6 +70,12 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
         passValueToPresenter()
     }
 
+    func reset(section: Int) {
+        let optionValue = optionValues[section]
+        optionValues[section] = OptionValue(option: optionValue.option, value: optionValue.option.defaultValue)
+        passValueToPresenter()
+    }
+
     func loadOptions() {
         passValueToPresenter()
     }

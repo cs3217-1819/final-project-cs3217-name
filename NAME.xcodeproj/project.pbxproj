@@ -86,6 +86,7 @@
 		54D252E1224E1D56007BF235 /* RealmStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E0224E1D56007BF235 /* RealmStorageManager.swift */; };
 		54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E2224F5C44007BF235 /* DependencyInjector.swift */; };
 		54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D252E4224F6D78007BF235 /* StallListCustomerCell.swift */; };
+		C61B4DD522617DA40076F60C /* MenuAddonsTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61B4DD422617DA40076F60C /* MenuAddonsTableViewHeaderView.swift */; };
 		C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */; };
 		C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */; };
 		C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */; };
@@ -273,6 +274,7 @@
 		55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEA8FAF9005D3B23BAB3DF0C /* Pods-NAMETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEECB3018321B39DDF8AEEC3 /* Pods-NAME.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAME.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NAME/Pods-NAME.debug.xcconfig"; sourceTree = "<group>"; };
+		C61B4DD422617DA40076F60C /* MenuAddonsTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsTableViewHeaderView.swift; sourceTree = "<group>"; };
 		C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
 		C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailPresenter.swift; sourceTree = "<group>"; };
 		C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
@@ -1107,6 +1109,7 @@
 				C6D83D05225DCCB100840504 /* MenuAddonsFooterView.swift */,
 				C6D83D07225DDA5800840504 /* MenuAddonsTableViewCell.swift */,
 				C6D83D09225DDE6600840504 /* MenuAddonsCollectionViewCell.swift */,
+				C61B4DD422617DA40076F60C /* MenuAddonsTableViewHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1962,6 +1965,7 @@
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
 				1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */,
 				C691A5C1225BB6480061CE97 /* MenuAddonsWorker.swift in Sources */,
+				C61B4DD522617DA40076F60C /* MenuAddonsTableViewHeaderView.swift in Sources */,
 				1FB25824224929180035399F /* OrderLifecycle.swift in Sources */,
 				54D252AB224CB637007BF235 /* BrowseInteractor.swift in Sources */,
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
