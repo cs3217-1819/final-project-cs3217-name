@@ -9,10 +9,9 @@
 import Foundation
 import UIKit
 
-// TODO to subclass QuantityView
-class MenuAddonsQuantityViewDelegate: MenuAddonsTableViewCellProvider {
+class MenuAddonsQuantityViewDelegate: QuantityViewDelegate, MenuAddonsTableViewCellProvider {
     let price: String
-    let quantity: Int
+    private(set) var quantity: Int
     private let section: Int
 
     weak var delegate: MenuAddonsTableViewCellDelegate?
@@ -31,5 +30,10 @@ class MenuAddonsQuantityViewDelegate: MenuAddonsTableViewCellProvider {
         }
         cell.set(dataSourceDelegate: self)
         return cell
+    }
+
+    func valueDidChange(newValue: Int) {
+        quantity = newValue
+        delegate?.valueDidSelect(section: section, itemOrQuantity: newValue)
     }
 }

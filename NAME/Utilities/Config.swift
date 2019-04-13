@@ -121,6 +121,14 @@ enum MenuAddonsConstants {
     static let sectionHeaderHeight: CGFloat = 50.0
 }
 
+// MARK: - QuantityView
+enum QuantityViewConstants {
+    static let increaseQuantityTitle = "▲"
+    static let decreaseQuantityTitle = "▼"
+    static let title = "Qty"
+    static let quantityWidth: CGFloat = 30.0
+}
+
 enum AlertConstants {
     static let okTitle = "OK"
     static let cancelTitle = "Cancel"

@@ -91,6 +91,7 @@
 		C61DD3EE2261DF8E00DC11A3 /* MenuAddonsCollectionViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61DD3ED2261DF8E00DC11A3 /* MenuAddonsCollectionViewDataSourceDelegate.swift */; };
 		C61DD3F02261E3D800DC11A3 /* MenuAddonsTableViewQuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61DD3EF2261E3D800DC11A3 /* MenuAddonsTableViewQuantityCell.swift */; };
 		C61DD3F22261E84A00DC11A3 /* MenuAddonsQuantityViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61DD3F12261E84A00DC11A3 /* MenuAddonsQuantityViewDelegate.swift */; };
+		C61DD3F52261FEEB00DC11A3 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61DD3F42261FEEB00DC11A3 /* QuantityView.swift */; };
 		C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */; };
 		C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */; };
 		C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */; };
@@ -289,6 +290,7 @@
 		C61DD3ED2261DF8E00DC11A3 /* MenuAddonsCollectionViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsCollectionViewDataSourceDelegate.swift; sourceTree = "<group>"; };
 		C61DD3EF2261E3D800DC11A3 /* MenuAddonsTableViewQuantityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsTableViewQuantityCell.swift; sourceTree = "<group>"; };
 		C61DD3F12261E84A00DC11A3 /* MenuAddonsQuantityViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsQuantityViewDelegate.swift; sourceTree = "<group>"; };
+		C61DD3F42261FEEB00DC11A3 /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
 		C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
 		C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailPresenter.swift; sourceTree = "<group>"; };
 		C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				1FB2582B22492FCE0035399F /* Models */,
 				1F21BA02224923030089A1AD /* Utilities */,
 				5441AC272248BD7C0018A293 /* Scenes */,
+				C61DD3F32261FECC00DC11A3 /* Views */,
 				5441ABF02248B6ED0018A293 /* AppDelegate.swift */,
 				5441ABF72248B6EF0018A293 /* Assets.xcassets */,
 				5441ABF92248B6EF0018A293 /* LaunchScreen.storyboard */,
@@ -1020,6 +1023,14 @@
 				26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C61DD3F32261FECC00DC11A3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C61DD3F42261FEEB00DC11A3 /* QuantityView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C691A598225BB6310061CE97 /* MenuDetail */ = {
@@ -1978,6 +1989,7 @@
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
 				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
 				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
+				C61DD3F52261FEEB00DC11A3 /* QuantityView.swift in Sources */,
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
 				C691A5BD225BB6480061CE97 /* MenuAddonsViewModel.swift in Sources */,
