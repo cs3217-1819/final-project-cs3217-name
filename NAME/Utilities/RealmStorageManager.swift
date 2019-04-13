@@ -52,6 +52,10 @@ class RealmStorageManager: StorageManager {
         return Array(realm.objects(Establishment.self))
     }
 
+    func allOrders() -> [Order] {
+        return Array(realm.objects(Order.self))
+    }
+
     func getMenuDisplayable(id: String) -> MenuDisplayable? {
         let predicate = NSPredicate(format: "id = %@", id)
         // swiftlint:disable first_where
@@ -63,5 +67,12 @@ class RealmStorageManager: StorageManager {
         let setMenuItems = realm.objects(SetMenuItem.self).filter(predicate).first as MenuDisplayable?
         // swiftlint:enable first_where
         return [individualMenuItems, setMenuItems].compactMap { $0 }.first
+    }
+
+    func getOrder(id: String) -> Order? {
+        let predicate = NSPredicate(format: "id = %@", id)
+        // swiftlint:disable first_where
+        return realm.objects(Order.self).filter(predicate).first as Order?
+        // swiftlint:enable first_where
     }
 }

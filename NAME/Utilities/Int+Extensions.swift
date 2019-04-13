@@ -17,4 +17,8 @@ extension Int {
         }
         return result
     }
+
+    func formattedAsQueueNumberTitle() -> String {
+        return OrderConstants.orderNumberPrefix + String(self)
+    }
 }

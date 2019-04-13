@@ -15,7 +15,7 @@ class Order: Object {
     }
 
     var isOrderReady: Bool {
-        return readyStateOrderItems.count + completedStateOrderItems.count == orderItems.count
+        return readyStateOrderItems.count == orderItems.count
     }
 
     var isOrderCompleted: Bool {

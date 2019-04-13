@@ -13,16 +13,24 @@ protocol KitchenBacklogViewControllerInput: KitchenBacklogPresenterOutput {
 
 protocol KitchenBacklogViewControllerOutput {
     func reloadOrders()
+    func handleOrderCompleted(at index: Int)
+    func handleOrderReady(at index: Int)
 }
 
 final class KitchenBacklogViewController: UICollectionViewController {
     var output: KitchenBacklogViewControllerOutput?
     var router: KitchenBacklogRouterProtocol?
 
-    let clockView = UIView()
+    let clockView: UIView = {
+        // TODO: Setup clock display, just a placeholder for now
+        let view = UIView()
+        view.backgroundColor = .purple
+        return view
+    }()
 
     private var collectionViewDataSource: KitchenBacklogDataSource? {
         didSet {
+            collectionViewDataSource?.delegate = self
             collectionView.dataSource = collectionViewDataSource
             collectionView.reloadData()
         }
@@ -51,28 +59,32 @@ final class KitchenBacklogViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupClockDisplay()
         setupCollectionView()
+        addSubviews()
+        configureConstraints()
+
         getOrders()
-    }
-
-    private func setupClockDisplay() {
-        // TODO: Setup clock display, just a placeholder for now
-        view.addSubview(clockView)
-
-        clockView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(KitchenBacklogConstants.clockWidth)
-            make.height.equalTo(KitchenBacklogConstants.clockHeight)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-        }
-        clockView.backgroundColor = .purple
     }
 
     private func setupCollectionView() {
         collectionView.delegate = self
-        collectionView.register(OrderViewCell.self,
+        collectionView.bounces = true
+        collectionView.alwaysBounceHorizontal = true
+        collectionView.register(KitchenBacklogCell.self,
                                 forCellWithReuseIdentifier: ReuseIdentifiers.orderCellIdentifier)
+    }
+
+    private func addSubviews() {
+        view.addSubview(clockView)
+    }
+
+    private func configureConstraints() {
+        clockView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(KitchenBacklogConstants.clockWidth)
+            make.height.equalTo(KitchenBacklogConstants.clockHeight)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+        }
 
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
@@ -84,34 +96,95 @@ final class KitchenBacklogViewController: UICollectionViewController {
     private func getOrders() {
         output?.reloadOrders()
     }
+
+    // MARK: - Child View Controller Helpers
+
+    private func getNewViewController(orderId: String) -> UIViewController {
+        guard let router = router else {
+            return UIViewController()
+        }
+        let viewController = router.orderViewController(orderId: orderId)
+        addChildContentViewController(viewController)
+        return viewController
+    }
+
+    private func removeAllChildViewControllers() {
+        children.forEach { removeChildContentViewController($0) }
+    }
+
+    private func addChildContentViewController(_ childViewController: UIViewController) {
+        addChild(childViewController)
+        childViewController.didMove(toParent: self)
+    }
+
+    private func removeChildContentViewController(_ childViewController: UIViewController) {
+        childViewController.willMove(toParent: nil)
+        childViewController.view.removeFromSuperview()
+        childViewController.removeFromParent()
+    }
+}
+
+// MARK: - OrderViewCellDelegate
+extension KitchenBacklogViewController: KitchenBacklogCellDelegate {
+    func didTapCompleted(forCell cell: UICollectionViewCell) {
+        let indexPath = getIndexPath(for: cell)
+        output?.handleOrderCompleted(at: indexPath.row)
+    }
+
+    func didTapAllReady(forCell cell: UICollectionViewCell) {
+        let indexPath = getIndexPath(for: cell)
+        output?.handleOrderReady(at: indexPath.row)
+    }
+
+    private func getIndexPath(for cell: UICollectionViewCell) -> IndexPath {
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            assertionFailure("Cannot locate index path of order cell.")
+            return IndexPath()
+        }
+        return indexPath
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 private class KitchenBacklogDataSource: NSObject, UICollectionViewDataSource {
-    private let cellViewModels: [OrderViewModel]
+    private struct Section {
+        let cellViews: [UIView?]
+        let cellViewModel: [KitchenBacklogViewModel.OrderViewModel]
+    }
+    private let sections: [Section]
 
-    init(orders: [OrderViewModel]) {
-        self.cellViewModels = orders
+    weak var delegate: KitchenBacklogCellDelegate?
+
+    init(preparedViews: [UIView?],
+         preparedViewModels: [KitchenBacklogViewModel.OrderViewModel],
+         unpreparedViews: [UIView?],
+         unpreparedViewModels: [KitchenBacklogViewModel.OrderViewModel]) {
+        sections = [Section(cellViews: preparedViews, cellViewModel: preparedViewModels),
+                    Section(cellViews: unpreparedViews, cellViewModel: unpreparedViewModels)]
         super.init()
     }
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellViewModels.count
+        return sections[section].cellViews.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell =
-            collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.orderCellIdentifier,
-                                               for: indexPath) as? OrderViewCell else {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.orderCellIdentifier,
+                                                      for: indexPath)
+        guard let orderCell = cell as? KitchenBacklogCell else {
                 assertionFailure("Invalid collection view cell.")
-                return UICollectionViewCell()
+                return cell
         }
-
-        let viewModel = cellViewModels[indexPath.row]
-        cell.tableViewDelegate = OrderViewDelegate()
-        cell.tableViewDataSource = OrderViewDataSource(orderItems: viewModel.orderItems)
-        cell.viewModel = cellViewModels[indexPath.row]
+        let viewModel = sections[indexPath.section].cellViewModel[indexPath.row]
+        orderCell.set(headerTitle: viewModel.title,
+                      isOrderReady: indexPath.section == 0,
+                      orderView: sections[indexPath.section].cellViews[indexPath.row])
+        orderCell.delegate = delegate
         return cell
     }
 }
@@ -135,17 +208,24 @@ extension KitchenBacklogViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0,
-                            left: KitchenBacklogConstants.orderMargins,
-                            bottom: 0,
-                            right: KitchenBacklogConstants.orderMargins)
+        return UIEdgeInsets(top: 0, left: KitchenBacklogConstants.orderMargins, bottom: 0, right: 0)
     }
 }
 
 // MARK: - KitchenBacklogPresenterOutput
 extension KitchenBacklogViewController: KitchenBacklogViewControllerInput {
     func displayOrders(viewModel: KitchenBacklogViewModel) {
-        collectionViewDataSource = KitchenBacklogDataSource(orders: viewModel.orders)
+        // Remove all old child view controllers
+        removeAllChildViewControllers()
+        let preparedViews = viewModel.preparedOrders
+            .map { getNewViewController(orderId: $0.orderId).view }
+        let unpreparedViews = viewModel.unpreparedOrders
+            .map { getNewViewController(orderId: $0.orderId).view }
+
+        collectionViewDataSource = KitchenBacklogDataSource(preparedViews: preparedViews,
+                                                            preparedViewModels: viewModel.preparedOrders,
+                                                            unpreparedViews: unpreparedViews,
+                                                            unpreparedViewModels: viewModel.unpreparedOrders)
     }
 }
 

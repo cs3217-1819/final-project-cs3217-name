@@ -52,16 +52,29 @@ enum KitchenBacklogConstants {
     static let clockWidth: CGFloat = 100.0
 
     // MARK: Order
-    static let orderNumberPrefix = "Order #"
+    static let orderReadyButtonTitle = "ALL READY"
+    static let orderCompleteButtonTitle = "ORDER COLLECTED"
     static let orderWidth: CGFloat = 400
     static let spaceBetweenOrders: CGFloat = 40
     static let orderMargins: CGFloat = 40
+}
+
+enum OrderConstants {
+    static let preparedItemsSectionTitle = "PREPARED"
+    static let orderNumberPrefix = "Order #"
     static let headerPadding: CGFloat = 16.0
     static let headerHeight: CGFloat = 50.0
 
     // MARK: Order Item
+    static let eatInDiningOptionTitle = "(EAT IN)"
+    static let takeAwayDiningOptionTitle = "(TAKE AWAY)"
+    static let itemReadyButtonTitle = "ITEM READY"
+    static let addonsHeaderTitle = "Add Ons:"
+    static let commentsHeaderTitle = "Comments:"
+    static let optionsHeaderTitle = "Options:"
     static let orderItemPadding: CGFloat = 8.0
-    static let leftPanelRatio: CGFloat = 1 / 4
+    static let leftPanelRatio: CGFloat = 1 / 5
+    static let orderItemTitleFontSize: CGFloat = 22.0
 }
 
 // MARK: - Establishment Root
@@ -76,7 +89,6 @@ enum StallListConstants {
     static let customerCellHeight: CGFloat = 70.0
     static let establishmentCellHeight: CGFloat = 300.0
     static let establishmentCellWidth: CGFloat = 300.0
-    static let buttonHeight: CGFloat = 50.0
     static let editButtonTitle = "EDIT"
     static let deleteButtonTitle = "DELETE"
     static let titleFontSize: CGFloat = 22.0
@@ -112,4 +124,9 @@ enum MenuAddonsConstants {
 enum AlertConstants {
     static let okTitle = "OK"
     static let cancelTitle = "Cancel"
+}
+
+// MARK: - Button
+enum ButtonConstants {
+    static let mediumButtonHeight: CGFloat = 50.0
 }

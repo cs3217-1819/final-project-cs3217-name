@@ -27,7 +27,9 @@ enum FixtureGenerator {
         let customers = self.createCustomers()
 
         let orders = self.createOrders(customers: customers)
-        let orderItems = self.createOrderItems(menuItems: menuItems, orders: orders)
+        let orderItems = self.createOrderItems(menuItems: menuItems,
+                                               orders: orders,
+                                               menuItemOptions: menuItemOptions)
 
         // MARK: Relationships
 
@@ -231,15 +233,17 @@ enum FixtureGenerator {
         let order1 = Order(queueNumber: 123, customer: customers[0])
         let order2 = Order(queueNumber: 456, customer: customers[1])
         let order3 = Order(queueNumber: 789, customer: customers[2])
+        let order4 = Order(queueNumber: 147, customer: customers[0])
 
-        return [order1, order2, order3]
+        return [order1, order2, order3, order4]
     }
 
     static func createOrderItems(menuItems: [IndividualMenuItem],
-                                 orders: [Order]) -> [OrderItem] {
+                                 orders: [Order],
+                                 menuItemOptions: [MenuItemOption]) -> [OrderItem] {
 
         assert(menuItems.count >= 13)
-        assert(orders.count >= 3)
+        assert(orders.count >= 4)
 
         let orderItem1 = OrderItem(order: orders[0],
                                    menuItem: menuItems[0],
@@ -259,6 +263,48 @@ enum FixtureGenerator {
                                    comment: "Don't spill my soup please",
                                    diningOption: .takeaway)
 
-        return [orderItem1, orderItem2, orderItem3]
+        let orderItem4 = OrderItem(order: orders[1],
+                                   menuItem: menuItems[0],
+                                   quantity: 1,
+                                   comment: "Cut the noodles please. No pork no lard. Actually I want halal version.",
+                                   diningOption: .eatin)
+
+        let orderItem5 = OrderItem(order: orders[2],
+                                   menuItem: menuItems[12],
+                                   quantity: 2,
+                                   comment: "",
+                                   diningOption: .eatin)
+
+        let orderItem6 = OrderItem(order: orders[2],
+                                   menuItem: menuItems[13],
+                                   quantity: 1,
+                                   comment: "Make it spicy level 999. Thanks.",
+                                   diningOption: .takeaway)
+
+        let orderItem7 = OrderItem(order: orders[3],
+                                   menuItem: menuItems[13],
+                                   quantity: 2,
+                                   comment: "",
+                                   diningOption: .eatin)
+
+        orderItem4.addons.append(orderItem5)
+        orderItem4.addons.append(orderItem6)
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[0],
+                                                  value: .boolean(true)))
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[0],
+                                                  value: .boolean(false))) // Should not be displayed in backlog
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[1],
+                                                  value: .quantity(2)))
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[1],
+                                                  value: .quantity(0))) // Should not be displayed in backlog
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[2],
+                                                  value: .multipleChoice("Seafood")))
+
+        return [orderItem1, orderItem2, orderItem3, orderItem4, orderItem5, orderItem6, orderItem7]
     }
 }

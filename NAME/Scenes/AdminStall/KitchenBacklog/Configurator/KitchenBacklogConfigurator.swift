@@ -13,10 +13,16 @@ final class KitchenBacklogConfigurator {
     static let shared: KitchenBacklogConfigurator = KitchenBacklogConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: KitchenBacklogViewController) {
-        let router = KitchenBacklogRouter(viewController: viewController)
+    func configure(viewController: KitchenBacklogViewController,
+                   injector: DependencyInjector = appDefaultInjector) {
+        let toChildrenMediator = KitchenBacklogIntersceneMediator()
+        let router = KitchenBacklogRouter(viewController: viewController,
+                                          mediator: toChildrenMediator)
         let presenter = KitchenBacklogPresenter(output: viewController)
-        let interactor = KitchenBacklogInteractor(output: presenter)
+        let interactor = KitchenBacklogInteractor(output: presenter,
+                                                  injector: injector,
+                                                  toChildrenMediator: toChildrenMediator)
+        toChildrenMediator.kitchenBacklogInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router

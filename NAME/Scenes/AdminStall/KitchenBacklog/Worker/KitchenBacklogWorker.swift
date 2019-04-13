@@ -10,7 +10,7 @@ import UIKit
 
 class KitchenBacklogWorker {
     func getOrders() -> [Order] {
-        // TODO: Get orders from storage filtered for this particular stall
+        // TODO: Get orders from network filtered for this particular stall
         return []
     }
 }

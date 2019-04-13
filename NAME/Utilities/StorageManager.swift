@@ -22,5 +22,8 @@ protocol StorageManager {
 
     func allEstablishments() -> [Establishment]
 
+    func allOrders() -> [Order]
+    func getOrder(id: String) -> Order?
+
     func getMenuDisplayable(id: String) -> MenuDisplayable?
 }

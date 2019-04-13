@@ -88,7 +88,7 @@ class StallListEstablishmentCell: UICollectionViewCell {
     private func configureConstraints() {
         actionsContainer.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalTo(StallListConstants.buttonHeight)
+            make.height.equalTo(ButtonConstants.mediumButtonHeight)
             make.bottom.equalToSuperview()
         }
 

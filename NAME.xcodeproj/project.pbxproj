@@ -120,6 +120,15 @@
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
 		CAFCCC38685A268BB99E0A14 /* Pods_NAMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */; };
 		E560E33EA363C8723761CF94 /* Pods_NAME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */; };
+		FB13B70B225E357A006ED487 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B6FE225E357A006ED487 /* OrderViewModel.swift */; };
+		FB13B70C225E357A006ED487 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B700225E357A006ED487 /* OrderPresenter.swift */; };
+		FB13B70D225E357A006ED487 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B702225E357A006ED487 /* OrderViewController.swift */; };
+		FB13B70E225E357A006ED487 /* OrderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B704225E357A006ED487 /* OrderConfigurator.swift */; };
+		FB13B70F225E357A006ED487 /* OrderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B706225E357A006ED487 /* OrderWorker.swift */; };
+		FB13B710225E357A006ED487 /* OrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B708225E357A006ED487 /* OrderInteractor.swift */; };
+		FB13B711225E357A006ED487 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B70A225E357A006ED487 /* OrderRouter.swift */; };
+		FB13B713225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B712225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift */; };
+		FB13B71522607DE0006ED487 /* OrderItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B71422607DE0006ED487 /* OrderItemDetailsView.swift */; };
 		FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */; };
 		FB519D6D224D4F4300BB5DE8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */; };
 		FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */; };
@@ -149,8 +158,7 @@
 		FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DC4224F514800BB5DE8 /* KitchenBacklogPresenter.swift */; };
 		FB519DD1224F514800BB5DE8 /* KitchenBacklogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */; };
 		FB519DD3224F514800BB5DE8 /* KitchenBacklogWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DCA224F514800BB5DE8 /* KitchenBacklogWorker.swift */; };
-		FB519DD9224F5A9100BB5DE8 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */; };
-		FB519DF3224FCAB600BB5DE8 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DF2224FCAB600BB5DE8 /* OrderView.swift */; };
+		FB519DD9224F5A9100BB5DE8 /* KitchenBacklogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DD8224F5A9100BB5DE8 /* KitchenBacklogCell.swift */; };
 		FB519DF7224FF8B300BB5DE8 /* OrderItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */; };
 		FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E132250A61100BB5DE8 /* EstablishmentRootViewModel.swift */; };
 		FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E152250A61100BB5DE8 /* EstablishmentRootPresenter.swift */; };
@@ -160,8 +168,7 @@
 		FB519E252250A61300BB5DE8 /* EstablishmentRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E1D2250A61100BB5DE8 /* EstablishmentRootInteractor.swift */; };
 		FB519E262250A61300BB5DE8 /* EstablishmentRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E1F2250A61100BB5DE8 /* EstablishmentRootRouter.swift */; };
 		FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */; };
-		FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */; };
-		FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */; };
+		FB519E4C2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */; };
 		FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
@@ -310,6 +317,15 @@
 		C6EC63E9224B9060003E4547 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
 		C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionValue.swift; sourceTree = "<group>"; };
 		E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB13B6FE225E357A006ED487 /* OrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		FB13B700225E357A006ED487 /* OrderPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		FB13B702225E357A006ED487 /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		FB13B704225E357A006ED487 /* OrderConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfigurator.swift; sourceTree = "<group>"; };
+		FB13B706225E357A006ED487 /* OrderWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderWorker.swift; sourceTree = "<group>"; };
+		FB13B708225E357A006ED487 /* OrderInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInteractor.swift; sourceTree = "<group>"; };
+		FB13B70A225E357A006ED487 /* OrderRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
+		FB13B712225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenBacklogInteractorMediator.swift; sourceTree = "<group>"; };
+		FB13B71422607DE0006ED487 /* OrderItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemDetailsView.swift; sourceTree = "<group>"; };
 		FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -339,8 +355,7 @@
 		FB519DC4224F514800BB5DE8 /* KitchenBacklogPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogPresenter.swift; sourceTree = "<group>"; };
 		FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogViewController.swift; sourceTree = "<group>"; };
 		FB519DCA224F514800BB5DE8 /* KitchenBacklogWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenBacklogWorker.swift; sourceTree = "<group>"; };
-		FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
-		FB519DF2224FCAB600BB5DE8 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		FB519DD8224F5A9100BB5DE8 /* KitchenBacklogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenBacklogCell.swift; sourceTree = "<group>"; };
 		FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemViewCell.swift; sourceTree = "<group>"; };
 		FB519E132250A61100BB5DE8 /* EstablishmentRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootViewModel.swift; sourceTree = "<group>"; };
 		FB519E152250A61100BB5DE8 /* EstablishmentRootPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootPresenter.swift; sourceTree = "<group>"; };
@@ -350,8 +365,7 @@
 		FB519E1D2250A61100BB5DE8 /* EstablishmentRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootInteractor.swift; sourceTree = "<group>"; };
 		FB519E1F2250A61100BB5DE8 /* EstablishmentRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishmentRootRouter.swift; sourceTree = "<group>"; };
 		FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContainerView.swift; sourceTree = "<group>"; };
-		FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewDataSource.swift; sourceTree = "<group>"; };
-		FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderView.swift; sourceTree = "<group>"; };
+		FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenBacklogCellHeaderView.swift; sourceTree = "<group>"; };
 		FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListEstablishmentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1233,6 +1247,78 @@
 			path = TimeCondition;
 			sourceTree = "<group>";
 		};
+		FB13B6FC225E357A006ED487 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B6FD225E357A006ED487 /* ViewModel */,
+				FB13B6FF225E357A006ED487 /* Presenter */,
+				FB13B701225E357A006ED487 /* View */,
+				FB13B703225E357A006ED487 /* Configurator */,
+				FB13B705225E357A006ED487 /* Worker */,
+				FB13B707225E357A006ED487 /* Interactor */,
+				FB13B709225E357A006ED487 /* Router */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		FB13B6FD225E357A006ED487 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B6FE225E357A006ED487 /* OrderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB13B6FF225E357A006ED487 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B700225E357A006ED487 /* OrderPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB13B701225E357A006ED487 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B702225E357A006ED487 /* OrderViewController.swift */,
+				FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */,
+				FB13B71422607DE0006ED487 /* OrderItemDetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB13B703225E357A006ED487 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B704225E357A006ED487 /* OrderConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB13B705225E357A006ED487 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B706225E357A006ED487 /* OrderWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB13B707225E357A006ED487 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B708225E357A006ED487 /* OrderInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB13B709225E357A006ED487 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB13B70A225E357A006ED487 /* OrderRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		FB519D5D224D4F4200BB5DE8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1395,7 @@
 			children = (
 				FB519D78224E3A3200BB5DE8 /* StallRoot */,
 				FB519D92224F43FB00BB5DE8 /* KitchenBacklog */,
+				FB13B6FC225E357A006ED487 /* Order */,
 			);
 			path = AdminStall;
 			sourceTree = "<group>";
@@ -1417,11 +1504,8 @@
 			isa = PBXGroup;
 			children = (
 				FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */,
-				FB519E492257562700BB5DE8 /* OrderViewDataSource.swift */,
-				FB519DD8224F5A9100BB5DE8 /* OrderViewCell.swift */,
-				FB519DF2224FCAB600BB5DE8 /* OrderView.swift */,
-				FB519E4B2257769B00BB5DE8 /* OrderHeaderView.swift */,
-				FB519DF6224FF8B300BB5DE8 /* OrderItemViewCell.swift */,
+				FB519DD8224F5A9100BB5DE8 /* KitchenBacklogCell.swift */,
+				FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1446,6 +1530,7 @@
 			isa = PBXGroup;
 			children = (
 				FB519D9E224F43FB00BB5DE8 /* KitchenBacklogInteractor.swift */,
+				FB13B712225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1891,15 +1976,16 @@
 				C691A5C2225BB6480061CE97 /* MenuAddonsInteractor.swift in Sources */,
 				C6D83D0A225DDE6600840504 /* MenuAddonsCollectionViewCell.swift in Sources */,
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
-				FB519DF3224FCAB600BB5DE8 /* OrderView.swift in Sources */,
 				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
 				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
 				54D252C2224CBD25007BF235 /* StallListViewController.swift in Sources */,
 				1FB25822224929180035399F /* Establishment.swift in Sources */,
 				C691A5BD225BB6480061CE97 /* MenuAddonsViewModel.swift in Sources */,
 				540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */,
+				FB13B71522607DE0006ED487 /* OrderItemDetailsView.swift in Sources */,
 				1F2A95E0224EE94D006703DE /* BillItem.swift in Sources */,
 				5441AC402248C4480018A293 /* SplashRouter.swift in Sources */,
+				FB13B710225E357A006ED487 /* OrderInteractor.swift in Sources */,
 				C691A5AC225BB6310061CE97 /* MenuDetailInteractor.swift in Sources */,
 				C691A5BE225BB6480061CE97 /* MenuAddonsPresenter.swift in Sources */,
 				C6BA5902225D0988002011A2 /* Int+Extensions.swift in Sources */,
@@ -1915,15 +2001,18 @@
 				FB519DA6224F43FC00BB5DE8 /* KitchenBacklogInteractor.swift in Sources */,
 				5441AC3F2248C4480018A293 /* SplashInteractor.swift in Sources */,
 				FB519D70224D4F4300BB5DE8 /* LoginWorker.swift in Sources */,
-				FB519DD9224F5A9100BB5DE8 /* OrderViewCell.swift in Sources */,
+				FB519DD9224F5A9100BB5DE8 /* KitchenBacklogCell.swift in Sources */,
+				FB519DD9224F5A9100BB5DE8 /* KitchenBacklogCell.swift in Sources */,
 				C691A5AD225BB6310061CE97 /* MenuDetailRouter.swift in Sources */,
 				C691A5D8225BB7F20061CE97 /* MenuInfoConfigurator.swift in Sources */,
 				FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */,
 				54D252DA224CBD2F007BF235 /* MenuWorker.swift in Sources */,
+				FB13B70F225E357A006ED487 /* OrderWorker.swift in Sources */,
 				C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */,
 				C691A5C3225BB6480061CE97 /* MenuAddonsRouter.swift in Sources */,
 				C61DD3EE2261DF8E00DC11A3 /* MenuAddonsCollectionViewDataSourceDelegate.swift in Sources */,
 				5441AC512248C4590018A293 /* CustomerRootPresenter.swift in Sources */,
+				FB13B713225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift in Sources */,
 				1FB2581D224929180035399F /* IndividualMenuItem.swift in Sources */,
 				54D252DB224CBD2F007BF235 /* MenuInteractor.swift in Sources */,
 				1F76301C224D8B6D001E8E5C /* OrderConfirmationViewModel.swift in Sources */,
@@ -1982,6 +2071,7 @@
 				54D252AB224CB637007BF235 /* BrowseInteractor.swift in Sources */,
 				54D252C4224CBD25007BF235 /* StallListWorker.swift in Sources */,
 				54D252C6224CBD25007BF235 /* StallListRouter.swift in Sources */,
+				FB13B70C225E357A006ED487 /* OrderPresenter.swift in Sources */,
 				54D252C5224CBD25007BF235 /* StallListInteractor.swift in Sources */,
 				54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */,
 				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
@@ -1990,17 +2080,18 @@
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
 				C691A5AA225BB6310061CE97 /* MenuDetailConfigurator.swift in Sources */,
 				FB519D8D224E3A3200BB5DE8 /* StallRootRouter.swift in Sources */,
+				FB13B70E225E357A006ED487 /* OrderConfigurator.swift in Sources */,
 				FB519DBA224F440700BB5DE8 /* AdminSettingsConfigurator.swift in Sources */,
 				54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */,
-				FB519E4A2257562700BB5DE8 /* OrderViewDataSource.swift in Sources */,
 				C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */,
 				1FB25825224929180035399F /* MenuCategory.swift in Sources */,
 				FB519DB9224F440700BB5DE8 /* AdminSettingsViewController.swift in Sources */,
-				FB519E4C2257769B00BB5DE8 /* OrderHeaderView.swift in Sources */,
+				FB519E4C2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift in Sources */,
 				1F21BA04224923230089A1AD /* FixtureGenerator.swift in Sources */,
 				54D252A7224CB637007BF235 /* BrowsePresenter.swift in Sources */,
 				FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */,
 				540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */,
+				FB13B70D225E357A006ED487 /* OrderViewController.swift in Sources */,
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
 				FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */,
 				C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */,
@@ -2009,6 +2100,7 @@
 				FB519DD0224F514800BB5DE8 /* KitchenBacklogPresenter.swift in Sources */,
 				C691A5D9225BB7F20061CE97 /* MenuInfoWorker.swift in Sources */,
 				FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */,
+				FB13B711225E357A006ED487 /* OrderRouter.swift in Sources */,
 				1FB25826224929180035399F /* OrderItemOption.swift in Sources */,
 				FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */,
 				FB519E262250A61300BB5DE8 /* EstablishmentRootRouter.swift in Sources */,
@@ -2019,6 +2111,7 @@
 				1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */,
 				1F763028224D8C11001E8E5C /* OrderConfirmationPresenter.swift in Sources */,
 				1FB25823224929180035399F /* Menu.swift in Sources */,
+				FB13B70B225E357A006ED487 /* OrderViewModel.swift in Sources */,
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
 				1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */,
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
