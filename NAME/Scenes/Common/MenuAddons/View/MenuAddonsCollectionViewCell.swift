@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 final class MenuAddonsCollectionViewCell: UICollectionViewCell {
+    static let reuseIdentifier = String(describing: type(of: self))
+
     // TODO use real image
     private let imageView: UIImageView = {
         let result = UIImageView(frame: .zero)

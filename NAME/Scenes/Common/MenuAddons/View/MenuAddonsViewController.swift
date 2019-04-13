@@ -19,64 +19,39 @@ protocol MenuAddonsViewControllerOutput {
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
 }
 
-private final class MenuAddonsDataSource: NSObject, UITableViewDataSource {
-    private let cellIdentifier: String
+protocol MenuAddonsTableViewCellProvider: class {
+    func dequeueReusableCell(tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    var delegate: MenuAddonsTableViewCellDelegate? { get set }
+}
 
-    private let options: [MenuAddonsViewModel.MenuOptionViewModel]
-
-    private unowned let cellDelegate: MenuAddonsTableViewCellDelegate
-
-    init(options: [MenuAddonsViewModel.MenuOptionViewModel], cellIdentifier: String,
-         cellDelegate: MenuAddonsTableViewCellDelegate) {
-        self.options = options
-        self.cellIdentifier = cellIdentifier
-        self.cellDelegate = cellDelegate
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reusableCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        guard let cell = reusableCell as? MenuAddonsTableViewCell else {
-            return reusableCell
-        }
-        let option = options[indexPath.section]
-        cell.section = indexPath.section
-        cell.type = option.type
-        cell.value = option.value
-        cell.delegate = cellDelegate
-        return cell
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return options.count
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return options[section].name
-    }
+protocol MenuAddonsTableViewCellDelegate: class {
+    func valueDidSelect(section: Int, itemOrQuantity: Int)
 }
 
 final class MenuAddonsViewController: UIViewController {
-    private static let cellIdentifier = "cellIdentifier"
     private let headerIdentifier = "headerIdentifier"
 
     var output: MenuAddonsViewControllerOutput?
     var router: MenuAddonsRouterProtocol?
 
+    private var cellDelegates: [MenuAddonsTableViewCellProvider?] = []
+    private var sectionNames: [String] = []
+
     private lazy var tableView: UITableView = {
         let result = UITableView(frame: .zero, style: .grouped)
         result.delegate = self
+        result.dataSource = self
         result.backgroundColor = .white
         result.separatorStyle = .none
         result.allowsSelection = false
         result.rowHeight = MenuAddonsConstants.addonsSize.height
         result.estimatedRowHeight = result.rowHeight
+        result.sectionFooterHeight = 0.0
         result.sectionHeaderHeight = MenuAddonsConstants.sectionHeaderHeight
-        result.register(MenuAddonsTableViewCell.self,
-                        forCellReuseIdentifier: MenuAddonsViewController.cellIdentifier)
+        result.register(MenuAddonsTableViewChoiceCell.self,
+                        forCellReuseIdentifier: MenuAddonsTableViewChoiceCell.reuseIdentifier)
+        result.register(MenuAddonsTableViewQuantityCell.self,
+                        forCellReuseIdentifier: MenuAddonsTableViewQuantityCell.reuseIdentifier)
         result.register(MenuAddonsTableViewHeaderView.self,
                         forHeaderFooterViewReuseIdentifier: headerIdentifier)
         return result
@@ -93,13 +68,6 @@ final class MenuAddonsViewController: UIViewController {
         result.delegate = self
         return result
     }()
-
-    private var tableViewDataSource: MenuAddonsDataSource? {
-        didSet {
-            tableView.dataSource = tableViewDataSource
-            tableView.reloadData()
-        }
-    }
 
     // MARK: - Initializers
     init(menuId: String, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
@@ -168,12 +136,34 @@ final class MenuAddonsViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+extension MenuAddonsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cellDelegate = cellDelegates[indexPath.section] else {
+            return UITableViewCell()
+        }
+        return cellDelegate.dequeueReusableCell(tableView: tableView, cellForRowAt: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionNames[section]
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return cellDelegates.count
+    }
+}
+
 // MARK: - UITableViewDelegate
 extension MenuAddonsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let reusableView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier)
         guard let headerView = reusableView as? MenuAddonsTableViewHeaderView,
-            let title = tableViewDataSource?.tableView(tableView, titleForHeaderInSection: section) else {
+            let title = self.tableView(tableView, titleForHeaderInSection: section) else {
             return nil
         }
         headerView.set(section: section, title: title)
@@ -206,8 +196,24 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
 extension MenuAddonsViewController: MenuAddonsViewControllerInput {
     func display(viewModel: MenuAddonsViewModel) {
         footerView.price = viewModel.totalPrice
-        tableViewDataSource = MenuAddonsDataSource(options: viewModel.options,
-                                                   cellIdentifier: MenuAddonsViewController.cellIdentifier,
-                                                   cellDelegate: self)
+        sectionNames = viewModel.options.map { $0.name }
+        cellDelegates = viewModel.options.enumerated().map { arg -> MenuAddonsTableViewCellProvider? in
+            let (section, option) = arg
+            switch (option.type, option.value) {
+            case let (.quantity(price: price), .quantity(quantity)):
+                let provider = MenuAddonsQuantityViewDelegate(price: price, quantity: quantity, section: section)
+                provider.delegate = self
+                return provider
+            case let (.choices(choices), .choice(choice)):
+                let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
+                                                                          value: choice,
+                                                                          section: section)
+                provider.delegate = self
+                return provider
+            default:
+                return nil
+            }
+        }
+        tableView.reloadData()
     }
 }
