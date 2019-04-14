@@ -17,6 +17,7 @@ protocol MenuAddonsViewControllerOutput {
     func reset()
     func reset(section: Int)
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
+    func updateQuantity(_ quantity: Int)
 }
 
 protocol MenuAddonsTableViewCellProvider: class {
@@ -181,6 +182,10 @@ extension MenuAddonsViewController: MenuAddonsTableViewHeaderViewDelegate {
 
 // MARK: - MenuAddonsFooterViewDelegate
 extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
+    func quantityDidChange(newValue: Int) {
+        output?.updateQuantity(newValue)
+    }
+
     func addButtonDidPress() {
     }
 }

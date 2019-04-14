@@ -24,4 +24,5 @@ struct MenuAddonsViewModel {
     }
     let options: [MenuOptionViewModel]
     let totalPrice: String
+    let quantity: Int
 }

@@ -27,7 +27,7 @@ final class MenuAddonsPresenter {
 
 // MARK: - MenuAddonsPresenterInput
 extension MenuAddonsPresenter: MenuAddonsPresenterInput {
-    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int) {
+    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int, quantity: Int) {
         let options = optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionTypeViewModel in
             switch optionValue.option.options {
             case .boolean(let price):
@@ -63,7 +63,9 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                                                                type: option,
                                                                value: value)
             }
-        let viewModel = MenuAddonsViewModel(options: optionsViewModel, totalPrice: totalPrice.formattedAsPrice())
+        let viewModel = MenuAddonsViewModel(options: optionsViewModel,
+                                            totalPrice: (totalPrice * quantity).formattedAsPrice(),
+                                            quantity: quantity)
         output.display(viewModel: viewModel)
     }
 }

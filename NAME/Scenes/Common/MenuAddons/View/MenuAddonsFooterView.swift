@@ -11,6 +11,7 @@ import UIKit
 
 protocol MenuAddonsFooterViewDelegate: class {
     func addButtonDidPress()
+    func quantityDidChange(newValue: Int)
 }
 
 final class MenuAddonsFooterView: UIView {
@@ -21,6 +22,7 @@ final class MenuAddonsFooterView: UIView {
         result.adjustsFontForContentSizeCategory = true
         return result
     }()
+
     private let addButton: UIButton = {
         let result = UIButton(type: .system)
         result.setTitle(MenuAddonsConstants.addButtonTitle, for: .normal)
@@ -31,8 +33,14 @@ final class MenuAddonsFooterView: UIView {
         return result
     }()
 
+    private lazy var quantityView: QuantityView = {
+        let result = QuantityView(quantity: 1, minimum: 0)
+        result.delegate = self
+        return result
+    }()
+
     private lazy var stackView: UIStackView = {
-        let result = UIStackView(arrangedSubviews: [priceLabel, addButton])
+        let result = UIStackView(arrangedSubviews: [quantityView, priceLabel, addButton])
         result.axis = .horizontal
         result.distribution = .fillEqually
         return result
@@ -71,5 +79,12 @@ final class MenuAddonsFooterView: UIView {
     @objc
     private func addButtonDidPress() {
         delegate?.addButtonDidPress()
+    }
+}
+
+// MARK: - QuantityViewDelegate
+extension MenuAddonsFooterView: QuantityViewDelegate {
+    func valueDidChange(newValue: Int) {
+        delegate?.quantityDidChange(newValue: newValue)
     }
 }

@@ -13,7 +13,7 @@ protocol MenuAddonsInteractorInput: MenuAddonsViewControllerOutput {
 }
 
 protocol MenuAddonsInteractorOutput {
-    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int)
+    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int, quantity: Int)
 }
 
 final class MenuAddonsInteractor {
@@ -32,6 +32,7 @@ final class MenuAddonsInteractor {
 
     private var optionValues: [OptionValue]
     private let basePrice: Int
+    private var quantity: Int = 1
 
     // MARK: - Initializers
     init(output: MenuAddonsInteractorOutput,
@@ -51,6 +52,11 @@ final class MenuAddonsInteractor {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func updateQuantity(_ quantity: Int) {
+        self.quantity = quantity
+        passValueToPresenter()
+    }
+
     func updateValue(at index: Int, with valueIndexOrQuantity: Int) {
         switch optionValues[index].option.options {
         case .boolean:
@@ -97,7 +103,7 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
             }
         }
         let totalPrice = basePrice + optionPrices.reduce(0, +)
-        output.present(optionValues: optionValues, totalPrice: totalPrice)
+        output.present(optionValues: optionValues, totalPrice: totalPrice, quantity: quantity)
     }
 }
 
