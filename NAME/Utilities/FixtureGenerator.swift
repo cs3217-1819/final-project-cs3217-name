@@ -123,7 +123,7 @@ enum FixtureGenerator {
                                          options: .multipleChoice([
                                             ("Chicken", 500), ("Seafood", 400), ("Never", 300),
                                             ("Gonna", 200), ("Give", 100), ("You", 0), ("Up", -100)]),
-                                         defaultValue: .multipleChoice("Give"))
+                                         defaultValue: .multipleChoice(5))
 
         let itemOption4 = MenuItemOption(name: "NDP Songs",
                                          options: .multipleChoice([
@@ -131,23 +131,23 @@ enum FixtureGenerator {
                                             ("Stand up", 400),
                                             ("Will You", 500),
                                             ("Home", 600)]),
-                                         defaultValue: .multipleChoice("Home"))
+                                         defaultValue: .multipleChoice(2))
 
         let itemOption5 = MenuItemOption(name: "Best 3217 TA",
                                          options: .multipleChoice([
                                             ("Herbert", 0), ("Xien Dong", 0), ("Yunpeng", 0),
                                             ("Yanhao", 0), ("Wai Kay", 0)]),
-                                         defaultValue: .multipleChoice("Wai Kay"))
+                                         defaultValue: .multipleChoice(4))
 
         let itemOption6 = MenuItemOption(name: "2019 General Election Ballot",
                                          options: .multipleChoice([("PAP", 1_000_000), ("PPAP", 0)]),
-                                         defaultValue: .multipleChoice("PAP"))
+                                         defaultValue: .multipleChoice(0))
 
         let itemOption7 = MenuItemOption(name: "Best Language",
                                          options: .multipleChoice([
                                             ("Swift", 0), ("Objective-C", 0), ("C", 0),
                                             ("JavaScript", 0), ("Python", 0), ("Ruby", 0)]),
-                                         defaultValue: .multipleChoice("Ruby"))
+                                         defaultValue: .multipleChoice(5))
 
         return [itemOption1, itemOption2, itemOption3, itemOption4, itemOption5, itemOption6, itemOption7]
     }
@@ -303,7 +303,7 @@ enum FixtureGenerator {
                                                   value: .quantity(0))) // Should not be displayed in backlog
 
         orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[2],
-                                                  value: .multipleChoice("Seafood")))
+                                                  value: .multipleChoice(1)))
 
         return [orderItem1, orderItem2, orderItem3, orderItem4, orderItem5, orderItem6, orderItem7]
     }

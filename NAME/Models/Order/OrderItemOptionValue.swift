@@ -11,36 +11,56 @@ import Foundation
 enum OrderItemOptionValue {
     case boolean(Bool)
     case quantity(Int)
-    case multipleChoice(String)
+    /// The index of the choice
+    case multipleChoice(Int)
 }
 
 extension OrderItemOptionValue: Codable {
     private enum CodingKeys: CodingKey {
-        case choices
+        case choice
+        case metatype
+    }
+
+    private enum MetaType: Int, Codable {
+        case boolean
+        case quantity
+        case multipleChoice
+
+        init(with value: OrderItemOptionValue) {
+            switch value {
+            case .boolean: self = .boolean
+            case .quantity: self = .quantity
+            case .multipleChoice: self = .multipleChoice
+            }
+        }
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let boolean = try? container.decode(Bool.self, forKey: .choices) {
+        let metatype = try container.decode(MetaType.self, forKey: .metatype)
+        switch metatype {
+        case .boolean:
+            let boolean = try container.decode(Bool.self, forKey: .choice)
             self = .boolean(boolean)
-        } else if let quantity = try? container.decode(Int.self, forKey: .choices) {
+        case .quantity:
+            let quantity = try container.decode(Int.self, forKey: .choice)
             self = .quantity(quantity)
-        } else if let multipleChoice = try? container.decode(String.self, forKey: .choices) {
-            self = .multipleChoice(multipleChoice)
-        } else {
-            throw ModelError.deserialization
+        case .multipleChoice:
+            let choice = try container.decode(Int.self, forKey: .choice)
+            self = .multipleChoice(choice)
         }
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(MetaType(with: self), forKey: .metatype)
         switch self {
         case let .boolean(boolean):
-            try container.encode(boolean, forKey: .choices)
+            try container.encode(boolean, forKey: .choice)
         case let .quantity(quantity):
-            try container.encode(quantity, forKey: .choices)
+            try container.encode(quantity, forKey: .choice)
         case let .multipleChoice(choices):
-            try container.encode(choices, forKey: .choices)
+            try container.encode(choices, forKey: .choice)
         }
     }
 }

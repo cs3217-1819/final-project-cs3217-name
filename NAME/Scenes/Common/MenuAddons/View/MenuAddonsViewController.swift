@@ -209,9 +209,10 @@ extension MenuAddonsViewController: MenuAddonsViewControllerInput {
                 let provider = MenuAddonsQuantityViewDelegate(price: price, quantity: quantity, section: section)
                 provider.delegate = self
                 return provider
-            case let (.choices(choices), .choice(choice)):
+            case let (.choices(choices), .choice(choiceIndex)):
+                let value = choices[choiceIndex].name
                 let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
-                                                                          value: choice,
+                                                                          value: value,
                                                                           section: section)
                 provider.delegate = self
                 return provider

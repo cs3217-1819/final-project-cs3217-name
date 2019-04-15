@@ -20,6 +20,7 @@ class OrderItemOption: Object {
         set {
             valueEncoded = ModelHelper.encodeAsJson(newValue)
             _value = newValue
+            checkRep()
         }
     }
 
@@ -28,6 +29,24 @@ class OrderItemOption: Object {
 
         self.menuItemOption = menuItemOption
         self.value = value
+
+        checkRep()
+    }
+
+    private func checkRep() {
+        guard let menuItemOption = menuItemOption else {
+            return
+        }
+        switch (menuItemOption.options, value) {
+        case (.quantity, .quantity):
+            break
+        case (.boolean, .boolean):
+            break
+        case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
+            assert(choiceIndex < choices.count, "choiceIndex is out of bounds")
+        default:
+            assertionFailure("options and defaultValue does not match")
+        }
     }
 
     override static func primaryKey() -> String? {

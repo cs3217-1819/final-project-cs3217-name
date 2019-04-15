@@ -54,6 +54,21 @@ class MenuItemOption: Object {
         self.imageURL = imageURL
         self.options = options
         self.defaultValue = defaultValue
+
+        checkRep()
+    }
+
+    private func checkRep() {
+        switch (options, defaultValue) {
+        case (.quantity, .quantity):
+            break
+        case (.boolean, .boolean):
+            break
+        case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
+            assert(choiceIndex < choices.count, "choiceIndex is out of bounds")
+        default:
+            assertionFailure("options and defaultValue does not match")
+        }
     }
 
     override static func primaryKey() -> String? {

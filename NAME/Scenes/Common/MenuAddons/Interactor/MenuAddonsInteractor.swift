@@ -60,13 +60,12 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
     func updateValue(at index: Int, with valueIndexOrQuantity: Int) {
         switch optionValues[index].option.options {
         case .boolean:
-            let boolean = Array(MenuAddonsConstants.booleanChoices.keys)[valueIndexOrQuantity]
+            let boolean = MenuAddonsConstants.booleanChoices[valueIndexOrQuantity]
             optionValues[index].value = .boolean(boolean)
         case .quantity:
             optionValues[index].value = .quantity(valueIndexOrQuantity)
-        case .multipleChoice(let choices):
-            let names = choices.map { $0.name }
-            optionValues[index].value = .multipleChoice(names[valueIndexOrQuantity])
+        case .multipleChoice:
+            optionValues[index].value = .multipleChoice(valueIndexOrQuantity)
         }
         passValueToPresenter()
     }
@@ -93,11 +92,8 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
                 return boolean ? price : 0
             case let (.quantity(price: price), .quantity(quantity)):
                 return price * quantity
-            case let (.multipleChoice(choices), .multipleChoice(choice)):
-                guard let price = choices.first(where: { $0.name == choice })?.price else {
-                    return 0
-                }
-                return price
+            case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
+                return choices[choiceIndex].price
             default:
                 return 0
             }

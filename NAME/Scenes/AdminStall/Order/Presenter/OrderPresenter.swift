@@ -68,8 +68,13 @@ extension OrderPresenter: OrderPresenterInput {
                 return nil
             case .quantity(let newQuantity):
                 return formatOptionString(quantity: newQuantity, optionTitle: optionTitle)
-            case .multipleChoice(let choice):
-                return formatOptionString(quantity: quantity, optionTitle: optionTitle, choice: choice)
+            case .multipleChoice(let choiceIndex):
+                guard case let .multipleChoice(choices)? = option.menuItemOption?.options else {
+                    return nil
+                }
+                return formatOptionString(quantity: quantity,
+                                          optionTitle: optionTitle,
+                                          choice: choices[choiceIndex].name)
             }
         }
         return optionStrings.joined(separator: "\n")

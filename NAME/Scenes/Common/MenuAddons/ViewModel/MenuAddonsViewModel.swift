@@ -16,7 +16,7 @@ struct MenuAddonsViewModel {
     }
     enum MenuOptionValueViewModel {
         case quantity(Int)
-        case choice(String)
+        case choice(Int)
     }
     enum MenuOptionTypeViewModel {
         case quantity(price: String)
