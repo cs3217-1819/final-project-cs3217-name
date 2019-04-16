@@ -75,6 +75,9 @@ extension OrderPresenter: OrderPresenterInput {
                 return formatOptionString(quantity: quantity,
                                           optionTitle: optionTitle,
                                           choice: choices[choiceIndex].name)
+            case .multipleResponse:
+                // TODO Implement
+                return nil
             }
         }
         return optionStrings.joined(separator: "\n")

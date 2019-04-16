@@ -134,10 +134,10 @@ enum FixtureGenerator {
                                          defaultValue: .multipleChoice(2))
 
         let itemOption5 = MenuItemOption(name: "Best 3217 TA",
-                                         options: .multipleChoice([
-                                            ("Herbert", 0), ("Xien Dong", 0), ("Yunpeng", 0),
-                                            ("Yanhao", 0), ("Wai Kay", 0)]),
-                                         defaultValue: .multipleChoice(4))
+                                         options: .multipleResponse([
+                                            ("Herbert", 500), ("Xien Dong", 500), ("Yunpeng", 500),
+                                            ("Yanhao", 500), ("Wai Kay", 5_000)]),
+                                         defaultValue: .multipleResponse([0, 4]))
 
         let itemOption6 = MenuItemOption(name: "2019 General Election Ballot",
                                          options: .multipleChoice([("PAP", 1_000_000), ("PPAP", 0)]),

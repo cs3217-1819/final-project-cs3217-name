@@ -4,43 +4,66 @@ enum MenuItemOptionType {
     case boolean(price: Int)
     case quantity(price: Int)
     case multipleChoice([(name: String, price: Int)])
+    case multipleResponse([(name: String, price: Int)])
 }
 
 extension MenuItemOptionType: Codable {
     private enum CodingKeys: CodingKey {
         case choices
         case prices
+        case metatype
+    }
+
+    private enum MetaType: Int, Codable {
+        case boolean
+        case quantity
+        case multipleChoice
+        case multipleResponse
+
+        init(of type: MenuItemOptionType) {
+            switch type {
+            case .boolean: self = .boolean
+            case .quantity: self = .quantity
+            case .multipleChoice: self = .multipleChoice
+            case .multipleResponse: self = .multipleResponse
+            }
+        }
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if (try? container.decode(Bool.self, forKey: .choices)) != nil,
-            let price = try? container.decode(Int.self, forKey: .prices) {
+        let metatype = try container.decode(MetaType.self, forKey: .metatype)
+        switch metatype {
+        case .boolean:
+            let price = try container.decode(Int.self, forKey: .prices)
             self = .boolean(price: price)
-        } else if (try? container.decode(Int.self, forKey: .choices)) != nil,
-            let price = try? container.decode(Int.self, forKey: .prices) {
+        case .quantity:
+            let price = try container.decode(Int.self, forKey: .prices)
             self = .quantity(price: price)
-        } else if let choices = try? container.decode([String].self, forKey: .choices),
-            let prices = try? container.decode([Int].self, forKey: .prices) {
-            let multipleChoice = zip(choices, prices).map { name, price in (name: name, price: price) }
+        case .multipleChoice:
+            let choices = try container.decode([String].self, forKey: .choices)
+            let prices = try container.decode([Int].self, forKey: .prices)
+            let multipleChoice = zip(choices, prices).map { (name: $0.0, price: $0.1) }
             self = .multipleChoice(multipleChoice)
-        } else {
-            throw ModelError.deserialization
+        case .multipleResponse:
+            let choices = try container.decode([String].self, forKey: .choices)
+            let prices = try container.decode([Int].self, forKey: .prices)
+            let multipleResponse = zip(choices, prices).map { (name: $0.0, price: $0.1) }
+            self = .multipleResponse(multipleResponse)
         }
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(MetaType(of: self), forKey: .metatype)
         switch self {
         case .boolean(let price):
-            try container.encode(true, forKey: .choices)
             try container.encode(price, forKey: .prices)
         case .quantity(let price):
-            try container.encode(0, forKey: .choices)
             try container.encode(price, forKey: .prices)
-        case .multipleChoice(let multipleChoices):
-            let choices = multipleChoices.map { $0.name }
-            let prices = multipleChoices.map { $0.price }
+        case .multipleChoice(let rawChoices), .multipleResponse(let rawChoices):
+            let choices = rawChoices.map { $0.name }
+            let prices = rawChoices.map { $0.price }
             try container.encode(choices, forKey: .choices)
             try container.encode(prices, forKey: .prices)
         }

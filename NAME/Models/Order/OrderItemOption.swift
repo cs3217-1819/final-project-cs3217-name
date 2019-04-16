@@ -44,6 +44,8 @@ class OrderItemOption: Object {
             break
         case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
             assert(choiceIndex < choices.count, "choiceIndex is out of bounds")
+        case let (.multipleResponse(choices), .multipleResponse(choiceIndices)):
+            assert(choiceIndices.allSatisfy { $0 < choices.count }, "One of multipleResponse's choice is out of bounds")
         default:
             assertionFailure("options and defaultValue does not match")
         }

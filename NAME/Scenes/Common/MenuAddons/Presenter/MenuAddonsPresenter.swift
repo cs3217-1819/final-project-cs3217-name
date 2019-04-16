@@ -42,16 +42,21 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                 }
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
                                                                type: .choices(choices),
-                                                               value: .choice(choiceIndex))
+                                                               value: .choices([choiceIndex]))
             case let (.multipleChoice(rawChoices), .multipleChoice(choiceIndex)):
                 let choices = rawChoices.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
                                                                type: .choices(choices),
-                                                               value: .choice(choiceIndex))
+                                                               value: .choices([choiceIndex]))
             case let (.quantity(price), .quantity(quantity)):
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
                                                                type: .quantity(price: price.formattedAsPrice()),
                                                                value: .quantity(quantity))
+            case let (.multipleResponse(rawChoices), .multipleResponse(selectedChoices)):
+                let choices = rawChoices.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
+                return MenuAddonsViewModel.MenuOptionViewModel(name: name,
+                                                               type: .choices(choices),
+                                                               value: .choices(selectedChoices))
             default:
                 fatalError("Inconsistent MenuItemOption's options and defaultValue")
             }

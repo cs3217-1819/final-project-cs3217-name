@@ -13,6 +13,7 @@ enum OrderItemOptionValue {
     case quantity(Int)
     /// The index of the choice
     case multipleChoice(Int)
+    case multipleResponse(Set<Int>)
 }
 
 extension OrderItemOptionValue: Codable {
@@ -25,12 +26,14 @@ extension OrderItemOptionValue: Codable {
         case boolean
         case quantity
         case multipleChoice
+        case multipleResponse
 
-        init(with value: OrderItemOptionValue) {
+        init(of value: OrderItemOptionValue) {
             switch value {
             case .boolean: self = .boolean
             case .quantity: self = .quantity
             case .multipleChoice: self = .multipleChoice
+            case .multipleResponse: self = .multipleResponse
             }
         }
     }
@@ -48,18 +51,23 @@ extension OrderItemOptionValue: Codable {
         case .multipleChoice:
             let choice = try container.decode(Int.self, forKey: .choice)
             self = .multipleChoice(choice)
+        case .multipleResponse:
+            let choices = try container.decode(Set<Int>.self, forKey: .choice)
+            self = .multipleResponse(choices)
         }
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(MetaType(with: self), forKey: .metatype)
+        try container.encode(MetaType(of: self), forKey: .metatype)
         switch self {
         case let .boolean(boolean):
             try container.encode(boolean, forKey: .choice)
         case let .quantity(quantity):
             try container.encode(quantity, forKey: .choice)
         case let .multipleChoice(choices):
+            try container.encode(choices, forKey: .choice)
+        case let .multipleResponse(choices):
             try container.encode(choices, forKey: .choice)
         }
     }

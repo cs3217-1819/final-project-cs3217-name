@@ -21,6 +21,7 @@ class MenuAddonsTableViewChoiceCell: UITableViewCell {
         result.register(MenuAddonsCollectionViewCell.self,
                         forCellWithReuseIdentifier: MenuAddonsCollectionViewCell.reuseIdentifier)
         result.backgroundColor = .white
+        result.allowsMultipleSelection = true
         return result
     }()
 
@@ -45,8 +46,5 @@ class MenuAddonsTableViewChoiceCell: UITableViewCell {
         collectionView.dataSource = dataSourceDelegate
         collectionView.delegate = dataSourceDelegate
         collectionView.reloadData()
-        collectionView.selectItem(at: dataSourceDelegate.selectedIndexPath,
-                                  animated: false,
-                                  scrollPosition: [])
     }
 }

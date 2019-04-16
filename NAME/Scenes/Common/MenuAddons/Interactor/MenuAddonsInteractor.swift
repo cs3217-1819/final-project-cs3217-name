@@ -66,6 +66,15 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
             optionValues[index].value = .quantity(valueIndexOrQuantity)
         case .multipleChoice:
             optionValues[index].value = .multipleChoice(valueIndexOrQuantity)
+        case .multipleResponse:
+            if case var .multipleResponse(choices) = optionValues[index].value {
+                if choices.contains(valueIndexOrQuantity) {
+                    choices.remove(valueIndexOrQuantity)
+                } else {
+                    choices.insert(valueIndexOrQuantity)
+                }
+                optionValues[index].value = .multipleResponse(choices)
+            }
         }
         passValueToPresenter()
     }
@@ -94,6 +103,8 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
                 return price * quantity
             case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
                 return choices[choiceIndex].price
+            case let (.multipleResponse(choices), .multipleResponse(selectedChoices)):
+                return selectedChoices.map { choices[$0].price }.reduce(0, +)
             default:
                 return 0
             }
