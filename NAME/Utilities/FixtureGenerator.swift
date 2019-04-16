@@ -218,6 +218,8 @@ enum FixtureGenerator {
 
         assert(categories.count >= 7)
 
+        item2a1.addAddOns([item2b1, item2b2, item2d1])
+
         let now = DateInterval(start: Date(timeIntervalSinceNow: 0),
                                end: Date(timeIntervalSinceNow: 10))
 

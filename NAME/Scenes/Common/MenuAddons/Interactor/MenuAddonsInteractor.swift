@@ -13,7 +13,8 @@ protocol MenuAddonsInteractorInput: MenuAddonsViewControllerOutput {
 }
 
 protocol MenuAddonsInteractorOutput {
-    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int, quantity: Int)
+    func present(optionValues: [MenuAddonsInteractor.OptionValue], basePrice: Int, quantity: Int,
+                 addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>)
 }
 
 final class MenuAddonsInteractor {
@@ -30,6 +31,8 @@ final class MenuAddonsInteractor {
     let output: MenuAddonsInteractorOutput
     let worker: MenuAddonsWorker
 
+    private let addOns: [IndividualMenuItem]
+    private var selectedAddonsIndices: Set<Int> = []
     private var optionValues: [OptionValue]
     private let basePrice: Int
     private var quantity: Int = 1
@@ -47,6 +50,11 @@ final class MenuAddonsInteractor {
         }
         optionValues = menuDisplayable.options.map { OptionValue(option: $0, value: $0.defaultValue) }
         basePrice = menuDisplayable.price
+        if let individualMenuItem = menuDisplayable as? IndividualMenuItem {
+            addOns = Array(individualMenuItem.addOns)
+        } else {
+            addOns = []
+        }
     }
 }
 
@@ -58,6 +66,14 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
     }
 
     func updateValue(at index: Int, with valueIndexOrQuantity: Int) {
+        if index < optionValues.count {
+            updateOptionValue(at: index, with: valueIndexOrQuantity)
+        } else {
+            updateAddons(with: valueIndexOrQuantity)
+        }
+    }
+
+    func updateOptionValue(at index: Int, with valueIndexOrQuantity: Int) {
         switch optionValues[index].option.options {
         case .boolean:
             let boolean = MenuAddonsConstants.booleanChoices[valueIndexOrQuantity]
@@ -79,6 +95,15 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
         passValueToPresenter()
     }
 
+    func updateAddons(with valueIndex: Int) {
+        if selectedAddonsIndices.contains(valueIndex) {
+            selectedAddonsIndices.remove(valueIndex)
+        } else {
+            selectedAddonsIndices.insert(valueIndex)
+        }
+        passValueToPresenter()
+    }
+
     func reset() {
         optionValues = optionValues.map { OptionValue(option: $0.option, value: $0.option.defaultValue) }
         passValueToPresenter()
@@ -95,22 +120,11 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
     }
 
     private func passValueToPresenter() {
-        let optionPrices = optionValues.map { optionValue -> Int in
-            switch (optionValue.option.options, optionValue.value) {
-            case let (.boolean(price: price), .boolean(boolean)):
-                return boolean ? price : 0
-            case let (.quantity(price: price), .quantity(quantity)):
-                return price * quantity
-            case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
-                return choices[choiceIndex].price
-            case let (.multipleResponse(choices), .multipleResponse(selectedChoices)):
-                return selectedChoices.map { choices[$0].price }.reduce(0, +)
-            default:
-                return 0
-            }
-        }
-        let totalPrice = basePrice + optionPrices.reduce(0, +)
-        output.present(optionValues: optionValues, totalPrice: totalPrice, quantity: quantity)
+        output.present(optionValues: optionValues,
+                       basePrice: basePrice,
+                       quantity: quantity,
+                       addOns: addOns,
+                       selectedAddonsIndices: selectedAddonsIndices)
     }
 }
 

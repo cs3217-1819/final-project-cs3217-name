@@ -52,6 +52,14 @@ class IndividualMenuItem: Object, MenuDisplayable {
         discounts.append(discount)
     }
 
+    func addAddOn(_ addOn: IndividualMenuItem) {
+        addOns.append(addOn)
+    }
+
+    func addAddOns(_ addOns: [IndividualMenuItem]) {
+        self.addOns.append(objectsIn: addOns)
+    }
+
     override static func primaryKey() -> String? {
         return "id"
     }

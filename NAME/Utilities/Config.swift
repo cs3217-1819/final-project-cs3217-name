@@ -115,6 +115,7 @@ enum MenuAddonsConstants {
     static let resetButtonTitle = "RESET ALL"
     static let sectionResetButtonTitle = "RESET"
     static let addButtonTitle = "ADD"
+    static let addOnsOptionTitle = "Add-ons"
     static let booleanChoices = [true, false]
     static let booleanChoicesTitle = ["YES", "NO"]
     static let addonsSize = CGSize(width: 100, height: 120)

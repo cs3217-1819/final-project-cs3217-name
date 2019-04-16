@@ -27,15 +27,25 @@ final class MenuAddonsPresenter {
 
 // MARK: - MenuAddonsPresenterInput
 extension MenuAddonsPresenter: MenuAddonsPresenterInput {
-    func present(optionValues: [MenuAddonsInteractor.OptionValue], totalPrice: Int, quantity: Int) {
-        let optionsViewModel = optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionViewModel in
+    func present(optionValues: [MenuAddonsInteractor.OptionValue], basePrice: Int, quantity: Int,
+                 addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>) {
+        let totalPrice = calculateTotalPrice(optionValues: optionValues, addOns: addOns, selectedAddonsIndices: selectedAddonsIndices, basePrice: basePrice)
+        let optionsViewModel = makeMenuOptionViewModels(fromOptionValues: optionValues) + [makeMenuOptionViewModel(fromAddOns: addOns, selectedIndices: selectedAddonsIndices)]
+        let viewModel = MenuAddonsViewModel(options: optionsViewModel,
+                                            totalPrice: (totalPrice * quantity).formattedAsPrice(),
+                                            quantity: quantity)
+        output.display(viewModel: viewModel)
+    }
+
+    private func makeMenuOptionViewModels(fromOptionValues optionValues: [MenuAddonsInteractor.OptionValue]) -> [MenuAddonsViewModel.MenuOptionViewModel] {
+        return optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionViewModel in
             let name = optionValue.option.name
             switch (optionValue.option.options, optionValue.value) {
             case let (.boolean(price), .boolean(value)):
                 let choices: [(name: String, price: String)] = MenuAddonsConstants.booleanChoices.enumerated()
                     .map { index, choice in
-                    return (name: MenuAddonsConstants.booleanChoicesTitle[index],
-                            price: (choice ? price : 0).formattedAsPrice())
+                        return (name: MenuAddonsConstants.booleanChoicesTitle[index],
+                                price: (choice ? price : 0).formattedAsPrice())
                     }
                 guard let choiceIndex = MenuAddonsConstants.booleanChoices.firstIndex(of: value) else {
                     fatalError("You dumbo! Check that MenuAddonsConstants.booleanChoices contains both true and false")
@@ -61,9 +71,33 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                 fatalError("Inconsistent MenuItemOption's options and defaultValue")
             }
         }
-        let viewModel = MenuAddonsViewModel(options: optionsViewModel,
-                                            totalPrice: (totalPrice * quantity).formattedAsPrice(),
-                                            quantity: quantity)
-        output.display(viewModel: viewModel)
+    }
+
+    private func makeMenuOptionViewModel(fromAddOns addOns: [IndividualMenuItem],
+                                         selectedIndices: Set<Int>) -> MenuAddonsViewModel.MenuOptionViewModel {
+        let choices = addOns.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
+        return MenuAddonsViewModel.MenuOptionViewModel(name: MenuAddonsConstants.addOnsOptionTitle,
+                                                       type: .choices(choices),
+                                                       value: .choices(selectedIndices))
+    }
+
+    private func calculateTotalPrice(optionValues: [MenuAddonsInteractor.OptionValue],
+                                     addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>, basePrice: Int) -> Int {
+        let optionPrice = optionValues.map { optionValue -> Int in
+            switch (optionValue.option.options, optionValue.value) {
+            case let (.boolean(price: price), .boolean(boolean)):
+                return boolean ? price : 0
+            case let (.quantity(price: price), .quantity(quantity)):
+                return price * quantity
+            case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
+                return choices[choiceIndex].price
+            case let (.multipleResponse(choices), .multipleResponse(selectedChoices)):
+                return selectedChoices.map { choices[$0].price }.reduce(0, +)
+            default:
+                return 0
+            }
+        }.reduce(0, +)
+        let addOnsPrice = selectedAddonsIndices.map { addOns[$0].price }.reduce(0, +)
+        return basePrice + optionPrice + addOnsPrice
     }
 }
