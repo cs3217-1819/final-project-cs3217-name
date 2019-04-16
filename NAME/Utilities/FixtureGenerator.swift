@@ -379,6 +379,12 @@ enum FixtureGenerator {
         orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[2],
                                                   value: .multipleChoice(1)))
 
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[4],
+                                                  value: .multipleResponse([1, 2, 3])))
+
+        orderItem6.options.append(OrderItemOption(menuItemOption: menuItemOptions[4],
+                                                  value: .multipleResponse([]))) // Should not be displayed in backlog
+
         return [orderItem1, orderItem2, orderItem3, orderItem4, orderItem5, orderItem6, orderItem7]
     }
 }

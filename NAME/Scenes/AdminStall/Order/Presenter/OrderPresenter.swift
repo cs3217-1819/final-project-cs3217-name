@@ -60,12 +60,10 @@ extension OrderPresenter: OrderPresenterInput {
                 return nil
             }
             switch option.value {
-            case .boolean(false):
+            case .boolean(false), .quantity(0), .multipleResponse([]):
                 return nil
             case .boolean(true):
                 return formatOptionString(quantity: quantity, optionTitle: optionTitle)
-            case .quantity(0):
-                return nil
             case .quantity(let newQuantity):
                 return formatOptionString(quantity: newQuantity, optionTitle: optionTitle)
             case .multipleChoice(let choiceIndex):
@@ -75,9 +73,15 @@ extension OrderPresenter: OrderPresenterInput {
                 return formatOptionString(quantity: quantity,
                                           optionTitle: optionTitle,
                                           choice: choices[choiceIndex].name)
-            case .multipleResponse:
-                // TODO Implement
-                return nil
+            case .multipleResponse(let selectedChoices):
+                guard case let .multipleResponse(choices)? = option.menuItemOption?.options else {
+                    return nil
+                }
+                return selectedChoices.map {
+                    formatOptionString(quantity: quantity,
+                                       optionTitle: optionTitle,
+                                       choice: choices[$0].name)
+                }.joined(separator: "\n")
             }
         }
         return optionStrings.joined(separator: "\n")
