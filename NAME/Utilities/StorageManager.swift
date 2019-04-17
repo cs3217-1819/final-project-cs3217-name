@@ -26,4 +26,6 @@ protocol StorageManager {
     func getOrder(id: String) -> Order?
 
     func getMenuDisplayable(id: String) -> MenuDisplayable?
+
+    func getQueueNumber() -> Int
 }

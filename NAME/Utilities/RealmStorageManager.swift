@@ -75,4 +75,8 @@ class RealmStorageManager: StorageManager {
         return realm.objects(Order.self).filter(predicate).first as Order?
         // swiftlint:enable first_where
     }
+
+    func getQueueNumber() -> Int {
+        return (realm.objects(Order.self).sorted(byKeyPath: "queueNumber", ascending: true).last?.queueNumber ?? 0) + 1
+    }
 }

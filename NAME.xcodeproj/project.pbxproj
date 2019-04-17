@@ -123,6 +123,7 @@
 		C6EC63E6224B8A20003E4547 /* ModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E5224B8A20003E4547 /* ModelError.swift */; };
 		C6EC63EA224B9060003E4547 /* ModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63E9224B9060003E4547 /* ModelHelper.swift */; };
 		C6EC63EC224B9A0E003E4547 /* OrderItemOptionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */; };
+		C6F3D51E22670A7A00232424 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F3D51D22670A7A00232424 /* ShoppingCart.swift */; };
 		CAFCCC38685A268BB99E0A14 /* Pods_NAMETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */; };
 		E560E33EA363C8723761CF94 /* Pods_NAME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */; };
 		FB13B70B225E357A006ED487 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B6FE225E357A006ED487 /* OrderViewModel.swift */; };
@@ -326,6 +327,7 @@
 		C6EC63E5224B8A20003E4547 /* ModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelError.swift; sourceTree = "<group>"; };
 		C6EC63E9224B9060003E4547 /* ModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelper.swift; sourceTree = "<group>"; };
 		C6EC63EB224B9A0E003E4547 /* OrderItemOptionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemOptionValue.swift; sourceTree = "<group>"; };
+		C6F3D51D22670A7A00232424 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		E17AA0FE5C6DC6F8D8933CAE /* Pods_NAMETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAMETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB13B6FE225E357A006ED487 /* OrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		FB13B700225E357A006ED487 /* OrderPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				54D252E0224E1D56007BF235 /* RealmStorageManager.swift */,
 				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
 				C6BA5901225D0987002011A2 /* Int+Extensions.swift */,
+				C6F3D51D22670A7A00232424 /* ShoppingCart.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2149,6 +2152,7 @@
 				FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,
 				1FB2581F224929180035399F /* PriceModification.swift in Sources */,
+				C6F3D51E22670A7A00232424 /* ShoppingCart.swift in Sources */,
 				C691A5AB225BB6310061CE97 /* MenuDetailWorker.swift in Sources */,
 				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,
 				54D252C1224CBD25007BF235 /* StallListPresenter.swift in Sources */,
