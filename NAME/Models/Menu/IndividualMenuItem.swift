@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class IndividualMenuItem: Object, MenuDisplayable {
+class IndividualMenuItem: Object, MenuEditable {
 
     // MARK: - Properties
     @objc dynamic var id: String = UUID().uuidString

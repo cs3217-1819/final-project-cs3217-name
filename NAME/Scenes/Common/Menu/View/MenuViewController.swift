@@ -12,7 +12,8 @@ protocol MenuViewControllerInput: MenuPresenterOutput {
 }
 
 protocol MenuViewControllerOutput {
-
+    func add(menuItemIds: [String], toCategory categoryIndex: Int)
+    func remove(menuItemIds: [String], fromCategory categoryIndex: Int)
 }
 
 final class MenuViewController: UICollectionViewController {
@@ -210,8 +211,10 @@ extension MenuViewController: CategoryDropHandlerDelegate {
         guard let (categoryIndex, isRemove) = categorySelector.categoryInfo(atPoint: point) else {
             return
         }
-        print("Kosnte", menuItemIds, categoryIndex, isRemove)
-        // TODO: update categories
-        // TODO: (elsewhere) generate uncategorized category
+        if isRemove {
+            output?.remove(menuItemIds: menuItemIds, fromCategory: categoryIndex)
+        } else {
+            output?.add(menuItemIds: menuItemIds, toCategory: categoryIndex)
+        }
     }
 }

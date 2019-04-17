@@ -44,6 +44,7 @@
 		540042012266194300847219 /* MenuDragHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042002266194300847219 /* MenuDragHandlers.swift */; };
 		540042032266199D00847219 /* MenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042022266199D00847219 /* MenuDataSource.swift */; };
 		540042052266E58000847219 /* PassthroughStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042042266E58000847219 /* PassthroughStackView.swift */; };
+		540042072267212400847219 /* MenuEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042062267212400847219 /* MenuEditable.swift */; };
 		540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E692251E0DE000F2131 /* BrowseInteractorMediator.swift */; };
 		540A3E6C2259C722000F2131 /* MenuItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */; };
 		540A3E6E2259D37A000F2131 /* MenuCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */; };
@@ -239,6 +240,7 @@
 		540042002266194300847219 /* MenuDragHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDragHandlers.swift; sourceTree = "<group>"; };
 		540042022266199D00847219 /* MenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataSource.swift; sourceTree = "<group>"; };
 		540042042266E58000847219 /* PassthroughStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughStackView.swift; sourceTree = "<group>"; };
+		540042062267212400847219 /* MenuEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditable.swift; sourceTree = "<group>"; };
 		540A3E692251E0DE000F2131 /* BrowseInteractorMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseInteractorMediator.swift; sourceTree = "<group>"; };
 		540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryHeaderView.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				1FB2580D224929180035399F /* Menu.swift */,
 				1FB2580F224929180035399F /* MenuCategory.swift */,
 				1FB257FF224929160035399F /* MenuDisplayable.swift */,
+				540042062267212400847219 /* MenuEditable.swift */,
 				1FB25807224929170035399F /* IndividualMenuItem.swift */,
 				1FB25804224929170035399F /* SetMenuItem.swift */,
 				1FB2580A224929180035399F /* MenuItemOption.swift */,
@@ -2138,6 +2141,7 @@
 				FB519E232250A61300BB5DE8 /* EstablishmentRootConfigurator.swift in Sources */,
 				1F763026224D8C00001E8E5C /* OrderConfirmationWorker.swift in Sources */,
 				C6D83D06225DCCB100840504 /* MenuAddonsFooterView.swift in Sources */,
+				540042072267212400847219 /* MenuEditable.swift in Sources */,
 				5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */,
 				1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */,
 				1F763028224D8C11001E8E5C /* OrderConfirmationPresenter.swift in Sources */,

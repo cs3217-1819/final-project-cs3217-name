@@ -28,6 +28,11 @@ protocol MenuInteractorOutput {
 }
 
 final class MenuInteractor: MenuFromParentInput {
+    fileprivate struct Dependencies {
+        let storageManager: StorageManager
+    }
+    private let deps: Dependencies
+
     private let output: MenuInteractorOutput
     private let worker: MenuWorker
     private weak var toParentMediator: MenuToParentOutput?
@@ -41,8 +46,10 @@ final class MenuInteractor: MenuFromParentInput {
     // MARK: - Initializers
 
     init(output: MenuInteractorOutput,
+         injector: DependencyInjector,
          toParentMediator: MenuToParentOutput?,
          worker: MenuWorker = MenuWorker()) {
+        self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
         self.toParentMediator = toParentMediator
@@ -50,6 +57,35 @@ final class MenuInteractor: MenuFromParentInput {
 }
 
 // MARK: - MenuInteractorInput
-
 extension MenuInteractor: MenuViewControllerOutput {
+    func add(menuItemIds: [String], toCategory categoryIndex: Int) {
+        guard let menu = stall?.menu else {
+            return
+        }
+
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            menu.add(menuItemIds: menuItemIds, toCategory: categoryIndex)
+        }
+        output.present(stall: stall)
+    }
+
+    func remove(menuItemIds: [String], fromCategory categoryIndex: Int) {
+        guard let menu = stall?.menu else {
+            return
+        }
+
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            menu.remove(menuItemIds: menuItemIds, fromCategory: categoryIndex)
+        }
+        output.present(stall: stall)
+    }
+}
+
+// MARK: - Dependency injection
+extension DependencyInjector {
+    fileprivate func dependencies() -> MenuInteractor.Dependencies {
+        return MenuInteractor.Dependencies(storageManager: storageManager)
+    }
 }

@@ -12,12 +12,14 @@ final class MenuConfigurator {
     static let shared: MenuConfigurator = MenuConfigurator()
 
     func configure(viewController: MenuViewController,
-                   toParentMediator: MenuToParentOutput?) {
+                   toParentMediator: MenuToParentOutput?,
+                   injector: DependencyInjector = appDefaultInjector) {
 
         let router = MenuRouter(viewController: viewController)
         let presenter = MenuPresenter(output: viewController)
 
         let interactor = MenuInteractor(output: presenter,
+                                        injector: injector,
                                         toParentMediator: toParentMediator)
         toParentMediator?.menuInteractor = interactor
 

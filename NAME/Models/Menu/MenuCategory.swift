@@ -11,7 +11,7 @@ class MenuCategory: Object {
     @objc dynamic var menu: Menu?
     private let individualItems = LinkingObjects(fromType: IndividualMenuItem.self, property: "categories")
     private let setItems = LinkingObjects(fromType: SetMenuItem.self, property: "categories")
-    var items: [MenuDisplayable] {
+    var items: [MenuEditable] {
         return Array(individualItems) + Array(setItems)
     }
 
