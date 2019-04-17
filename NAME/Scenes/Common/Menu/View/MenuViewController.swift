@@ -42,17 +42,8 @@ final class MenuViewController: UICollectionViewController {
         }
     }
 
-    private lazy var dragHandler: MenuDragHandler = {
-        let handler = MenuDragHandler { [unowned self] in
-            return self.collectionViewDataSource
-        }
-        return handler
-    }()
-
-    private lazy var dropHandler: CategoryDropHandler = {
-        let handler = CategoryDropHandler()
-        return handler
-    }()
+    private lazy var dragHandler = MenuDragHandler(delegate: self)
+    private lazy var dropHandler = CategoryDropHandler(delegate: self)
 
     // MARK: - Initializers
 
@@ -174,5 +165,53 @@ extension MenuViewController: CategorySelectorDelegate {
         let offset = CGPoint(x: firstItemLayout.frame.origin.x,
                              y: firstItemLayout.frame.origin.y - headerLayout.frame.size.height)
         collectionView.setContentOffset(offset, animated: true)
+    }
+}
+
+// MARK: - DragHandlerDelegate
+
+extension MenuViewController: MenuDragHandlerDelegate {
+    func dragHandler(_ handler: MenuDragHandler, menuItemIdForIndexPath indexPath: IndexPath) -> String? {
+        return collectionViewDataSource?.menuItemViewModel(at: indexPath).id
+    }
+
+    func dragHandler(_ handler: MenuDragHandler, willBeginDragSessionForCategoryAtIndex index: Int) {
+        enableCategorySelectionFeedback = false
+        collectionViewDataSource?.freezeSection(forCategoryAtIndex: index)
+        categorySelector.selectedIndex = index
+        categorySelector.isRemoving = true
+        categorySelector.isSelectionEnabled = false
+        // TODO: Disable stall list
+    }
+
+    func dragHandlerDidEndDragSession(_ handler: MenuDragHandler) {
+        enableCategorySelectionFeedback = true
+        collectionViewDataSource?.unfreezeSection()
+        categorySelector.isRemoving = false
+        categorySelector.isSelectionEnabled = true
+        // TODO: Enable stall list
+    }
+}
+
+// MARK: - CategoryDropHandlerDelegate
+
+extension MenuViewController: CategoryDropHandlerDelegate {
+    func dropHandlerDropTarget(_ handler: CategoryDropHandler) -> UIView {
+        return categorySelector
+    }
+
+    func dropHandler(_ handler: CategoryDropHandler, canDropAt point: CGPoint) -> Bool {
+        return categorySelector.categoryInfo(atPoint: point) != nil
+    }
+
+    func dropHandler(_ handler: CategoryDropHandler,
+                     didDropMenuItemIds menuItemIds: [String],
+                     at point: CGPoint) {
+        guard let (categoryIndex, isRemove) = categorySelector.categoryInfo(atPoint: point) else {
+            return
+        }
+        print("Kosnte", menuItemIds, categoryIndex, isRemove)
+        // TODO: update categories
+        // TODO: (elsewhere) generate uncategorized category
     }
 }

@@ -17,21 +17,24 @@ protocol CategorySelectorDelegate: class {
 private class CategoryButton: UIButton {
     var category: (name: String, index: Int) = ("", -1) {
         didSet {
-            setTitle(category.name, for: .normal)
+            updateDisplayFromState()
         }
     }
 
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                backgroundColor = .yellow
-            } else {
-                backgroundColor = .green
-            }
+            updateDisplayFromState()
+        }
+    }
+
+    var isRemoveTarget: Bool {
+        didSet {
+            updateDisplayFromState()
         }
     }
 
     override init(frame: CGRect) {
+        isRemoveTarget = false
         super.init(frame: frame)
         isSelected = false
         setTitleColor(.black, for: .normal)
@@ -41,11 +44,24 @@ private class CategoryButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private func updateDisplayFromState() {
+        if isRemoveTarget {
+            backgroundColor = .red
+            setTitle("Remove", for: .normal)
+        } else if isSelected {
+            backgroundColor = .yellow
+            setTitle(category.name, for: .normal)
+        } else {
+            backgroundColor = .green
+            setTitle(category.name, for: .normal)
+        }
+    }
 }
 
 class CategorySelector: UIScrollView {
     private let categorySelector: UIStackView = {
-        let selector = UIStackView()
+        let selector = PassthroughStackView()
         selector.spacing = ConstraintConstants.standardValue
         return selector
     }()
@@ -73,34 +89,66 @@ class CategorySelector: UIScrollView {
                 oldValue < categorySelector.arrangedSubviews.count,
                 let button = categorySelector.arrangedSubviews[oldValue] as? CategoryButton {
                 button.isSelected = false
+                button.isRemoveTarget = false
             }
             if let selectedIndex = selectedIndex,
                 selectedIndex < categorySelector.arrangedSubviews.count,
                 let button = categorySelector.arrangedSubviews[selectedIndex] as? CategoryButton {
-                button.isSelected = true
+                button.isSelected = !isRemoving
+                button.isRemoveTarget = isRemoving
                 scrollRectToVisible(button.frame, animated: false)
             }
         }
     }
 
+    var isRemoving: Bool {
+        didSet {
+            let removeIndex = selectedIndex
+            selectedIndex = removeIndex
+        }
+    }
+
+    var isSelectionEnabled: Bool {
+        didSet {
+            for case let button as CategoryButton in categorySelector.arrangedSubviews {
+                button.isEnabled = isSelectionEnabled
+            }
+        }
+    }
+
     override init(frame: CGRect) {
+        isRemoving = false
+        isSelectionEnabled = true
         super.init(frame: frame)
         alwaysBounceHorizontal = true
         showsHorizontalScrollIndicator = true
 
         addSubview(categorySelector)
 
-        categorySelector.translatesAutoresizingMaskIntoConstraints = false
         categorySelector.snp.makeConstraints { make in
-            make.leading.equalTo(self)
-            make.trailing.equalTo(self)
-            make.top.equalTo(self)
-            make.bottom.equalTo(self)
+            make.edges.equalToSuperview()
         }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func categoryInfo(atPoint point: CGPoint) -> (index: Int, isRemove: Bool)? {
+        guard let categoryButton = categorySelector.hitTest(point, with: nil) as? CategoryButton else {
+            return nil
+        }
+
+        let categoryIndex = categoryButton.category.index
+        guard 0..<categories.count ~= categoryIndex else {
+            return nil
+        }
+
+        var isRemove = false
+        if let selectedIndex = selectedIndex {
+            isRemove = isRemoving && selectedIndex == categoryIndex
+        }
+        return (categoryIndex, isRemove)
     }
 
     @objc
