@@ -15,53 +15,6 @@ protocol MenuViewControllerOutput {
 
 }
 
-private class MenuDataSource: NSObject, UICollectionViewDataSource {
-    private let cellIdentifier: String
-    private let headerIdentifier: String
-
-    fileprivate let categoryViewModels: [MenuViewModel.MenuCategoryViewModel]
-
-    init(categories: [MenuViewModel.MenuCategoryViewModel], cellIdentifier: String, headerIdentifier: String) {
-        self.categoryViewModels = categories
-        self.cellIdentifier = cellIdentifier
-        self.headerIdentifier = headerIdentifier
-        super.init()
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categoryViewModels.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryViewModels[section].items.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        guard let itemCell = cell as? MenuItemCollectionViewCell else {
-            return cell
-        }
-        let itemModel = categoryViewModels[indexPath.section].items[indexPath.item]
-        itemCell.set(name: itemModel.name)
-        return itemCell
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView
-            .dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                              withReuseIdentifier: headerIdentifier,
-                                              for: indexPath)
-        guard let categoryHeaderView = headerView as? MenuCategoryHeaderView else {
-            return headerView
-        }
-        categoryHeaderView.text = categoryViewModels[indexPath.section].name
-        return categoryHeaderView
-    }
-}
-
 final class MenuViewController: UICollectionViewController {
     private static let itemCellIdentifier = "itemCellIdentifier"
     private static let headerIdentifier = "headerIdentifier"
@@ -78,6 +31,7 @@ final class MenuViewController: UICollectionViewController {
         let selector = CategorySelector()
         selector.translatesAutoresizingMaskIntoConstraints = false
         selector.selectorDelegate = self
+        selector.addInteraction(UIDropInteraction(delegate: dropHandler))
         return selector
     }()
 
@@ -87,6 +41,18 @@ final class MenuViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
+
+    private lazy var dragHandler: MenuDragHandler = {
+        let handler = MenuDragHandler { [unowned self] in
+            return self.collectionViewDataSource
+        }
+        return handler
+    }()
+
+    private lazy var dropHandler: CategoryDropHandler = {
+        let handler = CategoryDropHandler()
+        return handler
+    }()
 
     // MARK: - Initializers
 
@@ -120,6 +86,7 @@ final class MenuViewController: UICollectionViewController {
                                 withReuseIdentifier: MenuViewController.headerIdentifier)
         collectionView.backgroundColor = .white
         collectionView.alwaysBounceVertical = true
+        collectionView.dragDelegate = dragHandler
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 30
@@ -150,8 +117,9 @@ final class MenuViewController: UICollectionViewController {
 // MARK: - UICollectionViewDelegate
 extension MenuViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let categories = collectionViewDataSource?.categoryViewModels else {
-            return
+        guard !collectionView.hasActiveDrag,
+            let categories = collectionViewDataSource?.categoryViewModels else {
+                return
         }
         router?.navigateToMenuDetail(menuId: categories[indexPath.section].items[indexPath.item].id)
     }
@@ -180,7 +148,8 @@ extension MenuViewController: MenuViewControllerInput {
         title = viewModel.stall.name
         categorySelector.selectedIndex = 0
         categorySelector.categories = viewModel.categories.map { $0.name }
-        collectionViewDataSource = MenuDataSource(categories: viewModel.categories,
+        collectionViewDataSource = MenuDataSource(collectionView: collectionView,
+                                                  categories: viewModel.categories,
                                                   cellIdentifier: MenuViewController.itemCellIdentifier,
                                                   headerIdentifier: MenuViewController.headerIdentifier)
     }

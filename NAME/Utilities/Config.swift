@@ -106,6 +106,11 @@ enum ConstraintConstants {
     static let dividerWidth: CGFloat = 1.0
 }
 
+// MARK: - Menu
+enum MenuConstants {
+    static let menuItemDragTypeIdentifier = "menuItemDragType"
+}
+
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
     static let maximumNumberOfLines = 4
