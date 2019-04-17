@@ -80,9 +80,9 @@ final class MenuInfoViewController: UIViewController {
     }()
 
     // MARK: - Initializers
-    init(menuId: String, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
+    init(menuId: String, mediator: MenuInfoToParentOutput?, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(menuId: menuId, configurator: configurator)
+        configure(menuId: menuId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -90,8 +90,8 @@ final class MenuInfoViewController: UIViewController {
         assertionFailure("This should not be called without Storyboard.")
     }
 
-    private func configure(menuId: String, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
-        configurator.configure(viewController: self, menuId: menuId)
+    private func configure(menuId: String, mediator: MenuInfoToParentOutput?, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
+        configurator.configure(viewController: self, menuId: menuId, toParentMediator: mediator)
     }
 
     // MARK: - View lifecycle

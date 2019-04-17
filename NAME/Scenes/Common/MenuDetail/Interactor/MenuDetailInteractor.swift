@@ -18,10 +18,14 @@ protocol MenuDetailInteractorOutput {
 final class MenuDetailInteractor {
     let output: MenuDetailInteractorOutput
     let worker: MenuDetailWorker
+    private let toChildrenMediator: MenuDetailIntersceneMediator
 
     // MARK: - Initializers
-    init(output: MenuDetailInteractorOutput, worker: MenuDetailWorker = MenuDetailWorker()) {
+    init(output: MenuDetailInteractorOutput,
+         toChildrenMediator: MenuDetailIntersceneMediator,
+         worker: MenuDetailWorker = MenuDetailWorker()) {
         self.output = output
+        self.toChildrenMediator = toChildrenMediator
         self.worker = worker
     }
 }

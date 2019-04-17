@@ -18,10 +18,12 @@ protocol MenuDetailRouterProtocol {
 
 final class MenuDetailRouter {
     weak var viewController: MenuDetailViewController?
+    unowned var mediator: MenuDetailIntersceneMediator
 
     // MARK: - Initializers
-    init(viewController: MenuDetailViewController?) {
+    init(viewController: MenuDetailViewController?, mediator: MenuDetailIntersceneMediator) {
         self.viewController = viewController
+        self.mediator = mediator
     }
 }
 
@@ -29,12 +31,12 @@ final class MenuDetailRouter {
 
 extension MenuDetailRouter: MenuDetailRouterProtocol {
     func menuInfoViewController(menuId: String) -> UIViewController {
-        let menuInfoViewController = MenuInfoViewController(menuId: menuId)
+        let menuInfoViewController = MenuInfoViewController(menuId: menuId, mediator: mediator)
         return UINavigationController(rootViewController: menuInfoViewController)
     }
 
     func menuAddonsViewController(menuId: String) -> UIViewController {
-        let menuAddonsViewController = MenuAddonsViewController(menuId: menuId)
+        let menuAddonsViewController = MenuAddonsViewController(menuId: menuId, mediator: mediator)
         return UINavigationController(rootViewController: menuAddonsViewController)
     }
 

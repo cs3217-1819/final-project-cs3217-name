@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol MenuAddonsFooterViewDelegate: class {
-    func addButtonDidPress()
+    func addButtonDidPress(sender: UIButton)
     func quantityDidChange(newValue: Int)
 }
 
@@ -29,7 +29,7 @@ final class MenuAddonsFooterView: UIView {
         result.titleLabel?.font = .preferredFont(forTextStyle: .title1)
         result.contentHorizontalAlignment = .center
         result.contentVerticalAlignment = .center
-        result.addTarget(self, action: #selector(addButtonDidPress), for: .touchUpInside)
+        result.addTarget(self, action: #selector(addButtonDidPress(sender:)), for: .touchUpInside)
         return result
     }()
 
@@ -77,8 +77,8 @@ final class MenuAddonsFooterView: UIView {
     }
 
     @objc
-    private func addButtonDidPress() {
-        delegate?.addButtonDidPress()
+    private func addButtonDidPress(sender: UIButton) {
+        delegate?.addButtonDidPress(sender: sender)
     }
 }
 

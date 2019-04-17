@@ -11,7 +11,7 @@ import UIKit
 protocol MenuAddonsRouterProtocol {
     var viewController: MenuAddonsViewController? { get }
 
-    func navigateToSomewhere()
+    func navigateBack()
 }
 
 final class MenuAddonsRouter {
@@ -26,7 +26,7 @@ final class MenuAddonsRouter {
 // MARK: - MenuAddonsRouterProtocol
 
 extension MenuAddonsRouter: MenuAddonsRouterProtocol {
-    func navigateToSomewhere() {
-
+    func navigateBack() {
+        viewController?.dismiss(animated: true, completion: nil)
     }
 }

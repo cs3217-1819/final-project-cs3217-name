@@ -126,6 +126,14 @@ enum MenuAddonsConstants {
     static let addonsSize = CGSize(width: 100, height: 120)
     static let footerViewHeight: CGFloat = 100.0
     static let sectionHeaderHeight: CGFloat = 50.0
+    static let diningOptionTitle = "Dining Options"
+    static let diningOptionLabels: [(title: String, value: OrderItem.DiningOption)] = OrderItem.DiningOption.allCases
+        .map { option in
+            switch option {
+            case .eatin: return ("Eat-in", option)
+            case .takeaway: return ("Takeaway", option)
+            }
+        }
 }
 
 // MARK: - QuantityView

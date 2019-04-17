@@ -15,10 +15,14 @@ final class MenuInfoConfigurator {
     // MARK: - Configuration
     func configure(viewController: MenuInfoViewController,
                    menuId: String,
+                   toParentMediator: MenuInfoToParentOutput?,
                    injector: DependencyInjector = appDefaultInjector) {
         let router = MenuInfoRouter(viewController: viewController)
         let presenter = MenuInfoPresenter(output: viewController)
-        let interactor = MenuInfoInteractor(output: presenter, menuId: menuId, injector: injector)
+        let interactor = MenuInfoInteractor(output: presenter, menuId: menuId,
+                                            injector: injector, toParentMediator: toParentMediator)
+
+        toParentMediator?.menuInfoInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router

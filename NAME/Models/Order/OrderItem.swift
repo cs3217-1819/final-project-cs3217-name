@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 
 class OrderItem: Object {
-    enum DiningOption: Int {
+    enum DiningOption: Int, CaseIterable {
         case eatin = 0
         case takeaway
     }
@@ -33,7 +33,7 @@ class OrderItem: Object {
     let options = List<OrderItemOption>()
 
     // MARK: - Initialisers
-    convenience init(order: Order,
+    convenience init(order: Order?,
                      menuItem: IndividualMenuItem,
                      quantity: Int = 1,
                      comment: String = "",

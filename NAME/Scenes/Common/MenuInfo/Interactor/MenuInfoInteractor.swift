@@ -8,6 +8,18 @@
 
 import UIKit
 
+// MARK: Interscene interactor IO
+
+protocol MenuInfoFromParentInput: class {
+}
+
+protocol MenuInfoToParentOutput: class {
+    func set(comment: String)
+    var menuInfoInteractor: MenuInfoFromParentInput? { get set }
+}
+
+// MARK: Intrascene interactor IO
+
 protocol MenuInfoInteractorInput: MenuInfoViewControllerOutput {
 
 }
@@ -17,16 +29,21 @@ protocol MenuInfoInteractorOutput {
     func presentComment(_ comment: String)
 }
 
-final class MenuInfoInteractor {
+final class MenuInfoInteractor: MenuInfoFromParentInput {
     fileprivate struct Dependencies {
         let storageManager: StorageManager
     }
     private let deps: Dependencies
 
-    let output: MenuInfoInteractorOutput
-    let worker: MenuInfoWorker
+    private let output: MenuInfoInteractorOutput
+    private let worker: MenuInfoWorker
+    private weak var toParentMediator: MenuInfoToParentOutput?
 
-    private var comment: String = ""
+    private var comment: String = "" {
+        didSet {
+            toParentMediator?.set(comment: comment)
+        }
+    }
 
     private let menuDisplayable: MenuDisplayable
 
@@ -35,10 +52,12 @@ final class MenuInfoInteractor {
     init(output: MenuInfoInteractorOutput,
          menuId: String,
          injector: DependencyInjector = appDefaultInjector,
+         toParentMediator: MenuInfoToParentOutput?,
          worker: MenuInfoWorker = MenuInfoWorker()) {
         self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
+        self.toParentMediator = toParentMediator
         guard let menuDisplayable = deps.storageManager.getMenuDisplayable(id: menuId) else {
             fatalError("Initialising MenuInfoInteractor with non-existent menu id")
         }

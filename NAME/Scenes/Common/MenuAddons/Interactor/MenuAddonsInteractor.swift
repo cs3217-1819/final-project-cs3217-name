@@ -8,6 +8,18 @@
 
 import UIKit
 
+// MARK: Interscene interactor IO
+
+protocol MenuAddonsFromParentInput: class {
+    func set(comment: String)
+}
+
+protocol MenuAddonsToParentOutput: class {
+    var menuAddonsInteractor: MenuAddonsFromParentInput? { get set }
+}
+
+// MARK: Intrascene interactor IO
+
 protocol MenuAddonsInteractorInput: MenuAddonsViewControllerOutput {
 
 }
@@ -17,9 +29,10 @@ protocol MenuAddonsInteractorOutput {
                  addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>)
 }
 
-final class MenuAddonsInteractor {
+final class MenuAddonsInteractor: MenuAddonsFromParentInput {
     fileprivate struct Dependencies {
         let storageManager: StorageManager
+        let shoppingCart: ShoppingCart
     }
     private let deps: Dependencies
 
@@ -28,23 +41,29 @@ final class MenuAddonsInteractor {
         var value: OrderItemOptionValue
     }
 
-    let output: MenuAddonsInteractorOutput
-    let worker: MenuAddonsWorker
+    private let output: MenuAddonsInteractorOutput
+    private let worker: MenuAddonsWorker
+    private weak var toParentMediator: MenuAddonsToParentOutput?
 
     private let addOns: [IndividualMenuItem]
     private var selectedAddonsIndices: Set<Int> = []
     private var optionValues: [OptionValue]
     private let basePrice: Int
     private var quantity: Int = 1
+    private var menuItem: IndividualMenuItem?
+
+    private var comment: String = ""
 
     // MARK: - Initializers
     init(output: MenuAddonsInteractorOutput,
          menuId: String,
          injector: DependencyInjector = appDefaultInjector,
+         toParentMediator: MenuAddonsToParentOutput?,
          worker: MenuAddonsWorker = MenuAddonsWorker()) {
         self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
+        self.toParentMediator = toParentMediator
         guard let menuDisplayable = deps.storageManager.getMenuDisplayable(id: menuId) else {
             fatalError("Initialising MenuAddonsInteractor with non-existent menu id")
         }
@@ -52,14 +71,28 @@ final class MenuAddonsInteractor {
         basePrice = menuDisplayable.price
         if let individualMenuItem = menuDisplayable as? IndividualMenuItem {
             addOns = Array(individualMenuItem.addOns)
+            menuItem = individualMenuItem
         } else {
             addOns = []
         }
+    }
+
+    func set(comment: String) {
+        self.comment = comment
     }
 }
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func finalizeOrderItem(diningOption: OrderItem.DiningOption) {
+        // TODO handle SetMenuItem
+        guard let menuItem = menuItem else {
+            return
+        }
+        let orderItem = OrderItem(order: nil, menuItem: menuItem, quantity: quantity, comment: comment, diningOption: diningOption)
+        deps.shoppingCart.addOrderItem(orderItem)
+    }
+
     func updateQuantity(_ quantity: Int) {
         self.quantity = quantity
         passValueToPresenter()
@@ -132,6 +165,6 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
 
 extension DependencyInjector {
     fileprivate func dependencies() -> MenuAddonsInteractor.Dependencies {
-        return MenuAddonsInteractor.Dependencies(storageManager: storageManager)
+        return MenuAddonsInteractor.Dependencies(storageManager: storageManager, shoppingCart: shoppingCart)
     }
 }

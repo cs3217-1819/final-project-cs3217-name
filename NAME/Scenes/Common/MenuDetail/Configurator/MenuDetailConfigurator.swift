@@ -14,9 +14,10 @@ final class MenuDetailConfigurator {
 
     // MARK: - Configuration
     func configure(viewController: MenuDetailViewController, menuId: String) {
-        let router = MenuDetailRouter(viewController: viewController)
+        let toChildrenMediator = MenuDetailIntersceneMediator()
+        let router = MenuDetailRouter(viewController: viewController, mediator: toChildrenMediator)
         let presenter = MenuDetailPresenter(output: viewController)
-        let interactor = MenuDetailInteractor(output: presenter)
+        let interactor = MenuDetailInteractor(output: presenter, toChildrenMediator: toChildrenMediator)
 
         viewController.output = interactor
         viewController.router = router

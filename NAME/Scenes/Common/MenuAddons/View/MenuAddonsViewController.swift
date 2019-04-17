@@ -18,6 +18,7 @@ protocol MenuAddonsViewControllerOutput {
     func reset(section: Int)
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
     func updateQuantity(_ quantity: Int)
+    func finalizeOrderItem(diningOption: OrderItem.DiningOption)
 }
 
 protocol MenuAddonsTableViewCellProvider: class {
@@ -71,9 +72,9 @@ final class MenuAddonsViewController: UIViewController {
     }()
 
     // MARK: - Initializers
-    init(menuId: String, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
+    init(menuId: String, mediator: MenuAddonsToParentOutput?, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(menuId: menuId, configurator: configurator)
+        configure(menuId: menuId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -81,8 +82,8 @@ final class MenuAddonsViewController: UIViewController {
         assertionFailure("This should not be called without Storyboard.")
     }
 
-    private func configure(menuId: String, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
-        configurator.configure(viewController: self, menuId: menuId)
+    private func configure(menuId: String, mediator: MenuAddonsToParentOutput?, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
+        configurator.configure(viewController: self, menuId: menuId, toParentMediator: mediator)
     }
 
     // MARK: - View lifecycle
@@ -186,7 +187,19 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
         output?.updateQuantity(newValue)
     }
 
-    func addButtonDidPress() {
+    func addButtonDidPress(sender: UIButton) {
+        let actionSheet = UIAlertController(title: MenuAddonsConstants.diningOptionTitle,
+                                            message: nil, preferredStyle: .actionSheet)
+        actionSheet.popoverPresentationController?.sourceView = sender
+        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
+        for case let (title: title, value: value) in MenuAddonsConstants.diningOptionLabels {
+            let action = UIAlertAction(title: title, style: .default) { [weak self] _ in
+                self?.output?.finalizeOrderItem(diningOption: value)
+                self?.router?.navigateBack()
+            }
+            actionSheet.addAction(action)
+        }
+        present(actionSheet, animated: true, completion: nil)
     }
 }
 
