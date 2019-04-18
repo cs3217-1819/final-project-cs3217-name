@@ -1,7 +1,13 @@
 import Foundation
 import RealmSwift
 
-class OrderItem: Object {
+protocol OrderItemProtocol {
+    var name: String { get }
+    var price: Int { get }
+}
+
+class OrderItem: Object, OrderItemProtocol {
+
     enum DiningOption: Int, CaseIterable {
         case eatin = 0
         case takeaway
@@ -12,6 +18,18 @@ class OrderItem: Object {
     @objc dynamic var quantity: Int = 0
     @objc dynamic var comment: String = ""
     @objc private dynamic var _diningOption: Int = 0
+
+    var name: String {
+        return menuItem?.name ?? ""
+    }
+
+    var price: Int {
+        let additionalAmounts = addons.reduce(0) { total, addon in
+            total + addon.price
+        }
+
+        return (menuItem?.price ?? 0 + additionalAmounts) * quantity
+    }
 
     var diningOption: DiningOption {
         get {

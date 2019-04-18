@@ -46,7 +46,7 @@ extension OrderPresenter: OrderPresenterInput {
                                               diningOption: formatDiningOption($0.diningOption),
                                               options: generateOrderItemOptionsString(Array($0.options)),
                                               addons: $0.addons
-                                                .compactMap { $0.menuItem?.name }
+                                                .compactMap { $0.name }
                                                 .joined(separator: "\n"),
                                               comment: $0.comment)
         }
