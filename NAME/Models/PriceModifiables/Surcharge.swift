@@ -18,9 +18,9 @@ class Surcharge: Object, PriceModifier {
 
         switch priceModification {
         case .absolute(amount: let amount):
-            return Rounder.round(amount)
+            return amount
         case .multiplier(factor: let factor):
-            return Rounder.round(Double(fromAmount) * factor)
+            return Int(Double(fromAmount) * factor)
         }
     }
 
