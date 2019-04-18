@@ -40,6 +40,11 @@
 		1FB25825224929180035399F /* MenuCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2580F224929180035399F /* MenuCategory.swift */; };
 		1FB25826224929180035399F /* OrderItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25810224929180035399F /* OrderItemOption.swift */; };
 		1FB25827224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25811224929180035399F /* PriceModifier.swift */; };
+		1FCC42EE2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC42ED2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift */; };
+		1FF9CD57225B066D00AB4CBA /* OrderConfirmationTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD56225B066D00AB4CBA /* OrderConfirmationTotalView.swift */; };
+		1FF9CD59225B068100AB4CBA /* OrderConfirmationItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD58225B068100AB4CBA /* OrderConfirmationItemViewCell.swift */; };
+		1FF9CD5B225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD5A225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift */; };
+		1FF9CD5D225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD5C225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift */; };
 		540041FF2265C44300847219 /* CategorySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540041FE2265C44300847219 /* CategorySelector.swift */; };
 		540042012266194300847219 /* MenuDragHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042002266194300847219 /* MenuDragHandlers.swift */; };
 		540042032266199D00847219 /* MenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540042022266199D00847219 /* MenuDataSource.swift */; };
@@ -233,6 +238,11 @@
 		1FB2580F224929180035399F /* MenuCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCategory.swift; sourceTree = "<group>"; };
 		1FB25810224929180035399F /* OrderItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItemOption.swift; sourceTree = "<group>"; };
 		1FB25811224929180035399F /* PriceModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifier.swift; sourceTree = "<group>"; };
+		1FCC42ED2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationAdditionalInfoView.swift; sourceTree = "<group>"; };
+		1FF9CD56225B066D00AB4CBA /* OrderConfirmationTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationTotalView.swift; sourceTree = "<group>"; };
+		1FF9CD58225B068100AB4CBA /* OrderConfirmationItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationItemViewCell.swift; sourceTree = "<group>"; };
+		1FF9CD5A225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationItemOptionsAddonView.swift; sourceTree = "<group>"; };
+		1FF9CD5C225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationItemDiscountView.swift; sourceTree = "<group>"; };
 		26A79F660793D6D261C3F3E0 /* Pods-NAMEUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMEUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAMEUITests/Pods-NAMEUITests.release.xcconfig"; sourceTree = "<group>"; };
 		48A034F56A60AD0C3B2B293E /* Pods_NAME.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NAME.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF07BBB677C695984C7A3BB /* Pods-NAMETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NAMETests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NAMETests/Pods-NAMETests.release.xcconfig"; sourceTree = "<group>"; };
@@ -469,7 +479,10 @@
 		1F76301E224D8B88001E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FF9CD58225B068100AB4CBA /* OrderConfirmationItemViewCell.swift */,
 				1F76302B224D8C3C001E8E5C /* OrderConfirmationViewController.swift */,
+				1FF9CD56225B066D00AB4CBA /* OrderConfirmationTotalView.swift */,
+				1FCC42EF2265C8700041D96B /* SubViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -575,6 +588,16 @@
 				C6EC63E9224B9060003E4547 /* ModelHelper.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1FCC42EF2265C8700041D96B /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				1FF9CD5A225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift */,
+				1FCC42ED2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift */,
+				1FF9CD5C225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		5441ABE42248B6ED0018A293 = {
@@ -2089,6 +2112,7 @@
 				5441AC3B2248C4480018A293 /* SplashPresenter.swift in Sources */,
 				FB519DD1224F514800BB5DE8 /* KitchenBacklogViewController.swift in Sources */,
 				54D252A8224CB637007BF235 /* BrowseViewController.swift in Sources */,
+				1FCC42EE2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift in Sources */,
 				54D252C0224CBD25007BF235 /* StallListViewModel.swift in Sources */,
 				54D252D9224CBD2F007BF235 /* MenuConfigurator.swift in Sources */,
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
@@ -2115,6 +2139,7 @@
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
+				1FF9CD5D225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift in Sources */,
 				C691A5AA225BB6310061CE97 /* MenuDetailConfigurator.swift in Sources */,
 				FB519D8D224E3A3200BB5DE8 /* StallRootRouter.swift in Sources */,
 				FB13B70E225E357A006ED487 /* OrderConfigurator.swift in Sources */,
@@ -2130,6 +2155,7 @@
 				540A3E6A2251E0DE000F2131 /* BrowseInteractorMediator.swift in Sources */,
 				FB13B70D225E357A006ED487 /* OrderViewController.swift in Sources */,
 				5441AC532248C4590018A293 /* CustomerRootConfigurator.swift in Sources */,
+				1FF9CD59225B068100AB4CBA /* OrderConfirmationItemViewCell.swift in Sources */,
 				FB519DBC224F440700BB5DE8 /* AdminSettingsInteractor.swift in Sources */,
 				540042032266199D00847219 /* MenuDataSource.swift in Sources */,
 				C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */,
@@ -2150,6 +2176,7 @@
 				1F763024224D8BE9001E8E5C /* OrderConfirmationInteractor.swift in Sources */,
 				1F763028224D8C11001E8E5C /* OrderConfirmationPresenter.swift in Sources */,
 				1FB25823224929180035399F /* Menu.swift in Sources */,
+				1FF9CD5B225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift in Sources */,
 				FB13B70B225E357A006ED487 /* OrderViewModel.swift in Sources */,
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
 				1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */,
@@ -2165,6 +2192,7 @@
 				54D252E3224F5C44007BF235 /* DependencyInjector.swift in Sources */,
 				54D252C1224CBD25007BF235 /* StallListPresenter.swift in Sources */,
 				1FB25819224929180035399F /* OrderHistory.swift in Sources */,
+				1FF9CD57225B066D00AB4CBA /* OrderConfirmationTotalView.swift in Sources */,
 				1FB25813224929180035399F /* OrderItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

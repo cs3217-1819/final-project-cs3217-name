@@ -14,9 +14,17 @@ enum ReuseIdentifiers {
     static let orderItemCellIdentifier = "orderItemCellIdentifier"
 }
 
+// MARK: - Colorrs
+enum Colors {
+    static let base = UIColor(displayP3Red: 106 / 255,
+                              green: 108 / 255,
+                              blue: 209 / 255,
+                              alpha: 1)
+}
+
 // MARK: - Splash
 enum SplashConstants {
-    static let numTapsToLoginScreen: Int = 5
+    static let numTapsToLoginScreen = 5
     static let tapAreaWidth: CGFloat = 100.0
     static let tapAreaHeight: CGFloat = 100.0
 }
@@ -98,6 +106,89 @@ enum StallListConstants {
 // MARK: - Customer Common
 enum CustomerCommonConstants {
     static let primaryWidth: CGFloat = 250
+}
+
+// MARK: - Order Confirmation
+enum OrderConfirmationItemConstants {
+
+    // Item View Labels
+    static let addonsLabelTitle = "Add Ons"
+    static let optionsLabelTitle = "Options"
+    static let discountsLabelTitle = "Discounts"
+
+    static let increaseQuantityButtonTitle = "▲"
+    static let decreaseQuantityButtonTitle = "▼"
+    static let removeItemButtonTitle = "🗑️"
+
+    static let diningOptionControlHeretitle = "Here"
+    static let diningOptionControlTakeAwaytitle = "Take Away"
+
+    // Font sizes
+    static let nameLabelFontSize: CGFloat = 30
+    static let additionalsLabelFontSize: CGFloat = 20
+    static let quantityLabelsFontSize: CGFloat = 40
+    static let discountedPriceFontSize: CGFloat = 36
+
+    // Item View Constraints
+    static let itemViewOffsetTop = 10
+    static let itemViewBottom = -10
+
+    static let imageOffsetTop = 20
+    static let imageOffsetLeft = 30
+    static let imageLength = 150
+
+    static let nameLabelOffsetTop = 20
+    static let nameLabelOffsetLeft = 40
+    static let nameOptionsLabelOffsetHeight = 30
+    static let additionalsOffsetTop = 5
+    static let additionalsLabelsOffsetTop = 10
+    static let discountsStackBottom = -20
+
+    static let priceLabelsOffsetRight = -20
+    static let priceLabelsGapHeight = 10
+    static let quantityLabelOffsetRight = -100
+    static let increaseQuantityOffsetHeight = -10
+    static let decreaseQuantityOffsetHeight = 10
+    static let removeItemButtonOffsetLeft = 50
+    static let diningOptionControlOffsetBottom = -15
+    static let diningOptionControlOffsetRight = -15
+}
+
+enum OrderConfirmationOptionsAddonConstants {
+    static let imageLength = 30
+    static let nameLabelOffsetTop = 5
+    static let nameLabelOffsetLeft = 10
+    static let nameLabelBottom = -10
+    static let optionPriceLabelOffsetLeft = 20
+}
+
+enum OrderConfirmationDiscountConstants {
+    static let nameLabelOffsetTop = 5
+    static let nameLabelBottom = -10
+    static let descriptionLabelOffsetLeft = 20
+}
+
+enum OrderConfirmationTotalConstants {
+    // Labels
+    static let subtotalLabelTitle = "Subtotal"
+    static let discountsLabelTitle = "Establishment Discounts"
+    static let surchargesLabelTitle = "Establishment Surcharges"
+    static let totalLabelTitle = "Total"
+
+    // Font sizes
+    static let subtotalLabelFontSize: CGFloat = 28
+    static let discountsSurchargesLabelFontSize: CGFloat = 25
+    static let totalLabelFontSize: CGFloat = 30
+
+    // Colours
+    static let labelsColor = UIColor.white
+
+    // Constraints
+    static let totalsLabelsOffsetRight = -200
+    static let totalsLabelOffsetTop = 20
+    static let totalsLabelPriceGap = 10
+    static let totalsSubLabelPriceGap = 20
+    static let grandTotalLabelBottom = -10
 }
 
 // MARK: - Constraints
