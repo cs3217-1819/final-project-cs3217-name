@@ -43,6 +43,8 @@ final class KitchenBacklogCell: UICollectionViewCell {
         return button
     }()
 
+    private var timeReceived: Date?
+
     weak var delegate: KitchenBacklogCellDelegate?
 
     override init(frame: CGRect) {
@@ -55,13 +57,23 @@ final class KitchenBacklogCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 
-    func set(headerTitle: String, isOrderReady: Bool, orderView: UIView?) {
+    func set(headerTitle: String, isOrderReady: Bool, timeReceived: Date, orderView: UIView?) {
         orderHeaderView.set(title: headerTitle)
         self.orderView = orderView
         self.isOrderReady = isOrderReady
+        self.timeReceived = timeReceived
 
+        removeSubviews()
         addSubviews()
         configureConstraints()
+    }
+
+    func updateTimer() {
+        if !isOrderReady {
+            orderHeaderView.set(timer: timeReceived?.formattedAsTimeFromNow() ?? "")
+        } else {
+            orderHeaderView.set(timer: "")
+        }
     }
 
     private func addSubviews() {
@@ -72,6 +84,10 @@ final class KitchenBacklogCell: UICollectionViewCell {
                 return
         }
         addSubview(orderView)
+    }
+
+    private func removeSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
     }
 
     private func configureConstraints() {

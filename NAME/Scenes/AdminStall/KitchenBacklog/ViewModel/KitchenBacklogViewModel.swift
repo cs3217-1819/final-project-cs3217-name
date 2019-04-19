@@ -12,6 +12,7 @@ struct KitchenBacklogViewModel {
     struct OrderViewModel {
         let orderId: String
         let title: String
+        let timeStamp: Date
     }
     let preparedOrders: [OrderViewModel]
     let unpreparedOrders: [OrderViewModel]

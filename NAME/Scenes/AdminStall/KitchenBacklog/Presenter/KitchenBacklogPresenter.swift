@@ -27,16 +27,17 @@ final class KitchenBacklogPresenter {
 // MARK: - KitchenBacklogPresenterInput
 extension KitchenBacklogPresenter: KitchenBacklogPresenterInput {
     func presentOrders(preparedOrders: [Order], unpreparedOrders: [Order]) {
-        let viewModel = KitchenBacklogViewModel(
-            preparedOrders: preparedOrders.map {
-                KitchenBacklogViewModel.OrderViewModel(orderId: $0.id,
-                                                       title: $0.queueNumber.formattedAsQueueNumberTitle())
-            },
-            unpreparedOrders: unpreparedOrders.map {
-                KitchenBacklogViewModel.OrderViewModel(orderId: $0.id,
-                                                       title: $0.queueNumber.formattedAsQueueNumberTitle())
-            })
+        let viewModel = KitchenBacklogViewModel(preparedOrders: makeOrderViewModels(forOrders: preparedOrders),
+                                                unpreparedOrders: makeOrderViewModels(forOrders: unpreparedOrders))
         output.displayOrders(viewModel: viewModel)
+    }
+
+    private func makeOrderViewModels(forOrders orders: [Order]) -> [KitchenBacklogViewModel.OrderViewModel] {
+        return orders.map {
+            KitchenBacklogViewModel.OrderViewModel(orderId: $0.id,
+                                                   title: $0.queueNumber.formattedAsQueueNumberTitle(),
+                                                   timeStamp: $0.orderReceivedTimeStamp ?? Date())
+        }
     }
 
 }

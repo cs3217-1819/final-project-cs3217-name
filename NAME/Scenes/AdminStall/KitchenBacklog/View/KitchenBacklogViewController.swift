@@ -28,6 +28,8 @@ final class KitchenBacklogViewController: UICollectionViewController {
         return view
     }()
 
+    private var timer: Timer?
+
     private var collectionViewDataSource: KitchenBacklogDataSource? {
         didSet {
             collectionViewDataSource?.delegate = self
@@ -69,6 +71,14 @@ final class KitchenBacklogViewController: UICollectionViewController {
         getOrders()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        setupTimer()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        invalidateTimer()
+    }
+
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.bounces = true
@@ -100,9 +110,36 @@ final class KitchenBacklogViewController: UICollectionViewController {
         output?.reloadOrders()
     }
 
+    // MARK: - Timer Helpers
+
+    private func setupTimer() {
+        invalidateTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            // TODO: Update clock view
+            let visibleCells = self.collectionView.indexPathsForVisibleItems
+                .compactMap { self.collectionView.cellForItem(at: $0) as? KitchenBacklogCell }
+            self.collectionViewDataSource?.updateCellTimers(for: visibleCells)
+        }
+
+        guard let timer = timer else {
+            assertionFailure("Timer was not set")
+            return
+        }
+        // Add timer to common run loop so that it will still fire when scrolling in collection view.
+        RunLoop.current.add(timer, forMode: .common)
+    }
+
+    private func invalidateTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
     // MARK: - Child View Controller Helpers
 
-    private func getNewViewController(orderId: String) -> UIViewController {
+    private func getNewOrderViewController(orderId: String) -> UIViewController {
         guard let router = router else {
             return UIViewController()
         }
@@ -186,9 +223,15 @@ private class KitchenBacklogDataSource: NSObject, UICollectionViewDataSource {
         let viewModel = sections[indexPath.section].cellViewModel[indexPath.row]
         orderCell.set(headerTitle: viewModel.title,
                       isOrderReady: indexPath.section == 0,
+                      timeReceived: viewModel.timeStamp,
                       orderView: sections[indexPath.section].cellViews[indexPath.row])
+        orderCell.updateTimer()
         orderCell.delegate = delegate
         return cell
+    }
+
+    func updateCellTimers(for cells: [KitchenBacklogCell]) {
+        cells.forEach { $0.updateTimer() }
     }
 }
 
@@ -221,15 +264,16 @@ extension KitchenBacklogViewController: KitchenBacklogViewControllerInput {
         // Remove all old child view controllers
         removeAllChildViewControllers()
         let preparedViews = viewModel.preparedOrders
-            .map { getNewViewController(orderId: $0.orderId).view }
+            .map { getNewOrderViewController(orderId: $0.orderId).view }
         let unpreparedViews = viewModel.unpreparedOrders
-            .map { getNewViewController(orderId: $0.orderId).view }
+            .map { getNewOrderViewController(orderId: $0.orderId).view }
 
         collectionViewDataSource = KitchenBacklogDataSource(preparedViews: preparedViews,
                                                             preparedViewModels: viewModel.preparedOrders,
                                                             unpreparedViews: unpreparedViews,
                                                             unpreparedViewModels: viewModel.unpreparedOrders)
     }
+
 }
 
 extension KitchenBacklogViewController: UIViewControllerRestoration {

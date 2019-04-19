@@ -250,3 +250,8 @@ enum ButtonConstants {
 enum BorderRadius {
     static let standardRadius: CGFloat = 15.0
 }
+
+// MARK: - Date
+enum DateConstants {
+    static let timerSuffix = " ago"
+}
