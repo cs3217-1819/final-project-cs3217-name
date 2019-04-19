@@ -29,7 +29,7 @@ class OrderItemViewCell: UITableViewCell {
 
     private let quantitylabel: UILabel = {
         let label = UILabel()
-        label.textColor = .purple
+        label.textColor = UIColor.Custom.darkPurple
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .title3)
         return label
@@ -39,7 +39,7 @@ class OrderItemViewCell: UITableViewCell {
         let button = UIButton()
         button.addTarget(self, action: #selector(handleReadyPress(sender:)), for: .touchUpInside)
         button.setTitle(OrderConstants.itemReadyButtonTitle, for: .normal)
-        button.backgroundColor = .purple
+        button.backgroundColor = UIColor.Custom.purple
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = ButtonConstants.mediumButtonHeight / 2.0
         return button
@@ -114,7 +114,8 @@ class OrderItemViewCell: UITableViewCell {
             guard readyButton.superview != nil else {
                 return
             }
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(ConstraintConstants.standardValue)
+            make.right.equalToSuperview().offset(-ConstraintConstants.standardValue)
         }
     }
 

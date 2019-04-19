@@ -15,7 +15,6 @@ class OrderItemDetailsView: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: OrderConstants.orderItemTitleFontSize)
-        label.textColor = .black
         label.textAlignment = .left
         return label
     }()
@@ -24,13 +23,14 @@ class OrderItemDetailsView: UIView {
         let label = UILabel()
         label.text = OrderConstants.optionsHeaderTitle
         label.font = .preferredFont(forTextStyle: .headline)
+        label.textColor = OrderConstants.orderDetailsFontColor
         return label
     }()
 
     private let optionsLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = OrderConstants.orderDetailsFontColor
         label.textAlignment = .left
         return label
     }()
@@ -39,13 +39,14 @@ class OrderItemDetailsView: UIView {
         let label = UILabel()
         label.text = OrderConstants.addonsHeaderTitle
         label.font = .preferredFont(forTextStyle: .headline)
+        label.textColor = OrderConstants.orderDetailsFontColor
         return label
     }()
 
     private let addonsLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = OrderConstants.orderDetailsFontColor
         label.textAlignment = .left
         return label
     }()
@@ -54,13 +55,14 @@ class OrderItemDetailsView: UIView {
         let label = UILabel()
         label.text = OrderConstants.commentsHeaderTitle
         label.font = .preferredFont(forTextStyle: .headline)
+        label.textColor = OrderConstants.orderDetailsFontColor
         return label
     }()
 
     private let commentsLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = OrderConstants.orderDetailsFontColor
         label.textAlignment = .left
         return label
     }()

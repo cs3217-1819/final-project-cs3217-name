@@ -27,8 +27,9 @@ final class KitchenBacklogCell: UICollectionViewCell {
         let button = UIButton()
         button.addTarget(self, action: #selector(handleAllReadyPress(sender:)), for: .touchUpInside)
         button.setTitle(KitchenBacklogConstants.orderReadyButtonTitle, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .title2)
-        button.backgroundColor = .purple
+        button.titleLabel?.font = .preferredFont(forTextStyle: .title3)
+        button.backgroundColor = UIColor.Custom.purple
+        button.layer.cornerRadius = BorderRadius.standardRadius
         return button
     }()
 
@@ -36,8 +37,9 @@ final class KitchenBacklogCell: UICollectionViewCell {
         let button = UIButton()
         button.addTarget(self, action: #selector(handleCompletedPress(sender:)), for: .touchUpInside)
         button.setTitle(KitchenBacklogConstants.orderCompleteButtonTitle, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .title2)
-        button.backgroundColor = .green
+        button.titleLabel?.font = .preferredFont(forTextStyle: .title3)
+        button.backgroundColor = UIColor.Custom.green
+        button.layer.cornerRadius = BorderRadius.standardRadius
         return button
     }()
 
@@ -45,7 +47,8 @@ final class KitchenBacklogCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        layer.cornerRadius = BorderRadius.standardRadius
+        backgroundColor = UIColor.Custom.paleGray
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -87,7 +90,7 @@ final class KitchenBacklogCell: UICollectionViewCell {
         orderView?.snp.remakeConstraints { make in
             make.top.equalTo(orderHeaderView.snp.bottom)
             make.width.equalToSuperview()
-            make.bottom.equalTo(activeButton.snp.top)
+            make.bottom.equalTo(activeButton.snp.top).offset(-ConstraintConstants.standardValue)
         }
     }
 

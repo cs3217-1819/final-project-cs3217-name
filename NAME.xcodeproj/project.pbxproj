@@ -183,6 +183,7 @@
 		FB519E282250C6A600BB5DE8 /* LoginContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */; };
 		FB519E4C2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */; };
 		FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */; };
+		FB8514ED2267BD5300ED3F99 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -393,6 +394,7 @@
 		FB519E272250C6A600BB5DE8 /* LoginContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContainerView.swift; sourceTree = "<group>"; };
 		FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenBacklogCellHeaderView.swift; sourceTree = "<group>"; };
 		FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListEstablishmentCell.swift; sourceTree = "<group>"; };
+		FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +435,7 @@
 				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
 				C6BA5901225D0987002011A2 /* Int+Extensions.swift */,
 				C6F3D51D22670A7A00232424 /* ShoppingCart.swift */,
+				FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2181,6 +2184,7 @@
 				1FB25812224929180035399F /* Surcharge.swift in Sources */,
 				1F76302C224D8C3C001E8E5C /* OrderConfirmationViewController.swift in Sources */,
 				5441AC522248C4590018A293 /* CustomerRootViewController.swift in Sources */,
+				FB8514ED2267BD5300ED3F99 /* UIColor+Extensions.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifier.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
 				C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */,

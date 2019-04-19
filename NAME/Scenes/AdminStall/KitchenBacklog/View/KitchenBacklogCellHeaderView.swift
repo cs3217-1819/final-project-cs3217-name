@@ -11,7 +11,7 @@ import UIKit
 class KitchenBacklogCellHeaderView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .purple
+        label.textColor = UIColor.Custom.darkPurple
         label.font = .preferredFont(forTextStyle: .title2)
         return label
     }()

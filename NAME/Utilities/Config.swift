@@ -57,14 +57,14 @@ enum StallRootConstants {
 // MARK: - Stall Kitchen Backlog
 enum KitchenBacklogConstants {
     static let clockHeight: CGFloat = 50.0
-    static let clockWidth: CGFloat = 100.0
+    static let clockWidth: CGFloat = 150.0
 
     // MARK: Order
     static let orderReadyButtonTitle = "ALL READY"
     static let orderCompleteButtonTitle = "ORDER COLLECTED"
-    static let orderWidth: CGFloat = 400
-    static let spaceBetweenOrders: CGFloat = 40
-    static let orderMargins: CGFloat = 40
+    static let orderWidth: CGFloat = 350
+    static let spaceBetweenOrders: CGFloat = 20
+    static let orderMargins: CGFloat = 20
 }
 
 enum OrderConstants {
@@ -83,6 +83,7 @@ enum OrderConstants {
     static let orderItemPadding: CGFloat = 8.0
     static let leftPanelRatio: CGFloat = 1 / 5
     static let orderItemTitleFontSize: CGFloat = 22.0
+    static let orderDetailsFontColor: UIColor = .darkGray
 }
 
 // MARK: - Establishment Root
@@ -242,5 +243,10 @@ enum AlertConstants {
 
 // MARK: - Button
 enum ButtonConstants {
-    static let mediumButtonHeight: CGFloat = 50.0
+    static let mediumButtonHeight: CGFloat = 45.0
+}
+
+// MARK: - Border Radius
+enum BorderRadius {
+    static let standardRadius: CGFloat = 15.0
 }

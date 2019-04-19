@@ -56,6 +56,7 @@ final class OrderViewController: UITableViewController {
     }
 
     private func setupTableView() {
+        tableView.backgroundColor = UIColor.Custom.paleGray
         tableView.delegate = self
         tableView.register(OrderItemViewCell.self,
                            forCellReuseIdentifier: ReuseIdentifiers.orderItemCellIdentifier)
@@ -117,7 +118,7 @@ private class OrderViewDataSource: NSObject, UITableViewDataSource {
                      comment: viewModel.comment,
                      isItemPrepared: indexPath.section == 1)
         itemCell.delegate = delegate
-        cell.backgroundColor = .white
+        cell.backgroundColor = UIColor.Custom.paleGray
         cell.selectionStyle = .none
 
         return cell

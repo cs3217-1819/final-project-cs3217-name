@@ -24,7 +24,7 @@ final class KitchenBacklogViewController: UICollectionViewController {
     let clockView: UIView = {
         // TODO: Setup clock display, just a placeholder for now
         let view = UIView()
-        view.backgroundColor = .purple
+        view.backgroundColor = UIColor.Custom.deepPurple
         return view
     }()
 
@@ -58,6 +58,9 @@ final class KitchenBacklogViewController: UICollectionViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .white
+        collectionView.backgroundColor = .white
 
         setupCollectionView()
         addSubviews()
