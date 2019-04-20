@@ -83,7 +83,7 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                                          selectedIndices: Set<Int>) -> MenuAddonsViewModel.MenuOptionViewModel {
         let choices = addOns.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
         return MenuAddonsViewModel.MenuOptionViewModel(name: MenuAddonsConstants.addOnsOptionTitle,
-                                                       type: .choices(choices, isEditable: false),
+                                                       type: .choices(choices, isEditable: true),
                                                        value: .choices(selectedIndices))
     }
 

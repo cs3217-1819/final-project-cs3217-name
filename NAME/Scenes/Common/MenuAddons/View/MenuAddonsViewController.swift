@@ -215,6 +215,15 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
 // MARK: - MenuAddonsTableViewCellDelegate
 extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
     func addCellDidTap(section: Int) {
+        guard section != sectionNames.count - 1 else {
+            let alert = AlertHelper
+                .makeAlertController(title: MenuAddonsConstants.featureComingSoon,
+                                     message: nil,
+                                     textFieldText: nil,
+                                     showCancelButton: false) { _ in }
+            present(alert, animated: true, completion: nil)
+            return
+        }
         let title = String(format: MenuAddonsConstants.addChoiceNameTitle, sectionNames[section])
         newChoiceAskName(section: section, title: title)
     }

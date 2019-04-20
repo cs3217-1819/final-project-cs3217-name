@@ -217,6 +217,7 @@ enum MenuInfoConstants {
 
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
+    static let featureComingSoon = "Feature coming in version 2!"
     static let addChoiceNameTitle = "%@"
     static let addChoiceNameMessage = "New choice title"
     static let addChoicePriceMessage = "New choice price"

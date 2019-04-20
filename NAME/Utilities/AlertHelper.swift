@@ -16,6 +16,7 @@ enum AlertHelper {
     static func makeAlertController(title: String?,
                                     message: String?,
                                     textFieldText: String?,
+                                    showCancelButton: Bool = true,
                                     okHandler: @escaping (String?) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if let textFieldText = textFieldText {
@@ -24,11 +25,13 @@ enum AlertHelper {
         let okAction = UIAlertAction(title: AlertConstants.okTitle, style: .default) { _ in
             okHandler(alertController.textFields?.first?.text)
         }
-        let cancelAction = UIAlertAction(title: AlertConstants.cancelTitle,
-                                         style: .cancel,
-                                         handler: nil)
         alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
+        if showCancelButton {
+            let cancelAction = UIAlertAction(title: AlertConstants.cancelTitle,
+                                             style: .cancel,
+                                             handler: nil)
+            alertController.addAction(cancelAction)
+        }
         return alertController
     }
 }
