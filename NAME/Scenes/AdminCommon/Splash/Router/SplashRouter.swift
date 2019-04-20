@@ -33,7 +33,7 @@ extension SplashRouter: SplashRouterProtocol {
     }
 
     func navigateToLoginScreen() {
-        let loginVC = UINavigationController(rootViewController: LoginViewController())
+        let loginVC = LoginViewController()
         loginVC.modalTransitionStyle = .flipHorizontal
         viewController?.present(loginVC, animated: true)
     }

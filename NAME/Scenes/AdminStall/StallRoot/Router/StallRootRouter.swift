@@ -34,26 +34,14 @@ extension StallRootRouter: StallRootRouterProtocol {
     }
 
     func menuViewController() -> UIViewController {
-        let viewController = MenuViewController(mediator: nil)
-        viewController.tabBarItem = UITabBarItem(title: StallRootConstants.menuTabBarTitle,
-                                                 image: nil,
-                                                 tag: 0)
-        return viewController
+        return UINavigationController(rootViewController: MenuViewController(mediator: nil))
     }
 
     func kitchenViewController() -> UIViewController {
-        let viewController = KitchenBacklogViewController()
-        viewController.tabBarItem = UITabBarItem(title: StallRootConstants.kitchenTabBarTitle,
-                                                 image: nil,
-                                                 tag: 1)
-        return viewController
+        return KitchenBacklogViewController()
     }
 
     func stallSettingsViewController() -> UIViewController {
-        let viewController = AdminSettingsViewController()
-        viewController.tabBarItem = UITabBarItem(title: StallRootConstants.settingsTabBarTitle,
-                                                 image: nil,
-                                                 tag: 2)
-        return viewController
+        return AdminSettingsViewController()
     }
 }

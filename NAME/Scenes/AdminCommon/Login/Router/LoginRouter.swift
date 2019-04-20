@@ -33,11 +33,11 @@ extension LoginRouter: LoginRouterProtocol {
 
     func navigateToStallView() {
         let stallRootVC = StallRootViewController()
-        viewController?.navigationController?.pushViewController(stallRootVC, animated: true)
+        viewController?.present(stallRootVC, animated: true)
     }
 
     func navigateToEstablishmentView() {
         let establishmentRootVC = EstablishmentRootViewController()
-        viewController?.navigationController?.pushViewController(establishmentRootVC, animated: true)
+        viewController?.present(establishmentRootVC, animated: true)
     }
 }

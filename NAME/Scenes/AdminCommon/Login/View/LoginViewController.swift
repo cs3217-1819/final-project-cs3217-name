@@ -45,13 +45,11 @@ final class LoginViewController: UIViewController {
     // MARK: - View lifecycle
 
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func viewDidLoad() {

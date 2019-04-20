@@ -52,6 +52,7 @@ enum StallRootConstants {
     static let menuTabBarTitle = "MENU"
     static let kitchenTabBarTitle = "KITCHEN"
     static let settingsTabBarTitle = "SETTINGS"
+    static let logoutTabBarTitle = "LOG OUT"
 }
 
 // MARK: - Stall Kitchen Backlog
@@ -90,6 +91,7 @@ enum OrderConstants {
 enum EstablishmentRootConstants {
     static let stallListTabBarTitle = "STALLS"
     static let settingsTabBarTitle = "SETTINGS"
+    static let logoutTabBarTitle = "LOG OUT"
 }
 
 // MARK: - Stall List

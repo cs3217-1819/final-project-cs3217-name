@@ -20,11 +20,5 @@ final class StallRootConfigurator {
 
         viewController.output = interactor
         viewController.router = router
-
-        viewController.viewControllers = [
-            router.menuViewController(),
-            router.kitchenViewController(),
-            router.stallSettingsViewController()
-        ]
     }
 }

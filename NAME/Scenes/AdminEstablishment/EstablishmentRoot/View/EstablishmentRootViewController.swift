@@ -34,11 +34,38 @@ final class EstablishmentRootViewController: UITabBarController {
         configurator.configure(viewController: self)
         restorationIdentifier = String(describing: type(of: self))
         restorationClass = type(of: self)
+        setUpTabs()
     }
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    private func setUpTabs() {
+        guard let router = router else {
+            print("Router required to get child VCs")
+            return
+        }
+
+        let stallListVC = router.stallListViewController()
+        stallListVC.title = EstablishmentRootConstants.stallListTabBarTitle
+
+        let settingsVC = router.establishmentSettingsViewController()
+        settingsVC.title = EstablishmentRootConstants.settingsTabBarTitle
+
+        // Dummy view controller that should never be displayed
+        // as we should navigate back when the tab is opened.
+        let logoutVC = UIViewController()
+        logoutVC.title = EstablishmentRootConstants.logoutTabBarTitle
+
+        setViewControllers([stallListVC, settingsVC, logoutVC], animated: false)
+    }
+
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item == tabBar.items?.last {
+            router?.navigateBack()
+        }
     }
 }
 

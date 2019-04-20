@@ -33,20 +33,11 @@ extension EstablishmentRootRouter: EstablishmentRootRouterProtocol {
     }
 
     func stallListViewController() -> UIViewController {
-        let viewController =
-            UINavigationController(rootViewController: StallListViewController(isEstablishmentView: true,
-                                                                               mediator: nil))
-        viewController.tabBarItem = UITabBarItem(title: EstablishmentRootConstants.stallListTabBarTitle,
-                                                 image: nil,
-                                                 tag: 0)
-        return viewController
+        let stallListVC = StallListViewController(isEstablishmentView: true, mediator: nil)
+        return UINavigationController(rootViewController: stallListVC)
     }
 
     func establishmentSettingsViewController() -> UIViewController {
-        let viewController = UINavigationController(rootViewController: AdminSettingsViewController())
-        viewController.tabBarItem = UITabBarItem(title: EstablishmentRootConstants.settingsTabBarTitle,
-                                                 image: nil,
-                                                 tag: 1)
-        return viewController
+        return UINavigationController(rootViewController: AdminSettingsViewController())
     }
 }

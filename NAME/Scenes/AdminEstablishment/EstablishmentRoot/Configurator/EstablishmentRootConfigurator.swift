@@ -20,10 +20,5 @@ final class EstablishmentRootConfigurator {
 
         viewController.output = interactor
         viewController.router = router
-
-        viewController.viewControllers = [
-            router.stallListViewController(),
-            router.establishmentSettingsViewController()
-        ]
     }
 }
