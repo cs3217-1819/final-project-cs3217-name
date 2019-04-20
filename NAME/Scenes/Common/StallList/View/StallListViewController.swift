@@ -200,7 +200,7 @@ extension StallListViewController: StallListViewControllerInput {
                                                        stalls: stallList.stalls)
     }
 
-    func displayStallDeleteError() {
-        // TODO: Display Error
+    func displayStallDeleteError(title: String, message: String, buttonText: String?) {
+        router?.navigateToError(title: title, message: message, buttonText: buttonText)
     }
 }

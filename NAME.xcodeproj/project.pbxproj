@@ -190,6 +190,13 @@
 		FB8514EB22671D5700ED3F99 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EA22671D5700ED3F99 /* Date+Extensions.swift */; };
 		FB8514ED2267BD5300ED3F99 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */; };
 		FB8514EF226AFD7800ED3F99 /* KitchenClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EE226AFD7800ED3F99 /* KitchenClockView.swift */; };
+		FB851501226B1CF200ED3F99 /* CustomAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514F4226B1CF100ED3F99 /* CustomAlertViewModel.swift */; };
+		FB851502226B1CF200ED3F99 /* CustomAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514F6226B1CF100ED3F99 /* CustomAlertPresenter.swift */; };
+		FB851503226B1CF200ED3F99 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514F8226B1CF100ED3F99 /* CustomAlertViewController.swift */; };
+		FB851504226B1CF200ED3F99 /* CustomAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514FA226B1CF100ED3F99 /* CustomAlertConfigurator.swift */; };
+		FB851505226B1CF200ED3F99 /* CustomAlertWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514FC226B1CF100ED3F99 /* CustomAlertWorker.swift */; };
+		FB851506226B1CF200ED3F99 /* CustomAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514FE226B1CF100ED3F99 /* CustomAlertInteractor.swift */; };
+		FB851507226B1CF200ED3F99 /* CustomAlertRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB851500226B1CF100ED3F99 /* CustomAlertRouter.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -407,6 +414,13 @@
 		FB8514EA22671D5700ED3F99 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		FB8514EE226AFD7800ED3F99 /* KitchenClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenClockView.swift; sourceTree = "<group>"; };
+		FB8514F4226B1CF100ED3F99 /* CustomAlertViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewModel.swift; sourceTree = "<group>"; };
+		FB8514F6226B1CF100ED3F99 /* CustomAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertPresenter.swift; sourceTree = "<group>"; };
+		FB8514F8226B1CF100ED3F99 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		FB8514FA226B1CF100ED3F99 /* CustomAlertConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertConfigurator.swift; sourceTree = "<group>"; };
+		FB8514FC226B1CF100ED3F99 /* CustomAlertWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertWorker.swift; sourceTree = "<group>"; };
+		FB8514FE226B1CF100ED3F99 /* CustomAlertInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertInteractor.swift; sourceTree = "<group>"; };
+		FB851500226B1CF100ED3F99 /* CustomAlertRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +555,7 @@
 		1FB257ED224928550035399F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FB8514F2226B1CF100ED3F99 /* CustomAlert */,
 				54D252B1224CBD25007BF235 /* StallList */,
 				54D252C7224CBD2F007BF235 /* Menu */,
 				C691A598225BB6310061CE97 /* MenuDetail */,
@@ -1768,6 +1783,76 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		FB8514F2226B1CF100ED3F99 /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514F3226B1CF100ED3F99 /* ViewModel */,
+				FB8514F5226B1CF100ED3F99 /* Presenter */,
+				FB8514F7226B1CF100ED3F99 /* View */,
+				FB8514F9226B1CF100ED3F99 /* Configurator */,
+				FB8514FB226B1CF100ED3F99 /* Worker */,
+				FB8514FD226B1CF100ED3F99 /* Interactor */,
+				FB8514FF226B1CF100ED3F99 /* Router */,
+			);
+			path = CustomAlert;
+			sourceTree = "<group>";
+		};
+		FB8514F3226B1CF100ED3F99 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514F4226B1CF100ED3F99 /* CustomAlertViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FB8514F5226B1CF100ED3F99 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514F6226B1CF100ED3F99 /* CustomAlertPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FB8514F7226B1CF100ED3F99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514F8226B1CF100ED3F99 /* CustomAlertViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB8514F9226B1CF100ED3F99 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514FA226B1CF100ED3F99 /* CustomAlertConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		FB8514FB226B1CF100ED3F99 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514FC226B1CF100ED3F99 /* CustomAlertWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		FB8514FD226B1CF100ED3F99 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB8514FE226B1CF100ED3F99 /* CustomAlertInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FB8514FF226B1CF100ED3F99 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				FB851500226B1CF100ED3F99 /* CustomAlertRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2051,8 +2136,10 @@
 				5457DEB8226B1CB800276A63 /* CustomerRootIntersceneMediator.swift in Sources */,
 				FB519E242250A61300BB5DE8 /* EstablishmentRootWorker.swift in Sources */,
 				C691A5C2225BB6480061CE97 /* MenuAddonsInteractor.swift in Sources */,
+				FB851502226B1CF200ED3F99 /* CustomAlertPresenter.swift in Sources */,
 				C6D83D0A225DDE6600840504 /* MenuAddonsCollectionViewCell.swift in Sources */,
 				5441ABF12248B6ED0018A293 /* AppDelegate.swift in Sources */,
+				FB851505226B1CF200ED3F99 /* CustomAlertWorker.swift in Sources */,
 				FB519DB8224F440700BB5DE8 /* AdminSettingsPresenter.swift in Sources */,
 				FB519D87224E3A3200BB5DE8 /* StallRootViewModel.swift in Sources */,
 				C61DD3F52261FEEB00DC11A3 /* QuantityView.swift in Sources */,
@@ -2070,6 +2157,7 @@
 				C6BA5902225D0988002011A2 /* Int+Extensions.swift in Sources */,
 				1FB25820224929180035399F /* MenuItemOption.swift in Sources */,
 				54D252C3224CBD25007BF235 /* StallListConfigurator.swift in Sources */,
+				FB851507226B1CF200ED3F99 /* CustomAlertRouter.swift in Sources */,
 				FB519D72224D4F4300BB5DE8 /* LoginRouter.swift in Sources */,
 				5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */,
 				5441AC502248C4590018A293 /* CustomerRootViewModel.swift in Sources */,
@@ -2107,6 +2195,7 @@
 				1FB25817224929180035399F /* Discount.swift in Sources */,
 				FB519DBB224F440700BB5DE8 /* AdminSettingsWorker.swift in Sources */,
 				C691A5C0225BB6480061CE97 /* MenuAddonsConfigurator.swift in Sources */,
+				FB851504226B1CF200ED3F99 /* CustomAlertConfigurator.swift in Sources */,
 				C61DD3F22261E84A00DC11A3 /* MenuAddonsQuantityViewDelegate.swift in Sources */,
 				54D252AA224CB637007BF235 /* BrowseWorker.swift in Sources */,
 				C691A5DB225BB7F20061CE97 /* MenuInfoRouter.swift in Sources */,
@@ -2165,6 +2254,7 @@
 				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,
+				FB851506226B1CF200ED3F99 /* CustomAlertInteractor.swift in Sources */,
 				54D252D6224CBD2F007BF235 /* MenuViewModel.swift in Sources */,
 				1FF9CD5D225B06AA00AB4CBA /* OrderConfirmationItemDiscountView.swift in Sources */,
 				C691A5AA225BB6310061CE97 /* MenuDetailConfigurator.swift in Sources */,
@@ -2192,6 +2282,7 @@
 				C691A5D9225BB7F20061CE97 /* MenuInfoWorker.swift in Sources */,
 				FB519E222250A61300BB5DE8 /* EstablishmentRootViewController.swift in Sources */,
 				FB13B711225E357A006ED487 /* OrderRouter.swift in Sources */,
+				FB851501226B1CF200ED3F99 /* CustomAlertViewModel.swift in Sources */,
 				1FB25826224929180035399F /* OrderItemOption.swift in Sources */,
 				FB519E212250A61300BB5DE8 /* EstablishmentRootPresenter.swift in Sources */,
 				FB519E262250A61300BB5DE8 /* EstablishmentRootRouter.swift in Sources */,
@@ -2211,6 +2302,7 @@
 				FB8514ED2267BD5300ED3F99 /* UIColor+Extensions.swift in Sources */,
 				1FB25827224929180035399F /* PriceModifier.swift in Sources */,
 				54D252D8224CBD2F007BF235 /* MenuViewController.swift in Sources */,
+				FB851503226B1CF200ED3F99 /* CustomAlertViewController.swift in Sources */,
 				C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */,
 				FB519E202250A61300BB5DE8 /* EstablishmentRootViewModel.swift in Sources */,
 				1F2A95DE224EE92D006703DE /* Bill.swift in Sources */,

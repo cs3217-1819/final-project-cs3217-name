@@ -12,6 +12,7 @@ protocol StallListRouterProtocol {
     var viewController: StallListViewController? { get }
 
     func navigateToStallSettings()
+    func navigateToError(title: String, message: String, buttonText: String?)
 }
 
 final class StallListRouter {
@@ -30,5 +31,13 @@ extension StallListRouter: StallListRouterProtocol {
         let settingsVC = AdminSettingsViewController()
         settingsVC.modalPresentationStyle = .formSheet
         viewController?.present(settingsVC, animated: true)
+    }
+
+    func navigateToError(title: String, message: String, buttonText: String?) {
+        let errorVC = CustomAlertViewController(withTitle: title,
+                                                withMessage: message,
+                                                buttonText: nil,
+                                                alertType: .error)
+        viewController?.present(errorVC, animated: true, completion: nil)
     }
 }

@@ -14,7 +14,7 @@ protocol StallListPresenterInput: StallListInteractorOutput {
 protocol StallListPresenterOutput: class {
     func display(establishment: StallListEstablishmentViewModel)
     func display(stallList: StallListViewModel)
-    func displayStallDeleteError()
+    func displayStallDeleteError(title: String, message: String, buttonText: String?)
 }
 
 final class StallListPresenter {
@@ -42,6 +42,8 @@ extension StallListPresenter: StallListPresenterInput {
     }
 
     func presentStallDeleteError() {
-        output.displayStallDeleteError()
+        output.displayStallDeleteError(title: ErrorMessage.stallDeleteErrorTitle,
+                                       message: ErrorMessage.stallDeleteErrorMessage,
+                                       buttonText: nil)
     }
 }

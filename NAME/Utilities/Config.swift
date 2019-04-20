@@ -272,3 +272,22 @@ enum CornerRadiusConstants {
 enum DateConstants {
     static let timerSuffix = " ago"
 }
+
+// MARK: - Custom Alert
+enum CustomAlertConstants {
+    static let doneButtonTitle = "OK"
+    static let titleFontSize: CGFloat = 32.0
+    static let imageViewHeight: CGFloat = 200.0
+    static let alertWidth: CGFloat = 450.0
+}
+
+// MARK: - Image
+enum ImageConstants {
+    static let sadMascotName = "mascot-sad"
+}
+
+// MARK: - Error Messages
+enum ErrorMessage {
+    static let stallDeleteErrorTitle = "Sorry! Error Deleting Stall."
+    static let stallDeleteErrorMessage = "The stall cannot be deleted. Please try again later."
+}
