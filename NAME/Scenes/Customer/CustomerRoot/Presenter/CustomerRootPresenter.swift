@@ -12,6 +12,7 @@ protocol CustomerRootPresenterInput: CustomerRootInteractorOutput {
 }
 
 protocol CustomerRootPresenterOutput: class {
+    func endSession()
 }
 
 final class CustomerRootPresenter {
@@ -26,4 +27,7 @@ final class CustomerRootPresenter {
 // MARK: - CustomerRootPresenterInput
 
 extension CustomerRootPresenter: CustomerRootPresenterInput {
+    func endSession() {
+        output.endSession()
+    }
 }

@@ -71,6 +71,7 @@
 		5441AC542248C4590018A293 /* CustomerRootWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */; };
 		5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */; };
 		5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */; };
+		5457DEB8226B1CB800276A63 /* CustomerRootIntersceneMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5457DEB7226B1CB800276A63 /* CustomerRootIntersceneMediator.swift */; };
 		54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D25299224CB637007BF235 /* BrowseViewModel.swift */; };
 		54D252A7224CB637007BF235 /* BrowsePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D2529B224CB637007BF235 /* BrowsePresenter.swift */; };
 		54D252A8224CB637007BF235 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D2529D224CB637007BF235 /* BrowseViewController.swift */; };
@@ -284,6 +285,7 @@
 		5441AC4B2248C4590018A293 /* CustomerRootWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootWorker.swift; sourceTree = "<group>"; };
 		5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootInteractor.swift; sourceTree = "<group>"; };
 		5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootRouter.swift; sourceTree = "<group>"; };
+		5457DEB7226B1CB800276A63 /* CustomerRootIntersceneMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRootIntersceneMediator.swift; sourceTree = "<group>"; };
 		54D25299224CB637007BF235 /* BrowseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewModel.swift; sourceTree = "<group>"; };
 		54D2529B224CB637007BF235 /* BrowsePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsePresenter.swift; sourceTree = "<group>"; };
 		54D2529D224CB637007BF235 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			isa = PBXGroup;
 			children = (
 				5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */,
+				5457DEB7226B1CB800276A63 /* CustomerRootIntersceneMediator.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2042,6 +2045,7 @@
 				C691A5D5225BB7F20061CE97 /* MenuInfoViewModel.swift in Sources */,
 				FB519DB7224F440700BB5DE8 /* AdminSettingsViewModel.swift in Sources */,
 				FB519D88224E3A3200BB5DE8 /* StallRootPresenter.swift in Sources */,
+				5457DEB8226B1CB800276A63 /* CustomerRootIntersceneMediator.swift in Sources */,
 				FB519E242250A61300BB5DE8 /* EstablishmentRootWorker.swift in Sources */,
 				C691A5C2225BB6480061CE97 /* MenuAddonsInteractor.swift in Sources */,
 				C6D83D0A225DDE6600840504 /* MenuAddonsCollectionViewCell.swift in Sources */,

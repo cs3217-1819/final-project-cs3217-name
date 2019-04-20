@@ -6,13 +6,18 @@
 //  Copyright © 2019 NAME. All rights reserved.
 //
 
+typealias BrowseIntersceneMediatorSelfInput = BrowseToChildrenOutput
+typealias BrowseIntersceneMediatorSelfOutput = BrowseFromChildrenInput
+
 typealias BrowseIntersceneMediatorStallListInput = StallListToParentOutput
 typealias BrowseIntersceneMediatorStallListOutput = StallListFromParentInput
 
 typealias BrowseIntersceneMediatorMenuInput = MenuToParentOutput
 typealias BrowseIntersceneMediatorMenuOutput = MenuFromParentInput
 
-class BrowseIntersceneMediator: BrowseIntersceneMediatorStallListInput, BrowseIntersceneMediatorMenuInput {
+class BrowseIntersceneMediator: BrowseIntersceneMediatorSelfInput,
+BrowseIntersceneMediatorStallListInput, BrowseIntersceneMediatorMenuInput {
+    weak var selfInteractor: BrowseFromChildrenInput?
     weak var stallListInteractor: BrowseIntersceneMediatorStallListOutput?
     weak var menuInteractor: BrowseIntersceneMediatorMenuOutput?
 
@@ -20,5 +25,9 @@ class BrowseIntersceneMediator: BrowseIntersceneMediatorStallListInput, BrowseIn
         didSet {
             self.menuInteractor?.stall = selectedStall
         }
+    }
+
+    func requestSessionEnd() {
+        selfInteractor?.requestSessionEnd()
     }
 }

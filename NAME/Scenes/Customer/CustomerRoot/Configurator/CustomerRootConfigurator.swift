@@ -9,18 +9,16 @@
 import UIKit
 
 final class CustomerRootConfigurator {
-
-    // MARK: - Singleton
-
     static let shared: CustomerRootConfigurator = CustomerRootConfigurator()
 
-    // MARK: - Configuration
-
     func configure(viewController: CustomerRootViewController) {
-
-        let router = CustomerRootRouter(viewController: viewController)
+        let toChildrenMediator = CustomerRootIntersceneMediator()
+        let router = CustomerRootRouter(viewController: viewController,
+                                        mediator: toChildrenMediator)
         let presenter = CustomerRootPresenter(output: viewController)
-        let interactor = CustomerRootInteractor(output: presenter)
+        let interactor = CustomerRootInteractor(output: presenter,
+                                                toChildrenMediator: toChildrenMediator)
+        toChildrenMediator.selfInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router

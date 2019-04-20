@@ -8,23 +8,46 @@
 
 import UIKit
 
+// MARK: Interscene interactor IO
+
+protocol CustomerRootFromChildrenInput: class {
+    func requestSessionEnd()
+}
+
+protocol CustomerRootToChildrenOutput: class {
+    var selfInteractor: CustomerRootFromChildrenInput? { get set }
+}
+
+// MARK: Intrascene interactor IO
+
 protocol CustomerRootInteractorInput: CustomerRootViewControllerOutput {
 }
 
 protocol CustomerRootInteractorOutput {
+    func endSession()
 }
 
 final class CustomerRootInteractor {
     let output: CustomerRootInteractorOutput
     let worker: CustomerRootWorker
+    private let toChildrenMediator: CustomerRootIntersceneMediator
 
-    init(output: CustomerRootInteractorOutput, worker: CustomerRootWorker = CustomerRootWorker()) {
+    init(output: CustomerRootInteractorOutput,
+         toChildrenMediator: CustomerRootIntersceneMediator,
+         worker: CustomerRootWorker = CustomerRootWorker()) {
         self.output = output
+        self.toChildrenMediator = toChildrenMediator
         self.worker = worker
     }
 }
 
 // MARK: - CustomerRootInteractorInput
-
 extension CustomerRootInteractor: CustomerRootViewControllerOutput {
+}
+
+// MARK: - CustomerRootFromChildrenInput
+extension CustomerRootInteractor: CustomerRootFromChildrenInput {
+    func requestSessionEnd() {
+        output.endSession()
+    }
 }

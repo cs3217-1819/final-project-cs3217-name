@@ -13,9 +13,11 @@ protocol StallListViewControllerInput: StallListPresenterOutput {
 }
 
 protocol StallListViewControllerOutput {
+    func reloadEstablishmentInfo()
     func reloadStalls()
     func handleStallSelect(at index: Int)
     func handleStallDelete(at index: Int)
+    func requestSessionEnd()
 }
 
 final class StallListViewController: UICollectionViewController {
@@ -126,12 +128,25 @@ final class StallListViewController: UICollectionViewController {
         super.viewDidLoad()
 
         setupCollectionView()
+        setupNavigation()
         output?.reloadStalls()
+        output?.reloadEstablishmentInfo()
     }
 
     private func setupCollectionView() {
         collectionView.backgroundColor = .white
         clearsSelectionOnViewWillAppear = false
+    }
+
+    private func setupNavigation() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop,
+                                                           target: self,
+                                                           action: #selector(closeButtonDidPress))
+    }
+
+    @objc
+    private func closeButtonDidPress() {
+        output?.requestSessionEnd()
     }
 }
 
@@ -176,9 +191,13 @@ extension StallListViewController: StallListTableViewCellDelegate {
 // MARK: - StallListPresenterOutput
 
 extension StallListViewController: StallListViewControllerInput {
-    func display(viewModel: StallListViewModel) {
+    func display(establishment: StallListEstablishmentViewModel) {
+        title = establishment.name
+    }
+
+    func display(stallList: StallListViewModel) {
         collectionViewDataSource = StallListDataSource(isEstablishmentView: isEstablishmentView,
-                                                       stalls: viewModel.stalls)
+                                                       stalls: stallList.stalls)
     }
 
     func displayStallDeleteError() {

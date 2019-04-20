@@ -16,6 +16,7 @@ protocol StallListFromParentInput: class {
 protocol StallListToParentOutput: class {
     var stallListInteractor: StallListFromParentInput? { get set }
     var selectedStall: Stall? { get set }
+    func requestSessionEnd()
 }
 
 // MARK: Intrascene interactor IO
@@ -24,7 +25,8 @@ protocol StallListInteractorInput: StallListViewControllerOutput {
 }
 
 protocol StallListInteractorOutput {
-    func presentStalls(stalls: [Stall])
+    func present(establishmentInfo: Establishment)
+    func present(stalls: [Stall])
     func presentStallDeleteError()
 }
 
@@ -56,14 +58,25 @@ final class StallListInteractor: StallListFromParentInput {
 // MARK: - StallListInteractorInput
 
 extension StallListInteractor: StallListViewControllerOutput {
-    func reloadStalls() {
+    private var currentEstablishment: Establishment? {
         // TODO: Filter stalls by actual current establishment
-        guard let currentEstablishment = deps.storageManager.allEstablishments().first else {
+        return deps.storageManager.allEstablishments().first
+    }
+
+    func reloadEstablishmentInfo() {
+        guard let currentEstablishment = currentEstablishment else {
+            return
+        }
+        output.present(establishmentInfo: currentEstablishment)
+    }
+
+    func reloadStalls() {
+        guard let currentEstablishment = currentEstablishment else {
             print("Could not get stalls")
             return
         }
         loadedStalls = Array(currentEstablishment.stalls)
-        output.presentStalls(stalls: loadedStalls)
+        output.present(stalls: loadedStalls)
     }
 
     func handleStallSelect(at index: Int) {
@@ -77,6 +90,10 @@ extension StallListInteractor: StallListViewControllerOutput {
         } catch {
             output.presentStallDeleteError()
         }
+    }
+
+    func requestSessionEnd() {
+        toParentMediator?.requestSessionEnd()
     }
 }
 

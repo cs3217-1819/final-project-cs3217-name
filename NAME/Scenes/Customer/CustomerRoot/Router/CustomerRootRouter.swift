@@ -18,9 +18,12 @@ protocol CustomerRootRouterProtocol {
 
 final class CustomerRootRouter {
     weak var viewController: CustomerRootViewController?
+    unowned var mediator: CustomerRootIntersceneMediator
 
-    init(viewController: CustomerRootViewController?) {
+    init(viewController: CustomerRootViewController?,
+         mediator: CustomerRootIntersceneMediator) {
         self.viewController = viewController
+        self.mediator = mediator
     }
 }
 
@@ -32,7 +35,7 @@ extension CustomerRootRouter: CustomerRootRouterProtocol {
     }
 
     func browseViewController() -> UIViewController {
-        return BrowseViewController()
+        return BrowseViewController(toParentMediator: mediator)
     }
 
     func cartViewController() -> UIViewController {

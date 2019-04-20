@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct StallListEstablishmentViewModel {
+    let name: String
+}
+
 struct StallListViewModel {
     struct StallViewModel {
         let name: String

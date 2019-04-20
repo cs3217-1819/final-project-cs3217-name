@@ -20,22 +20,21 @@ final class BrowseViewController: UISplitViewController {
 
     // MARK: - Initializers
 
-    init(configurator: BrowseConfigurator = BrowseConfigurator.shared) {
+    init(toParentMediator: BrowseToParentOutput?,
+         configurator: BrowseConfigurator = BrowseConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator)
+        configure(toParentMediator: toParentMediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Configurator
 
-    private func configure(configurator: BrowseConfigurator = BrowseConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
+    private func configure(toParentMediator: BrowseToParentOutput?,
+                           configurator: BrowseConfigurator = BrowseConfigurator.shared) {
+        configurator.configure(toParentMediator: toParentMediator, viewController: self)
         maximumPrimaryColumnWidth = CustomerCommonConstants.primaryWidth
     }
 
@@ -49,12 +48,4 @@ final class BrowseViewController: UISplitViewController {
 // MARK: - BrowsePresenterOutput
 
 extension BrowseViewController: BrowseViewControllerInput {
-}
-
-// MARK: - UIViewControllerRestoration
-
-extension BrowseViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return self.init()
-    }
 }

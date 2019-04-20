@@ -11,13 +11,17 @@ import UIKit
 final class BrowseConfigurator {
     static let shared: BrowseConfigurator = BrowseConfigurator()
 
-    func configure(viewController: BrowseViewController) {
+    func configure(toParentMediator: BrowseToParentOutput?,
+                   viewController: BrowseViewController) {
         let toChildrenMediator = BrowseIntersceneMediator()
         let router = BrowseRouter(viewController: viewController,
                                   mediator: toChildrenMediator)
         let presenter = BrowsePresenter(output: viewController)
         let interactor = BrowseInteractor(output: presenter,
+                                          toParentMediator: toParentMediator,
                                           toChildrenMediator: toChildrenMediator)
+        toParentMediator?.browseInteractor = interactor
+        toChildrenMediator.selfInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router

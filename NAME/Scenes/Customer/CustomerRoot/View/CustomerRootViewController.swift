@@ -51,6 +51,9 @@ final class CustomerRootViewController: UISplitViewController {
 // MARK: - CustomerRootPresenterOutput
 
 extension CustomerRootViewController: CustomerRootViewControllerInput {
+    func endSession() {
+        router?.navigateBack()
+    }
 }
 
 // MARK: - UIViewControllerRestoration
