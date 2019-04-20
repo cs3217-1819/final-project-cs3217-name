@@ -43,7 +43,7 @@ final class MenuAddonsViewController: UIViewController {
         let result = UITableView(frame: .zero, style: .grouped)
         result.delegate = self
         result.dataSource = self
-        result.backgroundColor = .white
+        result.backgroundColor = UIColor.Custom.paleGray
         result.separatorStyle = .none
         result.allowsSelection = false
         result.rowHeight = MenuAddonsConstants.addonsSize.height
@@ -103,12 +103,12 @@ final class MenuAddonsViewController: UIViewController {
     }
 
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = MenuAddonsConstants.backgroundColor
         let resetBarButtonItem = UIBarButtonItem(title: MenuAddonsConstants.resetButtonTitle,
                                                  style: .plain,
                                                  target: self,
                                                  action: #selector(resetButtonDidPress))
-        resetBarButtonItem.tintColor = .red
+        resetBarButtonItem.tintColor = UIColor.Custom.salmonRed
         navigationItem.rightBarButtonItem = resetBarButtonItem
     }
 

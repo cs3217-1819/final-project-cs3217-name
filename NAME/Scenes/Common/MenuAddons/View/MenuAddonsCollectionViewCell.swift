@@ -22,29 +22,31 @@ final class MenuAddonsCollectionViewCell: UICollectionViewCell {
         let result = UILabel(frame: .zero)
         result.textAlignment = .center
         result.font = .preferredFont(forTextStyle: .callout)
+        result.textColor = UIColor.Custom.darkPurple
         return result
     }()
     private let priceLabel: UILabel = {
         let result = UILabel(frame: .zero)
         result.textAlignment = .center
         result.font = .preferredFont(forTextStyle: .subheadline)
-        result.textColor = .gray
+        result.textColor = UIColor.Custom.darkPurple
         return result
     }()
 
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                nameLabel.textColor = .red
+                backgroundColor = .white
             } else {
-                nameLabel.textColor = .black
+                backgroundColor = MenuAddonsConstants.backgroundColor
             }
         }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        layer.cornerRadius = CornerRadiusConstants.subtleRadius
+        backgroundColor = MenuAddonsConstants.backgroundColor
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)

@@ -25,13 +25,16 @@ final class MenuAddonsFooterView: UIView {
 
     private let addButton: UIButton = {
         let result = UIButton(type: .system)
+        result.backgroundColor = UIColor.Custom.purple
+        result.layer.cornerRadius = CornerRadiusConstants.standardRadius
         result.setTitle(MenuAddonsConstants.addButtonTitle, for: .normal)
-        result.titleLabel?.font = .preferredFont(forTextStyle: .title1)
-        result.contentHorizontalAlignment = .center
-        result.contentVerticalAlignment = .center
+        result.setTitleColor(.white, for: .normal)
+        result.titleLabel?.font = .preferredFont(forTextStyle: .title2)
         result.addTarget(self, action: #selector(addButtonDidPress(sender:)), for: .touchUpInside)
         return result
     }()
+
+    private let buttonView = UIView()
 
     private lazy var quantityView: QuantityView = {
         let result = QuantityView(quantity: 1, minimum: 0)
@@ -40,7 +43,7 @@ final class MenuAddonsFooterView: UIView {
     }()
 
     private lazy var stackView: UIStackView = {
-        let result = UIStackView(arrangedSubviews: [quantityView, priceLabel, addButton])
+        let result = UIStackView(arrangedSubviews: [quantityView, priceLabel, buttonView])
         result.axis = .horizontal
         result.distribution = .fillEqually
         return result
@@ -60,14 +63,26 @@ final class MenuAddonsFooterView: UIView {
     init() {
         super.init(frame: .zero)
 
-        backgroundColor = .white
-        addSubview(stackView)
+        backgroundColor = MenuAddonsConstants.backgroundColor
+        addSubviews()
         configureConstraints()
+    }
+
+    private func addSubviews() {
+        addSubview(stackView)
+        buttonView.addSubview(addButton)
     }
 
     private func configureConstraints() {
         stackView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
+        }
+
+        addButton.snp.makeConstraints { make in
+            make.height.equalTo(ButtonConstants.mediumButtonHeight)
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(ConstraintConstants.standardValue)
+            make.right.equalToSuperview().offset(-ConstraintConstants.standardValue)
         }
     }
 

@@ -21,6 +21,7 @@ class MenuAddonsTableViewQuantityCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = MenuAddonsConstants.backgroundColor
 
         addSubview(quantityView)
         addSubview(priceLabel)

@@ -37,7 +37,9 @@ private class CategoryButton: UIButton {
         isRemoveTarget = false
         super.init(frame: frame)
         isSelected = false
-        setTitleColor(.black, for: .normal)
+        setTitleColor(UIColor.Custom.deepPurple, for: .normal)
+        setTitleColor(.white, for: .selected)
+        layer.cornerRadius = CornerRadiusConstants.subtleRadius
         contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
     }
 
@@ -47,13 +49,15 @@ private class CategoryButton: UIButton {
 
     private func updateDisplayFromState() {
         if isRemoveTarget {
-            backgroundColor = .red
+            backgroundColor = UIColor.Custom.salmonRed
+            setTitleColor(.white, for: .normal)
             setTitle("Remove", for: .normal)
         } else if isSelected {
-            backgroundColor = .yellow
+            backgroundColor = UIColor.Custom.purple
             setTitle(category.name, for: .normal)
         } else {
-            backgroundColor = .green
+            backgroundColor = UIColor.Custom.lightGray
+            setTitleColor(UIColor.Custom.deepPurple, for: .normal)
             setTitle(category.name, for: .normal)
         }
     }

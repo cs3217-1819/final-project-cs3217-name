@@ -35,7 +35,7 @@ class StallListEstablishmentCell: UICollectionViewCell {
         button.setTitleColor(.white, for: .normal)
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
-        button.backgroundColor = .purple
+        button.backgroundColor = UIColor.Custom.purple
         return button
     }()
 
@@ -46,7 +46,7 @@ class StallListEstablishmentCell: UICollectionViewCell {
         button.setTitleColor(.white, for: .normal)
         button.contentVerticalAlignment = .center
         button.contentHorizontalAlignment = .center
-        button.backgroundColor = .lightGray
+        button.backgroundColor = UIColor.Custom.lightGray
         return button
     }()
 

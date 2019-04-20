@@ -27,6 +27,7 @@ class QuantityView: UIView {
         let result = UIButton(type: .system)
         result.contentHorizontalAlignment = .center
         result.setTitle(QuantityViewConstants.increaseQuantityTitle, for: .normal)
+        result.setTitleColor(.gray, for: .normal)
         result.addTarget(self, action: #selector(increaseButtonDidTap), for: .touchUpInside)
         return result
     }()
@@ -35,6 +36,7 @@ class QuantityView: UIView {
         let result = UIButton(type: .system)
         result.contentHorizontalAlignment = .center
         result.setTitle(QuantityViewConstants.decreaseQuantityTitle, for: .normal)
+        result.setTitleColor(.gray, for: .normal)
         result.addTarget(self, action: #selector(decreaseButtonDidTap), for: .touchUpInside)
         return result
     }()
@@ -42,7 +44,8 @@ class QuantityView: UIView {
     private lazy var quantityLabel: UILabel = {
         let result = UILabel(frame: .zero)
         result.textAlignment = .center
-        result.font = .preferredFont(forTextStyle: .body)
+        result.font = UIFont.boldSystemFont(ofSize: QuantityViewConstants.quantityFontSize)
+        result.textColor = UIColor.Custom.deepPurple
         result.text = String(quantity)
         return result
     }()

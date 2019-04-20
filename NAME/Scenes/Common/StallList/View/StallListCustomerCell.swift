@@ -11,7 +11,7 @@ import UIKit
 class StallListCustomerCell: UICollectionViewCell {
     private let textLabel: UILabel = {
         let textLabel = UILabel()
-        textLabel.font = .boldSystemFont(ofSize: StallListConstants.titleFontSize)
+        textLabel.font = .preferredFont(forTextStyle: .headline)
         return textLabel
     }()
 
@@ -37,8 +37,8 @@ class StallListCustomerCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                textLabel.textColor = .purple
-                detailTextLabel.textColor = .purple
+                textLabel.textColor = UIColor.Custom.deepPurple
+                detailTextLabel.textColor = UIColor.Custom.deepPurple
             } else {
                 textLabel.textColor = .black
                 detailTextLabel.textColor = .black

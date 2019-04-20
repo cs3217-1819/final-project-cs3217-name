@@ -37,7 +37,7 @@ final class MenuDetailViewController: UISplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        preferredPrimaryColumnWidthFraction = 0.5
+        preferredPrimaryColumnWidthFraction = 0.45
         maximumPrimaryColumnWidth = view.bounds.width
     }
 }

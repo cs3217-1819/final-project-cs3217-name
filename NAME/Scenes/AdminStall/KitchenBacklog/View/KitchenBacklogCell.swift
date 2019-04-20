@@ -29,7 +29,7 @@ final class KitchenBacklogCell: UICollectionViewCell {
         button.setTitle(KitchenBacklogConstants.orderReadyButtonTitle, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .title3)
         button.backgroundColor = UIColor.Custom.purple
-        button.layer.cornerRadius = BorderRadius.standardRadius
+        button.layer.cornerRadius = CornerRadiusConstants.standardRadius
         return button
     }()
 
@@ -39,7 +39,7 @@ final class KitchenBacklogCell: UICollectionViewCell {
         button.setTitle(KitchenBacklogConstants.orderCompleteButtonTitle, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .title3)
         button.backgroundColor = UIColor.Custom.green
-        button.layer.cornerRadius = BorderRadius.standardRadius
+        button.layer.cornerRadius = CornerRadiusConstants.standardRadius
         return button
     }()
 
@@ -49,7 +49,7 @@ final class KitchenBacklogCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.cornerRadius = BorderRadius.standardRadius
+        layer.cornerRadius = CornerRadiusConstants.standardRadius
         backgroundColor = UIColor.Custom.paleGray
     }
 

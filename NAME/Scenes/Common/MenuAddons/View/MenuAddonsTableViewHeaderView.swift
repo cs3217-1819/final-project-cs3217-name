@@ -19,7 +19,7 @@ class MenuAddonsTableViewHeaderView: UITableViewHeaderFooterView {
     private let button: UIButton = {
         let result = UIButton(type: .system)
         result.setTitle(MenuAddonsConstants.sectionResetButtonTitle, for: .normal)
-        result.setTitleColor(.red, for: .normal)
+        result.setTitleColor(UIColor.Custom.salmonRed, for: .normal)
         result.addTarget(self, action: #selector(resetButtonDidTap), for: .touchUpInside)
         return result
     }()

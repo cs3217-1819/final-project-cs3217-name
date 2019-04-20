@@ -41,7 +41,7 @@ enum LoginConstants {
     static let maxContainerWidth: CGFloat = 600.0
     static let minContainerMargin: CGFloat = 40.0
     static let containerCornerRadius: CGFloat = 20.0
-    static let containerColor: UIColor = .gray
+    static let containerColor = UIColor.Custom.purple
     static let textFieldMargin: CGFloat = 16.0
     static let textFieldHeight: CGFloat = 60.0
     static let textFieldBackgroundColor: UIColor = .white
@@ -232,6 +232,8 @@ enum MenuAddonsConstants {
             case .takeaway: return ("Takeaway", option)
             }
         }
+    static let backgroundColor = UIColor.Custom.paleGray
+    static let selectedCellBackgroundColor: UIColor = .white
 }
 
 // MARK: - QuantityView
@@ -240,6 +242,7 @@ enum QuantityViewConstants {
     static let decreaseQuantityTitle = "▼"
     static let title = "Qty"
     static let quantityWidth: CGFloat = 30.0
+    static let quantityFontSize: CGFloat = 22.0
 }
 
 enum AlertConstants {
@@ -252,9 +255,10 @@ enum ButtonConstants {
     static let mediumButtonHeight: CGFloat = 45.0
 }
 
-// MARK: - Border Radius
-enum BorderRadius {
+// MARK: - Corner Radius
+enum CornerRadiusConstants {
     static let standardRadius: CGFloat = 15.0
+    static let subtleRadius: CGFloat = 10.0
 }
 
 // MARK: - Date

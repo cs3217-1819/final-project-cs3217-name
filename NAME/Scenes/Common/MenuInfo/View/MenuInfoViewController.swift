@@ -65,6 +65,7 @@ final class MenuInfoViewController: UIViewController {
             result.addGestureRecognizer(tapRecognizer)
         }
         result.font = .preferredFont(forTextStyle: .body)
+        result.textColor = .darkGray
         result.textContainer.maximumNumberOfLines = MenuInfoConstants.maximumNumberOfLines
         return result
     }()
@@ -79,7 +80,7 @@ final class MenuInfoViewController: UIViewController {
     private lazy var deleteCommentButton: UIButton = {
         let result = UIButton(type: .system)
         result.setTitle(MenuInfoConstants.deleteCommentButtonTitle, for: .normal)
-        result.setTitleColor(.red, for: .normal)
+        result.setTitleColor(UIColor.Custom.salmonRed, for: .normal)
         result.isHidden = true
         result.addTarget(self, action: #selector(deleteCommentButtonDidPress), for: .touchUpInside)
         return result
@@ -90,6 +91,7 @@ final class MenuInfoViewController: UIViewController {
         result.isEditable = false
         result.isScrollEnabled = false
         result.font = .preferredFont(forTextStyle: .body)
+        result.textColor = .darkGray
         result.textContainer.maximumNumberOfLines = MenuInfoConstants.maximumNumberOfLines
         stylizeViewAsEditable(result)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(commentTextViewDidTap))
@@ -258,9 +260,9 @@ final class MenuInfoViewController: UIViewController {
     }
 
     private func stylizeViewAsEditable(_ view: UIView) {
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1.0
-        view.layer.cornerRadius = 5.0
+        view.layer.cornerRadius = 10
     }
 }
 

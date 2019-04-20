@@ -23,6 +23,7 @@ final class SplashViewController: UIViewController {
 
     lazy var startButton: UIButton = {
         let button = UIButton()
+        button.setTitleColor(UIColor.Custom.darkPurple, for: .normal)
         button.addTarget(self, action: #selector(handleStartPress(sender:)), for: .touchUpInside)
         return button
     }()
@@ -61,20 +62,24 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = UIColor.Custom.palePurple
         view.addSubview(startButton)
+        view.addSubview(tapToLoginArea)
+        configureConstraints()
+        output?.initializeScreen()
+    }
+
+    private func configureConstraints() {
         startButton.snp.makeConstraints { [unowned self] make in
             make.size.equalTo(self.view)
         }
 
-        view.addSubview(tapToLoginArea)
         tapToLoginArea.snp.makeConstraints { [unowned self] make in
             make.size.equalTo(CGSize(width: SplashConstants.tapAreaWidth,
                                      height: SplashConstants.tapAreaHeight))
             make.top.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-
-        output?.initializeScreen()
     }
 
     // MARK: -

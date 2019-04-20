@@ -77,13 +77,12 @@ final class MenuViewController: UICollectionViewController {
         collectionView.register(MenuCategoryHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: MenuViewController.headerIdentifier)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.Custom.paleGray
         collectionView.alwaysBounceVertical = true
         collectionView.dragDelegate = dragHandler
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumInteritemSpacing = 30
-            layout.itemSize = CGSize(width: 200, height: 100)
+            layout.itemSize = CGSize(width: 150, height: 100)
             layout.headerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 40)
             layout.sectionHeadersPinToVisibleBounds = true
         }
