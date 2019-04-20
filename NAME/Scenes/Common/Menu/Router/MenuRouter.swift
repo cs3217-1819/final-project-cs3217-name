@@ -30,7 +30,7 @@ final class MenuRouter {
 extension MenuRouter: MenuRouterProtocol {
     // MARK: - Navigation
     func navigateToMenuDetail(menuId: String) {
-        let menuDetailViewController = MenuDetailViewController(menuId: menuId)
+        let menuDetailViewController = MenuDetailViewController(menuId: menuId, isEditable: true)
         viewController?.present(menuDetailViewController, animated: true)
     }
 }

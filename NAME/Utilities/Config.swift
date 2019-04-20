@@ -203,12 +203,18 @@ enum MenuConstants {
     static let menuItemDragTypeIdentifier = "menuItemDragType"
 }
 
-// MARK: - MenuAddons
-enum MenuAddonsConstants {
+enum MenuInfoConstants {
     static let maximumNumberOfLines = 4
+    static let nameAlertTitle = "Menu Item Name"
+    static let priceAlertTitle = "Price"
+    static let detailsAlertTitle = "Menu Item Detail"
     static let extraCommentAlertTitle = "Extra Comment"
     static let commentLabelText = "EXTRA COMMENT"
     static let deleteCommentButtonTitle = "DELETE EXTRA COMMENT"
+}
+
+// MARK: - MenuAddons
+enum MenuAddonsConstants {
     static let resetButtonTitle = "RESET ALL"
     static let sectionResetButtonTitle = "RESET"
     static let addButtonTitle = "ADD"

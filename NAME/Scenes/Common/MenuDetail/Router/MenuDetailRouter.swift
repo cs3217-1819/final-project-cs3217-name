@@ -12,8 +12,8 @@ protocol MenuDetailRouterProtocol {
     var viewController: MenuDetailViewController? { get }
 
     func navigateBack()
-    func menuInfoViewController(menuId: String) -> UIViewController
-    func menuAddonsViewController(menuId: String) -> UIViewController
+    func menuInfoViewController(menuId: String, isEditable: Bool) -> UIViewController
+    func menuAddonsViewController(menuId: String, isEditable: Bool) -> UIViewController
 }
 
 final class MenuDetailRouter {
@@ -30,13 +30,15 @@ final class MenuDetailRouter {
 // MARK: - MenuDetailRouterProtocol
 
 extension MenuDetailRouter: MenuDetailRouterProtocol {
-    func menuInfoViewController(menuId: String) -> UIViewController {
-        let menuInfoViewController = MenuInfoViewController(menuId: menuId, mediator: mediator)
+    func menuInfoViewController(menuId: String, isEditable: Bool) -> UIViewController {
+        let menuInfoViewController = MenuInfoViewController(menuId: menuId, isEditable: isEditable, mediator: mediator)
         return UINavigationController(rootViewController: menuInfoViewController)
     }
 
-    func menuAddonsViewController(menuId: String) -> UIViewController {
-        let menuAddonsViewController = MenuAddonsViewController(menuId: menuId, mediator: mediator)
+    func menuAddonsViewController(menuId: String, isEditable: Bool) -> UIViewController {
+        let menuAddonsViewController = MenuAddonsViewController(menuId: menuId,
+                                                                isEditable: isEditable,
+                                                                mediator: mediator)
         return UINavigationController(rootViewController: menuAddonsViewController)
     }
 

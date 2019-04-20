@@ -21,4 +21,8 @@ class MenuDetailIntersceneMediator: MenuDetailMediatorMenuInfoInput, MenuDetailM
     func set(comment: String) {
         menuAddonsInteractor?.set(comment: comment)
     }
+
+    func set(price: Int) {
+        menuAddonsInteractor?.set(price: price)
+    }
 }

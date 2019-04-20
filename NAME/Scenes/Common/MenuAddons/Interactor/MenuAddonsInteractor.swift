@@ -12,6 +12,7 @@ import UIKit
 
 protocol MenuAddonsFromParentInput: class {
     func set(comment: String)
+    func set(price: Int)
 }
 
 protocol MenuAddonsToParentOutput: class {
@@ -48,7 +49,7 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
     private let addOns: [IndividualMenuItem]
     private var selectedAddonsIndices: Set<Int> = []
     private var optionValues: [OptionValue]
-    private let basePrice: Int
+    private var basePrice: Int
     private var quantity: Int = 1
     private var menuItem: IndividualMenuItem?
 
@@ -79,6 +80,11 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
     func set(comment: String) {
         self.comment = comment
+    }
+
+    func set(price: Int) {
+        basePrice = price
+        passValueToPresenter()
     }
 }
 

@@ -20,18 +20,17 @@ final class MenuDetailViewController: UISplitViewController {
     var router: MenuDetailRouterProtocol?
 
     // MARK: - Initializers
-    init(menuId: String, configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
+    init(menuId: String, isEditable: Bool, configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator, menuId: menuId)
+        configure(configurator: configurator, menuId: menuId, isEditable: isEditable)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        assertionFailure("This should not be called without storyboard.")
+        fatalError("This should not be called without storyboard.")
     }
 
-    private func configure(configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared, menuId: String) {
-        configurator.configure(viewController: self, menuId: menuId)
+    private func configure(configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared, menuId: String, isEditable: Bool) {
+        configurator.configure(viewController: self, menuId: menuId, isEditable: isEditable)
     }
 
     // MARK: - View lifecycle

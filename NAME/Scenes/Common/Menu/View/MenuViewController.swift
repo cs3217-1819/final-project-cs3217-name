@@ -14,6 +14,7 @@ protocol MenuViewControllerInput: MenuPresenterOutput {
 protocol MenuViewControllerOutput {
     func add(menuItemIds: [String], toCategory categoryIndex: Int)
     func remove(menuItemIds: [String], fromCategory categoryIndex: Int)
+    func reload()
 }
 
 final class MenuViewController: UICollectionViewController {
@@ -94,6 +95,12 @@ final class MenuViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.reload()
     }
 
     private func highlightCurrentCategory() {

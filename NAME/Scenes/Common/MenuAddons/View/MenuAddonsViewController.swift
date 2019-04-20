@@ -71,18 +71,25 @@ final class MenuAddonsViewController: UIViewController {
         return result
     }()
 
+    private let isEditable: Bool
+
     // MARK: - Initializers
-    init(menuId: String, mediator: MenuAddonsToParentOutput?, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
+    init(menuId: String,
+         isEditable: Bool,
+         mediator: MenuAddonsToParentOutput?,
+         configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
+        self.isEditable = isEditable
         super.init(nibName: nil, bundle: nil)
         configure(menuId: menuId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        assertionFailure("This should not be called without Storyboard.")
+        fatalError("This should not be called without Storyboard.")
     }
 
-    private func configure(menuId: String, mediator: MenuAddonsToParentOutput?, configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
+    private func configure(menuId: String,
+                           mediator: MenuAddonsToParentOutput?,
+                           configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
         configurator.configure(viewController: self, menuId: menuId, toParentMediator: mediator)
     }
 

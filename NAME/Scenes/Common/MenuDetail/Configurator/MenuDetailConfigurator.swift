@@ -13,7 +13,7 @@ final class MenuDetailConfigurator {
     static let shared: MenuDetailConfigurator = MenuDetailConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: MenuDetailViewController, menuId: String) {
+    func configure(viewController: MenuDetailViewController, menuId: String, isEditable: Bool) {
         let toChildrenMediator = MenuDetailIntersceneMediator()
         let router = MenuDetailRouter(viewController: viewController, mediator: toChildrenMediator)
         let presenter = MenuDetailPresenter(output: viewController)
@@ -23,8 +23,8 @@ final class MenuDetailConfigurator {
         viewController.router = router
 
         viewController.viewControllers = [
-            router.menuInfoViewController(menuId: menuId),
-            router.menuAddonsViewController(menuId: menuId)
+            router.menuInfoViewController(menuId: menuId, isEditable: isEditable),
+            router.menuAddonsViewController(menuId: menuId, isEditable: isEditable)
         ]
     }
 }

@@ -81,6 +81,10 @@ extension MenuInteractor: MenuViewControllerOutput {
         }
         output.present(stall: stall)
     }
+
+    func reload() {
+        output.present(stall: stall)
+    }
 }
 
 // MARK: - Dependency injection

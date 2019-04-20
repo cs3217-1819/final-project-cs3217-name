@@ -56,17 +56,21 @@ class RealmStorageManager: StorageManager {
         return Array(realm.objects(Order.self))
     }
 
-    func getMenuDisplayable(id: String) -> MenuDisplayable? {
+    func getMenuEditable(id: String) -> MenuEditable? {
         let predicate = NSPredicate(format: "id = %@", id)
         // swiftlint:disable first_where
         // Reason for first_where is that Swift is **eager**, hence filter(...).first
         // is more expensive than first(where:)
         // Note that the first(where:) method on Results comes from conformance to Sequence.
         // Using it is worse than performing filter(...).first since Realm is **lazy**.
-        let individualMenuItems = realm.objects(IndividualMenuItem.self).filter(predicate).first as MenuDisplayable?
-        let setMenuItems = realm.objects(SetMenuItem.self).filter(predicate).first as MenuDisplayable?
+        let individualMenuItems = realm.objects(IndividualMenuItem.self).filter(predicate).first as MenuEditable?
+        let setMenuItems = realm.objects(SetMenuItem.self).filter(predicate).first as MenuEditable?
         // swiftlint:enable first_where
         return [individualMenuItems, setMenuItems].compactMap { $0 }.first
+    }
+
+    func getMenuDisplayable(id: String) -> MenuDisplayable? {
+        return getMenuEditable(id: id)
     }
 
     func getOrder(id: String) -> Order? {

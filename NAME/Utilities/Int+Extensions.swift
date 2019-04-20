@@ -9,6 +9,13 @@
 import Foundation
 
 extension Int {
+    init?(nilOnInvalidValue value: Double) {
+        guard value > Double(Int.min) && value < Double(Int.max) else {
+            return nil
+        }
+        self.init(value)
+    }
+
     func formattedAsPrice() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

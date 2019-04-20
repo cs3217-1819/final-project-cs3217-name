@@ -29,15 +29,21 @@ final class MenuAddonsPresenter {
 extension MenuAddonsPresenter: MenuAddonsPresenterInput {
     func present(optionValues: [MenuAddonsInteractor.OptionValue], basePrice: Int, quantity: Int,
                  addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>) {
-        let totalPrice = calculateTotalPrice(optionValues: optionValues, addOns: addOns, selectedAddonsIndices: selectedAddonsIndices, basePrice: basePrice)
-        let optionsViewModel = makeMenuOptionViewModels(fromOptionValues: optionValues) + [makeMenuOptionViewModel(fromAddOns: addOns, selectedIndices: selectedAddonsIndices)]
+        let totalPrice = calculateTotalPrice(optionValues: optionValues,
+                                             addOns: addOns,
+                                             selectedAddonsIndices: selectedAddonsIndices,
+                                             basePrice: basePrice,
+                                             quantity: quantity)
+        let optionsViewModel = makeMenuOptionViewModels(fromOptionValues: optionValues) +
+            [makeMenuOptionViewModel(fromAddOns: addOns, selectedIndices: selectedAddonsIndices)]
         let viewModel = MenuAddonsViewModel(options: optionsViewModel,
-                                            totalPrice: (totalPrice * quantity).formattedAsPrice(),
+                                            totalPrice: totalPrice,
                                             quantity: quantity)
         output.display(viewModel: viewModel)
     }
 
-    private func makeMenuOptionViewModels(fromOptionValues optionValues: [MenuAddonsInteractor.OptionValue]) -> [MenuAddonsViewModel.MenuOptionViewModel] {
+    private func makeMenuOptionViewModels(fromOptionValues optionValues: [MenuAddonsInteractor.OptionValue])
+        -> [MenuAddonsViewModel.MenuOptionViewModel] {
         return optionValues.map { optionValue -> MenuAddonsViewModel.MenuOptionViewModel in
             let name = optionValue.option.name
             switch (optionValue.option.options, optionValue.value) {
@@ -82,7 +88,10 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
     }
 
     private func calculateTotalPrice(optionValues: [MenuAddonsInteractor.OptionValue],
-                                     addOns: [IndividualMenuItem], selectedAddonsIndices: Set<Int>, basePrice: Int) -> Int {
+                                     addOns: [IndividualMenuItem],
+                                     selectedAddonsIndices: Set<Int>,
+                                     basePrice: Int,
+                                     quantity: Int) -> String {
         let optionPrice = optionValues.map { optionValue -> Int in
             switch (optionValue.option.options, optionValue.value) {
             case let (.boolean(price: price), .boolean(boolean)):
@@ -98,6 +107,11 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
             }
         }.reduce(0, +)
         let addOnsPrice = selectedAddonsIndices.map { addOns[$0].price }.reduce(0, +)
-        return basePrice + optionPrice + addOnsPrice
+        let priceForOne = basePrice + optionPrice + addOnsPrice
+        let totalPrice = priceForOne &* quantity
+        guard totalPrice > 0 else {
+            return "🤑"
+        }
+        return totalPrice.formattedAsPrice()
     }
 }

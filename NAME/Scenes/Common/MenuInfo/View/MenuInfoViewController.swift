@@ -15,6 +15,9 @@ protocol MenuInfoViewControllerInput: MenuInfoPresenterOutput {
 protocol MenuInfoViewControllerOutput {
     func loadMenuDisplayable()
     func changeComment(_ comment: String)
+    func changeDetails(_ details: String)
+    func changeName(_ name: String)
+    func changePrice(_ price: String)
 }
 
 final class MenuInfoViewController: UIViewController {
@@ -28,37 +31,54 @@ final class MenuInfoViewController: UIViewController {
         return result
     }()
 
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let result = UILabel(frame: .zero)
         result.font = .preferredFont(forTextStyle: .title1)
+        if isEditable {
+            stylizeViewAsEditable(result)
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(nameLabelDidTap))
+            result.addGestureRecognizer(tapRecognizer)
+            result.isUserInteractionEnabled = true
+        }
         return result
     }()
 
-    private let priceLabel: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let result = UILabel(frame: .zero)
         result.textAlignment = .right
         result.font = .preferredFont(forTextStyle: .title1)
+        if isEditable {
+            stylizeViewAsEditable(result)
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(priceLabelDidTap))
+            result.addGestureRecognizer(tapRecognizer)
+            result.isUserInteractionEnabled = true
+        }
         return result
     }()
 
-    private let detailsTextView: UITextView = {
+    private lazy var detailsTextView: UITextView = {
         let result = UITextView(frame: .zero)
-        result.isEditable = false
-        result.isSelectable = false
+        result.isSelectable = isEditable
+        if isEditable {
+            stylizeViewAsEditable(result)
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(detailsTextViewDidTap))
+            result.addGestureRecognizer(tapRecognizer)
+        }
         result.font = .preferredFont(forTextStyle: .body)
-        result.textContainer.maximumNumberOfLines = MenuAddonsConstants.maximumNumberOfLines
+        result.textContainer.maximumNumberOfLines = MenuInfoConstants.maximumNumberOfLines
         return result
     }()
 
-    private let commentLabel: UILabel = {
+    private lazy var commentLabel: UILabel = {
         let result = UILabel(frame: .zero)
-        result.text = MenuAddonsConstants.commentLabelText
+        result.text = MenuInfoConstants.commentLabelText
+        result.isHidden = isEditable
         return result
     }()
 
     private lazy var deleteCommentButton: UIButton = {
         let result = UIButton(type: .system)
-        result.setTitle(MenuAddonsConstants.deleteCommentButtonTitle, for: .normal)
+        result.setTitle(MenuInfoConstants.deleteCommentButtonTitle, for: .normal)
         result.setTitleColor(.red, for: .normal)
         result.isHidden = true
         result.addTarget(self, action: #selector(deleteCommentButtonDidPress), for: .touchUpInside)
@@ -70,27 +90,33 @@ final class MenuInfoViewController: UIViewController {
         result.isEditable = false
         result.isScrollEnabled = false
         result.font = .preferredFont(forTextStyle: .body)
-        result.textContainer.maximumNumberOfLines = MenuAddonsConstants.maximumNumberOfLines
-        result.layer.borderColor = UIColor.black.cgColor
-        result.layer.borderWidth = 1.0
-        result.layer.cornerRadius = 10
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(textViewDidTap))
+        result.textContainer.maximumNumberOfLines = MenuInfoConstants.maximumNumberOfLines
+        stylizeViewAsEditable(result)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(commentTextViewDidTap))
         result.addGestureRecognizer(tapRecognizer)
+        result.isHidden = isEditable
         return result
     }()
 
+    private let isEditable: Bool
+
     // MARK: - Initializers
-    init(menuId: String, mediator: MenuInfoToParentOutput?, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
+    init(menuId: String,
+         isEditable: Bool,
+         mediator: MenuInfoToParentOutput?,
+         configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
+        self.isEditable = isEditable
         super.init(nibName: nil, bundle: nil)
         configure(menuId: menuId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        assertionFailure("This should not be called without Storyboard.")
+        fatalError("This should not be called without Storyboard.")
     }
 
-    private func configure(menuId: String, mediator: MenuInfoToParentOutput?, configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
+    private func configure(menuId: String,
+                           mediator: MenuInfoToParentOutput?,
+                           configurator: MenuInfoConfigurator = MenuInfoConfigurator.shared) {
         configurator.configure(viewController: self, menuId: menuId, toParentMediator: mediator)
     }
 
@@ -122,37 +148,38 @@ final class MenuInfoViewController: UIViewController {
     }
 
     func configureConstraints() {
-        imageView.snp.makeConstraints { make in
+        imageView.snp.remakeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
             make.height.equalTo(view.safeAreaLayoutGuide).dividedBy(2)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-ConstraintConstants.standardValue)
         }
-        nameLabel.snp.makeConstraints { make in
+        nameLabel.snp.remakeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(ConstraintConstants.standardValue)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
             make.height.equalTo(priceLabel)
         }
-        priceLabel.snp.makeConstraints { make in
+        priceLabel.snp.remakeConstraints { make in
             make.top.equalTo(nameLabel)
             make.leading.equalTo(nameLabel.snp.trailing).offset(ConstraintConstants.standardValue)
+            make.width.equalTo(priceLabel.intrinsicContentSize.width)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-ConstraintConstants.standardValue)
         }
-        detailsTextView.snp.makeConstraints { make in
+        detailsTextView.snp.remakeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(ConstraintConstants.standardValue)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-ConstraintConstants.standardValue)
         }
-        commentLabel.snp.makeConstraints { make in
+        commentLabel.snp.remakeConstraints { make in
             make.top.equalTo(detailsTextView.snp.bottom).offset(ConstraintConstants.standardValue)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
         }
-        deleteCommentButton.snp.makeConstraints { make in
+        deleteCommentButton.snp.remakeConstraints { make in
             make.top.equalTo(commentLabel)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-ConstraintConstants.standardValue)
             make.height.equalTo(commentLabel)
         }
-        commentTextView.snp.makeConstraints { make in
+        commentTextView.snp.remakeConstraints { make in
             make.top.equalTo(commentLabel.snp.bottom).offset(ConstraintConstants.standardValue)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-ConstraintConstants.standardValue)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(ConstraintConstants.standardValue)
@@ -167,27 +194,73 @@ final class MenuInfoViewController: UIViewController {
     }
 
     @objc
-    private func textViewDidTap() {
-        let alertController = UIAlertController(title: MenuAddonsConstants.extraCommentAlertTitle,
-                                                message: nil, preferredStyle: .alert)
-        alertController.addTextField { $0.text = self.commentTextView.text }
-        let okAction = UIAlertAction(title: AlertConstants.okTitle,
-                                     style: .default) { [weak alertController, weak self] _ in
-            guard let self = self,
-                let text = alertController?.textFields?.first?.text else {
-                return
+    private func commentTextViewDidTap() {
+        let alertController =
+            AlertHelper.makeAlertController(title: MenuInfoConstants.extraCommentAlertTitle,
+                                            message: nil,
+                                            textFieldText: commentTextView.text) { [unowned self] text in
+                guard let text = text else {
+                    return
+                }
+                self.output?.changeComment(text)
             }
-            self.output?.changeComment(text)
-        }
-        let cancelAction = UIAlertAction(title: AlertConstants.cancelTitle, style: .cancel, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    @objc
+    private func detailsTextViewDidTap() {
+        let alertController =
+            AlertHelper.makeAlertController(title: MenuInfoConstants.detailsAlertTitle,
+                                            message: nil,
+                                            textFieldText: detailsTextView.text) { [unowned self] text in
+                guard let text = text else {
+                    return
+                }
+                self.output?.changeDetails(text)
+            }
         present(alertController, animated: true, completion: nil)
     }
 
     @objc
     private func deleteCommentButtonDidPress() {
         output?.changeComment("")
+    }
+
+    @objc
+    private func priceLabelDidTap() {
+        guard let price = priceLabel.text?.priceAsDouble() else {
+            return
+        }
+        let alertController =
+            AlertHelper.makeAlertController(title: MenuInfoConstants.priceAlertTitle,
+                                            message: nil,
+                                            textFieldText: "\(price)") { [weak self] text in
+                guard let self = self, let text = text else {
+                    return
+                }
+                self.output?.changePrice(text)
+            }
+        present(alertController, animated: true, completion: nil)
+    }
+
+    @objc
+    private func nameLabelDidTap() {
+        let alertController =
+            AlertHelper.makeAlertController(title: MenuInfoConstants.nameAlertTitle,
+                                            message: nil,
+                                            textFieldText: nameLabel.text) { [weak self] text in
+                guard let self = self, let text = text else {
+                    return
+                }
+                self.output?.changeName(text)
+            }
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func stylizeViewAsEditable(_ view: UIView) {
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 5.0
     }
 }
 
@@ -202,5 +275,6 @@ extension MenuInfoViewController: MenuInfoViewControllerInput {
         nameLabel.text = viewModel.name
         detailsTextView.text = viewModel.details
         priceLabel.text = viewModel.price
+        configureConstraints()
     }
 }
