@@ -99,6 +99,9 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
             case let (.quantity(price: price), .quantity(quantity)):
                 return price * quantity
             case let (.multipleChoice(choices), .multipleChoice(choiceIndex)):
+                guard choiceIndex != -1 else {
+                    return 0
+                }
                 return choices[choiceIndex].price
             case let (.multipleResponse(choices), .multipleResponse(selectedChoices)):
                 return selectedChoices.map { choices[$0].price }.reduce(0, +)

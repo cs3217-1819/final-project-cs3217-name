@@ -16,6 +16,15 @@ protocol MenuAddonsTableViewHeaderViewDelegate: class {
 class MenuAddonsTableViewHeaderView: UITableViewHeaderFooterView {
     weak var delegate: MenuAddonsTableViewHeaderViewDelegate?
 
+    var isResetButtonHidden: Bool {
+        get {
+            return button.isHidden
+        }
+        set {
+            button.isHidden = newValue
+        }
+    }
+
     private let button: UIButton = {
         let result = UIButton(type: .system)
         result.setTitle(MenuAddonsConstants.sectionResetButtonTitle, for: .normal)

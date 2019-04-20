@@ -106,6 +106,8 @@
 		C62383F5226875CA0069D799 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62383F4226875CA0069D799 /* AlertHelper.swift */; };
 		C62383F7226882E40069D799 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62383F6226882E40069D799 /* String+Extension.swift */; };
 		C645C403226B3ABE00F98446 /* MenuAddonsCollectionViewAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645C402226B3ABE00F98446 /* MenuAddonsCollectionViewAddCell.swift */; };
+		C645C407226B57C700F98446 /* MenuAddonsAddOptionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645C406226B57C700F98446 /* MenuAddonsAddOptionDelegate.swift */; };
+		C645C409226B580500F98446 /* MenuAddonsTableViewAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645C408226B580500F98446 /* MenuAddonsTableViewAddCell.swift */; };
 		C691A5A7225BB6310061CE97 /* MenuDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */; };
 		C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */; };
 		C691A5A9225BB6310061CE97 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */; };
@@ -331,6 +333,8 @@
 		C62383F4226875CA0069D799 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		C62383F6226882E40069D799 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C645C402226B3ABE00F98446 /* MenuAddonsCollectionViewAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsCollectionViewAddCell.swift; sourceTree = "<group>"; };
+		C645C406226B57C700F98446 /* MenuAddonsAddOptionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsAddOptionDelegate.swift; sourceTree = "<group>"; };
+		C645C408226B580500F98446 /* MenuAddonsTableViewAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddonsTableViewAddCell.swift; sourceTree = "<group>"; };
 		C691A59A225BB6310061CE97 /* MenuDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewModel.swift; sourceTree = "<group>"; };
 		C691A59C225BB6310061CE97 /* MenuDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailPresenter.swift; sourceTree = "<group>"; };
 		C691A59E225BB6310061CE97 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDetailViewController.swift; sourceTree = "<group>"; };
@@ -1223,6 +1227,8 @@
 				C61DD3EF2261E3D800DC11A3 /* MenuAddonsTableViewQuantityCell.swift */,
 				C61DD3F12261E84A00DC11A3 /* MenuAddonsQuantityViewDelegate.swift */,
 				C645C402226B3ABE00F98446 /* MenuAddonsCollectionViewAddCell.swift */,
+				C645C406226B57C700F98446 /* MenuAddonsAddOptionDelegate.swift */,
+				C645C408226B580500F98446 /* MenuAddonsTableViewAddCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2190,6 +2196,7 @@
 				1FB25815224929180035399F /* MenuDisplayable.swift in Sources */,
 				FB519D71224D4F4300BB5DE8 /* LoginInteractor.swift in Sources */,
 				FB519D6F224D4F4300BB5DE8 /* LoginConfigurator.swift in Sources */,
+				C645C409226B580500F98446 /* MenuAddonsTableViewAddCell.swift in Sources */,
 				1FB2581B224929180035399F /* MenuItemOptionType.swift in Sources */,
 				FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */,
 				1FB25817224929180035399F /* Discount.swift in Sources */,
@@ -2262,6 +2269,7 @@
 				FB13B70E225E357A006ED487 /* OrderConfigurator.swift in Sources */,
 				FB519DBA224F440700BB5DE8 /* AdminSettingsConfigurator.swift in Sources */,
 				54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */,
+				C645C407226B57C700F98446 /* MenuAddonsAddOptionDelegate.swift in Sources */,
 				C691A5A8225BB6310061CE97 /* MenuDetailPresenter.swift in Sources */,
 				1FB25825224929180035399F /* MenuCategory.swift in Sources */,
 				FB519DB9224F440700BB5DE8 /* AdminSettingsViewController.swift in Sources */,

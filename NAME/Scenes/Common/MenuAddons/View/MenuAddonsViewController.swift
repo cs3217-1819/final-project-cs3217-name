@@ -18,7 +18,8 @@ protocol MenuAddonsViewControllerOutput {
     func reset(section: Int)
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
     func updateQuantity(_ quantity: Int)
-    func addOption(section: Int, name: String, price: String)
+    func addChoice(section: Int, name: String, price: String)
+    func addOption(type: MenuItemOptionType.MetaType, name: String, price: String?)
     func finalizeOrderItem(diningOption: OrderItem.DiningOption)
 }
 
@@ -30,6 +31,7 @@ protocol MenuAddonsTableViewCellProvider: class {
 protocol MenuAddonsTableViewCellDelegate: class {
     func valueDidSelect(section: Int, itemOrQuantity: Int)
     func addCellDidTap(section: Int)
+    func addOptionDidTap(sender: UIButton)
 }
 
 final class MenuAddonsViewController: UIViewController {
@@ -52,6 +54,8 @@ final class MenuAddonsViewController: UIViewController {
         result.estimatedRowHeight = result.rowHeight
         result.sectionFooterHeight = 0.0
         result.sectionHeaderHeight = MenuAddonsConstants.sectionHeaderHeight
+        result.register(MenuAddonsTableViewAddCell.self,
+                        forCellReuseIdentifier: MenuAddonsTableViewAddCell.reuseIdentifier)
         result.register(MenuAddonsTableViewChoiceCell.self,
                         forCellReuseIdentifier: MenuAddonsTableViewChoiceCell.reuseIdentifier)
         result.register(MenuAddonsTableViewQuantityCell.self,
@@ -177,6 +181,8 @@ extension MenuAddonsViewController: UITableViewDelegate {
             let title = self.tableView(tableView, titleForHeaderInSection: section) else {
             return nil
         }
+        // Hide reset button on new option
+        headerView.isResetButtonHidden = section == 0
         headerView.set(section: section, title: title)
         headerView.delegate = self
         return headerView
@@ -214,6 +220,50 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
 
 // MARK: - MenuAddonsTableViewCellDelegate
 extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
+    func addOptionDidTap(sender: UIButton) {
+        let actionSheet = UIAlertController(title: MenuAddonsConstants.addOptionTypeTitle,
+                                            message: nil, preferredStyle: .actionSheet)
+        actionSheet.popoverPresentationController?.sourceView = sender
+        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
+        for case let (name, value) in MenuAddonsConstants.addOptionTypeChoices {
+            let action = UIAlertAction(title: name, style: .default) { [unowned self] _ in
+                self.newOptionAskName(type: value)
+            }
+            actionSheet.addAction(action)
+        }
+        present(actionSheet, animated: true, completion: nil)
+    }
+
+    private func newOptionAskName(type: MenuItemOptionType.MetaType) {
+        let alert = AlertHelper
+            .makeAlertController(title: MenuAddonsConstants.addOptionNameTitle,
+                                 message: nil,
+                                 textFieldText: "") { [unowned self] text in
+                guard let text = text else {
+                    return
+                }
+                if type.isPriceNeeded {
+                    self.newOptionAskPrice(type: type, name: text)
+                } else {
+                    self.output?.addOption(type: type, name: text, price: nil)
+                }
+            }
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func newOptionAskPrice(type: MenuItemOptionType.MetaType, name: String) {
+        let alert = AlertHelper
+            .makeAlertController(title: MenuAddonsConstants.addOptionPriceTitle,
+                                 message: nil,
+                                 textFieldText: MenuAddonsConstants.priceDefaultValue) { [unowned self] text in
+                guard let text = text else {
+                    return
+                }
+                self.output?.addOption(type: type, name: name, price: text)
+            }
+        present(alert, animated: false, completion: nil)
+    }
+
     func addCellDidTap(section: Int) {
         guard section != sectionNames.count - 1 else {
             let alert = AlertHelper
@@ -244,11 +294,11 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
         let alert = AlertHelper
             .makeAlertController(title: title,
                                  message: MenuAddonsConstants.addChoicePriceMessage,
-                                 textFieldText: MenuAddonsConstants.addChoicePriceDefault) { [unowned self] text in
-            guard let text = text else {
-                return
-            }
-            self.output?.addOption(section: section, name: name, price: text)
+                                 textFieldText: MenuAddonsConstants.priceDefaultValue) { [unowned self] text in
+                guard let text = text else {
+                    return
+                }
+                self.output?.addChoice(section: section, name: name, price: text)
             }
         present(alert, animated: true, completion: nil)
     }
@@ -262,28 +312,29 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
 extension MenuAddonsViewController: MenuAddonsViewControllerInput {
     func display(viewModel: MenuAddonsViewModel) {
         footerView.price = viewModel.totalPrice
-        sectionNames = viewModel.options.map { $0.name }
-        cellDelegates = viewModel.options.enumerated().map { arg -> MenuAddonsTableViewCellProvider? in
-            let (section, option) = arg
-            switch (option.type, option.value) {
-            case let (.quantity(price: price), .quantity(quantity)):
-                let provider = MenuAddonsQuantityViewDelegate(price: price,
-                                                              quantity: quantity,
-                                                              section: section,
-                                                              isEditable: isEditable)
-                provider.delegate = self
-                return provider
-            case let (.choices(choices, isEditable), .choices(choiceIndices)):
-                let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
-                                                                          selectedIndices: choiceIndices,
-                                                                          section: section,
-                                                                          isEditable: isEditable && self.isEditable)
-                provider.delegate = self
-                return provider
-            default:
-                return nil
+        sectionNames = [MenuAddonsConstants.addOptionSectionName] + viewModel.options.map { $0.name }
+        cellDelegates = [MenuAddonsAddOptionDelegate(delegate: self)] +
+            viewModel.options.enumerated().map { arg -> MenuAddonsTableViewCellProvider? in
+                let (section, option) = arg
+                switch (option.type, option.value) {
+                case let (.quantity(price: price), .quantity(quantity)):
+                    let provider = MenuAddonsQuantityViewDelegate(price: price,
+                                                                  quantity: quantity,
+                                                                  section: section,
+                                                                  isEditable: isEditable)
+                    provider.delegate = self
+                    return provider
+                case let (.choices(choices, isEditable), .choices(choiceIndices)):
+                    let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
+                                                                              selectedIndices: choiceIndices,
+                                                                              section: section,
+                                                                              isEditable: isEditable && self.isEditable)
+                    provider.delegate = self
+                    return provider
+                default:
+                    return nil
+                }
             }
-        }
         tableView.reloadData()
     }
 }

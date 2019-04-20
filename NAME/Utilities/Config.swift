@@ -218,10 +218,22 @@ enum MenuInfoConstants {
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
     static let featureComingSoon = "Feature coming in version 2!"
+    static let addOptionTypeTitle = "New option type"
+    static let addOptionTypeChoices: [(name: String, value: MenuItemOptionType.MetaType)] = MenuItemOptionType.MetaType.allCases.map { option in
+        switch option {
+        case .boolean: return ("YES/NO", .boolean)
+        case .quantity: return ("Quantity", .quantity)
+        case .multipleChoice: return ("Multiple Choice", .multipleChoice)
+        case .multipleResponse: return ("Multiple Response", .multipleResponse)
+        }
+    }
+    static let addOptionNameTitle = "New option name"
+    static let addOptionPriceTitle = "New option price"
+    static let priceDefaultValue = "0.0"
+    static let addOptionSectionName = "New option"
     static let addChoiceNameTitle = "%@"
     static let addChoiceNameMessage = "New choice title"
     static let addChoicePriceMessage = "New choice price"
-    static let addChoicePriceDefault = "0.0"
     static let addChoiceButtonTitle = "+"
     static let resetButtonTitle = "RESET ALL"
     static let sectionResetButtonTitle = "RESET"

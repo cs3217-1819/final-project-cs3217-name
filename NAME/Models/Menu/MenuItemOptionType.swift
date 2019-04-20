@@ -14,7 +14,7 @@ extension MenuItemOptionType: Codable {
         case metatype
     }
 
-    private enum MetaType: Int, Codable {
+    enum MetaType: Int, Codable, CaseIterable {
         case boolean
         case quantity
         case multipleChoice
@@ -26,6 +26,13 @@ extension MenuItemOptionType: Codable {
             case .quantity: self = .quantity
             case .multipleChoice: self = .multipleChoice
             case .multipleResponse: self = .multipleResponse
+            }
+        }
+
+        var isPriceNeeded: Bool {
+            switch self {
+            case .boolean, .quantity: return true
+            case .multipleChoice, .multipleResponse: return false
             }
         }
     }

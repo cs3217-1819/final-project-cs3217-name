@@ -14,4 +14,11 @@ extension String {
         formatter.numberStyle = .currency
         return formatter.number(from: self) as? Double
     }
+
+    func asPriceInt() -> Int? {
+        guard let priceDouble = Double(self), priceDouble >= 0 else {
+            return nil
+        }
+        return Int(nilOnInvalidValue: priceDouble * 1_000)
+    }
 }

@@ -90,19 +90,52 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
-    func addOption(section: Int, name: String, price: String) {
-        guard name != "", let price = Double(price), price >= 0,
-            let priceInt = Int(nilOnInvalidValue: price * 1_000) else {
+    func addOption(type: MenuItemOptionType.MetaType, name: String, price: String?) {
+        guard name != "", let menuItem = menuItem else {
+            return
+        }
+        let menuItemOption: MenuItemOption
+        switch type {
+        case .boolean:
+            guard let price = price?.asPriceInt() else {
+                return
+            }
+            menuItemOption = MenuItemOption(name: name, options: .boolean(price: price), defaultValue: .boolean(false))
+        case .quantity:
+            guard let price = price?.asPriceInt() else {
+                return
+            }
+            menuItemOption = MenuItemOption(name: name, options: .quantity(price: price), defaultValue: .quantity(0))
+        case .multipleChoice:
+            menuItemOption = MenuItemOption(name: name, options: .multipleChoice([]), defaultValue: .multipleChoice(-1))
+        case .multipleResponse:
+            menuItemOption = MenuItemOption(name: name, options: .multipleResponse([]), defaultValue: .multipleResponse([]))
+        }
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { manager in
+            manager.add(menuItemOption, update: false)
+            menuItem.options.insert(menuItemOption, at: 0)
+        }
+        optionValues.insert(OptionValue(option: menuItemOption, value: menuItemOption.defaultValue), at: 0)
+        passValueToPresenter()
+    }
+
+    func addChoice(section: Int, name: String, price: String) {
+        guard name != "", let price = price.asPriceInt() else {
             return
         }
         // TODO handle error
         try? deps.storageManager.writeTransaction { _ in
             switch optionValues[section].option.options {
             case var .multipleChoice(choices):
-                choices.append((name: name, price: priceInt))
+                if choices.isEmpty {
+                    optionValues[section].option.defaultValue = .multipleChoice(0)
+                    optionValues[section].value = .multipleChoice(0)
+                }
+                choices.append((name: name, price: price))
                 optionValues[section].option.options = .multipleChoice(choices)
             case var .multipleResponse(choices):
-                choices.append((name: name, price: priceInt))
+                choices.append((name: name, price: price))
                 optionValues[section].option.options = .multipleResponse(choices)
             default:
                 break

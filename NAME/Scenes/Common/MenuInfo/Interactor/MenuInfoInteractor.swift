@@ -69,7 +69,7 @@ final class MenuInfoInteractor: MenuInfoFromParentInput {
 // MARK: - MenuInfoInteractorInput
 extension MenuInfoInteractor: MenuInfoViewControllerOutput {
     func changePrice(_ price: String) {
-        guard let price = Double(price), let priceInt = Int(nilOnInvalidValue: price * 1_000) else {
+        guard let price = price.asPriceInt() else {
             return
         }
         // TODO Handle error
@@ -77,9 +77,9 @@ extension MenuInfoInteractor: MenuInfoViewControllerOutput {
             guard let individualMenuItem = menuEditable as? IndividualMenuItem else {
                 return
             }
-            individualMenuItem.price = priceInt
+            individualMenuItem.price = price
         }
-        toParentMediator?.set(price: priceInt)
+        toParentMediator?.set(price: price)
         output.presentMenuDisplayable(menuEditable)
     }
 
