@@ -187,6 +187,7 @@
 		FB519E502258845500BB5DE8 /* StallListEstablishmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */; };
 		FB8514EB22671D5700ED3F99 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EA22671D5700ED3F99 /* Date+Extensions.swift */; };
 		FB8514ED2267BD5300ED3F99 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */; };
+		FB8514EF226AFD7800ED3F99 /* KitchenClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514EE226AFD7800ED3F99 /* KitchenClockView.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -401,6 +402,7 @@
 		FB519E4F2258845500BB5DE8 /* StallListEstablishmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StallListEstablishmentCell.swift; sourceTree = "<group>"; };
 		FB8514EA22671D5700ED3F99 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		FB8514EC2267BD5300ED3F99 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		FB8514EE226AFD7800ED3F99 /* KitchenClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenClockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1571,6 +1573,7 @@
 			isa = PBXGroup;
 			children = (
 				FB519DC6224F514800BB5DE8 /* KitchenBacklogViewController.swift */,
+				FB8514EE226AFD7800ED3F99 /* KitchenClockView.swift */,
 				FB519DD8224F5A9100BB5DE8 /* KitchenBacklogCell.swift */,
 				FB519E4B2257769B00BB5DE8 /* KitchenBacklogCellHeaderView.swift */,
 			);
@@ -2129,6 +2132,7 @@
 				54D252A8224CB637007BF235 /* BrowseViewController.swift in Sources */,
 				1FCC42EE2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift in Sources */,
 				54D252C0224CBD25007BF235 /* StallListViewModel.swift in Sources */,
+				FB8514EF226AFD7800ED3F99 /* KitchenClockView.swift in Sources */,
 				54D252D9224CBD2F007BF235 /* MenuConfigurator.swift in Sources */,
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
 				FB519DBD224F440700BB5DE8 /* AdminSettingsRouter.swift in Sources */,

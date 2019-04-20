@@ -18,4 +18,10 @@ extension Date {
         }
         return formattedDate + DateConstants.timerSuffix
     }
+
+    func formattedAsTime() -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        return formatter.string(from: self)
+    }
 }

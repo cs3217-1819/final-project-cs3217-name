@@ -21,12 +21,7 @@ final class KitchenBacklogViewController: UICollectionViewController {
     var output: KitchenBacklogViewControllerOutput?
     var router: KitchenBacklogRouterProtocol?
 
-    let clockView: UIView = {
-        // TODO: Setup clock display, just a placeholder for now
-        let view = UIView()
-        view.backgroundColor = UIColor.Custom.deepPurple
-        return view
-    }()
+    private let clockView = KitchenClockView()
 
     private var timer: Timer?
 
@@ -65,7 +60,7 @@ final class KitchenBacklogViewController: UICollectionViewController {
         collectionView.backgroundColor = .white
 
         setupCollectionView()
-        addSubviews()
+        view.addSubview(clockView)
         configureConstraints()
 
         getOrders()
@@ -85,10 +80,6 @@ final class KitchenBacklogViewController: UICollectionViewController {
         collectionView.alwaysBounceHorizontal = true
         collectionView.register(KitchenBacklogCell.self,
                                 forCellWithReuseIdentifier: ReuseIdentifiers.orderCellIdentifier)
-    }
-
-    private func addSubviews() {
-        view.addSubview(clockView)
     }
 
     private func configureConstraints() {
@@ -118,7 +109,8 @@ final class KitchenBacklogViewController: UICollectionViewController {
             guard let self = self else {
                 return
             }
-            // TODO: Update clock view
+            self.clockView.updateTime()
+
             let visibleCells = self.collectionView.indexPathsForVisibleItems
                 .compactMap { self.collectionView.cellForItem(at: $0) as? KitchenBacklogCell }
             self.collectionViewDataSource?.updateCellTimers(for: visibleCells)
