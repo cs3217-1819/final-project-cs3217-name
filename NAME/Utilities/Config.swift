@@ -215,6 +215,11 @@ enum MenuInfoConstants {
 
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
+    static let addChoiceNameTitle = "%@"
+    static let addChoiceNameMessage = "New choice title"
+    static let addChoicePriceMessage = "New choice price"
+    static let addChoicePriceDefault = "0.0"
+    static let addChoiceButtonTitle = "+"
     static let resetButtonTitle = "RESET ALL"
     static let sectionResetButtonTitle = "RESET"
     static let addButtonTitle = "ADD"

@@ -16,15 +16,19 @@ class MenuAddonsQuantityViewDelegate: QuantityViewDelegate, MenuAddonsTableViewC
 
     weak var delegate: MenuAddonsTableViewCellDelegate?
 
-    init(price: String, quantity: Int, section: Int) {
+    private let isEditable: Bool
+
+    init(price: String, quantity: Int, section: Int, isEditable: Bool) {
         self.price = price
         self.quantity = quantity
         self.section = section
+        self.isEditable = isEditable
     }
 
     func dequeueReusableCell(tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reusableCell = tableView.dequeueReusableCell(withIdentifier: MenuAddonsTableViewQuantityCell.reuseIdentifier,
-                                                         for: indexPath)
+        let reusableCell =
+            tableView.dequeueReusableCell(withIdentifier: MenuAddonsTableViewQuantityCell.reuseIdentifier,
+                                          for: indexPath)
         guard let cell = reusableCell as? MenuAddonsTableViewQuantityCell else {
             return reusableCell
         }

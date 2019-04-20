@@ -138,7 +138,7 @@ enum FixtureGenerator {
         let itemOption3 = MenuItemOption(name: "Broth",
                                          options: .multipleChoice([
                                             ("Chicken", 500), ("Seafood", 400), ("Never", 300),
-                                            ("Gonna", 200), ("Give", 100), ("You", 0), ("Up", -100)]),
+                                            ("Gonna", 200), ("Give", 100), ("You", 0), ("Up", 1_000)]),
                                          defaultValue: .multipleChoice(5))
 
         let itemOption4 = MenuItemOption(name: "NDP Songs",

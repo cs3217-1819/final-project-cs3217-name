@@ -90,6 +90,27 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func addOption(section: Int, name: String, price: String) {
+        guard name != "", let price = Double(price), price >= 0,
+            let priceInt = Int(nilOnInvalidValue: price * 1_000) else {
+            return
+        }
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            switch optionValues[section].option.options {
+            case var .multipleChoice(choices):
+                choices.append((name: name, price: priceInt))
+                optionValues[section].option.options = .multipleChoice(choices)
+            case var .multipleResponse(choices):
+                choices.append((name: name, price: priceInt))
+                optionValues[section].option.options = .multipleResponse(choices)
+            default:
+                break
+            }
+        }
+        passValueToPresenter()
+    }
+
     func finalizeOrderItem(diningOption: OrderItem.DiningOption) {
         // TODO handle SetMenuItem
         guard let menuItem = menuItem else {

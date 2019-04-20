@@ -20,6 +20,8 @@ class MenuAddonsTableViewChoiceCell: UITableViewCell {
         let result = UICollectionView(frame: .zero, collectionViewLayout: layout)
         result.register(MenuAddonsCollectionViewCell.self,
                         forCellWithReuseIdentifier: MenuAddonsCollectionViewCell.reuseIdentifier)
+        result.register(MenuAddonsCollectionViewAddCell.self,
+                        forCellWithReuseIdentifier: MenuAddonsCollectionViewAddCell.reuseIdentifier)
         result.backgroundColor = MenuAddonsConstants.backgroundColor
         result.allowsMultipleSelection = true
         return result

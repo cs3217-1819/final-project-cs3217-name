@@ -20,7 +20,7 @@ struct MenuAddonsViewModel {
     }
     enum MenuOptionTypeViewModel {
         case quantity(price: String)
-        case choices([(name: String, price: String)])
+        case choices([(name: String, price: String)], isEditable: Bool)
     }
     let options: [MenuOptionViewModel]
     let totalPrice: String

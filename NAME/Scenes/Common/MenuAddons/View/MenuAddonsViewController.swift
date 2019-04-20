@@ -18,6 +18,7 @@ protocol MenuAddonsViewControllerOutput {
     func reset(section: Int)
     func updateValue(at index: Int, with valueIndexOrQuantity: Int)
     func updateQuantity(_ quantity: Int)
+    func addOption(section: Int, name: String, price: String)
     func finalizeOrderItem(diningOption: OrderItem.DiningOption)
 }
 
@@ -28,6 +29,7 @@ protocol MenuAddonsTableViewCellProvider: class {
 
 protocol MenuAddonsTableViewCellDelegate: class {
     func valueDidSelect(section: Int, itemOrQuantity: Int)
+    func addCellDidTap(section: Int)
 }
 
 final class MenuAddonsViewController: UIViewController {
@@ -212,6 +214,36 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
 
 // MARK: - MenuAddonsTableViewCellDelegate
 extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
+    func addCellDidTap(section: Int) {
+        let title = String(format: MenuAddonsConstants.addChoiceNameTitle, sectionNames[section])
+        newChoiceAskName(section: section, title: title)
+    }
+
+    private func newChoiceAskName(section: Int, title: String) {
+        let alert = AlertHelper.makeAlertController(title: title,
+                                                    message: MenuAddonsConstants.addChoiceNameMessage,
+                                                    textFieldText: "") { [unowned self] text in
+            guard let text = text else {
+                return
+            }
+            self.newChoiceAskPrice(section: section, title: title, name: text)
+        }
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func newChoiceAskPrice(section: Int, title: String, name: String) {
+        let alert = AlertHelper
+            .makeAlertController(title: title,
+                                 message: MenuAddonsConstants.addChoicePriceMessage,
+                                 textFieldText: MenuAddonsConstants.addChoicePriceDefault) { [unowned self] text in
+            guard let text = text else {
+                return
+            }
+            self.output?.addOption(section: section, name: name, price: text)
+            }
+        present(alert, animated: true, completion: nil)
+    }
+
     func valueDidSelect(section: Int, itemOrQuantity: Int) {
         output?.updateValue(at: section, with: itemOrQuantity)
     }
@@ -226,13 +258,17 @@ extension MenuAddonsViewController: MenuAddonsViewControllerInput {
             let (section, option) = arg
             switch (option.type, option.value) {
             case let (.quantity(price: price), .quantity(quantity)):
-                let provider = MenuAddonsQuantityViewDelegate(price: price, quantity: quantity, section: section)
+                let provider = MenuAddonsQuantityViewDelegate(price: price,
+                                                              quantity: quantity,
+                                                              section: section,
+                                                              isEditable: isEditable)
                 provider.delegate = self
                 return provider
-            case let (.choices(choices), .choices(choiceIndices)):
+            case let (.choices(choices, isEditable), .choices(choiceIndices)):
                 let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
                                                                           selectedIndices: choiceIndices,
-                                                                          section: section)
+                                                                          section: section,
+                                                                          isEditable: isEditable && self.isEditable)
                 provider.delegate = self
                 return provider
             default:
