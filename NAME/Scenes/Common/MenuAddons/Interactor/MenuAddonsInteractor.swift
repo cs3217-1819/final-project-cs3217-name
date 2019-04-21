@@ -271,12 +271,17 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
 
     func reset() {
         optionValues = optionValues.map { OptionValue(option: $0.option, value: $0.option.defaultValue) }
+        selectedAddonsIndices = []
         passValueToPresenter()
     }
 
     func reset(section: Int) {
-        let optionValue = optionValues[section]
-        optionValues[section] = OptionValue(option: optionValue.option, value: optionValue.option.defaultValue)
+        if section < optionValues.count {
+            let optionValue = optionValues[section]
+            optionValues[section] = OptionValue(option: optionValue.option, value: optionValue.option.defaultValue)
+        } else {
+            selectedAddonsIndices = []
+        }
         passValueToPresenter()
     }
 
