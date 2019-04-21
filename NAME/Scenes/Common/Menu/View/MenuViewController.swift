@@ -20,12 +20,13 @@ protocol MenuViewControllerOutput {
     func rename(categoryAt index: Int, to name: String)
     func remove(categoryAt index: Int)
 
-    func select(menuItemId: String)
+    func select(menuItemId: String?, categoryIndex: Int)
     func reload()
 }
 
 final class MenuViewController: UICollectionViewController {
     private static let itemCellIdentifier = "itemCellIdentifier"
+    private static let itemAddCellIdentifier = "itemAddCellIdentifier"
     private static let headerIdentifier = "headerIdentifier"
 
     var output: MenuViewControllerOutput?
@@ -88,6 +89,8 @@ final class MenuViewController: UICollectionViewController {
 
         collectionView.register(MenuItemCollectionViewCell.self,
                                 forCellWithReuseIdentifier: MenuViewController.itemCellIdentifier)
+        collectionView.register(MenuAddCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MenuViewController.itemAddCellIdentifier)
         collectionView.register(MenuCategoryHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: MenuViewController.headerIdentifier)
@@ -136,8 +139,9 @@ extension MenuViewController {
             let categories = collectionViewDataSource?.categoryViewModels else {
                 return
         }
-        let menuId = categories[indexPath.section].items[indexPath.item].id
-        output?.select(menuItemId: menuId)
+        let itemsInSection = categories[indexPath.section].items
+        let menuId = indexPath.row < itemsInSection.count ? itemsInSection[indexPath.item].id : nil
+        output?.select(menuItemId: menuId, categoryIndex: indexPath.section)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -160,13 +164,15 @@ extension MenuViewController {
 // MARK: - MenuPresenterOutput
 
 extension MenuViewController: MenuViewControllerInput {
-    func displayMenu(viewModel: MenuViewModel) {
+    func displayMenu(viewModel: MenuViewModel, isEditable: Bool) {
         title = viewModel.stall.name
         categorySelector.selectedIndex = 0
         categorySelector.categories = viewModel.categories.map { $0.name }
         collectionViewDataSource = MenuDataSource(collectionView: collectionView,
                                                   categories: viewModel.categories,
-                                                  cellIdentifier: MenuViewController.itemCellIdentifier,
+                                                  showAddButton: isEditable,
+                                                  itemCellIdentifier: MenuViewController.itemCellIdentifier,
+                                                  addCellIdentifier: MenuViewController.itemAddCellIdentifier,
                                                   headerIdentifier: MenuViewController.headerIdentifier)
     }
 
@@ -233,7 +239,7 @@ extension MenuViewController: MenuViewControllerInput {
         present(sheet, animated: true)
     }
 
-    func displayDetail(forMenuItemId id: String, isEditable: Bool) {
+    func displayDetail(forMenuItemId id: String?, isEditable: Bool) {
         router?.navigateToMenuDetail(menuId: id, isEditable: isEditable)
     }
 }
@@ -285,7 +291,7 @@ extension MenuViewController: CategorySelectorDelegate {
 
 extension MenuViewController: MenuDragHandlerDelegate {
     func dragHandler(_ handler: MenuDragHandler, menuItemIdForIndexPath indexPath: IndexPath) -> String? {
-        return collectionViewDataSource?.menuItemViewModel(at: indexPath).id
+        return collectionViewDataSource?.menuItemViewModel(at: indexPath)?.id
     }
 
     func dragHandler(_ handler: MenuDragHandler, willBeginDragSessionForCategoryAtIndex index: Int) {

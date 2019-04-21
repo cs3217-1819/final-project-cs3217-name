@@ -77,7 +77,22 @@ class Menu: Object {
         }
     }
 
+    func remove(categoryAt index: Int) {
+        realm?.delete(menuCategories[index])
+        // Add a category if this menu no longer has one
+        if menuCategories.isEmpty {
+            let category = MenuCategory(name: "New Category", menu: self)
+            realm?.add(category, update: true)
+        }
+    }
+
+    func add(newMenuEditable: MenuEditable) {
+        let uncategorizedCategory = getOrCreateUncategorizedCategory()
+        newMenuEditable.add(category: uncategorizedCategory)
+    }
+
     /// Must be called in a write transaction
+    /// All menuItemIds must belong to at least one category in this menu
     func add(menuItemIds: [String], toCategory categoryIndex: Int) {
         let category = categories[categoryIndex]
         // Don't add items if they're already in the category. Not using a Set as we want to preserve order.

@@ -10,9 +10,9 @@ protocol MenuPresenterInput: MenuInteractorOutput {
 }
 
 protocol MenuPresenterOutput: class {
-    func displayMenu(viewModel: MenuViewModel)
+    func displayMenu(viewModel: MenuViewModel, isEditable: Bool)
     func display(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String)
-    func displayDetail(forMenuItemId id: String, isEditable: Bool)
+    func displayDetail(forMenuItemId id: String?, isEditable: Bool)
 }
 
 final class MenuPresenter {
@@ -55,15 +55,15 @@ extension MenuPresenter: MenuPresenterInput {
         return MenuViewModel(stall: stallVM, categories: categoryVMs)
     }
 
-    func present(stall: Stall?) {
-        output.displayMenu(viewModel: viewModel(forStall: stall))
+    func present(stall: Stall?, isEditable: Bool) {
+        output.displayMenu(viewModel: viewModel(forStall: stall), isEditable: isEditable)
     }
 
     func present(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String) {
         output.display(actions: actions, forCategoryAt: index, name: name)
     }
 
-    func presentDetail(forMenuItemId id: String, isEditable: Bool) {
+    func presentDetail(forMenuItemId id: String?, isEditable: Bool) {
         output.displayDetail(forMenuItemId: id, isEditable: isEditable)
     }
 }

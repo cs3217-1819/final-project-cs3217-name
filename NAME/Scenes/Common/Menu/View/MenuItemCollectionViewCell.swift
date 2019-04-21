@@ -9,12 +9,16 @@
 import UIKit
 
 class MenuItemCollectionViewCell: UICollectionViewCell {
-    private let nameLabel = UILabel()
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = .gray
+        backgroundColor = UIColor.Custom.lightGray
 
         addSubview(nameLabel)
 

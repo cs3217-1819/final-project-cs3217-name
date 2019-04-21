@@ -16,6 +16,7 @@ final class MenuDetailConfigurator {
     func configure(viewController: MenuDetailViewController,
                    menuId: String?,
                    isEditable: Bool,
+                   toParentMediator: MenuDetailToParentOutput?,
                    injector: DependencyInjector = appDefaultInjector) {
         let toChildrenMediator = MenuDetailIntersceneMediator()
         let router = MenuDetailRouter(viewController: viewController, mediator: toChildrenMediator)
@@ -23,7 +24,9 @@ final class MenuDetailConfigurator {
         let interactor = MenuDetailInteractor(output: presenter,
                                               menuId: menuId,
                                               injector: injector,
+                                              toParentMediator: toParentMediator,
                                               toChildrenMediator: toChildrenMediator)
+        toParentMediator?.menuDetailInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router

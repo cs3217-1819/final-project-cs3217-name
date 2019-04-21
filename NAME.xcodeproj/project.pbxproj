@@ -75,6 +75,8 @@
 		5441AC552248C4590018A293 /* CustomerRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */; };
 		5441AC562248C4590018A293 /* CustomerRootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */; };
 		5457DEB8226B1CB800276A63 /* CustomerRootIntersceneMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5457DEB7226B1CB800276A63 /* CustomerRootIntersceneMediator.swift */; };
+		5457DEBA226CA1FF00276A63 /* MenuAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5457DEB9226CA1FF00276A63 /* MenuAddCollectionViewCell.swift */; };
+		5457DEBC226CA65900276A63 /* MenuIntersceneMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5457DEBB226CA65900276A63 /* MenuIntersceneMediator.swift */; };
 		54D252A6224CB637007BF235 /* BrowseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D25299224CB637007BF235 /* BrowseViewModel.swift */; };
 		54D252A7224CB637007BF235 /* BrowsePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D2529B224CB637007BF235 /* BrowsePresenter.swift */; };
 		54D252A8224CB637007BF235 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D2529D224CB637007BF235 /* BrowseViewController.swift */; };
@@ -308,6 +310,8 @@
 		5441AC4D2248C4590018A293 /* CustomerRootInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootInteractor.swift; sourceTree = "<group>"; };
 		5441AC4F2248C4590018A293 /* CustomerRootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerRootRouter.swift; sourceTree = "<group>"; };
 		5457DEB7226B1CB800276A63 /* CustomerRootIntersceneMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRootIntersceneMediator.swift; sourceTree = "<group>"; };
+		5457DEB9226CA1FF00276A63 /* MenuAddCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAddCollectionViewCell.swift; sourceTree = "<group>"; };
+		5457DEBB226CA65900276A63 /* MenuIntersceneMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuIntersceneMediator.swift; sourceTree = "<group>"; };
 		54D25299224CB637007BF235 /* BrowseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewModel.swift; sourceTree = "<group>"; };
 		54D2529B224CB637007BF235 /* BrowsePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsePresenter.swift; sourceTree = "<group>"; };
 		54D2529D224CB637007BF235 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
@@ -1075,6 +1079,7 @@
 			children = (
 				54D252CD224CBD2F007BF235 /* MenuViewController.swift */,
 				540A3E6B2259C722000F2131 /* MenuItemCollectionViewCell.swift */,
+				5457DEB9226CA1FF00276A63 /* MenuAddCollectionViewCell.swift */,
 				540A3E6D2259D37A000F2131 /* MenuCategoryHeaderView.swift */,
 				540041FE2265C44300847219 /* CategorySelector.swift */,
 				540042002266194300847219 /* MenuDragHandlers.swift */,
@@ -1103,6 +1108,7 @@
 			isa = PBXGroup;
 			children = (
 				54D252D3224CBD2F007BF235 /* MenuInteractor.swift */,
+				5457DEBB226CA65900276A63 /* MenuIntersceneMediator.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2296,6 +2302,7 @@
 				FB519DA1224F43FC00BB5DE8 /* KitchenBacklogViewModel.swift in Sources */,
 				1F76302E224D8C65001E8E5C /* OrderConfirmationConfigurator.swift in Sources */,
 				1FB25814224929180035399F /* Rounder.swift in Sources */,
+				5457DEBC226CA65900276A63 /* MenuIntersceneMediator.swift in Sources */,
 				FB519DA4224F43FC00BB5DE8 /* KitchenBacklogConfigurator.swift in Sources */,
 				FB519E252250A61300BB5DE8 /* EstablishmentRootInteractor.swift in Sources */,
 				FB519D8C224E3A3200BB5DE8 /* StallRootInteractor.swift in Sources */,
@@ -2345,6 +2352,7 @@
 				FB13B70C225E357A006ED487 /* OrderPresenter.swift in Sources */,
 				54D252C5224CBD25007BF235 /* StallListInteractor.swift in Sources */,
 				54D252E5224F6D79007BF235 /* StallListCustomerCell.swift in Sources */,
+				5457DEBA226CA1FF00276A63 /* MenuAddCollectionViewCell.swift in Sources */,
 				54D252DE224E10DD007BF235 /* StorageManager.swift in Sources */,
 				54D252AC224CB637007BF235 /* BrowseRouter.swift in Sources */,
 				FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */,

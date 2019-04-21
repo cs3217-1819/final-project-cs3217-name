@@ -8,8 +8,19 @@
 
 import UIKit
 
-protocol MenuDetailInteractorInput: MenuDetailViewControllerOutput {
+// MARK: Interscene interactor IO
 
+protocol MenuDetailFromParentInput: class {
+}
+
+protocol MenuDetailToParentOutput: class {
+    var menuDetailInteractor: MenuDetailFromParentInput? { get set }
+    func handleNewMenuItem(id: String)
+}
+
+// MARK: Intrascene interactor IO
+
+protocol MenuDetailInteractorInput: MenuDetailViewControllerOutput {
 }
 
 protocol MenuDetailInteractorOutput {
@@ -31,6 +42,7 @@ final class MenuDetailInteractor {
     init(output: MenuDetailInteractorOutput,
          menuId: String?,
          injector: DependencyInjector,
+         toParentMediator: MenuDetailToParentOutput?,
          toChildrenMediator: MenuDetailIntersceneMediator,
          worker: MenuDetailWorker = MenuDetailWorker()) {
         self.deps = injector.dependencies()
@@ -46,12 +58,17 @@ final class MenuDetailInteractor {
                 manager.add(menuItem, update: true)
             }
             self.menuId = menuItem.id
+            toParentMediator?.handleNewMenuItem(id: self.menuId)
         }
     }
 }
 
 // MARK: - MenuDetailInteractorInput
 extension MenuDetailInteractor: MenuDetailViewControllerOutput {
+}
+
+// MARK: - MenuDetailFromParentInput
+extension MenuDetailInteractor: MenuDetailFromParentInput {
 }
 
 // MARK: - Dependency Injection

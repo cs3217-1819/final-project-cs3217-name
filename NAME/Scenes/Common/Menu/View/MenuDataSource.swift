@@ -10,19 +10,25 @@ import UIKit
 
 final class MenuDataSource: NSObject, UICollectionViewDataSource {
     private unowned var collectionView: UICollectionView
-    private let cellIdentifier: String
+    private let itemCellIdentifier: String
+    private let addCellIdentifier: String
     private let headerIdentifier: String
     private var frozenSectionIndex: Int?
 
     let categoryViewModels: [MenuViewModel.MenuCategoryViewModel]
+    let showAddButton: Bool
 
     init(collectionView: UICollectionView,
          categories: [MenuViewModel.MenuCategoryViewModel],
-         cellIdentifier: String,
+         showAddButton: Bool,
+         itemCellIdentifier: String,
+         addCellIdentifier: String,
          headerIdentifier: String) {
         self.collectionView = collectionView
         self.categoryViewModels = categories
-        self.cellIdentifier = cellIdentifier
+        self.showAddButton = showAddButton
+        self.itemCellIdentifier = itemCellIdentifier
+        self.addCellIdentifier = addCellIdentifier
         self.headerIdentifier = headerIdentifier
         super.init()
     }
@@ -52,10 +58,10 @@ final class MenuDataSource: NSObject, UICollectionViewDataSource {
             var indices = IndexSet(integersIn: 0..<categoryViewModels.count)
             indices.remove(index)
             collectionView.insertSections(indices)
-        }, completion: { [unowned self] _ in
-            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: index),
-                                             at: .centeredVertically,
-                                             animated: true)
+        }, completion: { [weak self] _ in
+            self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: index),
+                                              at: .centeredVertically,
+                                              animated: true)
         })
     }
 
@@ -64,8 +70,12 @@ final class MenuDataSource: NSObject, UICollectionViewDataSource {
         return categoryViewModels[frozenSectionIndex ?? section]
     }
 
-    func menuItemViewModel(at indexPath: IndexPath) -> MenuViewModel.MenuItemViewModel {
-        return categoryViewModelToDisplay(forSection: indexPath.section).items[indexPath.item]
+    func menuItemViewModel(at indexPath: IndexPath) -> MenuViewModel.MenuItemViewModel? {
+        let items = categoryViewModelToDisplay(forSection: indexPath.section).items
+        guard indexPath.item < items.count else {
+            return nil
+        }
+        return items[indexPath.item]
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -73,16 +83,21 @@ final class MenuDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryViewModelToDisplay(forSection: section).items.count
+        return categoryViewModelToDisplay(forSection: section).items.count + (showAddButton ? 1 : 0)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        guard let itemCell = cell as? MenuItemCollectionViewCell else {
-            return cell
+        if showAddButton && indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: addCellIdentifier, for: indexPath)
         }
-        let itemModel = menuItemViewModel(at: indexPath)
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath)
+        guard let itemCell = cell as? MenuItemCollectionViewCell,
+            let itemModel = menuItemViewModel(at: indexPath) else {
+                return cell
+        }
+
         itemCell.set(name: itemModel.name)
         return itemCell
     }

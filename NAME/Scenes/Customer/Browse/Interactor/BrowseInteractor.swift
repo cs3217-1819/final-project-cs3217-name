@@ -59,7 +59,7 @@ final class BrowseInteractor {
 }
 
 // MARK: - BrowseInteractorInput
-extension BrowseInteractor: BrowseViewControllerOutput {
+extension BrowseInteractor: BrowseInteractorInput {
     func reloadChildren() {
         // Hackish, but when in customer mode, show the first establishment
         guard let currentEst = deps.storageManager.allEstablishments().first else {

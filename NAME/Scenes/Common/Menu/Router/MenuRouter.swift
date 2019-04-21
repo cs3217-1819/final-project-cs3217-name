@@ -12,16 +12,18 @@ protocol MenuRouterProtocol {
 
     var viewController: MenuViewController? { get }
 
-    func navigateToMenuDetail(menuId: String, isEditable: Bool)
+    func navigateToMenuDetail(menuId: String?, isEditable: Bool)
 }
 
 final class MenuRouter {
-
     weak var viewController: MenuViewController?
+    unowned var mediator: MenuIntersceneMediator
 
     // MARK: - Initializers
-    init(viewController: MenuViewController?) {
+    init(viewController: MenuViewController?,
+         mediator: MenuIntersceneMediator) {
         self.viewController = viewController
+        self.mediator = mediator
     }
 }
 
@@ -29,8 +31,10 @@ final class MenuRouter {
 
 extension MenuRouter: MenuRouterProtocol {
     // MARK: - Navigation
-    func navigateToMenuDetail(menuId: String, isEditable: Bool) {
-        let menuDetailViewController = MenuDetailViewController(menuId: menuId, isEditable: isEditable)
+    func navigateToMenuDetail(menuId: String?, isEditable: Bool) {
+        let menuDetailViewController = MenuDetailViewController(menuId: menuId,
+                                                                isEditable: isEditable,
+                                                                toParentMediator: mediator)
         viewController?.present(menuDetailViewController, animated: true)
     }
 }

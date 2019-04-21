@@ -21,9 +21,15 @@ final class MenuDetailViewController: UISplitViewController {
 
     // MARK: - Initializers
     /// Pass `nil` to `menuId` to create a new menu item
-    init(menuId: String?, isEditable: Bool, configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
+    init(menuId: String?,
+         isEditable: Bool,
+         toParentMediator: MenuDetailToParentOutput?,
+         configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator, menuId: menuId, isEditable: isEditable)
+        configure(configurator: configurator,
+                  menuId: menuId,
+                  isEditable: isEditable,
+                  toParentMediator: toParentMediator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,8 +38,12 @@ final class MenuDetailViewController: UISplitViewController {
 
     private func configure(configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared,
                            menuId: String?,
-                           isEditable: Bool) {
-        configurator.configure(viewController: self, menuId: menuId, isEditable: isEditable)
+                           isEditable: Bool,
+                           toParentMediator: MenuDetailToParentOutput?) {
+        configurator.configure(viewController: self,
+                               menuId: menuId,
+                               isEditable: isEditable,
+                               toParentMediator: toParentMediator)
     }
 
     // MARK: - View lifecycle

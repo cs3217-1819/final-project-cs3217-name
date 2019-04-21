@@ -17,7 +17,7 @@ typealias BrowseIntersceneMediatorMenuOutput = MenuFromParentInput
 
 class BrowseIntersceneMediator: BrowseIntersceneMediatorSelfInput,
 BrowseIntersceneMediatorStallListInput, BrowseIntersceneMediatorMenuInput {
-    weak var selfInteractor: BrowseFromChildrenInput?
+    weak var selfInteractor: BrowseIntersceneMediatorSelfOutput?
     weak var stallListInteractor: BrowseIntersceneMediatorStallListOutput?
     weak var menuInteractor: BrowseIntersceneMediatorMenuOutput?
 

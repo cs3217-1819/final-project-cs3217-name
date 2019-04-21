@@ -17,15 +17,19 @@ final class MenuConfigurator {
                    toParentMediator: MenuToParentOutput?,
                    injector: DependencyInjector = appDefaultInjector) {
 
-        let router = MenuRouter(viewController: viewController)
+        let toChildrenMediator = MenuIntersceneMediator()
+        let router = MenuRouter(viewController: viewController,
+                                mediator: toChildrenMediator)
         let presenter = MenuPresenter(output: viewController)
 
         let interactor = MenuInteractor(stallId: stallId,
                                         isEditable: isEditable,
                                         output: presenter,
                                         injector: injector,
-                                        toParentMediator: toParentMediator)
+                                        toParentMediator: toParentMediator,
+                                        toChildrenMediator: toChildrenMediator)
         toParentMediator?.menuInteractor = interactor
+        toChildrenMediator.selfInteractor = interactor
 
         viewController.output = interactor
         viewController.router = router
