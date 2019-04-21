@@ -1,13 +1,9 @@
-/// Represents the breakdown of the final price to be received
-/// from the customer on a per item basis, based on order
-/// selections made, with discounts and surcharges applied.
-
 class Bill {
-    var items: [BillItem] = []
+    var items: [BillItemProtocol] = []
     var establishmentDiscounts: [Discount] = []
     var establishmentSurcharges: [Surcharge] = []
 
-    init(items: [BillItem] = [],
+    init(items: [BillItemProtocol] = [],
          establishmentDiscounts: [Discount] = [],
          establishmentSurcharges: [Surcharge] = []) {
         self.items = items
@@ -16,25 +12,97 @@ class Bill {
     }
 
     var subtotal: Int {
-        return items.reduce(0) { subtotal, item in subtotal + item.discountedPrice }
+        return subtotalStackables + subtotalNonStackables + subtotalNoDiscounts
     }
 
     var grandTotal: Int {
+        // Check type of discount
+        guard let firstDiscount = establishmentDiscounts.first else {
+            return addSurchargesAndRound(subtotal)
+        }
+        if firstDiscount.stackable {
+            return addSurchargesAndRound(grandTotalWithSDiscount)
+        }
+        return addSurchargesAndRound(grandTotalWithNSDiscount)
+    }
 
-        let subtotal = self.subtotal
+    private var subtotalStackables: Int {
+        let stackableItems = items.filter { $0.containsStackableDiscounts ?? false }
 
-        var subtotalAfterDiscount = subtotal
+        return stackableItems.reduce(0) { subtotal, item in
+            subtotal + item.discountedPrice
+        }
+    }
+
+    private var subtotalNonStackables: Int {
+        let nonStackableItems = items.filter { !($0.containsStackableDiscounts ?? true) }
+
+        return nonStackableItems.reduce(0) { subtotal, item in
+            subtotal + item.discountedPrice
+        }
+    }
+
+    private var subtotalNoDiscounts: Int {
+        let undiscountedItems = items.filter { $0.containsStackableDiscounts == nil }
+
+        return undiscountedItems.reduce(0) { subtotal, item in
+            subtotal + item.originalPrice
+        }
+    }
+
+    private var grandTotalWithSDiscount: Int {
+        let undiscountedOrStackableItems = items.filter { $0.containsStackableDiscounts ?? true }
+
+        let sumAffected = undiscountedOrStackableItems.reduce(0) { total, item in
+            total + item.discountedPrice
+        }
+
+        var totalPossibleDeduction = 0
+
         for discount in establishmentDiscounts {
-            subtotalAfterDiscount -= discount.toAbsolute(fromAmount: subtotal)
+            totalPossibleDeduction += discount.toAbsolute(fromAmount: sumAffected)
         }
-        subtotalAfterDiscount = max(subtotalAfterDiscount, 0)
 
-        var total = subtotalAfterDiscount
+        return max(self.subtotal - min(sumAffected, totalPossibleDeduction), 0)
+    }
 
+    private var grandTotalWithNSDiscount: Int {
+        var runningSubtotal = self.subtotal
+
+        let undiscountedItems = items.filter { $0.containsStackableDiscounts == nil }
+
+        guard let nsDiscount = establishmentDiscounts.first else {
+            return runningSubtotal
+        }
+
+        switch nsDiscount.priceModification {
+        case .absolute(amount: let amt):
+            var totalPriceAffected = 0
+
+            for item in undiscountedItems {
+                totalPriceAffected += item.originalPrice
+            }
+            runningSubtotal -= min(totalPriceAffected, amt)
+
+        case .multiplier(factor: _):
+
+            var amountReduced = 0
+
+            for item in undiscountedItems {
+                amountReduced += nsDiscount.toAbsolute(fromAmount: item.originalPrice)
+            }
+
+            runningSubtotal -= amountReduced
+        }
+
+        return max(runningSubtotal, 0)
+    }
+
+    private func addSurchargesAndRound(_ total: Int) -> Int {
+        var runningTotal = total
         for surcharge in establishmentSurcharges {
-            total += surcharge.toAbsolute(fromAmount: subtotalAfterDiscount)
+            runningTotal += surcharge.toAbsolute(fromAmount: total)
         }
-
-        return max(total, 0)
+        return runningTotal
     }
 }

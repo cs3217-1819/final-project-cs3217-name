@@ -41,6 +41,9 @@
 		1FB25826224929180035399F /* OrderItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25810224929180035399F /* OrderItemOption.swift */; };
 		1FB25827224929180035399F /* PriceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB25811224929180035399F /* PriceModifier.swift */; };
 		1FCC42EE2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC42ED2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift */; };
+		1FCC42F322681C740041D96B /* BillItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC42F222681C740041D96B /* BillItemTests.swift */; };
+		1FCC42F722681E370041D96B /* BillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC42F622681E370041D96B /* BillTests.swift */; };
+		1FCC42F922683C890041D96B /* BillUnstackableEstablishmentDiscountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCC42F822683C890041D96B /* BillUnstackableEstablishmentDiscountTests.swift */; };
 		1FF9CD57225B066D00AB4CBA /* OrderConfirmationTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD56225B066D00AB4CBA /* OrderConfirmationTotalView.swift */; };
 		1FF9CD59225B068100AB4CBA /* OrderConfirmationItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD58225B068100AB4CBA /* OrderConfirmationItemViewCell.swift */; };
 		1FF9CD5B225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9CD5A225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift */; };
@@ -255,6 +258,9 @@
 		1FB25810224929180035399F /* OrderItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItemOption.swift; sourceTree = "<group>"; };
 		1FB25811224929180035399F /* PriceModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceModifier.swift; sourceTree = "<group>"; };
 		1FCC42ED2265C4F30041D96B /* OrderConfirmationAdditionalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationAdditionalInfoView.swift; sourceTree = "<group>"; };
+		1FCC42F222681C740041D96B /* BillItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillItemTests.swift; sourceTree = "<group>"; };
+		1FCC42F622681E370041D96B /* BillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillTests.swift; sourceTree = "<group>"; };
+		1FCC42F822683C890041D96B /* BillUnstackableEstablishmentDiscountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUnstackableEstablishmentDiscountTests.swift; sourceTree = "<group>"; };
 		1FF9CD56225B066D00AB4CBA /* OrderConfirmationTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationTotalView.swift; sourceTree = "<group>"; };
 		1FF9CD58225B068100AB4CBA /* OrderConfirmationItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationItemViewCell.swift; sourceTree = "<group>"; };
 		1FF9CD5A225B069600AB4CBA /* OrderConfirmationItemOptionsAddonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationItemOptionsAddonView.swift; sourceTree = "<group>"; };
@@ -637,6 +643,16 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		1FCC42F422681C770041D96B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FCC42F222681C740041D96B /* BillItemTests.swift */,
+				1FCC42F622681E370041D96B /* BillTests.swift */,
+				1FCC42F822683C890041D96B /* BillUnstackableEstablishmentDiscountTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5441ABE42248B6ED0018A293 = {
 			isa = PBXGroup;
 			children = (
@@ -677,6 +693,7 @@
 		5441AC042248B6EF0018A293 /* NAMETests */ = {
 			isa = PBXGroup;
 			children = (
+				1FCC42F422681C770041D96B /* Models */,
 				5441AC052248B6EF0018A293 /* NAMETests.swift */,
 				5441AC072248B6EF0018A293 /* Info.plist */,
 			);
@@ -2329,7 +2346,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FCC42F722681E370041D96B /* BillTests.swift in Sources */,
+				1FCC42F922683C890041D96B /* BillUnstackableEstablishmentDiscountTests.swift in Sources */,
 				5441AC062248B6EF0018A293 /* NAMETests.swift in Sources */,
+				1FCC42F322681C740041D96B /* BillItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
