@@ -1,4 +1,5 @@
-class Bill {
+class Bill: CustomStringConvertible {
+
     var items: [BillItemProtocol] = []
     var establishmentDiscounts: [Discount] = []
     var establishmentSurcharges: [Surcharge] = []
@@ -24,6 +25,16 @@ class Bill {
             return addSurchargesAndRound(grandTotalWithSDiscount)
         }
         return addSurchargesAndRound(grandTotalWithNSDiscount)
+    }
+
+    var description: String {
+        var description = "Bill "
+        description += "Subtotal: \(subtotal)\n"
+        description += "Grand total: \(grandTotal)\n"
+        description += "Items: \(items)\n"
+        description += "Est. Discounts: \(establishmentDiscounts)\n"
+        description += "Surcharges: \(establishmentSurcharges)\n================\n"
+        return description
     }
 
     private var subtotalStackables: Int {

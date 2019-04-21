@@ -12,9 +12,15 @@ import XCTest
 class BillTests: XCTestCase {
 
     struct BillItemStub: BillItemProtocol {
+        var source: OrderItemProtocol?
         var originalPrice: Int
         var discountedPrice: Int
         var containsStackableDiscounts: Bool?
+        init(originalPrice: Int, discountedPrice: Int, containsStackableDiscounts: Bool?) {
+            self.originalPrice = originalPrice
+            self.discountedPrice = discountedPrice
+            self.containsStackableDiscounts = containsStackableDiscounts
+        }
     }
 
     func testBill_subtotal_computedCorrectly() {
@@ -176,7 +182,7 @@ class BillTests: XCTestCase {
         XCTAssertEqual(bill.grandTotal, 5_000)
     }
 
-    func testBill_grandTotal_WithEstablishmentNonStackableDiscount_AbsoluteOnUnstackableItems() {
+    func testBill_grandTotal_WithEstablishmentNonStackableDiscount_AbsoluteOnNonstackableItems() {
         let item1 = BillItemStub(originalPrice: 5_000,
                                  discountedPrice: 4_000,
                                  containsStackableDiscounts: false)
@@ -200,7 +206,7 @@ class BillTests: XCTestCase {
 
         XCTAssertEqual(bill.subtotal,
                        bill.grandTotal,
-                       "Unstackable discount should not apply on unstackable items")
+                       "Unstackable discount should not apply on non stackable items")
         XCTAssertEqual(bill.grandTotal, 5_000)
     }
 }

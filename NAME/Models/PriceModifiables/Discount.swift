@@ -6,8 +6,24 @@ class Discount: Object, PriceModifier {
     @objc dynamic var id: String = UUID().uuidString
 
     @objc dynamic var name = ""
-    var priceModification: PriceModification = .multiplier(factor: 1)
-    @objc dynamic private var discountCoverage: Int = -1
+    @objc dynamic private var priceModificationEncoded = Data()
+    private var _priceModification: PriceModification?
+    var priceModification: PriceModification {
+        get {
+            if let priceModifier = _priceModification {
+                return priceModifier
+            }
+            let priceModification = ModelHelper.decodeAsJson(PriceModification.self,
+                                                             from: priceModificationEncoded)
+            _priceModification = priceModification
+            return priceModification
+        }
+        set {
+            priceModificationEncoded = ModelHelper.encodeAsJson(newValue)
+            _priceModification = newValue
+        }
+    }
+
     @objc dynamic var stackable: Bool = false
 
     @objc dynamic private var timeConditionEncoded = Data()

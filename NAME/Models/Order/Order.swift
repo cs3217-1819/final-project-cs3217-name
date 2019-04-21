@@ -1,6 +1,12 @@
 import Foundation
 import RealmSwift
 
+protocol OrderProtocol {
+    var orderItems: [OrderItemProtocol] { get }
+    var establishmentDiscounts: [Discount]? { get }
+    var establishmentSurcharges: [Surcharge]? { get }
+}
+
 class Order: Object {
 
     // MARK: - Properties
@@ -41,7 +47,21 @@ class Order: Object {
     @objc dynamic var customer: Customer?
     let orderItems = LinkingObjects(fromType: OrderItem.self, property: "order")
 
-    var establishment: Establishment? {
+    var establishmentDiscounts: [Discount]? {
+        guard let discounts = establishment?.discounts else {
+            return nil
+        }
+        return Array(discounts)
+    }
+
+    var establishmentSurcharges: [Surcharge]? {
+        guard let surcharges = establishment?.surcharges else {
+            return nil
+        }
+        return Array(surcharges)
+    }
+
+    private var establishment: Establishment? {
         return orderItems.first?.menuItem?.menu?.stall?.establishment
     }
 

@@ -13,6 +13,8 @@ class BillItemTests: XCTestCase {
 
     class OrderItemStub: OrderItemProtocol {
         var name: String = ""
+        var originalPrice: Int = 5_000
+        var discounts: [Discount] = []
         var price: Int = 5_000
     }
 

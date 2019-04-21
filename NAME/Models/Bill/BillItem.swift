@@ -1,4 +1,5 @@
 protocol BillItemProtocol {
+    var source: OrderItemProtocol? { get }
     var originalPrice: Int { get }
     var discountedPrice: Int { get }
     var containsStackableDiscounts: Bool? { get }
@@ -15,12 +16,12 @@ struct BillItem: BillItemProtocol {
     }
 
     var originalPrice: Int {
-        return source?.price ?? 0
+        return source?.originalPrice ?? 0
     }
 
     var discountedPrice: Int {
 
-        guard let originalAmount = source?.price else {
+        guard let originalAmount = source?.originalPrice else {
             return 0
         }
 

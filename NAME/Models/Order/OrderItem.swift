@@ -3,7 +3,8 @@ import RealmSwift
 
 protocol OrderItemProtocol {
     var name: String { get }
-    var price: Int { get }
+    var originalPrice: Int { get }
+    var discounts: [Discount] { get }
 }
 
 class OrderItem: Object, OrderItemProtocol {
@@ -23,9 +24,9 @@ class OrderItem: Object, OrderItemProtocol {
         return menuItem?.name ?? ""
     }
 
-    var price: Int {
+    var originalPrice: Int {
         let additionalAmounts = addons.reduce(0) { total, addon in
-            total + addon.price
+            total + addon.originalPrice
         }
 
         return (menuItem?.price ?? 0 + additionalAmounts) * quantity
@@ -49,6 +50,13 @@ class OrderItem: Object, OrderItemProtocol {
     let addons = List<OrderItem>()
     let orderHistories = List<OrderHistory>()
     let options = List<OrderItemOption>()
+
+    var discounts: [Discount] {
+        guard let itemDiscounts = menuItem?.discounts else {
+            return []
+        }
+        return Array(itemDiscounts)
+    }
 
     // MARK: - Initialisers
     convenience init(order: Order?,
