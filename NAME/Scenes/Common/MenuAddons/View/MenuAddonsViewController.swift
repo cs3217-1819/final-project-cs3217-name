@@ -23,6 +23,7 @@ protocol MenuAddonsViewControllerOutput {
     func finalizeOrderItem(diningOption: OrderItem.DiningOption)
     func reorderUp(section: Int)
     func reorderDown(section: Int)
+    func moveValue(section: Int, fromItem: Int, toItem: Int)
 }
 
 protocol MenuAddonsTableViewCellProvider: class {
@@ -34,6 +35,7 @@ protocol MenuAddonsTableViewCellDelegate: class {
     func valueDidSelect(section: Int, itemOrQuantity: Int)
     func addCellDidTap(section: Int)
     func addOptionDidTap(sender: UIButton)
+    func moveValue(section: Int, fromItem: Int, toItem: Int)
 }
 
 final class MenuAddonsViewController: UIViewController {
@@ -98,7 +100,7 @@ final class MenuAddonsViewController: UIViewController {
     private func configure(menuId: String,
                            mediator: MenuAddonsToParentOutput?,
                            configurator: MenuAddonsConfigurator = MenuAddonsConfigurator.shared) {
-        configurator.configure(viewController: self, menuId: menuId, toParentMediator: mediator)
+        configurator.configure(viewController: self, menuId: menuId, isEditable: isEditable, toParentMediator: mediator)
     }
 
     // MARK: - View lifecycle
@@ -237,6 +239,10 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
 
 // MARK: - MenuAddonsTableViewCellDelegate
 extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
+    func moveValue(section: Int, fromItem: Int, toItem: Int) {
+        self.output?.moveValue(section: section, fromItem: fromItem, toItem: toItem)
+    }
+
     func addOptionDidTap(sender: UIButton) {
         let actionSheet = UIAlertController(title: MenuAddonsConstants.addOptionTypeTitle,
                                             message: nil, preferredStyle: .actionSheet)
@@ -346,11 +352,12 @@ extension MenuAddonsViewController: MenuAddonsViewControllerInput {
                                                                   isEditable: isEditable)
                     provider.delegate = self
                     return provider
-                case let (.choices(choices, isEditable), .choices(choiceIndices)):
+                case let (.choices(choices, isEditable, isReorderable), .choices(choiceIndices)):
                     let provider = MenuAddonsCollectionViewDataSourceDelegate(choices: choices,
                                                                               selectedIndices: choiceIndices,
                                                                               section: section,
-                                                                              isEditable: isEditable && self.isEditable)
+                                                                              isEditable: isEditable && self.isEditable,
+                                                                              isReorderable: isReorderable)
                     provider.delegate = self
                     return provider
                 default:

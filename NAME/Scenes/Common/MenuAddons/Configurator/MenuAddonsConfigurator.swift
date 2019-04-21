@@ -15,10 +15,14 @@ final class MenuAddonsConfigurator {
     // MARK: - Configuration
     func configure(viewController: MenuAddonsViewController,
                    menuId: String,
+                   isEditable: Bool,
                    toParentMediator: MenuAddonsToParentOutput?) {
         let router = MenuAddonsRouter(viewController: viewController)
         let presenter = MenuAddonsPresenter(output: viewController)
-        let interactor = MenuAddonsInteractor(output: presenter, menuId: menuId, toParentMediator: toParentMediator)
+        let interactor = MenuAddonsInteractor(output: presenter,
+                                              menuId: menuId,
+                                              isEditable: isEditable,
+                                              toParentMediator: toParentMediator)
 
         toParentMediator?.menuAddonsInteractor = interactor
 

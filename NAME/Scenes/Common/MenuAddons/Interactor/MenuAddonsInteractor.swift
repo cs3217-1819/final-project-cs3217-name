@@ -55,15 +55,19 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
     private var comment: String = ""
 
+    private let isEditable: Bool
+
     // MARK: - Initializers
     init(output: MenuAddonsInteractorOutput,
          menuId: String,
+         isEditable: Bool,
          injector: DependencyInjector = appDefaultInjector,
          toParentMediator: MenuAddonsToParentOutput?,
          worker: MenuAddonsWorker = MenuAddonsWorker()) {
         self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
+        self.isEditable = isEditable
         self.toParentMediator = toParentMediator
         guard let menuDisplayable = deps.storageManager.getMenuDisplayable(id: menuId) else {
             fatalError("Initialising MenuAddonsInteractor with non-existent menu id")
@@ -90,6 +94,44 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func moveValue(section: Int, fromItem: Int, toItem: Int) {
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            let optionValue = optionValues[section]
+            switch (optionValue.option.options, optionValue.option.defaultValue, optionValue.value) {
+            case (.multipleChoice(var choices), .multipleChoice(let defaultValue), .multipleChoice(let value)):
+                let choice = choices.remove(at: fromItem)
+                choices.insert(choice, at: toItem)
+                optionValues[section].option.options = .multipleChoice(choices)
+                optionValues[section].option.defaultValue =
+                    .multipleChoice(adjustIndex(defaultValue, fromItem: fromItem, toItem: toItem))
+                optionValues[section].value = .multipleChoice(adjustIndex(value, fromItem: fromItem, toItem: toItem))
+            case (.multipleResponse(var choices), .multipleResponse(let defaultValue), .multipleResponse(let value)):
+                let choice = choices.remove(at: fromItem)
+                choices.insert(choice, at: toItem)
+                optionValues[section].option.options = .multipleResponse(choices)
+                let newDefaultValue = Set(defaultValue.map { adjustIndex($0, fromItem: fromItem, toItem: toItem) })
+                let newValue = Set(value.map { adjustIndex($0, fromItem: fromItem, toItem: toItem) })
+                optionValues[section].option.defaultValue = .multipleResponse(newDefaultValue)
+                optionValues[section].value = .multipleResponse(newValue)
+            default:
+                break
+            }
+        }
+        passValueToPresenter()
+    }
+
+    private func adjustIndex(_ index: Int, fromItem: Int, toItem: Int) -> Int {
+        if index == fromItem {
+            return toItem
+        } else if index > fromItem && index <= toItem {
+            return index - 1
+        } else if index < fromItem && index >= toItem {
+            return index + 1
+        }
+        return index
+    }
+
     func reorderUp(section: Int) {
         guard let menuItem = menuItem, section > 0 else {
             return
@@ -207,6 +249,12 @@ extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
                     choices.insert(valueIndexOrQuantity)
                 }
                 optionValues[index].value = .multipleResponse(choices)
+            }
+        }
+        if isEditable {
+            // TODO handle error
+            try? deps.storageManager.writeTransaction { _ in
+                optionValues[index].option.defaultValue = optionValues[index].value
             }
         }
         passValueToPresenter()

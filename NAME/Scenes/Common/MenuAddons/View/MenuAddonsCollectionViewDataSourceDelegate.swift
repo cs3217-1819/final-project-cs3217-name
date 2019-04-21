@@ -13,19 +13,21 @@ import UIKit
 class MenuAddonsCollectionViewDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
 // swiftlint:enable type_name
 
-    private let choices: [(name: String, price: String)]
+    private let choices: [MenuAddonsViewModel.Choice]
     let selectedIndexPaths: Set<IndexPath>
     private let section: Int
 
     weak var delegate: MenuAddonsTableViewCellDelegate?
 
     private let isEditable: Bool
+    private let isReorderable: Bool
 
-    init(choices: [(name: String, price: String)], selectedIndices: Set<Int>, section: Int, isEditable: Bool) {
+    init(choices: [MenuAddonsViewModel.Choice], selectedIndices: Set<Int>, section: Int, isEditable: Bool, isReorderable: Bool) {
         self.choices = choices
         self.selectedIndexPaths = Set(selectedIndices.map { IndexPath(item: $0, section: 0) })
         self.section = section
         self.isEditable = isEditable
+        self.isReorderable = isReorderable
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,13 +60,12 @@ class MenuAddonsCollectionViewDataSourceDelegate: NSObject, UICollectionViewData
         }
     }
 
-    // When cell.isSelected is true, didDeselectRowAtIndexPath is not called, so instead, we use
-    // shouldHighlightItemAtIndexPath
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        if indexPath.item < choices.count {
-            delegate?.valueDidSelect(section: section, itemOrQuantity: indexPath.item)
-        }
-        return false
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return isReorderable
+    }
+
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        delegate?.moveValue(section: section, fromItem: sourceIndexPath.item, toItem: destinationIndexPath.item)
     }
 }
 
@@ -85,5 +86,35 @@ extension MenuAddonsCollectionViewDataSourceDelegate: MenuAddonsTableViewCellPro
 extension MenuAddonsCollectionViewDataSourceDelegate: MenuAddonsCollectionViewAddCellDelegate {
     func addButtonDidTap() {
         delegate?.addCellDidTap(section: section)
+    }
+}
+
+// MARK: - MenuAddonsTableViewChoiceCellDelegate
+extension MenuAddonsCollectionViewDataSourceDelegate: MenuAddonsTableViewChoiceCellDelegate {
+    func collectionViewDidLongPress(_ collectionView: UICollectionView, gesture: UILongPressGestureRecognizer) {
+        let location = gesture.location(in: collectionView)
+        switch gesture.state {
+        case .began:
+            guard let indexPath = collectionView.indexPathForItem(at: location) else {
+                return
+            }
+            collectionView.beginInteractiveMovementForItem(at: indexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(location)
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
+
+    func collectionViewDidTap(_ collectionView: UICollectionView, gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: location) else {
+            return
+        }
+        if indexPath.item < choices.count {
+            delegate?.valueDidSelect(section: section, itemOrQuantity: indexPath.item)
+        }
     }
 }

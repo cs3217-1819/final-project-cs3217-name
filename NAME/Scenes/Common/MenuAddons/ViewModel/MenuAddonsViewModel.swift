@@ -9,6 +9,8 @@
 import UIKit
 
 struct MenuAddonsViewModel {
+    typealias Choice = (name: String, price: String)
+
     struct MenuOptionViewModel {
         let name: String
         let type: MenuOptionTypeViewModel
@@ -20,7 +22,7 @@ struct MenuAddonsViewModel {
     }
     enum MenuOptionTypeViewModel {
         case quantity(price: String)
-        case choices([(name: String, price: String)], isEditable: Bool)
+        case choices([Choice], isEditable: Bool, isReorderable: Bool)
     }
     let options: [MenuOptionViewModel]
     let totalPrice: String

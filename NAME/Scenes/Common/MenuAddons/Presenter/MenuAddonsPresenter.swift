@@ -48,7 +48,7 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
             let name = optionValue.option.name
             switch (optionValue.option.options, optionValue.value) {
             case let (.boolean(price), .boolean(value)):
-                let choices: [(name: String, price: String)] = MenuAddonsConstants.booleanChoices.enumerated()
+                let choices: [MenuAddonsViewModel.Choice] = MenuAddonsConstants.booleanChoices.enumerated()
                     .map { index, choice in
                         return (name: MenuAddonsConstants.booleanChoicesTitle[index],
                                 price: (choice ? price : 0).formattedAsPrice())
@@ -57,12 +57,14 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                     fatalError("You dumbo! Check that MenuAddonsConstants.booleanChoices contains both true and false")
                 }
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
-                                                               type: .choices(choices, isEditable: false),
+                                                               type: .choices(choices, isEditable: false, isReorderable: false),
                                                                value: .choices([choiceIndex]))
             case let (.multipleChoice(rawChoices), .multipleChoice(choiceIndex)):
                 let choices = rawChoices.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
-                                                               type: .choices(choices, isEditable: true),
+                                                               type: .choices(choices,
+                                                                              isEditable: true,
+                                                                              isReorderable: true),
                                                                value: .choices([choiceIndex]))
             case let (.quantity(price), .quantity(quantity)):
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
@@ -71,7 +73,9 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
             case let (.multipleResponse(rawChoices), .multipleResponse(selectedChoices)):
                 let choices = rawChoices.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
                 return MenuAddonsViewModel.MenuOptionViewModel(name: name,
-                                                               type: .choices(choices, isEditable: true),
+                                                               type: .choices(choices,
+                                                                              isEditable: true,
+                                                                              isReorderable: true),
                                                                value: .choices(selectedChoices))
             default:
                 fatalError("Inconsistent MenuItemOption's options and defaultValue")
@@ -83,7 +87,7 @@ extension MenuAddonsPresenter: MenuAddonsPresenterInput {
                                          selectedIndices: Set<Int>) -> MenuAddonsViewModel.MenuOptionViewModel {
         let choices = addOns.map { (name: $0.name, price: $0.price.formattedAsPrice()) }
         return MenuAddonsViewModel.MenuOptionViewModel(name: MenuAddonsConstants.addOnsOptionTitle,
-                                                       type: .choices(choices, isEditable: true),
+                                                       type: .choices(choices, isEditable: true, isReorderable: false),
                                                        value: .choices(selectedIndices))
     }
 
