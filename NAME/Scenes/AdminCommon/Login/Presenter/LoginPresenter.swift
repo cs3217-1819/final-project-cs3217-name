@@ -13,8 +13,10 @@ protocol LoginPresenterInput: LoginInteractorOutput {
 }
 
 protocol LoginPresenterOutput: class {
-
     func displayLoginContainer(viewModel: LoginViewModel)
+    func displayLoginError()
+    func displayStall(withId id: String)
+    func displayEstablishment(withId id: String)
 }
 
 final class LoginPresenter {
@@ -34,5 +36,17 @@ extension LoginPresenter: LoginPresenterInput {
     func presentDefaultScreen() {
         let viewModel = LoginViewModel()
         output.displayLoginContainer(viewModel: viewModel)
+    }
+
+    func presentLoginFailure() {
+        output.displayLoginError()
+    }
+
+    func presentStall(withId id: String) {
+        output.displayStall(withId: id)
+    }
+
+    func presentEstablishment(withId id: String) {
+        output.displayEstablishment(withId: id)
     }
 }

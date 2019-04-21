@@ -20,6 +20,8 @@ enum FixtureGenerator {
         let establishments = self.createEstablishments()
         let stalls = self.createStalls()
 
+        let accounts = self.createAccounts(establishments: establishments, stalls: stalls)
+
         let menus = self.createMenus(stalls: stalls)
         let categories = self.createMenuCategories(menus: menus)
         let menuItemOptions = self.createMenuItemOptions()
@@ -54,6 +56,7 @@ enum FixtureGenerator {
 
             manager.add(objects: establishments, update: false)
             manager.add(objects: stalls, update: false)
+            manager.add(objects: accounts, update: false)
             manager.add(objects: menus, update: false)
             manager.add(objects: categories, update: false)
             manager.add(objects: customers, update: false)
@@ -67,9 +70,11 @@ enum FixtureGenerator {
     static func createEstablishments() -> [Establishment] {
 
         let est1 = Establishment(name: "Tony's Food Paradise")
+        let est2 = Establishment(name: "Wai Kay's Food Heaven")
 
-        return [est1]
+        return [est1, est2]
     }
+
     static func createStalls() -> [Stall] {
 
         let stall1 = Stall(name: "Dijkstra's Wonton Mee",
@@ -83,6 +88,34 @@ enum FixtureGenerator {
                            details: "Everything stir fried")
 
         return [stall1, stall2, stall3]
+    }
+
+    static func createAccounts(establishments: [Establishment], stalls: [Stall]) -> [Account] {
+        assert(establishments.count >= 1)
+        assert(stalls.count >= 2)
+
+        let acc1 = Account(username: "est1",
+                           password: "strongpw",
+                           accessControl: .establishment(establishmentId: establishments[0].id))
+        let acc2 = Account(username: "est2",
+                           password: "strongpw",
+                           accessControl: .establishment(establishmentId: establishments[1].id))
+
+        let acc3 = Account(username: "stall1",
+                           password: "strongpw",
+                           accessControl: .stallOwner(stallId: stalls[0].id))
+        let acc4 = Account(username: "stall2",
+                           password: "strongpw",
+                           accessControl: .stallOwner(stallId: stalls[1].id))
+
+        let acc5 = Account(username: "kitchen1",
+                           password: "strongpw",
+                           accessControl: .kitchen(stallId: stalls[0].id))
+        let acc6 = Account(username: "kitchen2",
+                           password: "strongpw",
+                           accessControl: .kitchen(stallId: stalls[1].id))
+
+        return [acc1, acc2, acc3, acc4, acc5, acc6]
     }
 
     static func createMenus(stalls: [Stall]) -> [Menu] {

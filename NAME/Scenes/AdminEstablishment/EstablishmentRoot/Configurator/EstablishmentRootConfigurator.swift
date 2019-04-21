@@ -13,10 +13,14 @@ final class EstablishmentRootConfigurator {
     static let shared: EstablishmentRootConfigurator = EstablishmentRootConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: EstablishmentRootViewController) {
+    func configure(viewController: EstablishmentRootViewController,
+                   estId: String,
+                   injector: DependencyInjector = appDefaultInjector) {
         let router = EstablishmentRootRouter(viewController: viewController)
         let presenter = EstablishmentRootPresenter(output: viewController)
-        let interactor = EstablishmentRootInteractor(output: presenter)
+        let interactor = EstablishmentRootInteractor(output: presenter,
+                                                     estId: estId,
+                                                     injector: injector)
 
         viewController.output = interactor
         viewController.router = router

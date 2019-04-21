@@ -14,6 +14,7 @@ protocol LoginViewControllerInput: LoginPresenterOutput {
 
 protocol LoginViewControllerOutput {
     func initializeScreen()
+    func handleLogin(username: String, password: String)
 }
 
 final class LoginViewController: UIViewController {
@@ -44,12 +45,9 @@ final class LoginViewController: UIViewController {
 
     // MARK: - View lifecycle
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loginContainerView.focusInputField()
     }
 
     override func viewDidLoad() {
@@ -80,16 +78,12 @@ final class LoginViewController: UIViewController {
 
 // MARK: - LoginContainerViewDelegate
 extension LoginViewController: LoginContainerViewDelegate {
+    func didTapLogin(username: String, password: String) {
+        output?.handleLogin(username: username, password: password)
+    }
+
     func didTapCancel() {
         router?.navigateBack()
-    }
-
-    func didTapStallLogin() {
-        router?.navigateToStallView()
-    }
-
-    func didTapEstablishmentLogin() {
-        router?.navigateToEstablishmentView()
     }
 }
 
@@ -97,6 +91,22 @@ extension LoginViewController: LoginContainerViewDelegate {
 extension LoginViewController: LoginViewControllerInput {
     func displayLoginContainer(viewModel: LoginViewModel) {
         loginContainerView.viewModel = viewModel
+    }
+
+    func displayLoginError() {
+        let errorVC = CustomAlertViewController(withTitle: LoginConstants.loginErrorTitle,
+                                                withMessage: LoginConstants.loginErrorMessage,
+                                                buttonText: nil,
+                                                alertType: .error)
+        present(errorVC, animated: true)
+    }
+
+    func displayStall(withId id: String) {
+        router?.navigateToStallView(stallId: id)
+    }
+
+    func displayEstablishment(withId id: String) {
+        router?.navigateToEstablishmentView(estId: id)
     }
 }
 

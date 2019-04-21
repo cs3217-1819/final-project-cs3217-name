@@ -76,11 +76,18 @@ class RealmStorageManager: StorageManager {
     func getOrder(id: String) -> Order? {
         let predicate = NSPredicate(format: "id = %@", id)
         // swiftlint:disable first_where
-        return realm.objects(Order.self).filter(predicate).first as Order?
+        return realm.objects(Order.self).filter(predicate).first
         // swiftlint:enable first_where
     }
 
     func getQueueNumber() -> Int {
         return (realm.objects(Order.self).sorted(byKeyPath: "queueNumber", ascending: true).last?.queueNumber ?? 0) + 1
+    }
+
+    func getAccount(username: String) -> Account? {
+        let predicate = NSPredicate(format: "username = %@", username)
+        // swiftlint:disable first_where
+        return realm.objects(Account.self).filter(predicate).first
+        // swiftlint:enable first_where
     }
 }

@@ -32,8 +32,7 @@ enum SplashConstants {
 // MARK: - Login
 enum LoginConstants {
     static let cancelButtonTitle = "CANCEL"
-    static let stallLoginButtonTitle = "STALL"
-    static let establishmentLoginButtonTitle = "ESTABLISHMENT"
+    static let loginButtonTitle = "LOGIN"
     static let usernamePlaceholder = "Username"
     static let passwordPlaceholder = "Password"
 
@@ -45,6 +44,9 @@ enum LoginConstants {
     static let textFieldMargin: CGFloat = 16.0
     static let textFieldHeight: CGFloat = 60.0
     static let textFieldBackgroundColor: UIColor = .white
+
+    static let loginErrorTitle = "Username or password does not exist"
+    static let loginErrorMessage = "Hint: The account credentials are in FixtureGenerator.swift"
 }
 
 // MARK: - Stall Root

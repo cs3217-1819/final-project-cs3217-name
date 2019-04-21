@@ -12,7 +12,8 @@ protocol EstablishmentRootViewControllerInput: EstablishmentRootPresenterOutput 
 }
 
 protocol EstablishmentRootViewControllerOutput {
-
+    func loadEstablishment()
+    func logout()
 }
 
 final class EstablishmentRootViewController: UITabBarController {
@@ -20,21 +21,20 @@ final class EstablishmentRootViewController: UITabBarController {
     var router: EstablishmentRootRouterProtocol?
 
     // MARK: - Initializers
-    init(configurator: EstablishmentRootConfigurator = EstablishmentRootConfigurator.shared) {
+    init(estId: String,
+         configurator: EstablishmentRootConfigurator = EstablishmentRootConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator)
+        configure(configurator: configurator, estId: estId)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func configure(configurator: EstablishmentRootConfigurator = EstablishmentRootConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
-        setUpTabs()
+    private func configure(configurator: EstablishmentRootConfigurator = EstablishmentRootConfigurator.shared,
+                           estId: String) {
+        configurator.configure(viewController: self, estId: estId)
+        output?.loadEstablishment()
     }
 
     // MARK: - View lifecycle
@@ -42,16 +42,16 @@ final class EstablishmentRootViewController: UITabBarController {
         super.viewDidLoad()
     }
 
-    private func setUpTabs() {
+    private func setUpTabs(estId: String) {
         guard let router = router else {
             print("Router required to get child VCs")
             return
         }
 
-        let stallListVC = router.stallListViewController()
+        let stallListVC = router.stallListViewController(estId: estId)
         stallListVC.title = EstablishmentRootConstants.stallListTabBarTitle
 
-        let settingsVC = router.establishmentSettingsViewController()
+        let settingsVC = router.establishmentSettingsViewController(estId: estId)
         settingsVC.title = EstablishmentRootConstants.settingsTabBarTitle
 
         // Dummy view controller that should never be displayed
@@ -64,18 +64,18 @@ final class EstablishmentRootViewController: UITabBarController {
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == tabBar.items?.last {
-            router?.navigateBack()
+            output?.logout()
         }
     }
 }
 
 // MARK: - EstablishmentRootPresenterOutput
 extension EstablishmentRootViewController: EstablishmentRootViewControllerInput {
+    func display(estId: String) {
+        setUpTabs(estId: estId)
+    }
 
-}
-
-extension EstablishmentRootViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return self.init()
+    func displayLogout() {
+        router?.navigateBack()
     }
 }

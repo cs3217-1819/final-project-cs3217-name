@@ -9,10 +9,11 @@
 import UIKit
 
 protocol StallRootPresenterInput: StallRootInteractorOutput {
-
 }
 
 protocol StallRootPresenterOutput: class {
+    func display(stallId: String)
+    func displayLogout()
 }
 
 final class StallRootPresenter {
@@ -26,4 +27,11 @@ final class StallRootPresenter {
 
 // MARK: - StallRootPresenterInput
 extension StallRootPresenter: StallRootPresenterInput {
+    func present(stallId: String) {
+        output.display(stallId: stallId)
+    }
+
+    func presentLogout() {
+        output.displayLogout()
+    }
 }

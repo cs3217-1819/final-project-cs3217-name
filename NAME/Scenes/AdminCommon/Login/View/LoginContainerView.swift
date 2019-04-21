@@ -10,8 +10,7 @@ import UIKit
 
 protocol LoginContainerViewDelegate: class {
     func didTapCancel()
-    func didTapStallLogin()
-    func didTapEstablishmentLogin()
+    func didTapLogin(username: String, password: String)
 }
 
 final class LoginContainerView: UIView {
@@ -24,15 +23,9 @@ final class LoginContainerView: UIView {
         return button
     }()
 
-    private let stallLoginButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(handleStallLoginPress(sender:)), for: .touchUpInside)
-        return button
-    }()
-
-    private let establishmentLoginButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(handleEstablishmentLoginPress(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLoginPress(sender:)), for: .touchUpInside)
         return button
     }()
 
@@ -41,8 +34,7 @@ final class LoginContainerView: UIView {
     var viewModel: LoginViewModel? {
         didSet {
             cancelButton.setTitle(viewModel?.cancelButtonTitle, for: .normal)
-            stallLoginButton.setTitle(viewModel?.stallLoginButtonTitle, for: .normal)
-            establishmentLoginButton.setTitle(viewModel?.establishmentLoginButtonTitle, for: .normal)
+            loginButton.setTitle(viewModel?.loginButtonTitle, for: .normal)
             usernameTextField.placeholder = viewModel?.usernamePlaceholder
             passwordTextField.placeholder = viewModel?.passwordPlaceholder
         }
@@ -94,26 +86,23 @@ final class LoginContainerView: UIView {
 
     private func setUpButtons() {
         addSubview(cancelButton)
-        addSubview(stallLoginButton)
-        addSubview(establishmentLoginButton)
+        addSubview(loginButton)
 
         cancelButton.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
+            make.width.equalToSuperview().dividedBy(2)
             make.top.equalTo(passwordTextField.snp.bottom).offset(LoginConstants.textFieldMargin)
         }
 
-        stallLoginButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(LoginConstants.textFieldMargin)
-        }
-
-        establishmentLoginButton.snp.makeConstraints { make in
+        loginButton.snp.makeConstraints { make in
             make.right.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
+            make.width.equalToSuperview().dividedBy(2)
             make.top.equalTo(passwordTextField.snp.bottom).offset(LoginConstants.textFieldMargin)
         }
+    }
+
+    func focusInputField() {
+        usernameTextField.becomeFirstResponder()
     }
 
     @objc
@@ -122,15 +111,10 @@ final class LoginContainerView: UIView {
     }
 
     @objc
-    private func handleStallLoginPress(sender: Any) {
-        delegate?.didTapStallLogin()
+    private func handleLoginPress(sender: Any) {
+        delegate?.didTapLogin(username: usernameTextField.text ?? "",
+                              password: passwordTextField.text ?? "")
     }
-
-    @objc
-    private func handleEstablishmentLoginPress(sender: Any) {
-        delegate?.didTapEstablishmentLogin()
-    }
-
 }
 
 // MARK: - UITextFieldDelegate
@@ -140,6 +124,7 @@ extension LoginContainerView: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else {
             passwordTextField.resignFirstResponder()
+            handleLoginPress(sender: textField)
         }
         return true
     }

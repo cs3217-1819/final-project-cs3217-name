@@ -12,19 +12,49 @@ protocol EstablishmentRootInteractorInput: EstablishmentRootViewControllerOutput
 }
 
 protocol EstablishmentRootInteractorOutput {
+    func present(estId: String)
+    func presentLogout()
 }
 
 final class EstablishmentRootInteractor {
-    let output: EstablishmentRootInteractorOutput
-    let worker: EstablishmentRootWorker
+    fileprivate struct Dependencies {
+        let authManager: AuthManager
+    }
+    private let deps: Dependencies
+
+    private let output: EstablishmentRootInteractorOutput
+    private let worker: EstablishmentRootWorker
+
+    private let estId: String
 
     // MARK: - Initializers
-    init(output: EstablishmentRootInteractorOutput, worker: EstablishmentRootWorker = EstablishmentRootWorker()) {
+    init(output: EstablishmentRootInteractorOutput,
+         estId: String,
+         injector: DependencyInjector = appDefaultInjector,
+         worker: EstablishmentRootWorker = EstablishmentRootWorker()) {
+        self.deps = injector.dependencies()
+        self.estId = estId
         self.output = output
         self.worker = worker
     }
 }
 
 // MARK: - EstablishmentRootInteractorInput
-extension EstablishmentRootInteractor: EstablishmentRootViewControllerOutput {
+extension EstablishmentRootInteractor: EstablishmentRootInteractorInput {
+    func loadEstablishment() {
+        output.present(estId: estId)
+    }
+
+    func logout() {
+        deps.authManager.logout()
+        output.presentLogout()
+    }
+}
+
+// MARK: - Dependency Injection
+
+extension DependencyInjector {
+    fileprivate func dependencies() -> EstablishmentRootInteractor.Dependencies {
+        return EstablishmentRootInteractor.Dependencies(authManager: authManager)
+    }
 }

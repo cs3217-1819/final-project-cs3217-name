@@ -12,8 +12,8 @@ protocol EstablishmentRootRouterProtocol {
     var viewController: EstablishmentRootViewController? { get }
 
     func navigateBack()
-    func stallListViewController() -> UIViewController
-    func establishmentSettingsViewController() -> UIViewController
+    func stallListViewController(estId: String) -> UIViewController
+    func establishmentSettingsViewController(estId: String) -> UIViewController
 }
 
 final class EstablishmentRootRouter {
@@ -32,12 +32,14 @@ extension EstablishmentRootRouter: EstablishmentRootRouterProtocol {
         viewController?.dismiss(animated: true)
     }
 
-    func stallListViewController() -> UIViewController {
+    func stallListViewController(estId: String) -> UIViewController {
+        // TODO: Pass estId into child
         let stallListVC = StallListViewController(isEstablishmentView: true, mediator: nil)
         return UINavigationController(rootViewController: stallListVC)
     }
 
-    func establishmentSettingsViewController() -> UIViewController {
+    func establishmentSettingsViewController(estId: String) -> UIViewController {
+        // TODO: Pass estId into child
         return UINavigationController(rootViewController: AdminSettingsViewController())
     }
 }

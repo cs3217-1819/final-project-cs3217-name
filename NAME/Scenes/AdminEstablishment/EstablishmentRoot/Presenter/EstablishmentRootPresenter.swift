@@ -12,7 +12,8 @@ protocol EstablishmentRootPresenterInput: EstablishmentRootInteractorOutput {
 }
 
 protocol EstablishmentRootPresenterOutput: class {
-
+    func display(estId: String)
+    func displayLogout()
 }
 
 final class EstablishmentRootPresenter {
@@ -26,5 +27,11 @@ final class EstablishmentRootPresenter {
 
 // MARK: - EstablishmentRootPresenterInput
 extension EstablishmentRootPresenter: EstablishmentRootPresenterInput {
+    func present(estId: String) {
+        output.display(estId: estId)
+    }
 
+    func presentLogout() {
+        output.displayLogout()
+    }
 }

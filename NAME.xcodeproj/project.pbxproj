@@ -151,6 +151,8 @@
 		FB13B711225E357A006ED487 /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B70A225E357A006ED487 /* OrderRouter.swift */; };
 		FB13B713225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B712225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift */; };
 		FB13B71522607DE0006ED487 /* OrderItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB13B71422607DE0006ED487 /* OrderItemDetailsView.swift */; };
+		FB4BE440226BA5070000CDC9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4BE43F226BA5070000CDC9 /* AuthManager.swift */; };
+		FB4BE442226BBDBE0000CDC9 /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4BE441226BBDBE0000CDC9 /* AccountType.swift */; };
 		FB519D6C224D4F4300BB5DE8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */; };
 		FB519D6D224D4F4300BB5DE8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */; };
 		FB519D6E224D4F4300BB5DE8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */; };
@@ -202,6 +204,8 @@
 		FB851505226B1CF200ED3F99 /* CustomAlertWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514FC226B1CF100ED3F99 /* CustomAlertWorker.swift */; };
 		FB851506226B1CF200ED3F99 /* CustomAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8514FE226B1CF100ED3F99 /* CustomAlertInteractor.swift */; };
 		FB851507226B1CF200ED3F99 /* CustomAlertRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB851500226B1CF100ED3F99 /* CustomAlertRouter.swift */; };
+		FB85150B226B64FF00ED3F99 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB85150A226B64FF00ED3F99 /* Account.swift */; };
+		FB85150E226B73D000ED3F99 /* AccessControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB85150D226B73D000ED3F99 /* AccessControl.swift */; };
 		FC149C9AFCE981B52FBFDF0B /* Pods_NAMEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AA1C1F9CAB0F0D1F80CA8C /* Pods_NAMEUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -380,6 +384,8 @@
 		FB13B70A225E357A006ED487 /* OrderRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
 		FB13B712225F6DB0006ED487 /* KitchenBacklogInteractorMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenBacklogInteractorMediator.swift; sourceTree = "<group>"; };
 		FB13B71422607DE0006ED487 /* OrderItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemDetailsView.swift; sourceTree = "<group>"; };
+		FB4BE43F226BA5070000CDC9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		FB4BE441226BBDBE0000CDC9 /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		FB519D5F224D4F4200BB5DE8 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FB519D61224D4F4200BB5DE8 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		FB519D63224D4F4200BB5DE8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +437,8 @@
 		FB8514FC226B1CF100ED3F99 /* CustomAlertWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertWorker.swift; sourceTree = "<group>"; };
 		FB8514FE226B1CF100ED3F99 /* CustomAlertInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertInteractor.swift; sourceTree = "<group>"; };
 		FB851500226B1CF100ED3F99 /* CustomAlertRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertRouter.swift; sourceTree = "<group>"; };
+		FB85150A226B64FF00ED3F99 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		FB85150D226B73D000ED3F99 /* AccessControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +475,7 @@
 				1F21BA03224923230089A1AD /* FixtureGenerator.swift */,
 				FB519D73224E25DD00BB5DE8 /* Config.swift */,
 				54D252DD224E10DD007BF235 /* StorageManager.swift */,
+				FB4BE43F226BA5070000CDC9 /* AuthManager.swift */,
 				54D252E0224E1D56007BF235 /* RealmStorageManager.swift */,
 				54D252E2224F5C44007BF235 /* DependencyInjector.swift */,
 				C6BA5901225D0987002011A2 /* Int+Extensions.swift */,
@@ -618,6 +627,7 @@
 		1FB2582B22492FCE0035399F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FB85150C226B6BD500ED3F99 /* Access Control */,
 				1F2A95DC224EE90B006703DE /* Bill */,
 				C6EC63ED224BA2D3003E4547 /* TimeCondition */,
 				1FB2582A2249293F0035399F /* PriceModifiables */,
@@ -1876,6 +1886,16 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		FB85150C226B6BD500ED3F99 /* Access Control */ = {
+			isa = PBXGroup;
+			children = (
+				FB85150A226B64FF00ED3F99 /* Account.swift */,
+				FB85150D226B73D000ED3F99 /* AccessControl.swift */,
+				FB4BE441226BBDBE0000CDC9 /* AccountType.swift */,
+			);
+			path = "Access Control";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2193,6 +2213,7 @@
 				FB519D70224D4F4300BB5DE8 /* LoginWorker.swift in Sources */,
 				540042012266194300847219 /* MenuDragHandlers.swift in Sources */,
 				FB519DD9224F5A9100BB5DE8 /* KitchenBacklogCell.swift in Sources */,
+				FB4BE440226BA5070000CDC9 /* AuthManager.swift in Sources */,
 				FB519DD9224F5A9100BB5DE8 /* KitchenBacklogCell.swift in Sources */,
 				C691A5AD225BB6310061CE97 /* MenuDetailRouter.swift in Sources */,
 				C691A5D8225BB7F20061CE97 /* MenuInfoConfigurator.swift in Sources */,
@@ -2258,14 +2279,17 @@
 				5441AC3C2248C4480018A293 /* SplashViewController.swift in Sources */,
 				FB519DBD224F440700BB5DE8 /* AdminSettingsRouter.swift in Sources */,
 				C691A5DA225BB7F20061CE97 /* MenuInfoInteractor.swift in Sources */,
+				FB4BE442226BBDBE0000CDC9 /* AccountType.swift in Sources */,
 				54D252DC224CBD2F007BF235 /* MenuRouter.swift in Sources */,
 				FB519D8A224E3A3200BB5DE8 /* StallRootConfigurator.swift in Sources */,
+				FB85150B226B64FF00ED3F99 /* Account.swift in Sources */,
 				FB519D89224E3A3200BB5DE8 /* StallRootViewController.swift in Sources */,
 				FB519D74224E25DD00BB5DE8 /* Config.swift in Sources */,
 				FB519D8B224E3A3200BB5DE8 /* StallRootWorker.swift in Sources */,
 				FB519DF7224FF8B300BB5DE8 /* OrderItemViewCell.swift in Sources */,
 				5441AC3D2248C4480018A293 /* SplashConfigurator.swift in Sources */,
 				1F76302A224D8C23001E8E5C /* OrderConfirmationRouter.swift in Sources */,
+				FB85150E226B73D000ED3F99 /* AccessControl.swift in Sources */,
 				C691A5C1225BB6480061CE97 /* MenuAddonsWorker.swift in Sources */,
 				C61B4DD522617DA40076F60C /* MenuAddonsTableViewHeaderView.swift in Sources */,
 				1FB25824224929180035399F /* OrderLifecycle.swift in Sources */,

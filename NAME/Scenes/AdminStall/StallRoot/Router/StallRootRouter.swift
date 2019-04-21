@@ -12,9 +12,9 @@ protocol StallRootRouterProtocol {
     var viewController: StallRootViewController? { get }
 
     func navigateBack()
-    func menuViewController() -> UIViewController
-    func kitchenViewController() -> UIViewController
-    func stallSettingsViewController() -> UIViewController
+    func menuViewController(stallId: String) -> UIViewController
+    func kitchenViewController(stallId: String) -> UIViewController
+    func stallSettingsViewController(stallId: String) -> UIViewController
 }
 
 final class StallRootRouter {
@@ -33,15 +33,18 @@ extension StallRootRouter: StallRootRouterProtocol {
         viewController?.dismiss(animated: true)
     }
 
-    func menuViewController() -> UIViewController {
+    func menuViewController(stallId: String) -> UIViewController {
+        // TODO: Pass stallId into child
         return UINavigationController(rootViewController: MenuViewController(mediator: nil))
     }
 
-    func kitchenViewController() -> UIViewController {
+    func kitchenViewController(stallId: String) -> UIViewController {
+        // TODO: Pass stallId into child
         return KitchenBacklogViewController()
     }
 
-    func stallSettingsViewController() -> UIViewController {
+    func stallSettingsViewController(stallId: String) -> UIViewController {
+        // TODO: Pass stallId into child
         return AdminSettingsViewController()
     }
 }

@@ -16,11 +16,12 @@ final class LoginConfigurator {
 
     // MARK: - Configuration
 
-    func configure(viewController: LoginViewController) {
+    func configure(viewController: LoginViewController,
+                   injector: DependencyInjector = appDefaultInjector) {
 
         let router = LoginRouter(viewController: viewController)
         let presenter = LoginPresenter(output: viewController)
-        let interactor = LoginInteractor(output: presenter)
+        let interactor = LoginInteractor(output: presenter, injector: injector)
 
         viewController.output = interactor
         viewController.router = router

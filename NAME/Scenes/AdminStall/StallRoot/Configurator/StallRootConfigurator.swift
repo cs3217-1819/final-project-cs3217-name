@@ -13,10 +13,14 @@ final class StallRootConfigurator {
     static let shared: StallRootConfigurator = StallRootConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: StallRootViewController) {
+    func configure(viewController: StallRootViewController,
+                   stallId: String,
+                   injector: DependencyInjector = appDefaultInjector) {
         let router = StallRootRouter(viewController: viewController)
         let presenter = StallRootPresenter(output: viewController)
-        let interactor = StallRootInteractor(output: presenter)
+        let interactor = StallRootInteractor(output: presenter,
+                                             stallId: stallId,
+                                             injector: injector)
 
         viewController.output = interactor
         viewController.router = router

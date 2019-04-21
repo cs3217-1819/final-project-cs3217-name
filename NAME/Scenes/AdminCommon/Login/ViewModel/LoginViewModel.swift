@@ -10,8 +10,7 @@ import UIKit
 
 struct LoginViewModel {
     let cancelButtonTitle = LoginConstants.cancelButtonTitle
-    let stallLoginButtonTitle = LoginConstants.stallLoginButtonTitle
-    let establishmentLoginButtonTitle = LoginConstants.establishmentLoginButtonTitle
+    let loginButtonTitle = LoginConstants.loginButtonTitle
     let usernamePlaceholder = LoginConstants.usernamePlaceholder
     let passwordPlaceholder = LoginConstants.passwordPlaceholder
 }

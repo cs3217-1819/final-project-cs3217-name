@@ -29,4 +29,6 @@ protocol StorageManager {
     func getMenuDisplayable(id: String) -> MenuDisplayable?
 
     func getQueueNumber() -> Int
+
+    func getAccount(username: String) -> Account?
 }

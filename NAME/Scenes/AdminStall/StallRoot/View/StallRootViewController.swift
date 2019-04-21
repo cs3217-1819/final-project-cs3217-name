@@ -9,10 +9,11 @@
 import UIKit
 
 protocol StallRootViewControllerInput: StallRootPresenterOutput {
-
 }
 
 protocol StallRootViewControllerOutput {
+    func loadStall()
+    func logout()
 }
 
 final class StallRootViewController: UITabBarController {
@@ -20,21 +21,19 @@ final class StallRootViewController: UITabBarController {
     var router: StallRootRouterProtocol?
 
     // MARK: - Initializers
-    init(configurator: StallRootConfigurator = StallRootConfigurator.shared) {
+    init(stallId: String, configurator: StallRootConfigurator = StallRootConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator)
+        configure(configurator: configurator, stallId: stallId)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func configure(configurator: StallRootConfigurator = StallRootConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
-        setUpTabs()
+    private func configure(configurator: StallRootConfigurator = StallRootConfigurator.shared,
+                           stallId: String) {
+        configurator.configure(viewController: self, stallId: stallId)
+        output?.loadStall()
     }
 
     // MARK: - View lifecycle
@@ -42,19 +41,19 @@ final class StallRootViewController: UITabBarController {
         super.viewDidLoad()
     }
 
-    private func setUpTabs() {
+    private func setUpTabs(stallId: String) {
         guard let router = router else {
             print("Router required to get child VCs")
             return
         }
 
-        let menuVC = router.menuViewController()
+        let menuVC = router.menuViewController(stallId: stallId)
         menuVC.title = StallRootConstants.menuTabBarTitle
 
-        let kitchenVC = router.kitchenViewController()
+        let kitchenVC = router.kitchenViewController(stallId: stallId)
         kitchenVC.title = StallRootConstants.kitchenTabBarTitle
 
-        let settingsVC = router.stallSettingsViewController()
+        let settingsVC = router.stallSettingsViewController(stallId: stallId)
         settingsVC.title = StallRootConstants.settingsTabBarTitle
 
         // Dummy view controller that should never be displayed
@@ -67,17 +66,18 @@ final class StallRootViewController: UITabBarController {
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == tabBar.items?.last {
-            router?.navigateBack()
+            output?.logout()
         }
     }
 }
 
 // MARK: - StallRootPresenterOutput
 extension StallRootViewController: StallRootViewControllerInput {
-}
+    func display(stallId: String) {
+        setUpTabs(stallId: stallId)
+    }
 
-extension StallRootViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return self.init()
+    func displayLogout() {
+        router?.navigateBack()
     }
 }

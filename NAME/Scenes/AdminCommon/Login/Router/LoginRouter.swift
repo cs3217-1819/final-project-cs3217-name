@@ -12,8 +12,8 @@ protocol LoginRouterProtocol {
     var viewController: LoginViewController? { get }
 
     func navigateBack()
-    func navigateToStallView()
-    func navigateToEstablishmentView()
+    func navigateToStallView(stallId: String)
+    func navigateToEstablishmentView(estId: String)
 }
 
 final class LoginRouter {
@@ -31,13 +31,13 @@ extension LoginRouter: LoginRouterProtocol {
         viewController?.dismiss(animated: true)
     }
 
-    func navigateToStallView() {
-        let stallRootVC = StallRootViewController()
+    func navigateToStallView(stallId: String) {
+        let stallRootVC = StallRootViewController(stallId: stallId)
         viewController?.present(stallRootVC, animated: true)
     }
 
-    func navigateToEstablishmentView() {
-        let establishmentRootVC = EstablishmentRootViewController()
+    func navigateToEstablishmentView(estId: String) {
+        let establishmentRootVC = EstablishmentRootViewController(estId: estId)
         viewController?.present(establishmentRootVC, animated: true)
     }
 }
