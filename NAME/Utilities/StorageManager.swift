@@ -21,6 +21,9 @@ protocol StorageManager {
     func delete<T: Storable>(_ object: T)
 
     func allEstablishments() -> [Establishment]
+    func getEstablishment(id: String) -> Establishment?
+
+    func getStall(id: String) -> Stall?
 
     func allOrders() -> [Order]
     func getOrder(id: String) -> Order?

@@ -12,12 +12,14 @@ final class BrowseConfigurator {
     static let shared: BrowseConfigurator = BrowseConfigurator()
 
     func configure(toParentMediator: BrowseToParentOutput?,
-                   viewController: BrowseViewController) {
+                   viewController: BrowseViewController,
+                   injector: DependencyInjector = appDefaultInjector) {
         let toChildrenMediator = BrowseIntersceneMediator()
         let router = BrowseRouter(viewController: viewController,
                                   mediator: toChildrenMediator)
         let presenter = BrowsePresenter(output: viewController)
         let interactor = BrowseInteractor(output: presenter,
+                                          injector: injector,
                                           toParentMediator: toParentMediator,
                                           toChildrenMediator: toChildrenMediator)
         toParentMediator?.browseInteractor = interactor
@@ -25,11 +27,6 @@ final class BrowseConfigurator {
 
         viewController.output = interactor
         viewController.router = router
-
-        viewController.viewControllers = [
-            router.stallListViewController(),
-            router.menuViewController()
-        ]
 
         viewController.restorationIdentifier = String(describing: type(of: self))
     }

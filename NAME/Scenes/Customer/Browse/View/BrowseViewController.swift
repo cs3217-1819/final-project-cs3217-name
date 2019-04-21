@@ -12,6 +12,7 @@ protocol BrowseViewControllerInput: BrowsePresenterOutput {
 }
 
 protocol BrowseViewControllerOutput {
+    func reloadChildren()
 }
 
 final class BrowseViewController: UISplitViewController {
@@ -42,10 +43,22 @@ final class BrowseViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        output?.reloadChildren()
     }
 }
 
 // MARK: - BrowsePresenterOutput
 
 extension BrowseViewController: BrowseViewControllerInput {
+    func displayChildren(estId: String) {
+        guard let router = router else {
+            print("Router required to get child VCs")
+            return
+        }
+
+        viewControllers = [
+            router.stallListViewController(withId: estId),
+            router.menuViewController()
+        ]
+    }
 }

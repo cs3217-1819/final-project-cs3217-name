@@ -33,8 +33,7 @@ extension EstablishmentRootRouter: EstablishmentRootRouterProtocol {
     }
 
     func stallListViewController(estId: String) -> UIViewController {
-        // TODO: Pass estId into child
-        let stallListVC = StallListViewController(isEstablishmentView: true, mediator: nil)
+        let stallListVC = StallListViewController(estId: estId, isEstablishmentView: true, mediator: nil)
         return UINavigationController(rootViewController: stallListVC)
     }
 

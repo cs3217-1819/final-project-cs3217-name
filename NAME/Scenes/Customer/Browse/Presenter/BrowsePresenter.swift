@@ -12,6 +12,7 @@ protocol BrowsePresenterInput: BrowseInteractorOutput {
 }
 
 protocol BrowsePresenterOutput: class {
+    func displayChildren(estId: String)
 }
 
 final class BrowsePresenter {
@@ -25,4 +26,7 @@ final class BrowsePresenter {
 // MARK: - BrowsePresenterInput
 
 extension BrowsePresenter: BrowsePresenterInput {
+    func presentChildren(withEstId id: String) {
+        output.displayChildren(estId: id)
+    }
 }

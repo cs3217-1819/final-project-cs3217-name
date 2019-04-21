@@ -49,12 +49,13 @@ final class MenuViewController: UICollectionViewController {
 
     // MARK: - Initializers
 
-    init(mediator: MenuToParentOutput?,
+    init(stallId: String?,
+         mediator: MenuToParentOutput?,
          configurator: MenuConfigurator = MenuConfigurator.shared) {
 
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
 
-        configure(mediator: mediator, configurator: configurator)
+        configure(stallId: stallId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -63,9 +64,10 @@ final class MenuViewController: UICollectionViewController {
 
     // MARK: - Configurator
 
-    private func configure(mediator: MenuToParentOutput?,
+    private func configure(stallId: String?,
+                           mediator: MenuToParentOutput?,
                            configurator: MenuConfigurator = MenuConfigurator.shared) {
-        configurator.configure(viewController: self, toParentMediator: mediator)
+        configurator.configure(stallId: stallId, viewController: self, toParentMediator: mediator)
 
         // Disable content behind nav bar to allow
         // collectionView(_:didEndDisplayingSupplementaryView:forElementOfKind:at:)

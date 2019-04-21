@@ -90,4 +90,18 @@ class RealmStorageManager: StorageManager {
         return realm.objects(Account.self).filter(predicate).first
         // swiftlint:enable first_where
     }
+
+    func getEstablishment(id: String) -> Establishment? {
+        let predicate = NSPredicate(format: "id = %@", id)
+        // swiftlint:disable first_where
+        return realm.objects(Establishment.self).filter(predicate).first
+        // swiftlint:enable first_where
+    }
+
+    func getStall(id: String) -> Stall? {
+        let predicate = NSPredicate(format: "id = %@", id)
+        // swiftlint:disable first_where
+        return realm.objects(Stall.self).filter(predicate).first
+        // swiftlint:enable first_where
+    }
 }

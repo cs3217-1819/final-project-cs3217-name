@@ -93,12 +93,13 @@ final class StallListViewController: UICollectionViewController {
 
     // MARK: - Initializers
 
-    init(isEstablishmentView: Bool,
+    init(estId: String,
+         isEstablishmentView: Bool,
          mediator: StallListToParentOutput?,
          configurator: StallListConfigurator = StallListConfigurator.shared) {
         self.isEstablishmentView = isEstablishmentView
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        configure(mediator: mediator, configurator: configurator)
+        configure(estId: estId, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -108,9 +109,10 @@ final class StallListViewController: UICollectionViewController {
 
     // MARK: - Configurator
 
-    private func configure(mediator: StallListToParentOutput?,
+    private func configure(estId: String,
+                           mediator: StallListToParentOutput?,
                            configurator: StallListConfigurator = StallListConfigurator.shared) {
-        configurator.configure(viewController: self, toParentMediator: mediator)
+        configurator.configure(estId: estId, viewController: self, toParentMediator: mediator)
 
         if isEstablishmentView {
             collectionView

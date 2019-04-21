@@ -45,7 +45,8 @@ final class MenuInteractor: MenuFromParentInput {
 
     // MARK: - Initializers
 
-    init(output: MenuInteractorOutput,
+    init(stallId: String?,
+         output: MenuInteractorOutput,
          injector: DependencyInjector,
          toParentMediator: MenuToParentOutput?,
          worker: MenuWorker = MenuWorker()) {
@@ -53,6 +54,15 @@ final class MenuInteractor: MenuFromParentInput {
         self.output = output
         self.worker = worker
         self.toParentMediator = toParentMediator
+
+        setStall(withId: stallId)
+    }
+
+    private func setStall(withId id: String?) {
+        guard let id = id else {
+            return
+        }
+        stall = deps.storageManager.getStall(id: id)
     }
 }
 

@@ -40,14 +40,18 @@ final class StallListInteractor: StallListFromParentInput {
     private let worker: StallListWorker
     private weak var toParentMediator: StallListToParentOutput?
 
+    private let estId: String
+
     private var loadedStalls: [Stall] = []
 
     // MARK: - Initializers
 
-    init(output: StallListInteractorOutput,
+    init(estId: String,
+         output: StallListInteractorOutput,
          injector: DependencyInjector,
          toParentMediator: StallListToParentOutput?,
          worker: StallListWorker = StallListWorker()) {
+        self.estId = estId
         self.deps = injector.dependencies()
         self.output = output
         self.worker = worker
@@ -59,8 +63,7 @@ final class StallListInteractor: StallListFromParentInput {
 
 extension StallListInteractor: StallListViewControllerOutput {
     private var currentEstablishment: Establishment? {
-        // TODO: Filter stalls by actual current establishment
-        return deps.storageManager.allEstablishments().first
+        return deps.storageManager.getEstablishment(id: estId)
     }
 
     func reloadEstablishmentInfo() {

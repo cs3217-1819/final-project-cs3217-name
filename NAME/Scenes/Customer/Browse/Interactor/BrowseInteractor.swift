@@ -30,19 +30,27 @@ protocol BrowseInteractorInput: BrowseViewControllerOutput {
 }
 
 protocol BrowseInteractorOutput {
+    func presentChildren(withEstId id: String)
 }
 
 final class BrowseInteractor {
+    fileprivate struct Dependencies {
+        let storageManager: StorageManager
+    }
+    private let deps: Dependencies
+
     let output: BrowseInteractorOutput
     let worker: BrowseWorker
     private weak var toParentMediator: BrowseToParentOutput?
     private let toChildrenMediator: BrowseIntersceneMediator
 
     init(output: BrowseInteractorOutput,
+         injector: DependencyInjector,
          toParentMediator: BrowseToParentOutput?,
          toChildrenMediator: BrowseIntersceneMediator,
          worker: BrowseWorker = BrowseWorker()) {
 
+        deps = injector.dependencies()
         self.output = output
         self.toParentMediator = toParentMediator
         self.toChildrenMediator = toChildrenMediator
@@ -52,6 +60,13 @@ final class BrowseInteractor {
 
 // MARK: - BrowseInteractorInput
 extension BrowseInteractor: BrowseViewControllerOutput {
+    func reloadChildren() {
+        // Hackish, but when in customer mode, show the first establishment
+        guard let currentEst = deps.storageManager.allEstablishments().first else {
+            return
+        }
+        output.presentChildren(withEstId: currentEst.id)
+    }
 }
 
 // MARK: - BrowseFromParentInput
@@ -62,5 +77,12 @@ extension BrowseInteractor: BrowseFromParentInput {
 extension BrowseInteractor: BrowseFromChildrenInput {
     func requestSessionEnd() {
         toParentMediator?.requestSessionEnd()
+    }
+}
+
+// MARK: - Dependency injection
+extension DependencyInjector {
+    fileprivate func dependencies() -> BrowseInteractor.Dependencies {
+        return BrowseInteractor.Dependencies(storageManager: storageManager)
     }
 }

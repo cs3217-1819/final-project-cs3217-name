@@ -11,7 +11,7 @@ import UIKit
 protocol BrowseRouterProtocol {
     var viewController: BrowseViewController? { get }
 
-    func stallListViewController() -> UIViewController
+    func stallListViewController(withId id: String) -> UIViewController
     func menuViewController() -> UIViewController
 }
 
@@ -31,12 +31,14 @@ final class BrowseRouter {
 // MARK: - BrowseRouterProtocol
 
 extension BrowseRouter: BrowseRouterProtocol {
-    func stallListViewController() -> UIViewController {
-        return UINavigationController(rootViewController: StallListViewController(isEstablishmentView: false,
+    func stallListViewController(withId id: String) -> UIViewController {
+        return UINavigationController(rootViewController: StallListViewController(estId: id,
+                                                                                  isEstablishmentView: false,
                                                                                   mediator: mediator))
     }
 
     func menuViewController() -> UIViewController {
-        return UINavigationController(rootViewController: MenuViewController(mediator: mediator))
+        return UINavigationController(rootViewController: MenuViewController(stallId: nil,
+                                                                             mediator: mediator))
     }
 }

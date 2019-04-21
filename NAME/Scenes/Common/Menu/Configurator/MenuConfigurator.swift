@@ -11,14 +11,16 @@ import UIKit
 final class MenuConfigurator {
     static let shared: MenuConfigurator = MenuConfigurator()
 
-    func configure(viewController: MenuViewController,
+    func configure(stallId: String?,
+                   viewController: MenuViewController,
                    toParentMediator: MenuToParentOutput?,
                    injector: DependencyInjector = appDefaultInjector) {
 
         let router = MenuRouter(viewController: viewController)
         let presenter = MenuPresenter(output: viewController)
 
-        let interactor = MenuInteractor(output: presenter,
+        let interactor = MenuInteractor(stallId: stallId,
+                                        output: presenter,
                                         injector: injector,
                                         toParentMediator: toParentMediator)
         toParentMediator?.menuInteractor = interactor
