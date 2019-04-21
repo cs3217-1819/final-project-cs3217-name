@@ -21,19 +21,23 @@ final class SplashViewController: UIViewController {
     var output: SplashViewControllerOutput?
     var router: SplashRouterProtocol?
 
-    lazy var startButton: UIButton = {
+    private lazy var startButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.Custom.darkPurple, for: .normal)
         button.addTarget(self, action: #selector(handleStartPress(sender:)), for: .touchUpInside)
         return button
     }()
 
-    lazy var tapToLoginArea: UIView = {
+    private lazy var tapRecognizer: UITapGestureRecognizer = {
+        let result = UITapGestureRecognizer(target: self,
+                                            action: #selector(handleTapToLogin(sender:)))
+        result.numberOfTapsRequired = SplashConstants.numTapsToLoginScreen
+        return result
+    }()
+
+    private lazy var tapToLoginArea: UIView = {
         let tapArea = UIView()
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapToLogin(sender:)))
-        tapRecognizer.numberOfTapsRequired = SplashConstants.numTapsToLoginScreen
-        tapArea.addGestureRecognizer(tapRecognizer)
-        tapArea.backgroundColor = .white
+        tapArea.backgroundColor = .clear
         return tapArea
     }()
 
@@ -62,6 +66,7 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addGestureRecognizer(tapRecognizer)
         view.backgroundColor = UIColor.Custom.palePurple
         view.addSubview(startButton)
         view.addSubview(tapToLoginArea)
@@ -85,12 +90,16 @@ final class SplashViewController: UIViewController {
     // MARK: -
 
     @objc
-    func handleStartPress(sender: Any) {
+    func handleStartPress(sender: UIButton) {
         router?.navigateToCustomerMenu()
     }
 
     @objc
-    func handleTapToLogin(sender: Any) {
+    func handleTapToLogin(sender: UITapGestureRecognizer) {
+        let location = sender.location(in: tapToLoginArea)
+        guard tapToLoginArea.bounds.contains(location) else {
+            return
+        }
         router?.navigateToLoginScreen()
     }
 }
