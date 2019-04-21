@@ -13,6 +13,7 @@ class Establishment: Object {
 
     let stalls = LinkingObjects(fromType: Stall.self, property: "establishment")
     let discounts = List<Discount>()
+    let surcharges = List<Surcharge>()
 
     // MARK: - Initialisers
 
