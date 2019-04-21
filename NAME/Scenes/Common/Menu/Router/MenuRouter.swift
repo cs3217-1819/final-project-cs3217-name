@@ -12,7 +12,7 @@ protocol MenuRouterProtocol {
 
     var viewController: MenuViewController? { get }
 
-    func navigateToMenuDetail(menuId: String)
+    func navigateToMenuDetail(menuId: String, isEditable: Bool)
 }
 
 final class MenuRouter {
@@ -29,8 +29,8 @@ final class MenuRouter {
 
 extension MenuRouter: MenuRouterProtocol {
     // MARK: - Navigation
-    func navigateToMenuDetail(menuId: String) {
-        let menuDetailViewController = MenuDetailViewController(menuId: menuId, isEditable: true)
+    func navigateToMenuDetail(menuId: String, isEditable: Bool) {
+        let menuDetailViewController = MenuDetailViewController(menuId: menuId, isEditable: isEditable)
         viewController?.present(menuDetailViewController, animated: true)
     }
 }

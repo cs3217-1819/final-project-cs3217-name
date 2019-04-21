@@ -12,6 +12,7 @@ protocol MenuPresenterInput: MenuInteractorOutput {
 protocol MenuPresenterOutput: class {
     func displayMenu(viewModel: MenuViewModel)
     func display(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String)
+    func displayDetail(forMenuItemId id: String, isEditable: Bool)
 }
 
 final class MenuPresenter {
@@ -60,5 +61,9 @@ extension MenuPresenter: MenuPresenterInput {
 
     func present(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String) {
         output.display(actions: actions, forCategoryAt: index, name: name)
+    }
+
+    func presentDetail(forMenuItemId id: String, isEditable: Bool) {
+        output.displayDetail(forMenuItemId: id, isEditable: isEditable)
     }
 }

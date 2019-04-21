@@ -39,6 +39,7 @@ extension BrowseRouter: BrowseRouterProtocol {
 
     func menuViewController() -> UIViewController {
         return UINavigationController(rootViewController: MenuViewController(stallId: nil,
+                                                                             isEditable: false,
                                                                              mediator: mediator))
     }
 }

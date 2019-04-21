@@ -20,6 +20,7 @@ protocol MenuViewControllerOutput {
     func rename(categoryAt index: Int, to name: String)
     func remove(categoryAt index: Int)
 
+    func select(menuItemId: String)
     func reload()
 }
 
@@ -56,12 +57,13 @@ final class MenuViewController: UICollectionViewController {
     // MARK: - Initializers
 
     init(stallId: String?,
+         isEditable: Bool,
          mediator: MenuToParentOutput?,
          configurator: MenuConfigurator = MenuConfigurator.shared) {
 
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
 
-        configure(stallId: stallId, mediator: mediator, configurator: configurator)
+        configure(stallId: stallId, isEditable: isEditable, mediator: mediator, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,9 +73,13 @@ final class MenuViewController: UICollectionViewController {
     // MARK: - Configurator
 
     private func configure(stallId: String?,
+                           isEditable: Bool,
                            mediator: MenuToParentOutput?,
                            configurator: MenuConfigurator = MenuConfigurator.shared) {
-        configurator.configure(stallId: stallId, viewController: self, toParentMediator: mediator)
+        configurator.configure(stallId: stallId,
+                               isEditable: isEditable,
+                               viewController: self,
+                               toParentMediator: mediator)
 
         // Disable content behind nav bar to allow
         // collectionView(_:didEndDisplayingSupplementaryView:forElementOfKind:at:)
@@ -87,7 +93,10 @@ final class MenuViewController: UICollectionViewController {
                                 withReuseIdentifier: MenuViewController.headerIdentifier)
         collectionView.backgroundColor = UIColor.Custom.paleGray
         collectionView.alwaysBounceVertical = true
-        collectionView.dragDelegate = dragHandler
+
+        if isEditable {
+            collectionView.dragDelegate = dragHandler
+        }
 
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 150, height: 100)
@@ -127,7 +136,8 @@ extension MenuViewController {
             let categories = collectionViewDataSource?.categoryViewModels else {
                 return
         }
-        router?.navigateToMenuDetail(menuId: categories[indexPath.section].items[indexPath.item].id)
+        let menuId = categories[indexPath.section].items[indexPath.item].id
+        output?.select(menuItemId: menuId)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -222,6 +232,10 @@ extension MenuViewController: MenuViewControllerInput {
         sheet.popoverPresentationController?.sourceView = categorySelector.selectedButton
         present(sheet, animated: true)
     }
+
+    func displayDetail(forMenuItemId id: String, isEditable: Bool) {
+        router?.navigateToMenuDetail(menuId: id, isEditable: isEditable)
+    }
 }
 
 // MARK: - CategorySelectorDelegate
@@ -274,7 +288,6 @@ extension MenuViewController: MenuDragHandlerDelegate {
         categorySelector.selectedIndex = index
         categorySelector.isRemoving = true
         categorySelector.isSelectionEnabled = false
-        // TODO: Disable stall list
     }
 
     func dragHandlerDidEndDragSession(_ handler: MenuDragHandler) {
@@ -282,7 +295,6 @@ extension MenuViewController: MenuDragHandlerDelegate {
         collectionViewDataSource?.unfreezeSection()
         categorySelector.isRemoving = false
         categorySelector.isSelectionEnabled = true
-        // TODO: Enable stall list
     }
 }
 

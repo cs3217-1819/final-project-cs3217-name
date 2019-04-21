@@ -26,6 +26,7 @@ protocol MenuInteractorInput: MenuViewControllerOutput {
 protocol MenuInteractorOutput {
     func present(stall: Stall?)
     func present(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String)
+    func presentDetail(forMenuItemId id: String, isEditable: Bool)
 }
 
 final class MenuInteractor: MenuFromParentInput {
@@ -44,14 +45,18 @@ final class MenuInteractor: MenuFromParentInput {
         }
     }
 
+    let isEditable: Bool
+
     // MARK: - Initializers
 
     init(stallId: String?,
+         isEditable: Bool,
          output: MenuInteractorOutput,
          injector: DependencyInjector,
          toParentMediator: MenuToParentOutput?,
          worker: MenuWorker = MenuWorker()) {
         self.deps = injector.dependencies()
+        self.isEditable = isEditable
         self.output = output
         self.worker = worker
         self.toParentMediator = toParentMediator
@@ -72,7 +77,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     // MARK: Menu item actions
 
     func add(menuItemIds: [String], toCategory categoryIndex: Int) {
-        guard let menu = stall?.menu else {
+        guard let menu = stall?.menu, isEditable else {
             return
         }
 
@@ -84,7 +89,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     }
 
     func remove(menuItemIds: [String], fromCategory categoryIndex: Int) {
-        guard let menu = stall?.menu else {
+        guard let menu = stall?.menu, isEditable else {
             return
         }
         // TODO handle error
@@ -97,7 +102,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     // MARK: Category actions
 
     func getLegalActions(forCategoryAt index: Int) {
-        guard let category = stall?.menu?.categories[index] else {
+        guard let category = stall?.menu?.categories[index], isEditable else {
             return
         }
 
@@ -116,7 +121,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     }
 
     func insert(newCategoryName: String, besideCategoryAt index: Int, onLeft: Bool) {
-        guard let menu = stall?.menu else {
+        guard let menu = stall?.menu, isEditable else {
             return
         }
         // TODO handle error
@@ -130,7 +135,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     }
 
     func rename(categoryAt index: Int, to name: String) {
-        guard let category = stall?.menu?.categories[index] else {
+        guard let category = stall?.menu?.categories[index], isEditable else {
             return
         }
         // TODO handle error
@@ -141,7 +146,7 @@ extension MenuInteractor: MenuViewControllerOutput {
     }
 
     func remove(categoryAt index: Int) {
-        guard let menu = stall?.menu else {
+        guard let menu = stall?.menu, isEditable else {
             return
         }
         // TODO handle error
@@ -151,7 +156,11 @@ extension MenuInteractor: MenuViewControllerOutput {
         reload()
     }
 
-    // MARK: Reload
+    // MARK: Misc
+
+    func select(menuItemId: String) {
+        output.presentDetail(forMenuItemId: menuItemId, isEditable: isEditable)
+    }
 
     func reload() {
         output.present(stall: stall)

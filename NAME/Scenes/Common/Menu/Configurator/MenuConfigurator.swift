@@ -12,6 +12,7 @@ final class MenuConfigurator {
     static let shared: MenuConfigurator = MenuConfigurator()
 
     func configure(stallId: String?,
+                   isEditable: Bool,
                    viewController: MenuViewController,
                    toParentMediator: MenuToParentOutput?,
                    injector: DependencyInjector = appDefaultInjector) {
@@ -20,6 +21,7 @@ final class MenuConfigurator {
         let presenter = MenuPresenter(output: viewController)
 
         let interactor = MenuInteractor(stallId: stallId,
+                                        isEditable: isEditable,
                                         output: presenter,
                                         injector: injector,
                                         toParentMediator: toParentMediator)

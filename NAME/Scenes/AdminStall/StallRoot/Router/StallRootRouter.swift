@@ -34,7 +34,8 @@ extension StallRootRouter: StallRootRouterProtocol {
     }
 
     func menuViewController(stallId: String) -> UIViewController {
-        return UINavigationController(rootViewController: MenuViewController(stallId: stallId, mediator: nil))
+        let menuVC = MenuViewController(stallId: stallId, isEditable: true, mediator: nil)
+        return UINavigationController(rootViewController: menuVC)
     }
 
     func kitchenViewController(stallId: String) -> UIViewController {
