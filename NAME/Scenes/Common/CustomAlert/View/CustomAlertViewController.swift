@@ -35,7 +35,7 @@ final class CustomAlertViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: OrderConstants.orderItemTitleFontSize)
+        label.font = .boldSystemFont(ofSize: CustomAlertConstants.titleFontSize)
         label.textColor = UIColor.Custom.deepPurple
         label.textAlignment = .left
         return label

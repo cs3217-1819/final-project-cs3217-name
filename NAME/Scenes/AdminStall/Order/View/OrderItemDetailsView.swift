@@ -14,7 +14,7 @@ class OrderItemDetailsView: UIView {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: CustomAlertConstants.titleFontSize)
+        label.font = .boldSystemFont(ofSize: OrderConstants.orderItemTitleFontSize)
         label.textAlignment = .left
         return label
     }()
