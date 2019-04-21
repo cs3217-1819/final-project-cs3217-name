@@ -76,7 +76,7 @@ final class MenuAddonsViewController: UIViewController {
     }()
 
     private lazy var footerView: MenuAddonsFooterView = {
-        let result = MenuAddonsFooterView()
+        let result = MenuAddonsFooterView(isEditable: isEditable)
         result.delegate = self
         return result
     }()

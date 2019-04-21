@@ -60,10 +60,11 @@ final class MenuAddonsFooterView: UIView {
         }
     }
 
-    init() {
+    init(isEditable: Bool) {
         super.init(frame: .zero)
 
         backgroundColor = MenuAddonsConstants.backgroundColor
+        addButton.isHidden = isEditable
         addSubviews()
         configureConstraints()
     }
