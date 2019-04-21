@@ -14,11 +14,11 @@ class TestStorageManager: StorageManager {
     func getEstablishment(id: String) -> Establishment? {
         return nil
     }
-    
+
     func getStall(id: String) -> Stall? {
         return nil
     }
-    
+
     func writeTransaction(_ block: ((StorageManager) throws -> Void)) throws {
         try block(self)
     }

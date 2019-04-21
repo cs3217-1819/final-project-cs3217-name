@@ -64,8 +64,19 @@ class MenuAddonsCollectionViewDataSourceDelegate: NSObject, UICollectionViewData
         return isReorderable
     }
 
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        moveItemAt sourceIndexPath: IndexPath,
+                        to destinationIndexPath: IndexPath) {
         delegate?.moveValue(section: section, fromItem: sourceIndexPath.item, toItem: destinationIndexPath.item)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,
+                        toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+        guard proposedIndexPath.item < choices.count else {
+            return IndexPath(item: choices.count - 1, section: 0)
+        }
+        return proposedIndexPath
     }
 }
 
