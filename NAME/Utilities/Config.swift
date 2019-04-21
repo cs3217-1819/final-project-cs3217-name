@@ -223,6 +223,9 @@ enum MenuInfoConstants {
 
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
+    static let deleteConfirmationTitle = "Delete"
+    static let deleteConfirmationMessage = "Are you sure you want to delete %@?"
+    static let deleteActionTitle = "Delete"
     static let featureComingSoon = "Feature coming in version 2!"
     static let reorderUp = "▲"
     static let reorderDown = "▼"

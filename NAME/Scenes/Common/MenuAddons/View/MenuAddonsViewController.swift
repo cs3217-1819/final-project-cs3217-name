@@ -24,6 +24,7 @@ protocol MenuAddonsViewControllerOutput {
     func reorderUp(section: Int)
     func reorderDown(section: Int)
     func moveValue(section: Int, fromItem: Int, toItem: Int)
+    func deleteValue(section: Int, item: Int)
 }
 
 protocol MenuAddonsTableViewCellProvider: class {
@@ -36,6 +37,7 @@ protocol MenuAddonsTableViewCellDelegate: class {
     func addCellDidTap(section: Int)
     func addOptionDidTap(sender: UIButton)
     func moveValue(section: Int, fromItem: Int, toItem: Int)
+    func deleteValue(section: Int, item: Int, title: String)
 }
 
 final class MenuAddonsViewController: UIViewController {
@@ -239,6 +241,21 @@ extension MenuAddonsViewController: MenuAddonsFooterViewDelegate {
 
 // MARK: - MenuAddonsTableViewCellDelegate
 extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
+    func deleteValue(section: Int, item: Int, title: String) {
+        let message = String(format: MenuAddonsConstants.deleteConfirmationMessage, title)
+        let alert = UIAlertController(title: MenuAddonsConstants.deleteConfirmationTitle,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: MenuAddonsConstants.deleteActionTitle,
+                                         style: .destructive) { [unowned self] _ in
+            self.output?.deleteValue(section: section, item: item)
+        }
+        alert.addAction(deleteAction)
+        let cancelAction = UIAlertAction(title: AlertConstants.cancelTitle, style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+
     func moveValue(section: Int, fromItem: Int, toItem: Int) {
         self.output?.moveValue(section: section, fromItem: fromItem, toItem: toItem)
     }

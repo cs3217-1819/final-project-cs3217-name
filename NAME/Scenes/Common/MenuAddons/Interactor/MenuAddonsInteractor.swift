@@ -94,6 +94,41 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func deleteValue(section: Int, item: Int) {
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            let optionValue = optionValues[section]
+            switch (optionValue.option.options, optionValue.option.defaultValue, optionValue.value) {
+            case (.multipleChoice(var choices), .multipleChoice(let defaultValue), .multipleChoice(let value)):
+                choices.remove(at: item)
+                optionValues[section].option.options = .multipleChoice(choices)
+                let newDefaultValue = adjustIndex(defaultValue, deletedIndex: item) ?? (choices.count - 1)
+                optionValues[section].option.defaultValue = .multipleChoice(newDefaultValue)
+                let newValue = adjustIndex(value, deletedIndex: item) ?? (choices.count - 1)
+                optionValues[section].value = .multipleChoice(newValue)
+            case (.multipleResponse(var choices), .multipleResponse(let defaultValue), .multipleResponse(let value)):
+                choices.remove(at: item)
+                optionValues[section].option.options = .multipleResponse(choices)
+                let newDefaultValue = Set(defaultValue.compactMap { adjustIndex($0, deletedIndex: item) })
+                optionValues[section].option.defaultValue = .multipleResponse(newDefaultValue)
+                let newValue = Set(value.compactMap { adjustIndex($0, deletedIndex: item) })
+                optionValues[section].value = .multipleResponse(newValue)
+            default:
+                break
+            }
+            passValueToPresenter()
+        }
+    }
+
+    private func adjustIndex(_ index: Int, deletedIndex: Int) -> Int? {
+        if index == deletedIndex {
+            return nil
+        } else if index > deletedIndex {
+            return index - 1
+        }
+        return index
+    }
+
     func moveValue(section: Int, fromItem: Int, toItem: Int) {
         // TODO handle error
         try? deps.storageManager.writeTransaction { _ in

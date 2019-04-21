@@ -34,6 +34,10 @@ class MenuAddonsCollectionViewDataSourceDelegate: NSObject, UICollectionViewData
         return choices.count + (isEditable ? 1 : 0)
     }
 
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item < choices.count {
@@ -102,7 +106,25 @@ extension MenuAddonsCollectionViewDataSourceDelegate: MenuAddonsCollectionViewAd
 
 // MARK: - MenuAddonsTableViewChoiceCellDelegate
 extension MenuAddonsCollectionViewDataSourceDelegate: MenuAddonsTableViewChoiceCellDelegate {
+    var shouldPreferSingleTap: Bool {
+        return isEditable
+    }
+
+    func collectionViewDidDoubleTap(_ collectionView: UICollectionView, gesture: UITapGestureRecognizer) {
+        guard isEditable && isReorderable, gesture.state == .ended else {
+            return
+        }
+        let location = gesture.location(in: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: location) else {
+            return
+        }
+        delegate?.deleteValue(section: section, item: indexPath.item, title: choices[indexPath.item].name)
+    }
+
     func collectionViewDidLongPress(_ collectionView: UICollectionView, gesture: UILongPressGestureRecognizer) {
+        guard isEditable && isReorderable else {
+            return
+        }
         let location = gesture.location(in: collectionView)
         switch gesture.state {
         case .began:
