@@ -188,7 +188,15 @@ extension StallListViewController: StallListTableViewCellDelegate {
             assertionFailure("Cannot locate index path of cell to be deleted.")
             return
         }
-        output?.handleStallDelete(at: indexPath.row)
+
+        let alert = UIAlertController(title: "Deleting stall",
+                                      message: "Are you sure you want to delete this stall?",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
+            self.output?.handleStallDelete(at: indexPath.row)
+        })
+        present(alert, animated: true)
     }
 }
 
