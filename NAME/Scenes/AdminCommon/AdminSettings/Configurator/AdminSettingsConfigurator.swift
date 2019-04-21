@@ -13,10 +13,16 @@ final class AdminSettingsConfigurator {
     static let shared: AdminSettingsConfigurator = AdminSettingsConfigurator()
 
     // MARK: - Configuration
-    func configure(viewController: AdminSettingsViewController) {
+    func configure(id: String,
+                   type: SettingsType,
+                   viewController: AdminSettingsViewController,
+                   injector: DependencyInjector = appDefaultInjector) {
         let router = AdminSettingsRouter(viewController: viewController)
         let presenter = AdminSettingsPresenter(output: viewController)
-        let interactor = AdminSettingsInteractor(output: presenter)
+        let interactor = AdminSettingsInteractor(id: id,
+                                                 type: type,
+                                                 output: presenter,
+                                                 injector: injector)
 
         viewController.output = interactor
         viewController.router = router

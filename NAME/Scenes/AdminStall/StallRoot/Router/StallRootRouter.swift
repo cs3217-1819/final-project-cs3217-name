@@ -44,7 +44,6 @@ extension StallRootRouter: StallRootRouterProtocol {
     }
 
     func stallSettingsViewController(stallId: String) -> UIViewController {
-        // TODO: Pass stallId into child
-        return AdminSettingsViewController()
+        return AdminSettingsViewController(id: stallId, type: .stall, isDismissibleView: false)
     }
 }

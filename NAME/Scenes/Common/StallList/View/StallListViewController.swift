@@ -17,6 +17,7 @@ protocol StallListViewControllerOutput {
     func reloadStalls()
     func handleStallSelect(at index: Int)
     func handleStallDelete(at index: Int)
+    func handleStallEdit(at index: Int)
     func requestSessionEnd()
 }
 
@@ -131,8 +132,23 @@ final class StallListViewController: UICollectionViewController {
 
         setupCollectionView()
         setupNavigation()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         output?.reloadStalls()
         output?.reloadEstablishmentInfo()
+
+        guard let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
+            selectedIndexPaths.isEmpty,
+            collectionView.numberOfSections > 0,
+            collectionView.numberOfItems(inSection: 0) > 0
+            else {
+                return
+        }
+        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: animated, scrollPosition: .top)
+        output?.handleStallSelect(at: 0)
     }
 
     private func setupCollectionView() {
@@ -151,19 +167,6 @@ final class StallListViewController: UICollectionViewController {
     @objc
     private func closeButtonDidPress() {
         output?.requestSessionEnd()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
-            selectedIndexPaths.isEmpty,
-            collectionView.numberOfSections > 0,
-            collectionView.numberOfItems(inSection: 0) > 0
-            else {
-                return
-        }
-        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: animated, scrollPosition: .top)
-        output?.handleStallSelect(at: 0)
     }
 }
 
@@ -192,8 +195,12 @@ extension StallListViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - StallListTableViewCellDelegate
 extension StallListViewController: StallListTableViewCellDelegate {
-    func didTapEdit() {
-        router?.navigateToStallSettings()
+    func didTapEdit(at cell: UICollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            assertionFailure("Cannot locate index path of cell to be deleted.")
+            return
+        }
+        output?.handleStallEdit(at: indexPath.row)
     }
 
     func didTapDelete(at cell: UICollectionViewCell) {
@@ -227,5 +234,9 @@ extension StallListViewController: StallListViewControllerInput {
 
     func displayStallDeleteError(title: String, message: String, buttonText: String?) {
         router?.navigateToError(title: title, message: message, buttonText: buttonText)
+    }
+
+    func displayStallSettings(withId id: String) {
+        router?.navigateToStallSettings(withId: id)
     }
 }

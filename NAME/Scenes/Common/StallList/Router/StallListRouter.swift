@@ -11,7 +11,7 @@ import UIKit
 protocol StallListRouterProtocol {
     var viewController: StallListViewController? { get }
 
-    func navigateToStallSettings()
+    func navigateToStallSettings(withId id: String)
     func navigateToError(title: String, message: String, buttonText: String?)
 }
 
@@ -27,9 +27,8 @@ final class StallListRouter {
 // MARK: - StallListRouterProtocol
 
 extension StallListRouter: StallListRouterProtocol {
-    func navigateToStallSettings() {
-        let settingsVC = AdminSettingsViewController()
-        settingsVC.modalPresentationStyle = .formSheet
+    func navigateToStallSettings(withId id: String) {
+        let settingsVC = AdminSettingsViewController(id: id, type: .stall, isDismissibleView: true)
         viewController?.present(settingsVC, animated: true)
     }
 

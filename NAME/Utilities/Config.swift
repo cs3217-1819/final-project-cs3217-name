@@ -12,6 +12,7 @@ import UIKit
 enum ReuseIdentifiers {
     static let orderCellIdentifier = "orderCellIdentifier"
     static let orderItemCellIdentifier = "orderItemCellIdentifier"
+    static let settingsCellIdentifier = "settingsCellIdentifier"
 }
 
 // MARK: - Colorrs
@@ -303,6 +304,22 @@ enum CustomAlertConstants {
     static let titleFontSize: CGFloat = 32.0
     static let imageViewHeight: CGFloat = 200.0
     static let alertWidth: CGFloat = 450.0
+}
+
+// MARK: - Admin Settings
+enum AdminSettingsConstants {
+    static let stallSettingsHeaderTitle = "Stall Settings"
+    static let estSettingsHeaderTitle = "Establishment Settings"
+    static let nameTitle = "Name"
+    static let locationTitle = "Location"
+    static let detailsTitle = "Details"
+    static let namePlaceholder = "Enter Name"
+    static let locationPlaceholder = "Enter Location"
+    static let detailsPlaceholder = "Enter Details"
+    static let saveButtonTitle = "SAVE"
+    static let cancelButtonTitle = "CANCEL"
+    static let cellSplitFraction: CGFloat = 1 / 4
+    static let saveButtonWidth: CGFloat = 150.0
 }
 
 // MARK: - Image

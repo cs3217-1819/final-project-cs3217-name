@@ -27,6 +27,7 @@ protocol StallListInteractorInput: StallListViewControllerOutput {
 protocol StallListInteractorOutput {
     func present(establishmentInfo: Establishment)
     func present(stalls: [Stall])
+    func presentStallSettings(forStallId id: String)
     func presentStallDeleteError()
 }
 
@@ -93,6 +94,10 @@ extension StallListInteractor: StallListViewControllerOutput {
         } catch {
             output.presentStallDeleteError()
         }
+    }
+
+    func handleStallEdit(at index: Int) {
+        output.presentStallSettings(forStallId: loadedStalls[index].id)
     }
 
     func requestSessionEnd() {

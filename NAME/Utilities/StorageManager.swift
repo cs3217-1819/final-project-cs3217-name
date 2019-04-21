@@ -22,8 +22,10 @@ protocol StorageManager {
 
     func allEstablishments() -> [Establishment]
     func getEstablishment(id: String) -> Establishment?
+    func updateEstablishment(id: String, name: String?, location: String?, details: String?)
 
     func getStall(id: String) -> Stall?
+    func updateStall(id: String, name: String?, location: String?, details: String?)
 
     func allOrders() -> [Order]
     func getOrder(id: String) -> Order?

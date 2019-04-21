@@ -38,7 +38,8 @@ extension EstablishmentRootRouter: EstablishmentRootRouterProtocol {
     }
 
     func establishmentSettingsViewController(estId: String) -> UIViewController {
-        // TODO: Pass estId into child
-        return UINavigationController(rootViewController: AdminSettingsViewController())
+        return UINavigationController(rootViewController: AdminSettingsViewController(id: estId,
+                                                                                      type: .establishment,
+                                                                                      isDismissibleView: false))
     }
 }

@@ -13,62 +13,140 @@ protocol AdminSettingsViewControllerInput: AdminSettingsPresenterOutput {
 }
 
 protocol AdminSettingsViewControllerOutput {
+    func reload()
+    func update(name: String?, location: String?, details: String?)
 }
 
-final class AdminSettingsViewController: UIViewController {
+final class AdminSettingsViewController: UITableViewController {
+    private var tableViewDataSource: AdminSettingsDataSource? {
+        didSet {
+            tableViewDataSource?.delegate = self
+            tableView.dataSource = tableViewDataSource
+            tableView.reloadData()
+        }
+    }
+
     var output: AdminSettingsViewControllerOutput?
     var router: AdminSettingsRouterProtocol?
 
-    lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(handleCancelPress(sender:)), for: .touchUpInside)
-        button.setTitle("Click to dismiss", for: .normal)
-        return button
-    }()
+    private let footerView: AdminSettingsFooterView
+
+    private var updatedName: String?
+    private var updatedLocation: String?
+    private var updatedDetails: String?
 
     // MARK: - Initializers
-    init(configurator: AdminSettingsConfigurator = AdminSettingsConfigurator.shared) {
+    init(id: String,
+         type: SettingsType,
+         isDismissibleView: Bool,
+         configurator: AdminSettingsConfigurator = AdminSettingsConfigurator.shared) {
+        // Set frame of footer view with non-zero height so that buttons can received taps.
+        footerView = AdminSettingsFooterView(frame: CGRect(x: 0, y: 0, width: 0,
+                                                          height: ButtonConstants.mediumButtonHeight * 2),
+                                             isCancelShown: isDismissibleView)
+
         super.init(nibName: nil, bundle: nil)
-        configure(configurator: configurator)
+        configure(id: id, type: type, configurator: configurator)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
+        fatalError("This should not be called without Storyboard.")
     }
 
-    private func configure(configurator: AdminSettingsConfigurator = AdminSettingsConfigurator.shared) {
-        configurator.configure(viewController: self)
-        restorationIdentifier = String(describing: type(of: self))
-        restorationClass = type(of: self)
+    private func configure(id: String,
+                           type: SettingsType,
+                           configurator: AdminSettingsConfigurator = AdminSettingsConfigurator.shared) {
+        configurator.configure(id: id, type: type, viewController: self)
     }
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(cancelButton)
-        configureConstraints()
+        footerView.delegate = self
+        setupTableView()
+        output?.reload()
     }
 
-    private func configureConstraints() {
-        cancelButton.snp.makeConstraints { make in
-            make.size.equalToSuperview()
+    private func setupTableView() {
+        tableView.backgroundColor = UIColor.Custom.paleGray
+        tableView.delegate = self
+        tableView.register(AdminSettingsCell.self,
+                           forCellReuseIdentifier: ReuseIdentifiers.settingsCellIdentifier)
+        tableView.tableFooterView = footerView
+    }
+}
+
+private class AdminSettingsDataSource: NSObject, UITableViewDataSource {
+    private let header: String
+    private let cellViewModels: [AdminSettingsViewModel.SettingsFieldViewModel]
+
+    weak var delegate: AdminSettingsCellDelegate?
+
+    init(viewModel: AdminSettingsViewModel) {
+        cellViewModels = viewModel.fields
+        header = viewModel.header
+        super.init()
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellViewModels.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.settingsCellIdentifier,
+                                                 for: indexPath)
+
+        guard let fieldCell = cell as? AdminSettingsCell else {
+            assertionFailure("Invalid admin settings table view cell.")
+            return cell
+        }
+        let viewModel = cellViewModels[indexPath.row]
+        fieldCell.set(title: viewModel.title, fieldPlaceholer: viewModel.placeholder, type: viewModel.type)
+        fieldCell.delegate = delegate
+        fieldCell.selectionStyle = .none
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? header : nil
+    }
+}
+
+// MARK: - AdminSettingsCellDelegate
+extension AdminSettingsViewController: AdminSettingsCellDelegate {
+    func newInput(_ input: String?, for fieldType: AdminSettingsViewModel.FieldType) {
+        switch fieldType {
+        case .name:
+            updatedName = input
+        case .location:
+            updatedLocation = input
+        case .details:
+            updatedDetails = input
         }
     }
+}
 
-    @objc
-    func handleCancelPress(sender: Any) {
+// MARK: - AdminSettingsFooterViewDelegate
+extension AdminSettingsViewController: AdminSettingsFooterViewDelegate {
+    func saveButtonDidTap() {
+        output?.update(name: updatedName, location: updatedLocation, details: updatedDetails)
+    }
+
+    func cancelButtonDidTap() {
         router?.navigateBack()
     }
 }
 
 // MARK: - AdminSettingsPresenterOutput
 extension AdminSettingsViewController: AdminSettingsViewControllerInput {
-}
-
-extension AdminSettingsViewController: UIViewControllerRestoration {
-    static func viewController(withRestorationIdentifierPath path: [String], coder: NSCoder) -> UIViewController? {
-        return self.init()
+    // TODO: Combine all to one display func
+    func display(viewModel: AdminSettingsViewModel) {
+        tableViewDataSource = AdminSettingsDataSource(viewModel: viewModel)
     }
+
 }

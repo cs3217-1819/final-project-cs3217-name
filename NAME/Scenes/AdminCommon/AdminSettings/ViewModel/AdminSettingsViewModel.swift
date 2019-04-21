@@ -8,6 +8,24 @@
 
 import UIKit
 
-struct AdminSettingsViewModel {
+enum SettingsType {
+    case stall
+    case establishment
+}
 
+struct AdminSettingsViewModel {
+    enum FieldType {
+        case name
+        case location
+        case details
+    }
+
+    struct SettingsFieldViewModel {
+        let title: String
+        let placeholder: String
+        let type: FieldType
+    }
+
+    let header: String
+    let fields: [SettingsFieldViewModel]
 }

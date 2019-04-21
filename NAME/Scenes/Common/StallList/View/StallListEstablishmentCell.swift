@@ -9,7 +9,7 @@
 import UIKit
 
 protocol StallListTableViewCellDelegate: class {
-    func didTapEdit()
+    func didTapEdit(at cell: UICollectionViewCell)
     func didTapDelete(at cell: UICollectionViewCell)
 }
 
@@ -113,7 +113,7 @@ class StallListEstablishmentCell: UICollectionViewCell {
 
     @objc
     private func handleEditPress(sender: UIButton) {
-        delegate?.didTapEdit()
+        delegate?.didTapEdit(at: self)
     }
 
     @objc

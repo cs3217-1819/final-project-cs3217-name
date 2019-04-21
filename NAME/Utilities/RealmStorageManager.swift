@@ -104,4 +104,36 @@ class RealmStorageManager: StorageManager {
         return realm.objects(Stall.self).filter(predicate).first
         // swiftlint:enable first_where
     }
+
+    func updateEstablishment(id: String, name: String?, location: String?, details: String?) {
+        guard let est = getEstablishment(id: id) else {
+            return
+        }
+        if let name = name {
+            est.name = name
+        }
+        if let location = location {
+            est.location = location
+        }
+        if let details = details {
+            est.details = details
+        }
+        realm.add(est, update: true)
+    }
+
+    func updateStall(id: String, name: String?, location: String?, details: String?) {
+        guard let stall = getStall(id: id) else {
+            return
+        }
+        if let name = name {
+            stall.name = name
+        }
+        if let location = location {
+            stall.location = location
+        }
+        if let details = details {
+            stall.details = details
+        }
+        realm.add(stall, update: true)
+    }
 }
