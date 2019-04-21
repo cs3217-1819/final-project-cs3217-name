@@ -141,9 +141,11 @@ final class StallListViewController: UICollectionViewController {
     }
 
     private func setupNavigation() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop,
-                                                           target: self,
-                                                           action: #selector(closeButtonDidPress))
+        if !isEstablishmentView {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop,
+                                                               target: self,
+                                                               action: #selector(closeButtonDidPress))
+        }
     }
 
     @objc
