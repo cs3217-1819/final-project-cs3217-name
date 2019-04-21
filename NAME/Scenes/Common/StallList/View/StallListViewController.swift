@@ -152,6 +152,19 @@ final class StallListViewController: UICollectionViewController {
     private func closeButtonDidPress() {
         output?.requestSessionEnd()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
+            selectedIndexPaths.isEmpty,
+            collectionView.numberOfSections > 0,
+            collectionView.numberOfItems(inSection: 0) > 0
+            else {
+                return
+        }
+        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: animated, scrollPosition: .top)
+        output?.handleStallSelect(at: 0)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
