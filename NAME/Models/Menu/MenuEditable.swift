@@ -9,6 +9,7 @@
 protocol MenuEditable: MenuDisplayable {
     func add(category: MenuCategory)
     func remove(category: MenuCategory)
+    func removeAllCategories()
 }
 
 extension MenuEditable {
@@ -20,5 +21,9 @@ extension MenuEditable {
         if let index = categories.index(of: category) {
             categories.remove(at: index)
         }
+    }
+
+    func removeAllCategories() {
+        categories.removeAll()
     }
 }

@@ -6,6 +6,7 @@ class MenuCategory: Object {
     // MARK: - Properties
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name = ""
+    @objc dynamic var isUncategorized = false
 
     // MARK: - Relationships
     @objc dynamic var menu: Menu?
