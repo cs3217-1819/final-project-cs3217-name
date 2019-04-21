@@ -207,6 +207,10 @@ enum MenuConstants {
     static let menuItemDragTypeIdentifier = "menuItemDragType"
 }
 
+enum MenuDetailConstants {
+    static let defaultMenuItemName = "Unnamed Menu item"
+}
+
 enum MenuInfoConstants {
     static let maximumNumberOfLines = 4
     static let nameAlertTitle = "Menu Item Name"

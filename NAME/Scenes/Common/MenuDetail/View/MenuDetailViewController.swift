@@ -20,7 +20,8 @@ final class MenuDetailViewController: UISplitViewController {
     var router: MenuDetailRouterProtocol?
 
     // MARK: - Initializers
-    init(menuId: String, isEditable: Bool, configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
+    /// Pass `nil` to `menuId` to create a new menu item
+    init(menuId: String?, isEditable: Bool, configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared) {
         super.init(nibName: nil, bundle: nil)
         configure(configurator: configurator, menuId: menuId, isEditable: isEditable)
     }
@@ -29,7 +30,9 @@ final class MenuDetailViewController: UISplitViewController {
         fatalError("This should not be called without storyboard.")
     }
 
-    private func configure(configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared, menuId: String, isEditable: Bool) {
+    private func configure(configurator: MenuDetailConfigurator = MenuDetailConfigurator.shared,
+                           menuId: String?,
+                           isEditable: Bool) {
         configurator.configure(viewController: self, menuId: menuId, isEditable: isEditable)
     }
 
