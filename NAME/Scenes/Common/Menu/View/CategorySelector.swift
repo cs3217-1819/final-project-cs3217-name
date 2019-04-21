@@ -9,9 +9,17 @@
 import UIKit
 
 protocol CategorySelectorDelegate: class {
+    /// Called when a category is selected.
+    /// - Parameters:
+    ///     - selector: Calling selector
+    ///     - category: Name of the category that was tapped
+    ///     - index: Index of the category that was tapped
+    ///     - wasAlreadySelected: Whether the category was selected again (i.e. was already
+    ///         selected before this delegate method was triggered)
     func categorySelector(_ selector: CategorySelector,
                           didSelectCategory category: String,
-                          atIndex index: Int)
+                          at index: Int,
+                          wasAlreadySelected: Bool)
 }
 
 private class CategoryButton: UIButton {
@@ -120,6 +128,13 @@ class CategorySelector: UIScrollView {
         }
     }
 
+    var selectedButton: UIView? {
+        guard let index = selectedIndex else {
+            return nil
+        }
+        return categorySelector.arrangedSubviews[index]
+    }
+
     override init(frame: CGRect) {
         isRemoving = false
         isSelectionEnabled = true
@@ -157,11 +172,13 @@ class CategorySelector: UIScrollView {
 
     @objc
     private func didSelectCategory(sender: CategoryButton) {
+        let previousIndex = selectedIndex ?? Int.min // Use an impossible value if nothing selected
         selectedIndex = sender.category.index
         if let selectedIndex = selectedIndex {
             selectorDelegate?.categorySelector(self,
                                                didSelectCategory: sender.category.name,
-                                               atIndex: selectedIndex)
+                                               at: selectedIndex,
+                                               wasAlreadySelected: previousIndex == selectedIndex)
         }
     }
 }

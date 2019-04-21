@@ -11,6 +11,7 @@ protocol MenuPresenterInput: MenuInteractorOutput {
 
 protocol MenuPresenterOutput: class {
     func displayMenu(viewModel: MenuViewModel)
+    func display(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String)
 }
 
 final class MenuPresenter {
@@ -55,5 +56,9 @@ extension MenuPresenter: MenuPresenterInput {
 
     func present(stall: Stall?) {
         output.displayMenu(viewModel: viewModel(forStall: stall))
+    }
+
+    func present(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String) {
+        output.display(actions: actions, forCategoryAt: index, name: name)
     }
 }

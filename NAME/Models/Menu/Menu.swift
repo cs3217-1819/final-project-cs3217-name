@@ -58,6 +58,25 @@ class Menu: Object {
         }
     }
 
+    func add(category: MenuCategory, at index: Int? = nil) {
+        // HACK: Since LinkingObject doesn't support inserting at a point, we remove all
+        // categories and add them in order.
+        let categories = self.categories
+        for cat in categories {
+            cat.menu = nil
+        }
+
+        let insertionPoint = index ?? categories.count
+
+        for cat in categories[0..<insertionPoint] {
+            cat.menu = self
+        }
+        category.menu = self
+        for cat in categories[insertionPoint..<categories.count] {
+            cat.menu = self
+        }
+    }
+
     /// Must be called in a write transaction
     func add(menuItemIds: [String], toCategory categoryIndex: Int) {
         let category = categories[categoryIndex]

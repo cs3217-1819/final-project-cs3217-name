@@ -6,6 +6,13 @@
 //  Copyright (c) 2019 NAME. All rights reserved.
 //
 
+enum MenuCategoryAction {
+    case insertLeft
+    case insertRight
+    case rename
+    case remove
+}
+
 struct MenuViewModel {
     struct MenuStallViewModel {
         let name: String

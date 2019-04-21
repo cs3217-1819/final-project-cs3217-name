@@ -14,6 +14,12 @@ protocol MenuViewControllerInput: MenuPresenterOutput {
 protocol MenuViewControllerOutput {
     func add(menuItemIds: [String], toCategory categoryIndex: Int)
     func remove(menuItemIds: [String], fromCategory categoryIndex: Int)
+
+    func getLegalActions(forCategoryAt index: Int)
+    func insert(newCategoryName: String, besideCategoryAt index: Int, onLeft: Bool)
+    func rename(categoryAt index: Int, to name: String)
+    func remove(categoryAt index: Int)
+
     func reload()
 }
 
@@ -153,12 +159,75 @@ extension MenuViewController: MenuViewControllerInput {
                                                   cellIdentifier: MenuViewController.itemCellIdentifier,
                                                   headerIdentifier: MenuViewController.headerIdentifier)
     }
+
+    private func promptNewCategoryName(index: Int, onLeft: Bool) {
+        let okHandler = { [unowned self] (result: String?) in
+            guard let result = result else {
+                return
+            }
+            self.output?.insert(newCategoryName: result, besideCategoryAt: index, onLeft: onLeft)
+        }
+        let alert = AlertHelper.makeAlertController(title: "New Category Name",
+                                                    message: nil,
+                                                    textFieldText: "",
+                                                    okHandler: okHandler)
+        present(alert, animated: true)
+    }
+
+    private func promptRenameCategory(index: Int, oldName: String) {
+        let okHandler = { [unowned self] (result: String?) in
+            guard let result = result else {
+                return
+            }
+            self.output?.rename(categoryAt: index, to: result)
+        }
+        let alert = AlertHelper.makeAlertController(title: "Rename \"\(oldName)\"",
+                                                    message: nil,
+                                                    textFieldText: oldName,
+                                                    okHandler: okHandler)
+        present(alert, animated: true)
+    }
+
+    func display(actions: [MenuCategoryAction], forCategoryAt index: Int, name: String) {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        if actions.contains(.insertLeft) {
+            let action = UIAlertAction(title: "Insert New Category on Left", style: .default) { [unowned self] _ in
+                self.promptNewCategoryName(index: index, onLeft: true)
+            }
+            sheet.addAction(action)
+        }
+
+        if actions.contains(.insertRight) {
+            let action = UIAlertAction(title: "Insert New Category on Right", style: .default) { [unowned self] _ in
+                self.promptNewCategoryName(index: index, onLeft: false)
+            }
+            sheet.addAction(action)
+        }
+
+        if actions.contains(.rename) {
+            let action = UIAlertAction(title: "Rename", style: .default) { [unowned self] _ in
+                self.promptRenameCategory(index: index, oldName: name)
+            }
+            sheet.addAction(action)
+        }
+
+        if actions.contains(.remove) {
+            let action = UIAlertAction(title: "Delete Category", style: .destructive) { [unowned self] _ in
+                self.output?.remove(categoryAt: index)
+            }
+            sheet.addAction(action)
+        }
+
+        sheet.popoverPresentationController?.sourceView = categorySelector.selectedButton
+        present(sheet, animated: true)
+    }
 }
 
 // MARK: - CategorySelectorDelegate
 
 extension MenuViewController: CategorySelectorDelegate {
-    func categorySelector(_ selector: CategorySelector, didSelectCategory category: String, atIndex idx: Int) {
+    private func scrollToCategory(atIndex idx: Int) {
         guard let headerLayout = collectionView.layoutAttributesForSupplementaryElement(
             ofKind: UICollectionView.elementKindSectionHeader,
             at: IndexPath(item: 0, section: idx)) else {
@@ -174,6 +243,21 @@ extension MenuViewController: CategorySelectorDelegate {
         let offset = CGPoint(x: firstItemLayout.frame.origin.x,
                              y: firstItemLayout.frame.origin.y - headerLayout.frame.size.height)
         collectionView.setContentOffset(offset, animated: true)
+    }
+
+    private func presentActionsForCategory(atIndex idx: Int) {
+        output?.getLegalActions(forCategoryAt: idx)
+    }
+
+    func categorySelector(_ selector: CategorySelector,
+                          didSelectCategory category: String,
+                          at idx: Int,
+                          wasAlreadySelected: Bool) {
+        if wasAlreadySelected {
+            presentActionsForCategory(atIndex: idx)
+        } else {
+            scrollToCategory(atIndex: idx)
+        }
     }
 }
 
