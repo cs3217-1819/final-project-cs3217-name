@@ -21,6 +21,8 @@ protocol MenuAddonsViewControllerOutput {
     func addChoice(section: Int, name: String, price: String)
     func addOption(type: MenuItemOptionType.MetaType, name: String, price: String?)
     func finalizeOrderItem(diningOption: OrderItem.DiningOption)
+    func reorderUp(section: Int)
+    func reorderDown(section: Int)
 }
 
 protocol MenuAddonsTableViewCellProvider: class {
@@ -41,7 +43,7 @@ final class MenuAddonsViewController: UIViewController {
     var router: MenuAddonsRouterProtocol?
 
     private var cellDelegates: [MenuAddonsTableViewCellProvider?] = []
-    private var sectionNames: [String] = []
+    private var sectionNames: [(name: String, section: Int)] = []
 
     private lazy var tableView: UITableView = {
         let result = UITableView(frame: .zero, style: .grouped)
@@ -110,12 +112,14 @@ final class MenuAddonsViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = MenuAddonsConstants.backgroundColor
-        let resetBarButtonItem = UIBarButtonItem(title: MenuAddonsConstants.resetButtonTitle,
-                                                 style: .plain,
-                                                 target: self,
-                                                 action: #selector(resetButtonDidPress))
-        resetBarButtonItem.tintColor = UIColor.Custom.salmonRed
-        navigationItem.rightBarButtonItem = resetBarButtonItem
+        if !isEditable {
+            let resetBarButtonItem = UIBarButtonItem(title: MenuAddonsConstants.resetButtonTitle,
+                                                     style: .plain,
+                                                     target: self,
+                                                     action: #selector(resetButtonDidPress))
+            resetBarButtonItem.tintColor = UIColor.Custom.salmonRed
+            navigationItem.rightBarButtonItem = resetBarButtonItem
+        }
     }
 
     private func addSubviews() {
@@ -165,7 +169,7 @@ extension MenuAddonsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionNames[section]
+        return sectionNames[section].name
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -181,9 +185,14 @@ extension MenuAddonsViewController: UITableViewDelegate {
             let title = self.tableView(tableView, titleForHeaderInSection: section) else {
             return nil
         }
-        // Hide reset button on new option
-        headerView.isResetButtonHidden = section == 0
-        headerView.set(section: section, title: title)
+        // Hide reset button when editable
+        let isResettable = !isEditable
+        // Hide reorder buttons on new option and addons, if editable
+        let isReorderable = isEditable && section != 0 && section != sectionNames.count - 1
+        headerView.set(section: sectionNames[section].section,
+                       title: title,
+                       isResettable: isResettable,
+                       isReorderable: isReorderable)
         headerView.delegate = self
         return headerView
     }
@@ -193,6 +202,14 @@ extension MenuAddonsViewController: UITableViewDelegate {
 extension MenuAddonsViewController: MenuAddonsTableViewHeaderViewDelegate {
     func resetButtonDidTap(section: Int) {
         output?.reset(section: section)
+    }
+
+    func reorderUpButtonDidTap(section: Int) {
+        output?.reorderUp(section: section)
+    }
+
+    func reorderDownButtonDidTap(section: Int) {
+        output?.reorderDown(section: section)
     }
 }
 
@@ -265,7 +282,11 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
     }
 
     func addCellDidTap(section: Int) {
-        guard section != sectionNames.count - 1 else {
+        guard let lastSection = sectionNames.last?.section,
+            let sectionName = sectionNames.first(where: { $0.section == section })?.name else {
+            return
+        }
+        guard section != lastSection else {
             let alert = AlertHelper
                 .makeAlertController(title: MenuAddonsConstants.featureComingSoon,
                                      message: nil,
@@ -274,7 +295,7 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
-        let title = String(format: MenuAddonsConstants.addChoiceNameTitle, sectionNames[section])
+        let title = String(format: MenuAddonsConstants.addChoiceNameTitle, sectionName)
         newChoiceAskName(section: section, title: title)
     }
 
@@ -312,8 +333,9 @@ extension MenuAddonsViewController: MenuAddonsTableViewCellDelegate {
 extension MenuAddonsViewController: MenuAddonsViewControllerInput {
     func display(viewModel: MenuAddonsViewModel) {
         footerView.price = viewModel.totalPrice
-        sectionNames = [MenuAddonsConstants.addOptionSectionName] + viewModel.options.map { $0.name }
-        cellDelegates = [MenuAddonsAddOptionDelegate(delegate: self)] +
+        sectionNames = (isEditable ? [(MenuAddonsConstants.addOptionSectionName, 0)] : []) +
+            viewModel.options.enumerated().map { ($0.element.name, $0.offset) }
+        cellDelegates = (isEditable ? [MenuAddonsAddOptionDelegate(delegate: self)] : []) +
             viewModel.options.enumerated().map { arg -> MenuAddonsTableViewCellProvider? in
                 let (section, option) = arg
                 switch (option.type, option.value) {

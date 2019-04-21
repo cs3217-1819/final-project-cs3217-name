@@ -90,6 +90,30 @@ final class MenuAddonsInteractor: MenuAddonsFromParentInput {
 
 // MARK: - MenuAddonsInteractorInput
 extension MenuAddonsInteractor: MenuAddonsViewControllerOutput {
+    func reorderUp(section: Int) {
+        guard let menuItem = menuItem, section > 0 else {
+            return
+        }
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            menuItem.options.swapAt(section, section - 1)
+        }
+        optionValues.swapAt(section, section - 1)
+        passValueToPresenter()
+    }
+
+    func reorderDown(section: Int) {
+        guard let menuItem = menuItem, section + 1 < optionValues.count else {
+            return
+        }
+        // TODO handle error
+        try? deps.storageManager.writeTransaction { _ in
+            menuItem.options.swapAt(section, section + 1)
+        }
+        optionValues.swapAt(section, section + 1)
+        passValueToPresenter()
+    }
+
     func addOption(type: MenuItemOptionType.MetaType, name: String, price: String?) {
         guard name != "", let menuItem = menuItem else {
             return

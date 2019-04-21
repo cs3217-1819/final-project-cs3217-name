@@ -218,6 +218,8 @@ enum MenuInfoConstants {
 // MARK: - MenuAddons
 enum MenuAddonsConstants {
     static let featureComingSoon = "Feature coming in version 2!"
+    static let reorderUp = "▲"
+    static let reorderDown = "▼"
     static let addOptionTypeTitle = "New option type"
     static let addOptionTypeChoices: [(name: String, value: MenuItemOptionType.MetaType)] = MenuItemOptionType.MetaType.allCases.map { option in
         switch option {
