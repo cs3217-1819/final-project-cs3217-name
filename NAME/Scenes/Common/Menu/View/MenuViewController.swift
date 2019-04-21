@@ -242,20 +242,26 @@ extension MenuViewController: MenuViewControllerInput {
 
 extension MenuViewController: CategorySelectorDelegate {
     private func scrollToCategory(atIndex idx: Int) {
+        let indexPath = IndexPath(item: 0, section: idx)
         guard let headerLayout = collectionView.layoutAttributesForSupplementaryElement(
             ofKind: UICollectionView.elementKindSectionHeader,
-            at: IndexPath(item: 0, section: idx)) else {
+            at: indexPath) else {
                 return
         }
 
-        guard let firstItemLayout = collectionView.layoutAttributesForItem(at: IndexPath(item: 0, section: idx)) else {
-            return
+        enableCategorySelectionFeedback = false
+        var offset: CGPoint = .zero
+
+        // First item location necessary. Without this, when scrolling up, the collection view will only
+        // scroll until the header is just visible. If the layout attr is nil, that means that the section
+        // is empty and there's no need to correct for it.
+        if let firstItemOrigin = collectionView.layoutAttributesForItem(at: indexPath)?.frame.origin {
+            offset = CGPoint(x: firstItemOrigin.x,
+                             y: firstItemOrigin.y - headerLayout.frame.size.height)
+        } else {
+            offset = headerLayout.frame.origin
         }
 
-        enableCategorySelectionFeedback = false
-
-        let offset = CGPoint(x: firstItemLayout.frame.origin.x,
-                             y: firstItemLayout.frame.origin.y - headerLayout.frame.size.height)
         collectionView.setContentOffset(offset, animated: true)
     }
 
