@@ -11,6 +11,14 @@ import Foundation
 
 // Make all functions optional to facilitate testing
 class TestStorageManager: StorageManager {
+    func updateEstablishment(id: String, name: String?, location: String?, details: String?) {
+
+    }
+
+    func updateStall(id: String, name: String?, location: String?, details: String?) {
+
+    }
+
     func getEstablishment(id: String) -> Establishment? {
         return nil
     }
